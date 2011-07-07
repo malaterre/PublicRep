@@ -3,8 +3,8 @@ import java.io.*;
 
 /*
  * usage:
- * mkdir /tmp/yeeha
- * LD_LIBRARY_PATH=.:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/xawt/ CLASSPATH=demo.jar:. java testdemo /tmp/yeeha
+ * mkdir yeeha
+ * LD_LIBRARY_PATH=. CLASSPATH=demo.jar:. java testdemo yeeha
  */
 
 public class testdemo

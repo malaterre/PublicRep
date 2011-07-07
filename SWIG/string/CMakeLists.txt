@@ -36,7 +36,6 @@ add_custom_command(
   COMMAND ${JAVA_ARCHIVE} ARGS cvf ${LIBRARY_OUTPUT_PATH}/demo.jar demo/*.class
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/java
   DEPENDS "${swig_generated_file_fullname}"
-  COMMENT "javac *.java; jar cvf -> demo.jar"
 )
 
 add_custom_command(
@@ -44,11 +43,9 @@ add_custom_command(
   COMMAND ${JAVA_COMPILE} ARGS -source 1.5 ${CMAKE_CURRENT_SOURCE_DIR}/testdemo.java -classpath ${LIBRARY_OUTPUT_PATH}/demo.jar -d ${EXECUTABLE_OUTPUT_PATH}
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   DEPENDS ${LIBRARY_OUTPUT_PATH}/demo.jar
-  COMMENT "javac *.java; jar cvf -> testdemo.class"
 )
 
 add_custom_target(BLA ALL
   DEPENDS ${LIBRARY_OUTPUT_PATH}/demo.jar
   ${LIBRARY_OUTPUT_PATH}/testdemo.class
-  COMMENT "building demo.jar"
 )

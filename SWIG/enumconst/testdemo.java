@@ -10,6 +10,7 @@ public class testdemo
 {
   public static void main(String[] args) throws Exception
     {
+{
     myenum2 e = new myenum2();
     if( e.equals( myenum2.TheType.THE_END ) )
       {
@@ -19,5 +20,17 @@ public class testdemo
       {
       System.out.println( "not THE_END" );
       }
+}
+{
+    myenum2 e = new myenum2( myenum2.TheType.FOO4 );
+    if( e.equals( myenum2.TheType.FOO4 ) )
+      {
+      System.out.println( "FOO4" );
+      }
+    else
+      {
+      System.out.println( "not FOO4" );
+      }
+}
     }
 }

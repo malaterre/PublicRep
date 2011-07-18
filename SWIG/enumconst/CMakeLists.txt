@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8)
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
-add_library(thelib SHARED myenum.cxx)
+add_library(thelib SHARED myenum.cxx myenum2.cxx)
 
 find_package(Java 1.5 REQUIRED)
 find_package(JNI REQUIRED)

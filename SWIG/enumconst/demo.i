@@ -18,7 +18,7 @@
 
 // Case 1
 %include "enumtypesafe.swg" // optional as typesafe enums are the default
-//%javaconst(1);
+//%javaconst(1); // compilation error with swig 2.0.4
 %include "myenum.h"
 
 // Case 2

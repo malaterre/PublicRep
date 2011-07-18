@@ -28,7 +28,21 @@
     return $javaclassname.class.getEnumConstants()[$jnicall];
   }
 %typemap(javabody) enum SWIGTYPE ""
+%rename(GetType) myenum2::operator TheType () const;
 %include "myenum2.h"
 %extend myenum2
 {
+%typemap(javacode) myenum2
+%{
+  // For some reason the default equals operator is bogus, provide one ourself
+  public boolean equals(Object obj)
+    {
+    TheType type = (TheType)obj;
+    if( type == GetType() )
+      {
+      return true;
+      }
+    return false;
+    }
+%}
 };

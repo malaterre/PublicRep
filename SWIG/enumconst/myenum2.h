@@ -12,6 +12,10 @@ class MY_EXPORT myenum2
 {
 public:
   typedef enum {
+    FOO0
+#ifndef SWIG
+      = 0,
+#endif
     FOO1,
     FOO2,
     FOO3,

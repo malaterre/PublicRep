@@ -66,13 +66,23 @@
         <xsl:choose>
           <xsl:when test="$type_defs[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$type_defs[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *</xsl:text>
+            <xsl:text> </xsl:text>
           </xsl:when>
           <xsl:when test="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *</xsl:text>
+            <xsl:text> </xsl:text>
           </xsl:when>
-          <xsl:otherwise>no type found 2</xsl:otherwise>
+          <xsl:when test="$struct_types[@id=$pointer_types[@id=$tid]/@type]">
+            <xsl:value-of select="$struct_types[@id=$pointer_types[@id=$tid]/@type]/@name"/>
+            <xsl:text> </xsl:text>
+          </xsl:when>
+<!--
+          <xsl:when test="$cvqualified_types[@id=$pointer_types[@id=$tid]/@type]">
+            <xsl:variable name="intermediate_type" select="$cvqualified_types[@id=$pointer_types[@id=$tid]/@type]/@type"/>
+            <xsl:value-of select="$struct_types[@id=$intermediate_type]/@name"/>
+          </xsl:when>
+-->
+          <xsl:otherwise><xsl:value-of select="$struct_types[@id=$tid]/@name"/></xsl:otherwise>
         </xsl:choose>
       </xsl:when>
       <xsl:when test="$pointer_types[@id=$tid]">
@@ -85,6 +95,9 @@
             <xsl:choose>
               <xsl:when test="$fundamental_types[@id=$intermediate_type]">
                 <xsl:value-of select="$fundamental_types[@id=$intermediate_type]/@name"/>
+              </xsl:when>
+              <xsl:when test="$struct_types[@id=$intermediate_type]">
+                <xsl:value-of select="$struct_types[@id=$intermediate_type]/@name"/>
               </xsl:when>
               <xsl:otherwise>no type found 4 <xsl:value-of select="$intermediate_type"/></xsl:otherwise>
             </xsl:choose>

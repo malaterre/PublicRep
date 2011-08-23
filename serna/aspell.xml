@@ -1,0 +1,1174 @@
+<?xml version="1.0"?>
+<GCC_XML cvs_revision="1.134">
+  <Namespace id="_1" name="::" members="_3 _4 _5 _6 _7 _8 _9 _10 _11 _12 _13 _14 _15 _16 _17 _18 _19 _20 _21 _22 _23 _24 _25 _26 _27 _28 _29 _30 _31 _32 _33 _34 _35 _36 _37 _38 _39 _40 _41 _42 _43 _44 _45 _46 _47 _48 _49 _50 _51 _52 _53 _54 _55 _56 _57 _58 _59 _60 _62 _61 _63 _64 _65 _66 _67 _68 _69 _70 _72 _71 _73 _74 _75 _77 _76 _78 _79 _81 _80 _82 _83 _84 _85 _86 _87 _88 _89 _90 _91 _92 _93 _94 _96 _95 _97 _98 _99 _100 _101 _102 _103 _104 _105 _106 _107 _108 _109 _110 _111 _112 _113 _114 _115 _116 _117 _118 _119 _120 _121 _122 _124 _123 _125 _126 _127 _128 _129 _130 _131 _132 _133 _134 _135 _136 _137 _138 _139 _140 _141 _142 _143 _144 _145 _146 _147 _148 _149 _151 _150 _152 _153 _154 _155 _156 _157 _158 _159 _160 _161 _162 _163 _164 _165 _166 _168 _167 _169 _171 _170 _172 _173 _174 _175 _176 _178 _177 _179 _180 _182 _181 _183 _184 _185 _186 _187 _188 _189 _190 _191 _192 _193 _194 _195 _196 _197 _198 _199 _200 _201 _203 _202 _204 _206 _205 _207 _208 _209 _210 _211 _212 _213 _214 _215 _216 _217 _218 _219 _220 _221 _222 _223 _224 _225 _226 _227 _228 _229 _230 _232 _231 _233 _234 _235 _237 _236 _238 _2 _239 _240 _242 _241 _243 _244 _245 _246 _247 _248 _249 _250 _251 _252 _253 _254 _255 _256 _257 _258 _259 _260 _261 _262 _263 _264 _265 _266 _267 _268 _269 _270 _271 _272 _273 _274 _275 _276 _277 _278 _279 _280 _281 _283 _282 _285 _284 _286 _287 _288 _289 _290 _291 _292 _293 _295 _294 _296 _297 _298 _299 _300 _301 _302 _303 _304 _305 _306 _307 _308 _309 _310 _311 _312 _313 _314 _315 _316 _317 _318 _319 _320 _321 _322 _323 _324 _325 _326 _327 _328 _329 _330 _332 _331 _333 _334 _335 _336 _337 _338 _339 _340 _341 _342 _343 _344 _345 _346 _347 _348 _349 _350 _351 _352 _353 _354 _355 _356 _357 _358 _359 _360 _361 _362 _363 _364 _365 _366 _368 _367 _369 _370 _371 _372 _374 _373 _375 _377 _376 _378 _379 _380 _381 _383 _382 _384 _385 _386 _387 _389 _388 _390 _391 _392 _393 " mangled="_Z2::" demangled="::"/>
+  <Namespace id="_2" name="std" context="_1" members="" mangled="_Z3std" demangled="std"/>
+  <Function id="_3" name="__builtin_nans" returns="_394" context="_1" location="f0:21" file="f0" line="21" extern="1" attributes="nothrow const nonnull">
+    <Argument name="str" type="_395" location="f0:21" file="f0" line="21"/>
+  </Function>
+  <Function id="_4" name="__builtin_acosf" returns="_396" context="_1" mangled="acosf" location="f0:25" file="f0" line="25" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:25" file="f0" line="25"/>
+  </Function>
+  <Function id="_5" name="__builtin_acosl" returns="_397" context="_1" mangled="acosl" location="f0:26" file="f0" line="26" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:26" file="f0" line="26"/>
+  </Function>
+  <Function id="_6" name="delete_aspell_filter" returns="_398" context="_1" location="f1:391" file="f1" line="391" extern="1">
+    <Argument name="ths" type="_399" location="f1:391" file="f1" line="391"/>
+  </Function>
+  <Function id="_7" name="aspell_reset_cache" returns="_400" context="_1" location="f1:729" file="f1" line="729" extern="1">
+    <Argument name="which" type="_395" location="f1:729" file="f1" line="729"/>
+  </Function>
+  <Variable id="_8" name="aerror_cant_open_file" type="_401c" context="_1" location="f1:245" file="f1" line="245" extern="1"/>
+  <Function id="_9" name="__builtin_va_arg_pack" returns="_403" context="_1" location="f0:147" file="f0" line="147" extern="1">
+    <Ellipsis/>
+  </Function>
+  <Function id="_10" name="__builtin_log10" returns="_394" context="_1" mangled="log10" location="f0:63" file="f0" line="63" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:63" file="f0" line="63"/>
+  </Function>
+  <Function id="_11" name="__builtin_popcountll" returns="_400" context="_1" location="f0:101" file="f0" line="101" extern="1" attributes="nothrow const">
+    <Argument type="_404" location="f0:101" file="f0" line="101"/>
+  </Function>
+  <Function id="_12" name="__builtin_clogf" returns="_405" context="_1" mangled="clogf" location="f0:111" file="f0" line="111" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:111" file="f0" line="111"/>
+  </Function>
+  <Function id="_13" name="__builtin_clogl" returns="_406" context="_1" mangled="clogl" location="f0:113" file="f0" line="113" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:113" file="f0" line="113"/>
+  </Function>
+  <Variable id="_14" name="aerror_mismatched_language" type="_401c" context="_1" location="f1:271" file="f1" line="271" extern="1"/>
+  <Function id="_15" name="aspell_string_list_remove" returns="_400" context="_1" location="f1:628" file="f1" line="628" extern="1">
+    <Argument name="ths" type="_407" location="f1:628" file="f1" line="628"/>
+    <Argument name="to_rem" type="_395" location="f1:628" file="f1" line="628"/>
+  </Function>
+  <Function id="_16" name="__builtin_cexpf" returns="_405" context="_1" mangled="cexpf" location="f0:108" file="f0" line="108" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:108" file="f0" line="108"/>
+  </Function>
+  <Function id="_17" name="__builtin_cexpl" returns="_406" context="_1" mangled="cexpl" location="f0:110" file="f0" line="110" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:110" file="f0" line="110"/>
+  </Function>
+  <Variable id="_18" name="aerror_cant_dlopen_file" type="_401c" context="_1" location="f1:296" file="f1" line="296" extern="1"/>
+  <Variable id="_19" name="aerror_cant_change_value" type="_401c" context="_1" location="f1:254" file="f1" line="254" extern="1"/>
+  <Function id="_20" name="aspell_key_info_enumeration_clone" returns="_408" context="_1" location="f1:91" file="f1" line="91" extern="1">
+    <Argument name="ths" type="_409" location="f1:91" file="f1" line="91"/>
+  </Function>
+  <Function id="_21" name="__builtin_isless" returns="_403" context="_1" location="f0:141" file="f0" line="141" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Function id="_22" name="aspell_module_info_enumeration_assign" returns="_398" context="_1" location="f1:593" file="f1" line="593" extern="1">
+    <Argument name="ths" type="_410" location="f1:593" file="f1" line="593"/>
+    <Argument name="other" type="_411" location="f1:593" file="f1" line="593"/>
+  </Function>
+  <Function id="_23" name="aspell_document_checker_error_message" returns="_395" context="_1" location="f1:425" file="f1" line="425" extern="1">
+    <Argument name="ths" type="_412" location="f1:425" file="f1" line="425"/>
+  </Function>
+  <Function id="_24" name="__builtin_isnormal" returns="_403" context="_1" location="f0:145" file="f0" line="145" extern="1">
+    <Ellipsis/>
+  </Function>
+  <Function id="_25" name="aspell_speller_session_word_list" returns="_413" context="_1" location="f1:366" file="f1" line="366" extern="1">
+    <Argument name="ths" type="_414" location="f1:366" file="f1" line="366"/>
+  </Function>
+  <Function id="_26" name="__builtin_asinf" returns="_396" context="_1" mangled="asinf" location="f0:28" file="f0" line="28" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:28" file="f0" line="28"/>
+  </Function>
+  <Function id="_27" name="__builtin_asinl" returns="_397" context="_1" mangled="asinl" location="f0:29" file="f0" line="29" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:29" file="f0" line="29"/>
+  </Function>
+  <Function id="_28" name="__builtin_popcount" returns="_400" context="_1" location="f0:99" file="f0" line="99" extern="1" attributes="nothrow const">
+    <Argument type="_400" location="f0:99" file="f0" line="99"/>
+  </Function>
+  <Function id="_29" name="aspell_dict_info_enumeration_at_end" returns="_400" context="_1" location="f1:600" file="f1" line="600" extern="1">
+    <Argument name="ths" type="_415" location="f1:600" file="f1" line="600"/>
+  </Function>
+  <Function id="_30" name="aspell_string_enumeration_at_end" returns="_400" context="_1" location="f1:494" file="f1" line="494" extern="1">
+    <Argument name="ths" type="_416" location="f1:494" file="f1" line="494"/>
+  </Function>
+  <Function id="_31" name="__builtin_nansf" returns="_396" context="_1" location="f0:22" file="f0" line="22" extern="1" attributes="nothrow const nonnull">
+    <Argument name="str" type="_395" location="f0:22" file="f0" line="22"/>
+  </Function>
+  <Function id="_32" name="__builtin_nansl" returns="_397" context="_1" location="f0:23" file="f0" line="23" extern="1" attributes="nothrow const nonnull">
+    <Argument name="str" type="_395" location="f0:23" file="f0" line="23"/>
+  </Function>
+  <Function id="_33" name="__builtin_floorf" returns="_396" context="_1" mangled="floorf" location="f0:52" file="f0" line="52" extern="1" attributes="nothrow const">
+    <Argument type="_396" location="f0:52" file="f0" line="52"/>
+  </Function>
+  <Function id="_34" name="__builtin_floorl" returns="_397" context="_1" mangled="floorl" location="f0:53" file="f0" line="53" extern="1" attributes="nothrow const">
+    <Argument type="_397" location="f0:53" file="f0" line="53"/>
+  </Function>
+  <Function id="_35" name="__builtin_ctanf" returns="_405" context="_1" mangled="ctanf" location="f0:123" file="f0" line="123" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:123" file="f0" line="123"/>
+  </Function>
+  <Function id="_36" name="__builtin_ctanh" returns="_417" context="_1" mangled="ctanh" location="f0:127" file="f0" line="127" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:127" file="f0" line="127"/>
+  </Function>
+  <Function id="_37" name="__builtin_ctanl" returns="_406" context="_1" mangled="ctanl" location="f0:125" file="f0" line="125" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:125" file="f0" line="125"/>
+  </Function>
+  <Function id="_38" name="aspell_speller_check" returns="_400" context="_1" location="f1:349" file="f1" line="349" extern="1">
+    <Argument name="ths" type="_414" location="f1:349" file="f1" line="349"/>
+    <Argument name="word" type="_395" location="f1:349" file="f1" line="349"/>
+    <Argument name="word_size" type="_400" location="f1:349" file="f1" line="349"/>
+  </Function>
+  <Function id="_39" name="aspell_speller_error_number" returns="_418" context="_1" location="f1:339" file="f1" line="339" extern="1">
+    <Argument name="ths" type="_419" location="f1:339" file="f1" line="339"/>
+  </Function>
+  <Variable id="_40" name="aerror_invalid_option_modifier" type="_401c" context="_1" location="f1:303" file="f1" line="303" extern="1"/>
+  <Function id="_41" name="get_aspell_dict_info_list" returns="_420" context="_1" location="f1:572" file="f1" line="572" extern="1">
+    <Argument name="config" type="_421" location="f1:572" file="f1" line="572"/>
+  </Function>
+  <Variable id="_42" name="aerror_no_filter_to_option" type="_401c" context="_1" location="f1:307" file="f1" line="307" extern="1"/>
+  <Function id="_43" name="__builtin_carg" returns="_394" context="_1" mangled="carg" location="f0:94" file="f0" line="94" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:94" file="f0" line="94"/>
+  </Function>
+  <Function id="_44" name="__builtin_clog" returns="_417" context="_1" mangled="clog" location="f0:112" file="f0" line="112" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:112" file="f0" line="112"/>
+  </Function>
+  <Function id="_45" name="__builtin_logf" returns="_396" context="_1" mangled="logf" location="f0:66" file="f0" line="66" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:66" file="f0" line="66"/>
+  </Function>
+  <Variable id="_46" name="aerror_confusing_version" type="_401c" context="_1" location="f1:299" file="f1" line="299" extern="1"/>
+  <Function id="_47" name="__builtin_logl" returns="_397" context="_1" mangled="logl" location="f0:67" file="f0" line="67" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:67" file="f0" line="67"/>
+  </Function>
+  <Function id="_48" name="__builtin_fabs" returns="_394" context="_1" mangled="fabs" location="f0:48" file="f0" line="48" extern="1" attributes="nothrow const">
+    <Argument type="_394" location="f0:48" file="f0" line="48"/>
+  </Function>
+  <Function id="_49" name="__builtin_expf" returns="_396" context="_1" mangled="expf" location="f0:46" file="f0" line="46" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:46" file="f0" line="46"/>
+  </Function>
+  <Function id="_50" name="aspell_string_map_to_mutable_container" returns="_422" context="_1" location="f1:656" file="f1" line="656" extern="1">
+    <Argument name="ths" type="_423" location="f1:656" file="f1" line="656"/>
+  </Function>
+  <Function id="_51" name="__builtin_expl" returns="_397" context="_1" mangled="expl" location="f0:47" file="f0" line="47" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:47" file="f0" line="47"/>
+  </Function>
+  <Variable id="_52" name="aerror_bad_key" type="_401c" context="_1" location="f1:255" file="f1" line="255" extern="1"/>
+  <Variable id="_53" name="aerror_cant_write_file" type="_401c" context="_1" location="f1:247" file="f1" line="247" extern="1"/>
+  <Function id="_54" name="aspell_word_list_elements" returns="_424" context="_1" location="f1:478" file="f1" line="478" extern="1">
+    <Argument name="ths" type="_413" location="f1:478" file="f1" line="478"/>
+  </Function>
+  <Function id="_55" name="__builtin_isunordered" returns="_403" context="_1" location="f0:146" file="f0" line="146" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Variable id="_56" name="aerror_conversion_not_supported" type="_401c" context="_1" location="f1:280" file="f1" line="280" extern="1"/>
+  <Variable id="_57" name="aerror_unknown_mode" type="_401c" context="_1" location="f1:316" file="f1" line="316" extern="1"/>
+  <Variable id="_58" name="aerror_no_value_clear" type="_401c" context="_1" location="f1:265" file="f1" line="265" extern="1"/>
+  <Variable id="_59" name="aerror_file_magic_range" type="_401c" context="_1" location="f1:320" file="f1" line="320" extern="1"/>
+  <Variable id="_60" name="aerror_bad_magic" type="_401c" context="_1" location="f1:322" file="f1" line="322" extern="1"/>
+  <Struct id="_61" name="AspellCanHaveError" context="_1" incomplete="1" mangled="18AspellCanHaveError" demangled="AspellCanHaveError" location="f1:224" file="f1" line="224" artificial="1" align="8"/>
+  <Typedef id="_62" name="AspellCanHaveError" type="_61" context="_1" location="f1:224" file="f1" line="224"/>
+  <Function id="_63" name="__builtin_csqrt" returns="_417" context="_1" mangled="csqrt" location="f0:121" file="f0" line="121" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:121" file="f0" line="121"/>
+  </Function>
+  <Function id="_64" name="__builtin_sin" returns="_394" context="_1" mangled="sin" location="f0:75" file="f0" line="75" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:75" file="f0" line="75"/>
+  </Function>
+  <Variable id="_65" name="aerror_version_control" type="_401c" context="_1" location="f1:293" file="f1" line="293" extern="1"/>
+  <Function id="_66" name="aspell_config_keyinfo" returns="_425" context="_1" location="f1:125" file="f1" line="125" extern="1">
+    <Argument name="ths" type="_421" location="f1:125" file="f1" line="125"/>
+    <Argument name="key" type="_395" location="f1:125" file="f1" line="125"/>
+  </Function>
+  <Function id="_67" name="__builtin_ldexpf" returns="_396" context="_1" mangled="ldexpf" location="f0:60" file="f0" line="60" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:60" file="f0" line="60"/>
+    <Argument type="_400" location="f0:60" file="f0" line="60"/>
+  </Function>
+  <Function id="_68" name="__builtin_ldexpl" returns="_397" context="_1" mangled="ldexpl" location="f0:61" file="f0" line="61" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:61" file="f0" line="61"/>
+    <Argument type="_400" location="f0:61" file="f0" line="61"/>
+  </Function>
+  <Function id="_69" name="__builtin_isinf_sign" returns="_403" context="_1" location="f0:140" file="f0" line="140" extern="1">
+    <Ellipsis/>
+  </Function>
+  <Function id="_70" name="__builtin_islessequal" returns="_403" context="_1" location="f0:142" file="f0" line="142" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Struct id="_71" name="AspellStringMap" context="_1" incomplete="1" mangled="15AspellStringMap" demangled="AspellStringMap" location="f1:645" file="f1" line="645" artificial="1" align="8"/>
+  <Typedef id="_72" name="AspellStringMap" type="_71" context="_1" location="f1:645" file="f1" line="645"/>
+  <Variable id="_73" name="aerror_no_value_enable" type="_401c" context="_1" location="f1:263" file="f1" line="263" extern="1"/>
+  <Function id="_74" name="aspell_config_possible_elements" returns="_408" context="_1" location="f1:129" file="f1" line="129" extern="1">
+    <Argument name="ths" type="_421" location="f1:129" file="f1" line="129"/>
+    <Argument name="include_extra" type="_400" location="f1:129" file="f1" line="129"/>
+  </Function>
+  <Variable id="_75" name="aerror_process_died" type="_401c" context="_1" location="f1:283" file="f1" line="283" extern="1"/>
+  <Struct id="_76" name="AspellStringPair" context="_1" mangled="16AspellStringPair" demangled="AspellStringPair" location="f1:691" file="f1" line="691" artificial="1" size="128" align="64" members="_426 _427 _428 _429 _430 _431 " bases=""/>
+  <Typedef id="_77" name="AspellStringPair" type="_76" context="_1" location="f1:700" file="f1" line="700"/>
+  <Function id="_78" name="aspell_config_error" returns="_432" context="_1" location="f1:112" file="f1" line="112" extern="1">
+    <Argument name="ths" type="_433" location="f1:112" file="f1" line="112"/>
+  </Function>
+  <Variable id="_79" name="aerror_bad_mode_version" type="_401c" context="_1" location="f1:312" file="f1" line="312" extern="1"/>
+  <Struct id="_80" name="AspellConfig" context="_1" incomplete="1" mangled="12AspellConfig" demangled="AspellConfig" location="f1:97" file="f1" line="97" artificial="1" align="8"/>
+  <Typedef id="_81" name="AspellConfig" type="_80" context="_1" location="f1:97" file="f1" line="97"/>
+  <Function id="_82" name="__builtin_tanf" returns="_396" context="_1" mangled="tanf" location="f0:85" file="f0" line="85" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:85" file="f0" line="85"/>
+  </Function>
+  <Function id="_83" name="__builtin_tanh" returns="_394" context="_1" mangled="tanh" location="f0:86" file="f0" line="86" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:86" file="f0" line="86"/>
+  </Function>
+  <Function id="_84" name="__builtin_tanl" returns="_397" context="_1" mangled="tanl" location="f0:89" file="f0" line="89" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:89" file="f0" line="89"/>
+  </Function>
+  <Function id="_85" name="to_aspell_document_checker" returns="_434" context="_1" location="f1:440" file="f1" line="440" extern="1">
+    <Argument name="obj" type="_435" location="f1:440" file="f1" line="440"/>
+  </Function>
+  <Function id="_86" name="__builtin_ceil" returns="_394" context="_1" mangled="ceil" location="f0:36" file="f0" line="36" extern="1" attributes="nothrow const">
+    <Argument type="_394" location="f0:36" file="f0" line="36"/>
+  </Function>
+  <Function id="_87" name="__builtin_fmodf" returns="_396" context="_1" mangled="fmodf" location="f0:54" file="f0" line="54" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:54" file="f0" line="54"/>
+    <Argument type="_396" location="f0:54" file="f0" line="54"/>
+  </Function>
+  <Function id="_88" name="__builtin_fmodl" returns="_397" context="_1" mangled="fmodl" location="f0:55" file="f0" line="55" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:55" file="f0" line="55"/>
+    <Argument type="_397" location="f0:55" file="f0" line="55"/>
+  </Function>
+  <Function id="_89" name="aspell_key_info_enumeration_next" returns="_425" context="_1" location="f1:87" file="f1" line="87" extern="1">
+    <Argument name="ths" type="_408" location="f1:87" file="f1" line="87"/>
+  </Function>
+  <Variable id="_90" name="aerror_pipe" type="_401c" context="_1" location="f1:281" file="f1" line="281" extern="1"/>
+  <Function id="_91" name="new_aspell_config" returns="_421" context="_1" location="f1:100" file="f1" line="100" extern="1"/>
+  <Function id="_92" name="delete_aspell_config" returns="_398" context="_1" location="f1:102" file="f1" line="102" extern="1">
+    <Argument name="ths" type="_421" location="f1:102" file="f1" line="102"/>
+  </Function>
+  <Function id="_93" name="aspell_document_checker_error_number" returns="_418" context="_1" location="f1:423" file="f1" line="423" extern="1">
+    <Argument name="ths" type="_412" location="f1:423" file="f1" line="423"/>
+  </Function>
+  <Function id="_94" name="__builtin_return" returns="_398" context="_1" location="f0:13" file="f0" line="13" extern="1" attributes="nothrow noreturn">
+    <Argument name="RESULT" type="_436" location="f0:13" file="f0" line="13"/>
+  </Function>
+  <Struct id="_95" name="AspellDictInfoEnumeration" context="_1" incomplete="1" mangled="25AspellDictInfoEnumeration" demangled="AspellDictInfoEnumeration" location="f1:578" file="f1" line="578" artificial="1" align="8"/>
+  <Typedef id="_96" name="AspellDictInfoEnumeration" type="_95" context="_1" location="f1:597" file="f1" line="597"/>
+  <Variable id="_97" name="aerror_key_not_list" type="_401c" context="_1" location="f1:261" file="f1" line="261" extern="1"/>
+  <Function id="_98" name="delete_aspell_string_enumeration" returns="_398" context="_1" location="f1:488" file="f1" line="488" extern="1">
+    <Argument name="ths" type="_424" location="f1:488" file="f1" line="488"/>
+  </Function>
+  <Function id="_99" name="__builtin_sqrt" returns="_394" context="_1" mangled="sqrt" location="f0:81" file="f0" line="81" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:81" file="f0" line="81"/>
+  </Function>
+  <Function id="_100" name="__builtin_cpow" returns="_417" context="_1" mangled="cpow" location="f0:130" file="f0" line="130" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:130" file="f0" line="130"/>
+    <Argument type="_417" location="f0:130" file="f0" line="130"/>
+  </Function>
+  <Function id="_101" name="aspell_string_pair_enumeration_at_end" returns="_400" context="_1" location="f1:709" file="f1" line="709" extern="1">
+    <Argument name="ths" type="_437" location="f1:709" file="f1" line="709"/>
+  </Function>
+  <Variable id="_102" name="aerror_invalid_affix" type="_401c" context="_1" location="f1:287" file="f1" line="287" extern="1"/>
+  <Function id="_103" name="__builtin_coshf" returns="_396" context="_1" mangled="coshf" location="f0:42" file="f0" line="42" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:42" file="f0" line="42"/>
+  </Function>
+  <Function id="_104" name="__builtin_coshl" returns="_397" context="_1" mangled="coshl" location="f0:43" file="f0" line="43" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:43" file="f0" line="43"/>
+  </Function>
+  <Function id="_105" name="delete_aspell_can_have_error" returns="_398" context="_1" location="f1:233" file="f1" line="233" extern="1">
+    <Argument name="ths" type="_435" location="f1:233" file="f1" line="233"/>
+  </Function>
+  <Variable id="_106" name="aerror_no_wordlist_for_lang" type="_401c" context="_1" location="f1:270" file="f1" line="270" extern="1"/>
+  <Function id="_107" name="aspell_speller_add_to_session" returns="_400" context="_1" location="f1:355" file="f1" line="355" extern="1">
+    <Argument name="ths" type="_414" location="f1:355" file="f1" line="355"/>
+    <Argument name="word" type="_395" location="f1:355" file="f1" line="355"/>
+    <Argument name="word_size" type="_400" location="f1:355" file="f1" line="355"/>
+  </Function>
+  <Function id="_108" name="__builtin_cexp" returns="_417" context="_1" mangled="cexp" location="f0:109" file="f0" line="109" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:109" file="f0" line="109"/>
+  </Function>
+  <Variable id="_109" name="aerror_invalid_cond" type="_401c" context="_1" location="f1:274" file="f1" line="274" extern="1"/>
+  <Function id="_110" name="__builtin_atan2" returns="_394" context="_1" mangled="atan2" location="f0:31" file="f0" line="31" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:31" file="f0" line="31"/>
+    <Argument type="_394" location="f0:31" file="f0" line="31"/>
+  </Function>
+  <Function id="_111" name="__builtin_memchr" returns="_436" context="_1" location="f0:12" file="f0" line="12" extern="1">
+    <Argument type="_438" location="f0:12" file="f0" line="12"/>
+    <Argument type="_400" location="f0:12" file="f0" line="12"/>
+    <Argument type="_418" location="f0:12" file="f0" line="12"/>
+  </Function>
+  <Function id="_112" name="__builtin_atanf" returns="_396" context="_1" mangled="atanf" location="f0:34" file="f0" line="34" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:34" file="f0" line="34"/>
+  </Function>
+  <Function id="_113" name="__builtin_atanl" returns="_397" context="_1" mangled="atanl" location="f0:35" file="f0" line="35" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:35" file="f0" line="35"/>
+  </Function>
+  <Function id="_114" name="__builtin_ctan" returns="_417" context="_1" mangled="ctan" location="f0:124" file="f0" line="124" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:124" file="f0" line="124"/>
+  </Function>
+  <Function id="_115" name="__builtin_log" returns="_394" context="_1" mangled="log" location="f0:62" file="f0" line="62" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:62" file="f0" line="62"/>
+  </Function>
+  <Variable id="_116" name="aerror_cant_describe_filter" type="_401c" context="_1" location="f1:304" file="f1" line="304" extern="1"/>
+  <Function id="_117" name="aspell_module_info_enumeration_next" returns="_439" context="_1" location="f1:587" file="f1" line="587" extern="1">
+    <Argument name="ths" type="_410" location="f1:587" file="f1" line="587"/>
+  </Function>
+  <Variable id="_118" name="aerror_key_not_bool" type="_401c" context="_1" location="f1:260" file="f1" line="260" extern="1"/>
+  <Function id="_119" name="aspell_string_list_clone" returns="_407" context="_1" location="f1:636" file="f1" line="636" extern="1">
+    <Argument name="ths" type="_440" location="f1:636" file="f1" line="636"/>
+  </Function>
+  <Variable id="_120" name="aerror_unknown_soundslike" type="_401c" context="_1" location="f1:268" file="f1" line="268" extern="1"/>
+  <Variable id="_121" name="aerror_bad_version" type="_401c" context="_1" location="f1:300" file="f1" line="300" extern="1"/>
+  <Function id="_122" name="aspell_document_checker_next_misspelling" returns="_150" context="_1" location="f1:461" file="f1" line="461" extern="1">
+    <Argument name="ths" type="_434" location="f1:461" file="f1" line="461"/>
+  </Function>
+  <Struct id="_123" name="AspellErrorInfo" context="_1" mangled="15AspellErrorInfo" demangled="AspellErrorInfo" location="f1:205" file="f1" line="205" artificial="1" size="384" align="64" members="_441 _442 _443 _444 _445 _446 _447 _448 " bases=""/>
+  <Typedef id="_124" name="AspellErrorInfo" type="_123" context="_1" location="f1:218" file="f1" line="218"/>
+  <Variable id="_125" name="aerror_unknown_unichar" type="_401c" context="_1" location="f1:289" file="f1" line="289" extern="1"/>
+  <Function id="_126" name="aspell_string_enumeration_clone" returns="_424" context="_1" location="f1:490" file="f1" line="490" extern="1">
+    <Argument name="ths" type="_416" location="f1:490" file="f1" line="490"/>
+  </Function>
+  <Function id="_127" name="aspell_string_map_elements" returns="_449" context="_1" location="f1:668" file="f1" line="668" extern="1">
+    <Argument name="ths" type="_450" location="f1:668" file="f1" line="668"/>
+  </Function>
+  <Function id="_128" name="__builtin_isfinite" returns="_403" context="_1" location="f0:136" file="f0" line="136" extern="1">
+    <Ellipsis/>
+  </Function>
+  <Function id="_129" name="aspell_string_map_assign" returns="_398" context="_1" location="f1:662" file="f1" line="662" extern="1">
+    <Argument name="ths" type="_423" location="f1:662" file="f1" line="662"/>
+    <Argument name="other" type="_450" location="f1:662" file="f1" line="662"/>
+  </Function>
+  <Function id="_130" name="__builtin_asin" returns="_394" context="_1" mangled="asin" location="f0:27" file="f0" line="27" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:27" file="f0" line="27"/>
+  </Function>
+  <Function id="_131" name="aspell_document_checker_reset" returns="_398" context="_1" location="f1:445" file="f1" line="445" extern="1">
+    <Argument name="ths" type="_434" location="f1:445" file="f1" line="445"/>
+  </Function>
+  <Function id="_132" name="__builtin_frexp" returns="_394" context="_1" mangled="frexp" location="f0:56" file="f0" line="56" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:56" file="f0" line="56"/>
+    <Argument type="_451" location="f0:56" file="f0" line="56"/>
+  </Function>
+  <Variable id="_133" name="aerror_no_such_filter" type="_401c" context="_1" location="f1:298" file="f1" line="298" extern="1"/>
+  <Function id="_134" name="__builtin_isgreaterequal" returns="_403" context="_1" location="f0:138" file="f0" line="138" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Variable id="_135" name="aerror_bad_file_format" type="_401c" context="_1" location="f1:249" file="f1" line="249" extern="1"/>
+  <Function id="_136" name="aspell_mutable_container_remove" returns="_400" context="_1" location="f1:39" file="f1" line="39" extern="1">
+    <Argument name="ths" type="_422" location="f1:39" file="f1" line="39"/>
+    <Argument name="to_rem" type="_395" location="f1:39" file="f1" line="39"/>
+  </Function>
+  <Variable id="_137" name="aerror_mode_option_name" type="_401c" context="_1" location="f1:306" file="f1" line="306" extern="1"/>
+  <Function id="_138" name="aspell_filter_error_number" returns="_418" context="_1" location="f1:393" file="f1" line="393" extern="1">
+    <Argument name="ths" type="_452" location="f1:393" file="f1" line="393"/>
+  </Function>
+  <Variable id="_139" name="aerror_dir" type="_401c" context="_1" location="f1:250" file="f1" line="250" extern="1"/>
+  <Variable id="_140" name="aerror_invalid_name" type="_401c" context="_1" location="f1:248" file="f1" line="248" extern="1"/>
+  <Variable id="_141" name="aerror_filter_mode_expand" type="_401c" context="_1" location="f1:315" file="f1" line="315" extern="1"/>
+  <Function id="_142" name="aspell_config_clone" returns="_421" context="_1" location="f1:104" file="f1" line="104" extern="1">
+    <Argument name="ths" type="_433" location="f1:104" file="f1" line="104"/>
+  </Function>
+  <Function id="_143" name="__builtin_log10f" returns="_396" context="_1" mangled="log10f" location="f0:64" file="f0" line="64" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:64" file="f0" line="64"/>
+  </Function>
+  <Function id="_144" name="__builtin_log10l" returns="_397" context="_1" mangled="log10l" location="f0:65" file="f0" line="65" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:65" file="f0" line="65"/>
+  </Function>
+  <Variable id="_145" name="aerror_corrupt_affix" type="_401c" context="_1" location="f1:273" file="f1" line="273" extern="1"/>
+  <Function id="_146" name="aspell_string_pair_enumeration_next" returns="_76" context="_1" location="f1:711" file="f1" line="711" extern="1">
+    <Argument name="ths" type="_449" location="f1:711" file="f1" line="711"/>
+  </Function>
+  <Function id="_147" name="aspell_speller_store_replacement" returns="_400" context="_1" location="f1:381" file="f1" line="381" extern="1">
+    <Argument name="ths" type="_414" location="f1:381" file="f1" line="381"/>
+    <Argument name="mis" type="_395" location="f1:381" file="f1" line="381"/>
+    <Argument name="mis_size" type="_400" location="f1:381" file="f1" line="381"/>
+    <Argument name="cor" type="_395" location="f1:381" file="f1" line="381"/>
+    <Argument name="cor_size" type="_400" location="f1:381" file="f1" line="381"/>
+  </Function>
+  <Function id="_148" name="__builtin_ctzl" returns="_400" context="_1" location="f0:97" file="f0" line="97" extern="1" attributes="nothrow const">
+    <Argument type="_453" location="f0:97" file="f0" line="97"/>
+  </Function>
+  <Variable id="_149" name="aerror_bad_mode_key" type="_401c" context="_1" location="f1:308" file="f1" line="308" extern="1"/>
+  <Struct id="_150" name="AspellToken" context="_1" mangled="11AspellToken" demangled="AspellToken" location="f1:406" file="f1" line="406" artificial="1" size="64" align="32" members="_454 _455 _456 _457 _458 _459 " bases=""/>
+  <Typedef id="_151" name="AspellToken" type="_150" context="_1" location="f1:415" file="f1" line="415"/>
+  <Function id="_152" name="delete_aspell_string_pair_enumeration" returns="_398" context="_1" location="f1:713" file="f1" line="713" extern="1">
+    <Argument name="ths" type="_449" location="f1:713" file="f1" line="713"/>
+  </Function>
+  <Variable id="_153" name="aerror_inapplicable_affix" type="_401c" context="_1" location="f1:288" file="f1" line="288" extern="1"/>
+  <Function id="_154" name="aspell_speller_save_all_word_lists" returns="_400" context="_1" location="f1:372" file="f1" line="372" extern="1">
+    <Argument name="ths" type="_414" location="f1:372" file="f1" line="372"/>
+  </Function>
+  <Function id="_155" name="__builtin_powif" returns="_396" context="_1" location="f0:73" file="f0" line="73" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:73" file="f0" line="73"/>
+    <Argument type="_400" location="f0:73" file="f0" line="73"/>
+  </Function>
+  <Function id="_156" name="__builtin_powil" returns="_397" context="_1" location="f0:74" file="f0" line="74" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:74" file="f0" line="74"/>
+    <Argument type="_400" location="f0:74" file="f0" line="74"/>
+  </Function>
+  <Function id="_157" name="aspell_dict_info_enumeration_assign" returns="_398" context="_1" location="f1:608" file="f1" line="608" extern="1">
+    <Argument name="ths" type="_460" location="f1:608" file="f1" line="608"/>
+    <Argument name="other" type="_415" location="f1:608" file="f1" line="608"/>
+  </Function>
+  <Function id="_158" name="__builtin_modff" returns="_396" context="_1" mangled="modff" location="f0:68" file="f0" line="68" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:68" file="f0" line="68"/>
+    <Argument type="_461" location="f0:68" file="f0" line="68"/>
+  </Function>
+  <Function id="_159" name="__builtin_exp" returns="_394" context="_1" mangled="exp" location="f0:45" file="f0" line="45" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:45" file="f0" line="45"/>
+  </Function>
+  <Function id="_160" name="__builtin_modfl" returns="_397" context="_1" mangled="modfl" location="f0:69" file="f0" line="69" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:69" file="f0" line="69"/>
+    <Argument type="_462" location="f0:69" file="f0" line="69"/>
+  </Function>
+  <Variable id="_161" name="aerror_conflicting_flags" type="_401c" context="_1" location="f1:292" file="f1" line="292" extern="1"/>
+  <Function id="_162" name="__builtin_prefetch" returns="_398" context="_1" location="f0:17" file="f0" line="17" extern="1" attributes="no vops">
+    <Argument name="ADDR" type="_438" location="f0:17" file="f0" line="17"/>
+    <Ellipsis/>
+  </Function>
+  <Function id="_163" name="aspell_string_map_insert" returns="_400" context="_1" location="f1:673" file="f1" line="673" extern="1">
+    <Argument name="ths" type="_423" location="f1:673" file="f1" line="673"/>
+    <Argument name="key" type="_395" location="f1:673" file="f1" line="673"/>
+    <Argument name="value" type="_395" location="f1:673" file="f1" line="673"/>
+  </Function>
+  <Function id="_164" name="__builtin_tan" returns="_394" context="_1" mangled="tan" location="f0:84" file="f0" line="84" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:84" file="f0" line="84"/>
+  </Function>
+  <Function id="_165" name="__builtin_fabsf" returns="_396" context="_1" mangled="fabsf" location="f0:49" file="f0" line="49" extern="1" attributes="nothrow const">
+    <Argument type="_396" location="f0:49" file="f0" line="49"/>
+  </Function>
+  <Function id="_166" name="__builtin_fabsl" returns="_397" context="_1" mangled="fabsl" location="f0:50" file="f0" line="50" extern="1" attributes="nothrow const">
+    <Argument type="_397" location="f0:50" file="f0" line="50"/>
+  </Function>
+  <Struct id="_167" name="AspellMutableContainer" context="_1" incomplete="1" mangled="22AspellMutableContainer" demangled="AspellMutableContainer" location="f1:34" file="f1" line="34" artificial="1" align="8"/>
+  <Typedef id="_168" name="AspellMutableContainer" type="_167" context="_1" location="f1:34" file="f1" line="34"/>
+  <Variable id="_169" name="aerror_no_value_reset" type="_401c" context="_1" location="f1:262" file="f1" line="262" extern="1"/>
+  <Union id="_170" name="AspellTypeId" context="_1" mangled="12AspellTypeId" demangled="AspellTypeId" location="f1:19" file="f1" line="19" artificial="1" size="32" align="32" members="_463 _464 _465 _466 _467 _468 " bases=""/>
+  <Typedef id="_171" name="AspellTypeId" type="_170" context="_1" location="f1:28" file="f1" line="28"/>
+  <Function id="_172" name="aspell_module_info_list_elements" returns="_410" context="_1" location="f1:565" file="f1" line="565" extern="1">
+    <Argument name="ths" type="_469" location="f1:565" file="f1" line="565"/>
+  </Function>
+  <Variable id="_173" name="aerror_no_value_disable" type="_401c" context="_1" location="f1:264" file="f1" line="264" extern="1"/>
+  <Variable id="_174" name="aerror_invalid_word" type="_401c" context="_1" location="f1:286" file="f1" line="286" extern="1"/>
+  <Variable id="_175" name="aerror_mode_version_requirement" type="_401c" context="_1" location="f1:310" file="f1" line="310" extern="1"/>
+  <Variable id="_176" name="aerror_encoding_not_supported" type="_401c" context="_1" location="f1:279" file="f1" line="279" extern="1"/>
+  <Struct id="_177" name="AspellDocumentChecker" context="_1" incomplete="1" mangled="21AspellDocumentChecker" demangled="AspellDocumentChecker" location="f1:418" file="f1" line="418" artificial="1" align="8"/>
+  <Typedef id="_178" name="AspellDocumentChecker" type="_177" context="_1" location="f1:418" file="f1" line="418"/>
+  <Function id="_179" name="delete_aspell_string_list" returns="_398" context="_1" location="f1:634" file="f1" line="634" extern="1">
+    <Argument name="ths" type="_407" location="f1:634" file="f1" line="634"/>
+  </Function>
+  <Function id="_180" name="aspell_string_map_clone" returns="_423" context="_1" location="f1:660" file="f1" line="660" extern="1">
+    <Argument name="ths" type="_450" location="f1:660" file="f1" line="660"/>
+  </Function>
+  <Struct id="_181" name="AspellModuleInfoList" context="_1" incomplete="1" mangled="20AspellModuleInfoList" demangled="AspellModuleInfoList" location="f1:556" file="f1" line="556" artificial="1" align="8"/>
+  <Typedef id="_182" name="AspellModuleInfoList" type="_181" context="_1" location="f1:556" file="f1" line="556"/>
+  <Function id="_183" name="__builtin_inf" returns="_394" context="_1" location="f0:18" file="f0" line="18" extern="1" attributes="nothrow const"/>
+  <Namespace id="_184" name="__cxxabiv1" context="_1" members="" mangled="_Z10__cxxabiv1" demangled="__cxxabiv1"/>
+  <Function id="_185" name="aspell_document_checker_process" returns="_398" context="_1" location="f1:455" file="f1" line="455" extern="1">
+    <Argument name="ths" type="_434" location="f1:455" file="f1" line="455"/>
+    <Argument name="str" type="_395" location="f1:455" file="f1" line="455"/>
+    <Argument name="size" type="_400" location="f1:455" file="f1" line="455"/>
+  </Function>
+  <Variable id="_186" name="aerror_invalid_flag" type="_401c" context="_1" location="f1:291" file="f1" line="291" extern="1"/>
+  <Function id="_187" name="aspell_config_error_message" returns="_395" context="_1" location="f1:110" file="f1" line="110" extern="1">
+    <Argument name="ths" type="_433" location="f1:110" file="f1" line="110"/>
+  </Function>
+  <Function id="_188" name="__builtin_frame_address" returns="_436" context="_1" location="f0:15" file="f0" line="15" extern="1">
+    <Argument name="LEVEL" type="_418" location="f0:15" file="f0" line="15"/>
+  </Function>
+  <Function id="_189" name="delete_aspell_string_map" returns="_398" context="_1" location="f1:658" file="f1" line="658" extern="1">
+    <Argument name="ths" type="_423" location="f1:658" file="f1" line="658"/>
+  </Function>
+  <Variable id="_190" name="aerror_options_only" type="_401c" context="_1" location="f1:302" file="f1" line="302" extern="1"/>
+  <Function id="_191" name="aspell_string_map_replace" returns="_400" context="_1" location="f1:678" file="f1" line="678" extern="1">
+    <Argument name="ths" type="_423" location="f1:678" file="f1" line="678"/>
+    <Argument name="key" type="_395" location="f1:678" file="f1" line="678"/>
+    <Argument name="value" type="_395" location="f1:678" file="f1" line="678"/>
+  </Function>
+  <Variable id="_192" name="aerror_key_not_string" type="_401c" context="_1" location="f1:258" file="f1" line="258" extern="1"/>
+  <Function id="_193" name="aspell_config_elements" returns="_449" context="_1" location="f1:142" file="f1" line="142" extern="1">
+    <Argument name="ths" type="_421" location="f1:142" file="f1" line="142"/>
+  </Function>
+  <Function id="_194" name="__builtin_cabs" returns="_394" context="_1" mangled="cabs" location="f0:91" file="f0" line="91" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:91" file="f0" line="91"/>
+  </Function>
+  <Function id="_195" name="aspell_string_enumeration_next" returns="_395" context="_1" location="f1:496" file="f1" line="496" extern="1">
+    <Argument name="ths" type="_424" location="f1:496" file="f1" line="496"/>
+  </Function>
+  <Function id="_196" name="aspell_speller_main_word_list" returns="_413" context="_1" location="f1:370" file="f1" line="370" extern="1">
+    <Argument name="ths" type="_414" location="f1:370" file="f1" line="370"/>
+  </Function>
+  <Function id="_197" name="to_aspell_speller" returns="_414" context="_1" location="f1:335" file="f1" line="335" extern="1">
+    <Argument name="obj" type="_435" location="f1:335" file="f1" line="335"/>
+  </Function>
+  <Function id="_198" name="aspell_document_checker_filter" returns="_399" context="_1" location="f1:464" file="f1" line="464" extern="1">
+    <Argument name="ths" type="_434" location="f1:464" file="f1" line="464"/>
+  </Function>
+  <Function id="_199" name="aspell_string_map_size" returns="_418" context="_1" location="f1:666" file="f1" line="666" extern="1">
+    <Argument name="ths" type="_450" location="f1:666" file="f1" line="666"/>
+  </Function>
+  <Function id="_200" name="new_aspell_string_map" returns="_423" context="_1" location="f1:648" file="f1" line="648" extern="1"/>
+  <Function id="_201" name="aspell_string_list_clear" returns="_398" context="_1" location="f1:630" file="f1" line="630" extern="1">
+    <Argument name="ths" type="_407" location="f1:630" file="f1" line="630"/>
+  </Function>
+  <Struct id="_202" name="AspellStringEnumeration" context="_1" incomplete="1" mangled="23AspellStringEnumeration" demangled="AspellStringEnumeration" location="f1:478" file="f1" line="478" artificial="1" align="8"/>
+  <Typedef id="_203" name="AspellStringEnumeration" type="_202" context="_1" location="f1:485" file="f1" line="485"/>
+  <Variable id="_204" name="aerror_cant_read_dir" type="_401c" context="_1" location="f1:251" file="f1" line="251" extern="1"/>
+  <Struct id="_205" name="AspellError" context="_1" mangled="11AspellError" demangled="AspellError" location="f1:191" file="f1" line="191" artificial="1" size="128" align="64" members="_470 _471 _472 _473 _474 _475 " bases=""/>
+  <Typedef id="_206" name="AspellError" type="_205" context="_1" location="f1:200" file="f1" line="200"/>
+  <Function id="_207" name="__builtin_atan2f" returns="_396" context="_1" mangled="atan2f" location="f0:32" file="f0" line="32" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:32" file="f0" line="32"/>
+    <Argument type="_396" location="f0:32" file="f0" line="32"/>
+  </Function>
+  <Function id="_208" name="__builtin_atan2l" returns="_397" context="_1" mangled="atan2l" location="f0:33" file="f0" line="33" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:33" file="f0" line="33"/>
+    <Argument type="_397" location="f0:33" file="f0" line="33"/>
+  </Function>
+  <Function id="_209" name="__builtin_isinf" returns="_403" context="_1" mangled="isinf" location="f0:139" file="f0" line="139" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Function id="_210" name="__builtin_fpclassify" returns="_403" context="_1" location="f0:135" file="f0" line="135" extern="1">
+    <Ellipsis/>
+  </Function>
+  <Variable id="_211" name="aerror_filter" type="_401c" context="_1" location="f1:295" file="f1" line="295" extern="1"/>
+  <Function id="_212" name="new_aspell_speller" returns="_435" context="_1" location="f1:333" file="f1" line="333" extern="1">
+    <Argument name="config" type="_421" location="f1:333" file="f1" line="333"/>
+  </Function>
+  <Variable id="_213" name="aerror_duplicate" type="_401c" context="_1" location="f1:257" file="f1" line="257" extern="1"/>
+  <Function id="_214" name="__builtin_ccoshf" returns="_405" context="_1" mangled="ccoshf" location="f0:105" file="f0" line="105" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:105" file="f0" line="105"/>
+  </Function>
+  <Function id="_215" name="__builtin_ccoshl" returns="_406" context="_1" mangled="ccoshl" location="f0:107" file="f0" line="107" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:107" file="f0" line="107"/>
+  </Function>
+  <Variable id="_216" name="aerror_operation_not_supported" type="_401c" context="_1" location="f1:241" file="f1" line="241" extern="1"/>
+  <Function id="_217" name="aspell_string_map_remove" returns="_400" context="_1" location="f1:652" file="f1" line="652" extern="1">
+    <Argument name="ths" type="_423" location="f1:652" file="f1" line="652"/>
+    <Argument name="to_rem" type="_395" location="f1:652" file="f1" line="652"/>
+  </Function>
+  <Function id="_218" name="aspell_config_retrieve_list" returns="_400" context="_1" location="f1:173" file="f1" line="173" extern="1">
+    <Argument name="ths" type="_421" location="f1:173" file="f1" line="173"/>
+    <Argument name="key" type="_395" location="f1:173" file="f1" line="173"/>
+    <Argument name="lst" type="_422" location="f1:173" file="f1" line="173"/>
+  </Function>
+  <Function id="_219" name="aspell_dict_info_list_size" returns="_418" context="_1" location="f1:576" file="f1" line="576" extern="1">
+    <Argument name="ths" type="_476" location="f1:576" file="f1" line="576"/>
+  </Function>
+  <Function id="_220" name="__builtin_atan" returns="_394" context="_1" mangled="atan" location="f0:30" file="f0" line="30" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:30" file="f0" line="30"/>
+  </Function>
+  <Function id="_221" name="__builtin_sinhf" returns="_396" context="_1" mangled="sinhf" location="f0:78" file="f0" line="78" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:78" file="f0" line="78"/>
+  </Function>
+  <Function id="_222" name="__builtin_sinhl" returns="_397" context="_1" mangled="sinhl" location="f0:79" file="f0" line="79" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:79" file="f0" line="79"/>
+  </Function>
+  <Function id="_223" name="new_aspell_document_checker" returns="_435" context="_1" location="f1:438" file="f1" line="438" extern="1">
+    <Argument name="speller" type="_414" location="f1:438" file="f1" line="438"/>
+  </Function>
+  <Function id="_224" name="__builtin_sqrtf" returns="_396" context="_1" mangled="sqrtf" location="f0:82" file="f0" line="82" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:82" file="f0" line="82"/>
+  </Function>
+  <Function id="_225" name="__builtin_sqrtl" returns="_397" context="_1" mangled="sqrtl" location="f0:83" file="f0" line="83" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:83" file="f0" line="83"/>
+  </Function>
+  <Function id="_226" name="__builtin_frexpf" returns="_396" context="_1" mangled="frexpf" location="f0:57" file="f0" line="57" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:57" file="f0" line="57"/>
+    <Argument type="_451" location="f0:57" file="f0" line="57"/>
+  </Function>
+  <Function id="_227" name="__builtin_frexpl" returns="_397" context="_1" mangled="frexpl" location="f0:58" file="f0" line="58" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:58" file="f0" line="58"/>
+    <Argument type="_451" location="f0:58" file="f0" line="58"/>
+  </Function>
+  <Function id="_228" name="__builtin_cpowf" returns="_405" context="_1" mangled="cpowf" location="f0:129" file="f0" line="129" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:129" file="f0" line="129"/>
+    <Argument type="_405" location="f0:129" file="f0" line="129"/>
+  </Function>
+  <Function id="_229" name="__builtin_cpowl" returns="_406" context="_1" mangled="cpowl" location="f0:131" file="f0" line="131" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:131" file="f0" line="131"/>
+    <Argument type="_406" location="f0:131" file="f0" line="131"/>
+  </Function>
+  <Variable id="_230" name="aerror_file_magic_pos" type="_401c" context="_1" location="f1:319" file="f1" line="319" extern="1"/>
+  <Struct id="_231" name="AspellWordList" context="_1" incomplete="1" mangled="14AspellWordList" demangled="AspellWordList" location="f1:360" file="f1" line="360" artificial="1" align="8"/>
+  <Typedef id="_232" name="AspellWordList" type="_231" context="_1" location="f1:471" file="f1" line="471"/>
+  <Function id="_233" name="aspell_string_pair_enumeration_clone" returns="_449" context="_1" location="f1:715" file="f1" line="715" extern="1">
+    <Argument name="ths" type="_437" location="f1:715" file="f1" line="715"/>
+  </Function>
+  <Function id="_234" name="aspell_string_pair_enumeration_assign" returns="_398" context="_1" location="f1:717" file="f1" line="717" extern="1">
+    <Argument name="ths" type="_449" location="f1:717" file="f1" line="717"/>
+    <Argument name="other" type="_437" location="f1:717" file="f1" line="717"/>
+  </Function>
+  <Function id="_235" name="new_aspell_string_list" returns="_407" context="_1" location="f1:618" file="f1" line="618" extern="1"/>
+  <Struct id="_236" name="AspellKeyInfoEnumeration" context="_1" incomplete="1" mangled="24AspellKeyInfoEnumeration" demangled="AspellKeyInfoEnumeration" location="f1:82" file="f1" line="82" artificial="1" align="8"/>
+  <Typedef id="_237" name="AspellKeyInfoEnumeration" type="_236" context="_1" location="f1:82" file="f1" line="82"/>
+  <Function id="_238" name="aspell_config_set_extra" returns="_398" context="_1" location="f1:118" file="f1" line="118" extern="1">
+    <Argument name="ths" type="_421" location="f1:118" file="f1" line="118"/>
+    <Argument name="begin" type="_425" location="f1:118" file="f1" line="118"/>
+    <Argument name="end" type="_425" location="f1:118" file="f1" line="118"/>
+  </Function>
+  <Function id="_239" name="aspell_key_info_enumeration_at_end" returns="_400" context="_1" location="f1:85" file="f1" line="85" extern="1">
+    <Argument name="ths" type="_409" location="f1:85" file="f1" line="85"/>
+  </Function>
+  <Function id="_240" name="aspell_error_is_a" returns="_400" context="_1" location="f1:202" file="f1" line="202" extern="1">
+    <Argument name="ths" type="_432" location="f1:202" file="f1" line="202"/>
+    <Argument name="e" type="_401" location="f1:202" file="f1" line="202"/>
+  </Function>
+  <Struct id="_241" name="AspellKeyInfo" context="_1" mangled="13AspellKeyInfo" demangled="AspellKeyInfo" location="f1:55" file="f1" line="55" artificial="1" size="320" align="64" members="_477 _478 _479 _480 _481 _482 _483 _484 _485 _486 " bases=""/>
+  <Typedef id="_242" name="AspellKeyInfo" type="_241" context="_1" location="f1:76" file="f1" line="76"/>
+  <Variable id="_243" name="aerror_bad_input" type="_401c" context="_1" location="f1:284" file="f1" line="284" extern="1"/>
+  <Function id="_244" name="aspell_config_retrieve_bool" returns="_400" context="_1" location="f1:179" file="f1" line="179" extern="1">
+    <Argument name="ths" type="_421" location="f1:179" file="f1" line="179"/>
+    <Argument name="key" type="_395" location="f1:179" file="f1" line="179"/>
+  </Function>
+  <Variable id="_245" name="aerror_key_not_int" type="_401c" context="_1" location="f1:259" file="f1" line="259" extern="1"/>
+  <Variable id="_246" name="aerror_identical_option" type="_401c" context="_1" location="f1:301" file="f1" line="301" extern="1"/>
+  <Variable id="_247" name="aerror_filter_mode_magic" type="_401c" context="_1" location="f1:318" file="f1" line="318" extern="1"/>
+  <Function id="_248" name="__builtin_tanhf" returns="_396" context="_1" mangled="tanhf" location="f0:87" file="f0" line="87" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:87" file="f0" line="87"/>
+  </Function>
+  <Function id="_249" name="aspell_config_have" returns="_400" context="_1" location="f1:168" file="f1" line="168" extern="1">
+    <Argument name="ths" type="_433" location="f1:168" file="f1" line="168"/>
+    <Argument name="key" type="_395" location="f1:168" file="f1" line="168"/>
+  </Function>
+  <Function id="_250" name="__builtin_tanhl" returns="_397" context="_1" mangled="tanhl" location="f0:88" file="f0" line="88" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:88" file="f0" line="88"/>
+  </Function>
+  <Function id="_251" name="__builtin_cabsf" returns="_396" context="_1" mangled="cabsf" location="f0:90" file="f0" line="90" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:90" file="f0" line="90"/>
+  </Function>
+  <Function id="_252" name="__builtin_cabsl" returns="_397" context="_1" mangled="cabsl" location="f0:92" file="f0" line="92" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:92" file="f0" line="92"/>
+  </Function>
+  <Variable id="_253" name="aerror_other" type="_401c" context="_1" location="f1:240" file="f1" line="240" extern="1"/>
+  <Function id="_254" name="aspell_filter_error_message" returns="_395" context="_1" location="f1:395" file="f1" line="395" extern="1">
+    <Argument name="ths" type="_452" location="f1:395" file="f1" line="395"/>
+  </Function>
+  <Variable id="_255" name="aerror_confusing_mode_version" type="_401c" context="_1" location="f1:311" file="f1" line="311" extern="1"/>
+  <Function id="_256" name="__builtin_powf" returns="_396" context="_1" mangled="powf" location="f0:70" file="f0" line="70" extern="1" attributes="nothrow">
+    <Argument type="_396" location="f0:70" file="f0" line="70"/>
+    <Argument type="_396" location="f0:70" file="f0" line="70"/>
+  </Function>
+  <Function id="_257" name="__builtin_powi" returns="_394" context="_1" location="f0:72" file="f0" line="72" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:72" file="f0" line="72"/>
+    <Argument type="_400" location="f0:72" file="f0" line="72"/>
+  </Function>
+  <Function id="_258" name="__builtin_powl" returns="_397" context="_1" mangled="powl" location="f0:71" file="f0" line="71" extern="1" attributes="nothrow">
+    <Argument type="_397" location="f0:71" file="f0" line="71"/>
+    <Argument type="_397" location="f0:71" file="f0" line="71"/>
+  </Function>
+  <Function id="_259" name="aspell_speller_error_message" returns="_395" context="_1" location="f1:341" file="f1" line="341" extern="1">
+    <Argument name="ths" type="_419" location="f1:341" file="f1" line="341"/>
+  </Function>
+  <Variable id="_260" name="aerror_unknown_key" type="_401c" context="_1" location="f1:253" file="f1" line="253" extern="1"/>
+  <Function id="_261" name="aspell_string_map_clear" returns="_398" context="_1" location="f1:654" file="f1" line="654" extern="1">
+    <Argument name="ths" type="_423" location="f1:654" file="f1" line="654"/>
+  </Function>
+  <Function id="_262" name="aspell_dict_info_enumeration_next" returns="_487" context="_1" location="f1:602" file="f1" line="602" extern="1">
+    <Argument name="ths" type="_460" location="f1:602" file="f1" line="602"/>
+  </Function>
+  <Function id="_263" name="aspell_filter_error" returns="_432" context="_1" location="f1:397" file="f1" line="397" extern="1">
+    <Argument name="ths" type="_452" location="f1:397" file="f1" line="397"/>
+  </Function>
+  <Variable id="_264" name="aerror_word_list_flags" type="_401c" context="_1" location="f1:290" file="f1" line="290" extern="1"/>
+  <Function id="_265" name="aspell_error_number" returns="_418" context="_1" location="f1:227" file="f1" line="227" extern="1">
+    <Argument name="ths" type="_488" location="f1:227" file="f1" line="227"/>
+  </Function>
+  <Function id="_266" name="aspell_string_map_add" returns="_400" context="_1" location="f1:650" file="f1" line="650" extern="1">
+    <Argument name="ths" type="_423" location="f1:650" file="f1" line="650"/>
+    <Argument name="to_add" type="_395" location="f1:650" file="f1" line="650"/>
+  </Function>
+  <Variable id="_267" name="aerror_expression" type="_401c" context="_1" location="f1:323" file="f1" line="323" extern="1"/>
+  <Variable id="_268" name="aerror_language_related" type="_401c" context="_1" location="f1:266" file="f1" line="266" extern="1"/>
+  <Function id="_269" name="__builtin_ccos" returns="_417" context="_1" mangled="ccos" location="f0:103" file="f0" line="103" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:103" file="f0" line="103"/>
+  </Function>
+  <Function id="_270" name="aspell_config_replace" returns="_400" context="_1" location="f1:154" file="f1" line="154" extern="1">
+    <Argument name="ths" type="_421" location="f1:154" file="f1" line="154"/>
+    <Argument name="key" type="_395" location="f1:154" file="f1" line="154"/>
+    <Argument name="value" type="_395" location="f1:154" file="f1" line="154"/>
+  </Function>
+  <Function id="_271" name="aspell_document_checker_error" returns="_432" context="_1" location="f1:427" file="f1" line="427" extern="1">
+    <Argument name="ths" type="_412" location="f1:427" file="f1" line="427"/>
+  </Function>
+  <Variable id="_272" name="aerror_config" type="_401c" context="_1" location="f1:252" file="f1" line="252" extern="1"/>
+  <Function id="_273" name="aspell_mutable_container_to_mutable_container" returns="_422" context="_1" location="f1:43" file="f1" line="43" extern="1">
+    <Argument name="ths" type="_422" location="f1:43" file="f1" line="43"/>
+  </Function>
+  <Variable id="_274" name="aerror_encoding" type="_401c" context="_1" location="f1:277" file="f1" line="277" extern="1"/>
+  <Function id="_275" name="__builtin_expect" returns="_453" context="_1" location="f0:16" file="f0" line="16" extern="1" attributes="nothrow const">
+    <Argument name="EXP" type="_453" location="f0:16" file="f0" line="16"/>
+    <Argument name="C" type="_453" location="f0:16" file="f0" line="16"/>
+  </Function>
+  <Variable id="_276" name="aerror_expect_mode_key" type="_401c" context="_1" location="f1:309" file="f1" line="309" extern="1"/>
+  <Function id="_277" name="aspell_error_message" returns="_395" context="_1" location="f1:229" file="f1" line="229" extern="1">
+    <Argument name="ths" type="_488" location="f1:229" file="f1" line="229"/>
+  </Function>
+  <Function id="_278" name="aspell_config_remove" returns="_400" context="_1" location="f1:166" file="f1" line="166" extern="1">
+    <Argument name="ths" type="_421" location="f1:166" file="f1" line="166"/>
+    <Argument name="key" type="_395" location="f1:166" file="f1" line="166"/>
+  </Function>
+  <Function id="_279" name="aspell_config_assign" returns="_398" context="_1" location="f1:106" file="f1" line="106" extern="1">
+    <Argument name="ths" type="_421" location="f1:106" file="f1" line="106"/>
+    <Argument name="other" type="_433" location="f1:106" file="f1" line="106"/>
+  </Function>
+  <Variable id="_280" name="aerror_invalid_expression" type="_401c" context="_1" location="f1:324" file="f1" line="324" extern="1"/>
+  <Function id="_281" name="__builtin_popcountl" returns="_400" context="_1" location="f0:100" file="f0" line="100" extern="1" attributes="nothrow const">
+    <Argument type="_453" location="f0:100" file="f0" line="100"/>
+  </Function>
+  <Struct id="_282" name="AspellDictInfo" context="_1" mangled="14AspellDictInfo" demangled="AspellDictInfo" location="f1:521" file="f1" line="521" artificial="1" size="384" align="64" members="_489 _490 _491 _492 _493 _494 _495 _496 _497 _498 " bases=""/>
+  <Typedef id="_283" name="AspellDictInfo" type="_282" context="_1" location="f1:553" file="f1" line="553"/>
+  <Struct id="_284" name="AspellModuleInfo" context="_1" mangled="16AspellModuleInfo" demangled="AspellModuleInfo" location="f1:503" file="f1" line="503" artificial="1" size="320" align="64" members="_499 _500 _501 _502 _503 _504 _505 _506 _507 " bases=""/>
+  <Typedef id="_285" name="AspellModuleInfo" type="_284" context="_1" location="f1:518" file="f1" line="518"/>
+  <Function id="_286" name="aspell_config_retrieve" returns="_395" context="_1" location="f1:171" file="f1" line="171" extern="1">
+    <Argument name="ths" type="_421" location="f1:171" file="f1" line="171"/>
+    <Argument name="key" type="_395" location="f1:171" file="f1" line="171"/>
+  </Function>
+  <Function id="_287" name="aspell_error" returns="_432" context="_1" location="f1:231" file="f1" line="231" extern="1">
+    <Argument name="ths" type="_488" location="f1:231" file="f1" line="231"/>
+  </Function>
+  <Function id="_288" name="aspell_module_info_enumeration_clone" returns="_410" context="_1" location="f1:591" file="f1" line="591" extern="1">
+    <Argument name="ths" type="_411" location="f1:591" file="f1" line="591"/>
+  </Function>
+  <Function id="_289" name="aspell_dict_info_enumeration_clone" returns="_460" context="_1" location="f1:606" file="f1" line="606" extern="1">
+    <Argument name="ths" type="_415" location="f1:606" file="f1" line="606"/>
+  </Function>
+  <Variable id="_290" name="aerror_incorrect_encoding" type="_401c" context="_1" location="f1:276" file="f1" line="276" extern="1"/>
+  <Function id="_291" name="aspell_config_error_number" returns="_418" context="_1" location="f1:108" file="f1" line="108" extern="1">
+    <Argument name="ths" type="_433" location="f1:108" file="f1" line="108"/>
+  </Function>
+  <Variable id="_292" name="aerror_affix" type="_401c" context="_1" location="f1:272" file="f1" line="272" extern="1"/>
+  <Variable id="_293" name="aerror_cant_read_file" type="_401c" context="_1" location="f1:246" file="f1" line="246" extern="1"/>
+  <Struct id="_294" name="AspellModuleInfoEnumeration" context="_1" incomplete="1" mangled="27AspellModuleInfoEnumeration" demangled="AspellModuleInfoEnumeration" location="f1:565" file="f1" line="565" artificial="1" align="8"/>
+  <Typedef id="_295" name="AspellModuleInfoEnumeration" type="_294" context="_1" location="f1:582" file="f1" line="582"/>
+  <Function id="_296" name="aspell_speller_error" returns="_432" context="_1" location="f1:343" file="f1" line="343" extern="1">
+    <Argument name="ths" type="_419" location="f1:343" file="f1" line="343"/>
+  </Function>
+  <Variable id="_297" name="aerror_filter_mode_file" type="_401c" context="_1" location="f1:305" file="f1" line="305" extern="1"/>
+  <Function id="_298" name="__builtin_inff" returns="_396" context="_1" location="f0:19" file="f0" line="19" extern="1" attributes="nothrow const"/>
+  <Variable id="_299" name="aerror_unknown_language" type="_401c" context="_1" location="f1:267" file="f1" line="267" extern="1"/>
+  <Function id="_300" name="__builtin_infl" returns="_397" context="_1" location="f0:20" file="f0" line="20" extern="1" attributes="nothrow const"/>
+  <Variable id="_301" name="aerror_cant_copy" type="_401c" context="_1" location="f1:242" file="f1" line="242" extern="1"/>
+  <Variable id="_302" name="aerror_language_not_supported" type="_401c" context="_1" location="f1:269" file="f1" line="269" extern="1"/>
+  <Function id="_303" name="delete_aspell_document_checker" returns="_398" context="_1" location="f1:421" file="f1" line="421" extern="1">
+    <Argument name="ths" type="_434" location="f1:421" file="f1" line="421"/>
+  </Function>
+  <Function id="_304" name="aspell_string_list_empty" returns="_400" context="_1" location="f1:620" file="f1" line="620" extern="1">
+    <Argument name="ths" type="_440" location="f1:620" file="f1" line="620"/>
+  </Function>
+  <Function id="_305" name="aspell_mutable_container_add" returns="_400" context="_1" location="f1:37" file="f1" line="37" extern="1">
+    <Argument name="ths" type="_422" location="f1:37" file="f1" line="37"/>
+    <Argument name="to_add" type="_395" location="f1:37" file="f1" line="37"/>
+  </Function>
+  <Function id="_306" name="aspell_module_info_enumeration_at_end" returns="_400" context="_1" location="f1:585" file="f1" line="585" extern="1">
+    <Argument name="ths" type="_411" location="f1:585" file="f1" line="585"/>
+  </Function>
+  <Function id="_307" name="__builtin_cos" returns="_394" context="_1" mangled="cos" location="f0:39" file="f0" line="39" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_394" location="f0:39" file="f0" line="39"/>
+  </Function>
+  <Function id="_308" name="aspell_word_list_size" returns="_418" context="_1" location="f1:476" file="f1" line="476" extern="1">
+    <Argument name="ths" type="_413" location="f1:476" file="f1" line="476"/>
+  </Function>
+  <Variable id="_309" name="aerror_bad_version_string" type="_401c" context="_1" location="f1:294" file="f1" line="294" extern="1"/>
+  <Function id="_310" name="__builtin_ctz" returns="_400" context="_1" location="f0:96" file="f0" line="96" extern="1" attributes="nothrow const">
+    <Argument type="_400" location="f0:96" file="f0" line="96"/>
+  </Function>
+  <Function id="_311" name="__builtin_return_address" returns="_436" context="_1" location="f0:14" file="f0" line="14" extern="1">
+    <Argument name="LEVEL" type="_418" location="f0:14" file="f0" line="14"/>
+  </Function>
+  <Variable id="_312" name="aerror_missing_magic_expression" type="_401c" context="_1" location="f1:313" file="f1" line="313" extern="1"/>
+  <Function id="_313" name="__builtin_isnan" returns="_403" context="_1" mangled="isnan" location="f0:144" file="f0" line="144" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Function id="_314" name="aspell_string_list_assign" returns="_398" context="_1" location="f1:638" file="f1" line="638" extern="1">
+    <Argument name="ths" type="_407" location="f1:638" file="f1" line="638"/>
+    <Argument name="other" type="_440" location="f1:638" file="f1" line="638"/>
+  </Function>
+  <Function id="_315" name="aspell_module_info_list_empty" returns="_400" context="_1" location="f1:561" file="f1" line="561" extern="1">
+    <Argument name="ths" type="_469" location="f1:561" file="f1" line="561"/>
+  </Function>
+  <Function id="_316" name="aspell_string_map_lookup" returns="_395" context="_1" location="f1:684" file="f1" line="684" extern="1">
+    <Argument name="ths" type="_450" location="f1:684" file="f1" line="684"/>
+    <Argument name="key" type="_395" location="f1:684" file="f1" line="684"/>
+  </Function>
+  <Function id="_317" name="__builtin_csinhf" returns="_405" context="_1" mangled="csinhf" location="f0:117" file="f0" line="117" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:117" file="f0" line="117"/>
+  </Function>
+  <Function id="_318" name="__builtin_csinhl" returns="_406" context="_1" mangled="csinhl" location="f0:119" file="f0" line="119" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:119" file="f0" line="119"/>
+  </Function>
+  <Function id="_319" name="aspell_mutable_container_clear" returns="_398" context="_1" location="f1:41" file="f1" line="41" extern="1">
+    <Argument name="ths" type="_422" location="f1:41" file="f1" line="41"/>
+  </Function>
+  <Function id="_320" name="__builtin_csqrtf" returns="_405" context="_1" mangled="csqrtf" location="f0:120" file="f0" line="120" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:120" file="f0" line="120"/>
+  </Function>
+  <Function id="_321" name="__builtin_csqrtl" returns="_406" context="_1" mangled="csqrtl" location="f0:122" file="f0" line="122" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:122" file="f0" line="122"/>
+  </Function>
+  <Function id="_322" name="to_aspell_filter" returns="_399" context="_1" location="f1:399" file="f1" line="399" extern="1">
+    <Argument name="obj" type="_435" location="f1:399" file="f1" line="399"/>
+  </Function>
+  <Function id="_323" name="aspell_string_list_elements" returns="_424" context="_1" location="f1:624" file="f1" line="624" extern="1">
+    <Argument name="ths" type="_440" location="f1:624" file="f1" line="624"/>
+  </Function>
+  <Function id="_324" name="aspell_config_get_default" returns="_395" context="_1" location="f1:137" file="f1" line="137" extern="1">
+    <Argument name="ths" type="_421" location="f1:137" file="f1" line="137"/>
+    <Argument name="key" type="_395" location="f1:137" file="f1" line="137"/>
+  </Function>
+  <Function id="_325" name="__builtin_floor" returns="_394" context="_1" mangled="floor" location="f0:51" file="f0" line="51" extern="1" attributes="nothrow const">
+    <Argument type="_394" location="f0:51" file="f0" line="51"/>
+  </Function>
+  <Function id="_326" name="__builtin_ldexp" returns="_394" context="_1" mangled="ldexp" location="f0:59" file="f0" line="59" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:59" file="f0" line="59"/>
+    <Argument type="_400" location="f0:59" file="f0" line="59"/>
+  </Function>
+  <Variable id="_327" name="aerror_missing_magic" type="_401c" context="_1" location="f1:321" file="f1" line="321" extern="1"/>
+  <Variable id="_328" name="aerror_cant_create_pipe" type="_401c" context="_1" location="f1:282" file="f1" line="282" extern="1"/>
+  <Function id="_329" name="aspell_key_info_enumeration_assign" returns="_398" context="_1" location="f1:93" file="f1" line="93" extern="1">
+    <Argument name="ths" type="_408" location="f1:93" file="f1" line="93"/>
+    <Argument name="other" type="_409" location="f1:93" file="f1" line="93"/>
+  </Function>
+  <Function id="_330" name="aspell_string_enumeration_assign" returns="_398" context="_1" location="f1:492" file="f1" line="492" extern="1">
+    <Argument name="ths" type="_424" location="f1:492" file="f1" line="492"/>
+    <Argument name="other" type="_416" location="f1:492" file="f1" line="492"/>
+  </Function>
+  <Enumeration id="_331" name="AspellKeyInfoType" context="_1" location="f1:51" file="f1" line="51" artificial="1" size="32" align="32">
+    <EnumValue name="AspellKeyInfoString" init="0"/>
+    <EnumValue name="AspellKeyInfoInt" init="1"/>
+    <EnumValue name="AspellKeyInfoBool" init="2"/>
+    <EnumValue name="AspellKeyInfoList" init="3"/>
+  </Enumeration>
+  <Typedef id="_332" name="AspellKeyInfoType" type="_331" context="_1" location="f1:52" file="f1" line="52"/>
+  <Function id="_333" name="__builtin_ccosf" returns="_405" context="_1" mangled="ccosf" location="f0:102" file="f0" line="102" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:102" file="f0" line="102"/>
+  </Function>
+  <Function id="_334" name="__builtin_ccosh" returns="_417" context="_1" mangled="ccosh" location="f0:106" file="f0" line="106" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:106" file="f0" line="106"/>
+  </Function>
+  <Function id="_335" name="__builtin_ccosl" returns="_406" context="_1" mangled="ccosl" location="f0:104" file="f0" line="104" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:104" file="f0" line="104"/>
+  </Function>
+  <Function id="_336" name="__builtin_islessgreater" returns="_403" context="_1" location="f0:143" file="f0" line="143" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Function id="_337" name="aspell_word_list_empty" returns="_400" context="_1" location="f1:474" file="f1" line="474" extern="1">
+    <Argument name="ths" type="_413" location="f1:474" file="f1" line="474"/>
+  </Function>
+  <Variable id="_338" name="aerror_invalid_string" type="_401c" context="_1" location="f1:285" file="f1" line="285" extern="1"/>
+  <Variable id="_339" name="aerror_bad_value" type="_401c" context="_1" location="f1:256" file="f1" line="256" extern="1"/>
+  <Function id="_340" name="delete_aspell_speller" returns="_398" context="_1" location="f1:337" file="f1" line="337" extern="1">
+    <Argument name="ths" type="_414" location="f1:337" file="f1" line="337"/>
+  </Function>
+  <Function id="_341" name="__builtin_ctanhf" returns="_405" context="_1" mangled="ctanhf" location="f0:126" file="f0" line="126" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:126" file="f0" line="126"/>
+  </Function>
+  <Function id="_342" name="__builtin_ctanhl" returns="_406" context="_1" mangled="ctanhl" location="f0:128" file="f0" line="128" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:128" file="f0" line="128"/>
+  </Function>
+  <Function id="_343" name="delete_aspell_key_info_enumeration" returns="_398" context="_1" location="f1:89" file="f1" line="89" extern="1">
+    <Argument name="ths" type="_408" location="f1:89" file="f1" line="89"/>
+  </Function>
+  <Function id="_344" name="aspell_string_list_size" returns="_418" context="_1" location="f1:622" file="f1" line="622" extern="1">
+    <Argument name="ths" type="_440" location="f1:622" file="f1" line="622"/>
+  </Function>
+  <Function id="_345" name="aspell_string_list_add" returns="_400" context="_1" location="f1:626" file="f1" line="626" extern="1">
+    <Argument name="ths" type="_407" location="f1:626" file="f1" line="626"/>
+    <Argument name="to_add" type="_395" location="f1:626" file="f1" line="626"/>
+  </Function>
+  <Function id="_346" name="aspell_speller_personal_word_list" returns="_413" context="_1" location="f1:360" file="f1" line="360" extern="1">
+    <Argument name="ths" type="_414" location="f1:360" file="f1" line="360"/>
+  </Function>
+  <Variable id="_347" name="aerror_unimplemented_method" type="_401c" context="_1" location="f1:243" file="f1" line="243" extern="1"/>
+  <Function id="_348" name="aspell_string_list_to_mutable_container" returns="_422" context="_1" location="f1:632" file="f1" line="632" extern="1">
+    <Argument name="ths" type="_407" location="f1:632" file="f1" line="632"/>
+  </Function>
+  <Function id="_349" name="aspell_string_map_empty" returns="_400" context="_1" location="f1:664" file="f1" line="664" extern="1">
+    <Argument name="ths" type="_450" location="f1:664" file="f1" line="664"/>
+  </Function>
+  <Function id="_350" name="delete_aspell_dict_info_enumeration" returns="_398" context="_1" location="f1:604" file="f1" line="604" extern="1">
+    <Argument name="ths" type="_460" location="f1:604" file="f1" line="604"/>
+  </Function>
+  <Function id="_351" name="__builtin_ceilf" returns="_396" context="_1" mangled="ceilf" location="f0:37" file="f0" line="37" extern="1" attributes="nothrow const">
+    <Argument type="_396" location="f0:37" file="f0" line="37"/>
+  </Function>
+  <Function id="_352" name="__builtin_ceill" returns="_397" context="_1" mangled="ceill" location="f0:38" file="f0" line="38" extern="1" attributes="nothrow const">
+    <Argument type="_397" location="f0:38" file="f0" line="38"/>
+  </Function>
+  <Variable id="_353" name="aerror_empty_filter" type="_401c" context="_1" location="f1:297" file="f1" line="297" extern="1"/>
+  <Variable id="_354" name="aerror_mode_extend_expand" type="_401c" context="_1" location="f1:317" file="f1" line="317" extern="1"/>
+  <Function id="_355" name="__builtin_csinf" returns="_405" context="_1" mangled="csinf" location="f0:114" file="f0" line="114" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:114" file="f0" line="114"/>
+  </Function>
+  <Function id="_356" name="__builtin_csinh" returns="_417" context="_1" mangled="csinh" location="f0:118" file="f0" line="118" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:118" file="f0" line="118"/>
+  </Function>
+  <Function id="_357" name="__builtin_csinl" returns="_406" context="_1" mangled="csinl" location="f0:116" file="f0" line="116" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:116" file="f0" line="116"/>
+  </Function>
+  <Function id="_358" name="__builtin_acos" returns="_394" context="_1" mangled="acos" location="f0:24" file="f0" line="24" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:24" file="f0" line="24"/>
+  </Function>
+  <Variable id="_359" name="aerror_empty_file_ext" type="_401c" context="_1" location="f1:314" file="f1" line="314" extern="1"/>
+  <Function id="_360" name="__builtin_ctzll" returns="_400" context="_1" location="f0:98" file="f0" line="98" extern="1" attributes="nothrow const">
+    <Argument type="_404" location="f0:98" file="f0" line="98"/>
+  </Function>
+  <Function id="_361" name="__builtin_cargf" returns="_396" context="_1" mangled="cargf" location="f0:93" file="f0" line="93" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_405" location="f0:93" file="f0" line="93"/>
+  </Function>
+  <Function id="_362" name="__builtin_cargl" returns="_397" context="_1" mangled="cargl" location="f0:95" file="f0" line="95" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_406" location="f0:95" file="f0" line="95"/>
+  </Function>
+  <Function id="_363" name="__builtin_cosf" returns="_396" context="_1" mangled="cosf" location="f0:40" file="f0" line="40" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:40" file="f0" line="40"/>
+  </Function>
+  <Function id="_364" name="__builtin_cosh" returns="_394" context="_1" mangled="cosh" location="f0:41" file="f0" line="41" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:41" file="f0" line="41"/>
+  </Function>
+  <Function id="_365" name="__builtin_cosl" returns="_397" context="_1" mangled="cosl" location="f0:44" file="f0" line="44" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:44" file="f0" line="44"/>
+  </Function>
+  <Function id="_366" name="aspell_dict_info_list_empty" returns="_400" context="_1" location="f1:574" file="f1" line="574" extern="1">
+    <Argument name="ths" type="_476" location="f1:574" file="f1" line="574"/>
+  </Function>
+  <Struct id="_367" name="AspellStringList" context="_1" incomplete="1" mangled="16AspellStringList" demangled="AspellStringList" location="f1:511" file="f1" line="511" artificial="1" align="8"/>
+  <Typedef id="_368" name="AspellStringList" type="_367" context="_1" location="f1:615" file="f1" line="615"/>
+  <Function id="_369" name="aspell_speller_suggest" returns="_413" context="_1" location="f1:379" file="f1" line="379" extern="1">
+    <Argument name="ths" type="_414" location="f1:379" file="f1" line="379"/>
+    <Argument name="word" type="_395" location="f1:379" file="f1" line="379"/>
+    <Argument name="word_size" type="_400" location="f1:379" file="f1" line="379"/>
+  </Function>
+  <Function id="_370" name="delete_aspell_module_info_enumeration" returns="_398" context="_1" location="f1:589" file="f1" line="589" extern="1">
+    <Argument name="ths" type="_410" location="f1:589" file="f1" line="589"/>
+  </Function>
+  <Function id="_371" name="aspell_module_info_list_size" returns="_418" context="_1" location="f1:563" file="f1" line="563" extern="1">
+    <Argument name="ths" type="_469" location="f1:563" file="f1" line="563"/>
+  </Function>
+  <Function id="_372" name="__builtin_isgreater" returns="_403" context="_1" location="f0:137" file="f0" line="137" extern="1" attributes="nothrow const">
+    <Ellipsis/>
+  </Function>
+  <Struct id="_373" name="AspellDictInfoList" context="_1" incomplete="1" mangled="18AspellDictInfoList" demangled="AspellDictInfoList" location="f1:569" file="f1" line="569" artificial="1" align="8"/>
+  <Typedef id="_374" name="AspellDictInfoList" type="_373" context="_1" location="f1:569" file="f1" line="569"/>
+  <Variable id="_375" name="aerror_invalid_cond_strip" type="_401c" context="_1" location="f1:275" file="f1" line="275" extern="1"/>
+  <Struct id="_376" name="AspellSpeller" context="_1" incomplete="1" mangled="13AspellSpeller" demangled="AspellSpeller" location="f1:330" file="f1" line="330" artificial="1" align="8"/>
+  <Typedef id="_377" name="AspellSpeller" type="_376" context="_1" location="f1:330" file="f1" line="330"/>
+  <Function id="_378" name="get_aspell_module_info_list" returns="_508" context="_1" location="f1:559" file="f1" line="559" extern="1">
+    <Argument name="config" type="_421" location="f1:559" file="f1" line="559"/>
+  </Function>
+  <Function id="_379" name="aspell_dict_info_list_elements" returns="_460" context="_1" location="f1:578" file="f1" line="578" extern="1">
+    <Argument name="ths" type="_476" location="f1:578" file="f1" line="578"/>
+  </Function>
+  <Function id="_380" name="aspell_speller_add_to_personal" returns="_400" context="_1" location="f1:352" file="f1" line="352" extern="1">
+    <Argument name="ths" type="_414" location="f1:352" file="f1" line="352"/>
+    <Argument name="word" type="_395" location="f1:352" file="f1" line="352"/>
+    <Argument name="word_size" type="_400" location="f1:352" file="f1" line="352"/>
+  </Function>
+  <Function id="_381" name="aspell_speller_config" returns="_421" context="_1" location="f1:345" file="f1" line="345" extern="1">
+    <Argument name="ths" type="_414" location="f1:345" file="f1" line="345"/>
+  </Function>
+  <Struct id="_382" name="AspellFilter" context="_1" incomplete="1" mangled="12AspellFilter" demangled="AspellFilter" location="f1:388" file="f1" line="388" artificial="1" align="8"/>
+  <Typedef id="_383" name="AspellFilter" type="_382" context="_1" location="f1:388" file="f1" line="388"/>
+  <Variable id="_384" name="aerror_file" type="_401c" context="_1" location="f1:244" file="f1" line="244" extern="1"/>
+  <Function id="_385" name="__builtin_sinf" returns="_396" context="_1" mangled="sinf" location="f0:76" file="f0" line="76" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_396" location="f0:76" file="f0" line="76"/>
+  </Function>
+  <Function id="_386" name="__builtin_sinh" returns="_394" context="_1" mangled="sinh" location="f0:77" file="f0" line="77" extern="1" attributes="nothrow">
+    <Argument type="_394" location="f0:77" file="f0" line="77"/>
+  </Function>
+  <Function id="_387" name="__builtin_sinl" returns="_397" context="_1" mangled="sinl" location="f0:80" file="f0" line="80" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_397" location="f0:80" file="f0" line="80"/>
+  </Function>
+  <Struct id="_388" name="AspellStringPairEnumeration" context="_1" incomplete="1" mangled="27AspellStringPairEnumeration" demangled="AspellStringPairEnumeration" location="f1:142" file="f1" line="142" artificial="1" align="8"/>
+  <Typedef id="_389" name="AspellStringPairEnumeration" type="_388" context="_1" location="f1:706" file="f1" line="706"/>
+  <Function id="_390" name="aspell_config_retrieve_int" returns="_400" context="_1" location="f1:184" file="f1" line="184" extern="1">
+    <Argument name="ths" type="_421" location="f1:184" file="f1" line="184"/>
+    <Argument name="key" type="_395" location="f1:184" file="f1" line="184"/>
+  </Function>
+  <Function id="_391" name="__builtin_csin" returns="_417" context="_1" mangled="csin" location="f0:115" file="f0" line="115" extern="1" attributes="nothrow pure no vops">
+    <Argument type="_417" location="f0:115" file="f0" line="115"/>
+  </Function>
+  <Variable id="_392" name="aerror_unknown_encoding" type="_401c" context="_1" location="f1:278" file="f1" line="278" extern="1"/>
+  <Function id="_393" name="aspell_speller_clear_session" returns="_400" context="_1" location="f1:374" file="f1" line="374" extern="1">
+    <Argument name="ths" type="_414" location="f1:374" file="f1" line="374"/>
+  </Function>
+  <FundamentalType id="_394" name="double" size="64" align="64"/>
+  <PointerType id="_395" type="_509c" size="64" align="64"/>
+  <FundamentalType id="_396" name="float" size="32" align="32"/>
+  <FundamentalType id="_397" name="long double" size="128" align="128"/>
+  <FundamentalType id="_398" name="void" align="8"/>
+  <PointerType id="_399" type="_382" size="64" align="64"/>
+  <FundamentalType id="_400" name="int" size="32" align="32"/>
+  <PointerType id="_401" type="_123c" size="64" align="64"/>
+  <CvQualifiedType id="_401c" type="_401" const="1"/>
+  <FundamentalType id="_403" name="bool" size="8" align="8"/>
+  <FundamentalType id="_404" name="long long int" size="64" align="64"/>
+  <FundamentalType id="_405" name="complex float" size="64" align="32"/>
+  <FundamentalType id="_406" name="complex long double" size="256" align="128"/>
+  <PointerType id="_407" type="_367" size="64" align="64"/>
+  <PointerType id="_408" type="_236" size="64" align="64"/>
+  <PointerType id="_409" type="_236c" size="64" align="64"/>
+  <PointerType id="_410" type="_294" size="64" align="64"/>
+  <PointerType id="_411" type="_294c" size="64" align="64"/>
+  <PointerType id="_412" type="_177c" size="64" align="64"/>
+  <PointerType id="_413" type="_231c" size="64" align="64"/>
+  <PointerType id="_414" type="_376" size="64" align="64"/>
+  <PointerType id="_415" type="_95c" size="64" align="64"/>
+  <PointerType id="_416" type="_202c" size="64" align="64"/>
+  <FundamentalType id="_417" name="complex double" size="128" align="64"/>
+  <FundamentalType id="_418" name="unsigned int" size="32" align="32"/>
+  <PointerType id="_419" type="_376c" size="64" align="64"/>
+  <PointerType id="_420" type="_373" size="64" align="64"/>
+  <PointerType id="_421" type="_80" size="64" align="64"/>
+  <PointerType id="_422" type="_167" size="64" align="64"/>
+  <PointerType id="_423" type="_71" size="64" align="64"/>
+  <PointerType id="_424" type="_202" size="64" align="64"/>
+  <PointerType id="_425" type="_241c" size="64" align="64"/>
+  <Field id="_426" name="first" type="_395" offset="0" context="_76" access="public" location="f1:693" file="f1" line="693"/>
+  <Field id="_427" name="second" type="_395" offset="64" context="_76" access="public" location="f1:695" file="f1" line="695"/>
+  <Destructor id="_428" name="AspellStringPair" artificial="1" throw="" context="_76" access="public" mangled="_ZN16AspellStringPairD1Ev *INTERNAL* " demangled="AspellStringPair::~AspellStringPair()" location="f1:691" file="f1" line="691" endline="691" inline="1">
+  </Destructor>
+  <OperatorMethod id="_429" name="=" returns="_520" artificial="1" throw="" context="_76" access="public" mangled="_ZN16AspellStringPairaSERKS_" demangled="AspellStringPair::operator=(AspellStringPair const&amp;)" location="f1:691" file="f1" line="691" endline="691" inline="1">
+    <Argument type="_521" location="f1:691" file="f1" line="691"/>
+  </OperatorMethod>
+  <Constructor id="_430" name="AspellStringPair" artificial="1" throw="" context="_76" access="public" mangled="_ZN16AspellStringPairC1ERKS_ *INTERNAL* " demangled="AspellStringPair::AspellStringPair(AspellStringPair const&amp;)" location="f1:691" file="f1" line="691" endline="691" inline="1">
+    <Argument type="_521" location="f1:691" file="f1" line="691"/>
+  </Constructor>
+  <Constructor id="_431" name="AspellStringPair" artificial="1" throw="" context="_76" access="public" mangled="_ZN16AspellStringPairC1Ev *INTERNAL* " demangled="AspellStringPair::AspellStringPair()" location="f1:691" file="f1" line="691" inline="1"/>
+  <PointerType id="_432" type="_205c" size="64" align="64"/>
+  <PointerType id="_433" type="_80c" size="64" align="64"/>
+  <PointerType id="_434" type="_177" size="64" align="64"/>
+  <PointerType id="_435" type="_61" size="64" align="64"/>
+  <PointerType id="_436" type="_398" size="64" align="64"/>
+  <PointerType id="_437" type="_388c" size="64" align="64"/>
+  <PointerType id="_438" type="_398c" size="64" align="64"/>
+  <PointerType id="_439" type="_284c" size="64" align="64"/>
+  <PointerType id="_440" type="_367c" size="64" align="64"/>
+  <Field id="_441" name="isa" type="_401" offset="0" context="_123" access="public" location="f1:207" file="f1" line="207"/>
+  <Field id="_442" name="mesg" type="_395" offset="64" context="_123" access="public" location="f1:209" file="f1" line="209"/>
+  <Field id="_443" name="num_parms" type="_418" offset="128" context="_123" access="public" location="f1:211" file="f1" line="211"/>
+  <Field id="_444" name="parms" type="_528" offset="192" context="_123" access="public" location="f1:213" file="f1" line="213"/>
+  <Destructor id="_445" name="AspellErrorInfo" artificial="1" throw="" context="_123" access="public" mangled="_ZN15AspellErrorInfoD1Ev *INTERNAL* " demangled="AspellErrorInfo::~AspellErrorInfo()" location="f1:205" file="f1" line="205" endline="205" inline="1">
+  </Destructor>
+  <OperatorMethod id="_446" name="=" returns="_529" artificial="1" throw="" context="_123" access="public" mangled="_ZN15AspellErrorInfoaSERKS_" demangled="AspellErrorInfo::operator=(AspellErrorInfo const&amp;)" location="f1:205" file="f1" line="205" endline="205" inline="1">
+    <Argument type="_530" location="f1:205" file="f1" line="205"/>
+  </OperatorMethod>
+  <Constructor id="_447" name="AspellErrorInfo" artificial="1" throw="" context="_123" access="public" mangled="_ZN15AspellErrorInfoC1ERKS_ *INTERNAL* " demangled="AspellErrorInfo::AspellErrorInfo(AspellErrorInfo const&amp;)" location="f1:205" file="f1" line="205" endline="205" inline="1">
+    <Argument type="_530" location="f1:205" file="f1" line="205"/>
+  </Constructor>
+  <Constructor id="_448" name="AspellErrorInfo" artificial="1" throw="" context="_123" access="public" mangled="_ZN15AspellErrorInfoC1Ev *INTERNAL* " demangled="AspellErrorInfo::AspellErrorInfo()" location="f1:205" file="f1" line="205" inline="1"/>
+  <PointerType id="_449" type="_388" size="64" align="64"/>
+  <PointerType id="_450" type="_71c" size="64" align="64"/>
+  <PointerType id="_451" type="_400" size="64" align="64"/>
+  <PointerType id="_452" type="_382c" size="64" align="64"/>
+  <FundamentalType id="_453" name="long int" size="64" align="64"/>
+  <Field id="_454" name="offset" type="_418" offset="0" context="_150" access="public" location="f1:408" file="f1" line="408"/>
+  <Field id="_455" name="len" type="_418" offset="32" context="_150" access="public" location="f1:410" file="f1" line="410"/>
+  <Destructor id="_456" name="AspellToken" artificial="1" throw="" context="_150" access="public" mangled="_ZN11AspellTokenD1Ev *INTERNAL* " demangled="AspellToken::~AspellToken()" location="f1:406" file="f1" line="406" endline="406" inline="1">
+  </Destructor>
+  <OperatorMethod id="_457" name="=" returns="_533" artificial="1" throw="" context="_150" access="public" mangled="_ZN11AspellTokenaSERKS_" demangled="AspellToken::operator=(AspellToken const&amp;)" location="f1:406" file="f1" line="406" endline="406" inline="1">
+    <Argument type="_534" location="f1:406" file="f1" line="406"/>
+  </OperatorMethod>
+  <Constructor id="_458" name="AspellToken" artificial="1" throw="" context="_150" access="public" mangled="_ZN11AspellTokenC1ERKS_ *INTERNAL* " demangled="AspellToken::AspellToken(AspellToken const&amp;)" location="f1:406" file="f1" line="406" endline="406" inline="1">
+    <Argument type="_534" location="f1:406" file="f1" line="406"/>
+  </Constructor>
+  <Constructor id="_459" name="AspellToken" artificial="1" throw="" context="_150" access="public" mangled="_ZN11AspellTokenC1Ev *INTERNAL* " demangled="AspellToken::AspellToken()" location="f1:406" file="f1" line="406" inline="1"/>
+  <PointerType id="_460" type="_95" size="64" align="64"/>
+  <PointerType id="_461" type="_396" size="64" align="64"/>
+  <PointerType id="_462" type="_397" size="64" align="64"/>
+  <Field id="_463" name="num" type="_418" offset="0" context="_170" access="public" location="f1:21" file="f1" line="21"/>
+  <Field id="_464" name="str" type="_535" offset="0" context="_170" access="public" location="f1:23" file="f1" line="23"/>
+  <Destructor id="_465" name="AspellTypeId" artificial="1" throw="" context="_170" access="public" mangled="_ZN12AspellTypeIdD1Ev *INTERNAL* " demangled="AspellTypeId::~AspellTypeId()" location="f1:19" file="f1" line="19" endline="19" inline="1">
+  </Destructor>
+  <OperatorMethod id="_466" name="=" returns="_536" artificial="1" throw="" context="_170" access="public" mangled="_ZN12AspellTypeIdaSERKS_" demangled="AspellTypeId::operator=(AspellTypeId const&amp;)" location="f1:19" file="f1" line="19" endline="19" inline="1">
+    <Argument type="_537" location="f1:19" file="f1" line="19"/>
+  </OperatorMethod>
+  <Constructor id="_467" name="AspellTypeId" artificial="1" throw="" context="_170" access="public" mangled="_ZN12AspellTypeIdC1ERKS_ *INTERNAL* " demangled="AspellTypeId::AspellTypeId(AspellTypeId const&amp;)" location="f1:19" file="f1" line="19" endline="19" inline="1">
+    <Argument type="_537" location="f1:19" file="f1" line="19"/>
+  </Constructor>
+  <Constructor id="_468" name="AspellTypeId" artificial="1" throw="" context="_170" access="public" mangled="_ZN12AspellTypeIdC1Ev *INTERNAL* " demangled="AspellTypeId::AspellTypeId()" location="f1:19" file="f1" line="19" inline="1"/>
+  <PointerType id="_469" type="_181c" size="64" align="64"/>
+  <Field id="_470" name="mesg" type="_395" offset="0" context="_205" access="public" location="f1:193" file="f1" line="193"/>
+  <Field id="_471" name="err" type="_401" offset="64" context="_205" access="public" location="f1:195" file="f1" line="195"/>
+  <Destructor id="_472" name="AspellError" artificial="1" throw="" context="_205" access="public" mangled="_ZN11AspellErrorD1Ev *INTERNAL* " demangled="AspellError::~AspellError()" location="f1:191" file="f1" line="191" endline="191" inline="1">
+  </Destructor>
+  <OperatorMethod id="_473" name="=" returns="_539" artificial="1" throw="" context="_205" access="public" mangled="_ZN11AspellErroraSERKS_" demangled="AspellError::operator=(AspellError const&amp;)" location="f1:191" file="f1" line="191" endline="191" inline="1">
+    <Argument type="_540" location="f1:191" file="f1" line="191"/>
+  </OperatorMethod>
+  <Constructor id="_474" name="AspellError" artificial="1" throw="" context="_205" access="public" mangled="_ZN11AspellErrorC1ERKS_ *INTERNAL* " demangled="AspellError::AspellError(AspellError const&amp;)" location="f1:191" file="f1" line="191" endline="191" inline="1">
+    <Argument type="_540" location="f1:191" file="f1" line="191"/>
+  </Constructor>
+  <Constructor id="_475" name="AspellError" artificial="1" throw="" context="_205" access="public" mangled="_ZN11AspellErrorC1Ev *INTERNAL* " demangled="AspellError::AspellError()" location="f1:191" file="f1" line="191" inline="1"/>
+  <PointerType id="_476" type="_373c" size="64" align="64"/>
+  <Field id="_477" name="name" type="_395" offset="0" context="_241" access="public" location="f1:58" file="f1" line="58"/>
+  <Field id="_478" name="type" type="_331" offset="64" context="_241" access="public" location="f1:61" file="f1" line="61"/>
+  <Field id="_479" name="def" type="_395" offset="128" context="_241" access="public" location="f1:64" file="f1" line="64"/>
+  <Field id="_480" name="desc" type="_395" offset="192" context="_241" access="public" location="f1:67" file="f1" line="67"/>
+  <Field id="_481" name="flags" type="_400" offset="256" context="_241" access="public" location="f1:69" file="f1" line="69"/>
+  <Field id="_482" name="other_data" type="_400" offset="288" context="_241" access="public" location="f1:71" file="f1" line="71"/>
+  <Destructor id="_483" name="AspellKeyInfo" artificial="1" throw="" context="_241" access="public" mangled="_ZN13AspellKeyInfoD1Ev *INTERNAL* " demangled="AspellKeyInfo::~AspellKeyInfo()" location="f1:55" file="f1" line="55" endline="55" inline="1">
+  </Destructor>
+  <OperatorMethod id="_484" name="=" returns="_542" artificial="1" throw="" context="_241" access="public" mangled="_ZN13AspellKeyInfoaSERKS_" demangled="AspellKeyInfo::operator=(AspellKeyInfo const&amp;)" location="f1:55" file="f1" line="55" endline="55" inline="1">
+    <Argument type="_543" location="f1:55" file="f1" line="55"/>
+  </OperatorMethod>
+  <Constructor id="_485" name="AspellKeyInfo" artificial="1" throw="" context="_241" access="public" mangled="_ZN13AspellKeyInfoC1ERKS_ *INTERNAL* " demangled="AspellKeyInfo::AspellKeyInfo(AspellKeyInfo const&amp;)" location="f1:55" file="f1" line="55" endline="55" inline="1">
+    <Argument type="_543" location="f1:55" file="f1" line="55"/>
+  </Constructor>
+  <Constructor id="_486" name="AspellKeyInfo" artificial="1" throw="" context="_241" access="public" mangled="_ZN13AspellKeyInfoC1Ev *INTERNAL* " demangled="AspellKeyInfo::AspellKeyInfo()" location="f1:55" file="f1" line="55" inline="1"/>
+  <PointerType id="_487" type="_282c" size="64" align="64"/>
+  <PointerType id="_488" type="_61c" size="64" align="64"/>
+  <Field id="_489" name="name" type="_395" offset="0" context="_282" access="public" location="f1:524" file="f1" line="524"/>
+  <Field id="_490" name="code" type="_395" offset="64" context="_282" access="public" location="f1:530" file="f1" line="530"/>
+  <Field id="_491" name="jargon" type="_395" offset="128" context="_282" access="public" location="f1:535" file="f1" line="535"/>
+  <Field id="_492" name="size" type="_400" offset="192" context="_282" access="public" location="f1:537" file="f1" line="537"/>
+  <Field id="_493" name="size_str" type="_395" offset="256" context="_282" access="public" location="f1:546" file="f1" line="546"/>
+  <Field id="_494" name="module" type="_546" offset="320" context="_282" access="public" location="f1:548" file="f1" line="548"/>
+  <Destructor id="_495" name="AspellDictInfo" artificial="1" throw="" context="_282" access="public" mangled="_ZN14AspellDictInfoD1Ev *INTERNAL* " demangled="AspellDictInfo::~AspellDictInfo()" location="f1:521" file="f1" line="521" endline="521" inline="1">
+  </Destructor>
+  <OperatorMethod id="_496" name="=" returns="_547" artificial="1" throw="" context="_282" access="public" mangled="_ZN14AspellDictInfoaSERKS_" demangled="AspellDictInfo::operator=(AspellDictInfo const&amp;)" location="f1:521" file="f1" line="521" endline="521" inline="1">
+    <Argument type="_548" location="f1:521" file="f1" line="521"/>
+  </OperatorMethod>
+  <Constructor id="_497" name="AspellDictInfo" artificial="1" throw="" context="_282" access="public" mangled="_ZN14AspellDictInfoC1ERKS_ *INTERNAL* " demangled="AspellDictInfo::AspellDictInfo(AspellDictInfo const&amp;)" location="f1:521" file="f1" line="521" endline="521" inline="1">
+    <Argument type="_548" location="f1:521" file="f1" line="521"/>
+  </Constructor>
+  <Constructor id="_498" name="AspellDictInfo" artificial="1" throw="" context="_282" access="public" mangled="_ZN14AspellDictInfoC1Ev *INTERNAL* " demangled="AspellDictInfo::AspellDictInfo()" location="f1:521" file="f1" line="521" inline="1"/>
+  <Field id="_499" name="name" type="_395" offset="0" context="_284" access="public" location="f1:505" file="f1" line="505"/>
+  <Field id="_500" name="order_num" type="_394" offset="64" context="_284" access="public" location="f1:507" file="f1" line="507"/>
+  <Field id="_501" name="lib_dir" type="_395" offset="128" context="_284" access="public" location="f1:509" file="f1" line="509"/>
+  <Field id="_502" name="dict_dirs" type="_407" offset="192" context="_284" access="public" location="f1:511" file="f1" line="511"/>
+  <Field id="_503" name="dict_exts" type="_407" offset="256" context="_284" access="public" location="f1:513" file="f1" line="513"/>
+  <Destructor id="_504" name="AspellModuleInfo" artificial="1" throw="" context="_284" access="public" mangled="_ZN16AspellModuleInfoD1Ev *INTERNAL* " demangled="AspellModuleInfo::~AspellModuleInfo()" location="f1:503" file="f1" line="503" endline="503" inline="1">
+  </Destructor>
+  <OperatorMethod id="_505" name="=" returns="_549" artificial="1" throw="" context="_284" access="public" mangled="_ZN16AspellModuleInfoaSERKS_" demangled="AspellModuleInfo::operator=(AspellModuleInfo const&amp;)" location="f1:503" file="f1" line="503" endline="503" inline="1">
+    <Argument type="_550" location="f1:503" file="f1" line="503"/>
+  </OperatorMethod>
+  <Constructor id="_506" name="AspellModuleInfo" artificial="1" throw="" context="_284" access="public" mangled="_ZN16AspellModuleInfoC1ERKS_ *INTERNAL* " demangled="AspellModuleInfo::AspellModuleInfo(AspellModuleInfo const&amp;)" location="f1:503" file="f1" line="503" endline="503" inline="1">
+    <Argument type="_550" location="f1:503" file="f1" line="503"/>
+  </Constructor>
+  <Constructor id="_507" name="AspellModuleInfo" artificial="1" throw="" context="_284" access="public" mangled="_ZN16AspellModuleInfoC1Ev *INTERNAL* " demangled="AspellModuleInfo::AspellModuleInfo()" location="f1:503" file="f1" line="503" inline="1"/>
+  <PointerType id="_508" type="_181" size="64" align="64"/>
+  <ReferenceType id="_520" type="_76" size="64" align="64"/>
+  <ReferenceType id="_521" type="_76c" size="64" align="64"/>
+  <ArrayType id="_528" min="0" max="2u" type="_395" size="192" align="64"/>
+  <ReferenceType id="_529" type="_123" size="64" align="64"/>
+  <ReferenceType id="_530" type="_123c" size="64" align="64"/>
+  <ReferenceType id="_533" type="_150" size="64" align="64"/>
+  <ReferenceType id="_534" type="_150c" size="64" align="64"/>
+  <ArrayType id="_535" min="0" max="3u" type="_509" size="32" align="8"/>
+  <ReferenceType id="_536" type="_170" size="64" align="64"/>
+  <ReferenceType id="_537" type="_170c" size="64" align="64"/>
+  <ReferenceType id="_539" type="_205" size="64" align="64"/>
+  <ReferenceType id="_540" type="_205c" size="64" align="64"/>
+  <ReferenceType id="_542" type="_241" size="64" align="64"/>
+  <ReferenceType id="_543" type="_241c" size="64" align="64"/>
+  <PointerType id="_546" type="_284" size="64" align="64"/>
+  <ReferenceType id="_547" type="_282" size="64" align="64"/>
+  <ReferenceType id="_548" type="_282c" size="64" align="64"/>
+  <ReferenceType id="_549" type="_284" size="64" align="64"/>
+  <ReferenceType id="_550" type="_284c" size="64" align="64"/>
+  <FundamentalType id="_509" name="char" size="8" align="8"/>
+  <CvQualifiedType id="_509c" type="_509" const="1"/>
+  <CvQualifiedType id="_398c" type="_398" const="1"/>
+  <CvQualifiedType id="_170c" type="_170" const="1"/>
+  <CvQualifiedType id="_241c" type="_241" const="1"/>
+  <CvQualifiedType id="_236c" type="_236" const="1"/>
+  <CvQualifiedType id="_80c" type="_80" const="1"/>
+  <CvQualifiedType id="_205c" type="_205" const="1"/>
+  <CvQualifiedType id="_123c" type="_123" const="1"/>
+  <CvQualifiedType id="_61c" type="_61" const="1"/>
+  <CvQualifiedType id="_376c" type="_376" const="1"/>
+  <CvQualifiedType id="_231c" type="_231" const="1"/>
+  <CvQualifiedType id="_382c" type="_382" const="1"/>
+  <CvQualifiedType id="_150c" type="_150" const="1"/>
+  <CvQualifiedType id="_177c" type="_177" const="1"/>
+  <CvQualifiedType id="_202c" type="_202" const="1"/>
+  <CvQualifiedType id="_284c" type="_284" const="1"/>
+  <CvQualifiedType id="_282c" type="_282" const="1"/>
+  <CvQualifiedType id="_181c" type="_181" const="1"/>
+  <CvQualifiedType id="_373c" type="_373" const="1"/>
+  <CvQualifiedType id="_294c" type="_294" const="1"/>
+  <CvQualifiedType id="_95c" type="_95" const="1"/>
+  <CvQualifiedType id="_367c" type="_367" const="1"/>
+  <CvQualifiedType id="_71c" type="_71" const="1"/>
+  <CvQualifiedType id="_76c" type="_76" const="1"/>
+  <CvQualifiedType id="_388c" type="_388" const="1"/>
+  <File id="f0" name="/usr/share/gccxml-0.9/GCC/4.4/gccxml_builtins.h"/>
+  <File id="f1" name="/usr/include/aspell.h"/>
+</GCC_XML>

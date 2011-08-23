@@ -85,7 +85,7 @@ SYM(delete_aspell_can_have_error);
 REGISTER_TYPEOF(void (AspellCanHaveError *), 72);
 
 SYM(aspell_speller_add_to_session);
-REGISTER_TYPEOF(int (AspellSpeller *, const char *, int), 73);
+//REGISTER_TYPEOF(int (AspellSpeller *, const char *, int), 73);
 
 SYM(aspell_module_info_enumeration_next);
 REGISTER_TYPEOF(const AspellModuleInfo * (AspellModuleInfoEnumeration *), 81);
@@ -154,7 +154,7 @@ SYM(delete_aspell_string_map);
 REGISTER_TYPEOF(void (AspellStringMap *), 120);
 
 SYM(aspell_string_map_replace);
-REGISTER_TYPEOF(int (AspellStringMap *, const char *, const char *), 121);
+//REGISTER_TYPEOF(int (AspellStringMap *, const char *, const char *), 121);
 
 SYM(aspell_config_elements);
 REGISTER_TYPEOF(AspellStringPairEnumeration * (AspellConfig *), 122);
@@ -163,7 +163,7 @@ SYM(aspell_string_enumeration_next);
 REGISTER_TYPEOF(const char * (AspellStringEnumeration *), 124);
 
 SYM(aspell_speller_main_word_list);
-REGISTER_TYPEOF(const AspellWordList * (AspellSpeller *), 125);
+//REGISTER_TYPEOF(const AspellWordList * (AspellSpeller *), 125);
 
 SYM(to_aspell_speller);
 REGISTER_TYPEOF(AspellSpeller * (AspellCanHaveError *), 126);
@@ -178,7 +178,7 @@ SYM(new_aspell_string_map);
 REGISTER_TYPEOF(AspellStringMap * (), 129);
 
 SYM(aspell_string_list_clear);
-REGISTER_TYPEOF(void (AspellStringList *), 130);
+//REGISTER_TYPEOF(void (AspellStringList *), 130);
 
 SYM(new_aspell_speller);
 REGISTER_TYPEOF(AspellCanHaveError * (AspellConfig *), 135);
@@ -226,7 +226,7 @@ SYM(aspell_speller_error_message);
 REGISTER_TYPEOF(const char * (const AspellSpeller *), 167);
 
 SYM(aspell_string_map_clear);
-REGISTER_TYPEOF(void (AspellStringMap *), 168);
+//REGISTER_TYPEOF(void (AspellStringMap *), 168);
 
 SYM(aspell_dict_info_enumeration_next);
 REGISTER_TYPEOF(const AspellDictInfo * (AspellDictInfoEnumeration *), 169);
@@ -238,7 +238,7 @@ SYM(aspell_error_number);
 REGISTER_TYPEOF(unsigned int (const AspellCanHaveError *), 171);
 
 SYM(aspell_string_map_add);
-REGISTER_TYPEOF(int (AspellStringMap *, const char *), 172);
+//REGISTER_TYPEOF(int (AspellStringMap *, const char *), 172);
 
 SYM(aspell_config_replace);
 REGISTER_TYPEOF(int (AspellConfig *, const char *, const char *), 174);
@@ -253,7 +253,7 @@ SYM(aspell_error_message);
 REGISTER_TYPEOF(const char * (const AspellCanHaveError *), 178);
 
 SYM(aspell_config_remove);
-REGISTER_TYPEOF(int (AspellConfig *, const char *), 179);
+//REGISTER_TYPEOF(int (AspellConfig *, const char *), 179);
 
 SYM(aspell_config_assign);
 REGISTER_TYPEOF(void (AspellConfig *, const AspellConfig *), 180);
@@ -277,13 +277,13 @@ SYM(aspell_speller_error);
 REGISTER_TYPEOF(const AspellError * (const AspellSpeller *), 187);
 
 SYM(delete_aspell_document_checker);
-REGISTER_TYPEOF(void (AspellDocumentChecker *), 190);
+//REGISTER_TYPEOF(void (AspellDocumentChecker *), 190);
 
 SYM(aspell_string_list_empty);
 REGISTER_TYPEOF(int (const AspellStringList *), 191);
 
 SYM(aspell_mutable_container_add);
-REGISTER_TYPEOF(int (AspellMutableContainer *, const char *), 192);
+//REGISTER_TYPEOF(int (AspellMutableContainer *, const char *), 192);
 
 SYM(aspell_module_info_enumeration_at_end);
 REGISTER_TYPEOF(int (const AspellModuleInfoEnumeration *), 193);
@@ -310,7 +310,7 @@ SYM(aspell_string_list_elements);
 REGISTER_TYPEOF(AspellStringEnumeration * (const AspellStringList *), 208);
 
 SYM(aspell_config_get_default);
-REGISTER_TYPEOF(const char * (AspellConfig *, const char *), 209);
+//REGISTER_TYPEOF(const char * (AspellConfig *, const char *), 209);
 
 SYM(aspell_key_info_enumeration_assign);
 REGISTER_TYPEOF(void (AspellKeyInfoEnumeration *, const AspellKeyInfoEnumeration *), 212);
@@ -331,10 +331,10 @@ SYM(aspell_string_list_size);
 REGISTER_TYPEOF(unsigned int (const AspellStringList *), 223);
 
 SYM(aspell_string_list_add);
-REGISTER_TYPEOF(int (AspellStringList *, const char *), 224);
+//REGISTER_TYPEOF(int (AspellStringList *, const char *), 224);
 
 SYM(aspell_speller_personal_word_list);
-REGISTER_TYPEOF(const AspellWordList * (AspellSpeller *), 225);
+//REGISTER_TYPEOF(const AspellWordList * (AspellSpeller *), 225);
 
 SYM(aspell_string_list_to_mutable_container);
 REGISTER_TYPEOF(AspellMutableContainer * (AspellStringList *), 226);
@@ -364,16 +364,16 @@ SYM(aspell_dict_info_list_elements);
 REGISTER_TYPEOF(AspellDictInfoEnumeration * (const AspellDictInfoList *), 247);
 
 SYM(aspell_speller_add_to_personal);
-REGISTER_TYPEOF(int (AspellSpeller *, const char *, int), 248);
+//REGISTER_TYPEOF(int (AspellSpeller *, const char *, int), 248);
 
 SYM(aspell_speller_config);
 REGISTER_TYPEOF(AspellConfig * (AspellSpeller *), 249);
 
 SYM(aspell_config_retrieve_int);
-REGISTER_TYPEOF(int (AspellConfig *, const char *), 253);
+//REGISTER_TYPEOF(int (AspellConfig *, const char *), 253);
 
 SYM(aspell_speller_clear_session);
-REGISTER_TYPEOF(int (AspellSpeller *), 255);
+//REGISTER_TYPEOF(int (AspellSpeller *), 255);
 
 #undef SYM
 

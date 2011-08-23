@@ -7,8 +7,7 @@
   <xsl:variable name="cvqualified_types" select="GCC_XML/CvQualifiedType"/>
   <xsl:variable name="type_defs" select="GCC_XML/Typedef[@name='CvMat']"/>
   <xsl:template match="GCC_XML">
-    <xsl:text>
-#ifndef ASPELL_HPP_
+    <xsl:text>#ifndef ASPELL_HPP_
 #define ASPELL_HPP_
 
 // This file has been generated automatically
@@ -40,13 +39,20 @@
             <xsl:with-param name="tid" select="@type"/>
           </xsl:call-template>
         </xsl:variable>
+        <xsl:if test="position()!=1">, </xsl:if>
         <xsl:value-of select="$argument_type"/>
       </xsl:for-each>
-      <xsl:text>), 1);</xsl:text>
+      <xsl:text>), </xsl:text>
+      <xsl:value-of select="position()"/>
+      <xsl:text>);</xsl:text>
       <xsl:text>
 
 </xsl:text>
     </xsl:for-each>
+    <xsl:text>#undef SYM
+
+#endif // ASPELL_HPP_
+</xsl:text>
   </xsl:template>
   <xsl:template name="get_type">
     <xsl:param name="tid"/>
@@ -58,11 +64,11 @@
         <xsl:choose>
           <xsl:when test="$type_defs[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$type_defs[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:when test="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:otherwise>no type found 2</xsl:otherwise>
         </xsl:choose>
@@ -73,26 +79,26 @@
             <xsl:variable name="intermediate_type" select="$cvqualified_types[@id=$pointer_types[@id=$tid]/@type]/@type"/>
             <!--xsl:value-of select="$cvqualified_types[@id=$pointer_types[@id=$tid]/@type]/@name"/-->
             <!--xsl:value-of select="$my"/-->
-            <xsl:text> const </xsl:text>
+            <xsl:text>const </xsl:text>
             <xsl:choose>
               <xsl:when test="$fundamental_types[@id=$intermediate_type]">
                 <xsl:value-of select="$fundamental_types[@id=$intermediate_type]/@name"/>
               </xsl:when>
               <xsl:otherwise>no type found 4 <xsl:value-of select="$intermediate_type"/></xsl:otherwise>
             </xsl:choose>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:when test="$struct_types[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$struct_types[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:when test="$type_defs[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$type_defs[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:when test="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]">
             <xsl:value-of select="$fundamental_types[@id=$pointer_types[@id=$tid]/@type]/@name"/>
-            <xsl:text> *,</xsl:text>
+            <xsl:text> *</xsl:text>
           </xsl:when>
           <xsl:otherwise>no type found 3 <xsl:value-of select="$tid"/></xsl:otherwise>
         </xsl:choose>

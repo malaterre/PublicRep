@@ -25,15 +25,19 @@
         <xsl:value-of select="@name"/>
         <xsl:text>)
 </xsl:text>
+        <xsl:text>REGISTER_TYPEOF( </xsl:text>
+        <!--xsl:value-of select="@returns"/-->
+        <xsl:for-each select="key('ftid',@returns)">
+          <xsl:value-of select="@name"/>
+        </xsl:for-each>
         <xsl:for-each select="Argument">
           <!--xsl:value-of select="@type"/-->
-        <xsl:text>REGISTER_TYPEOF( </xsl:text>
+          <xsl:text> </xsl:text>
           <xsl:for-each select="key('ptid',@type)">
-            <!--xsl:value-of select="@type"/-->
             <xsl:for-each select="key('sid',@type)">
-        <xsl:text>(</xsl:text>
+              <xsl:text>(</xsl:text>
               <xsl:value-of select="@name"/>
-        <xsl:text> *),</xsl:text>
+              <xsl:text> *),</xsl:text>
             </xsl:for-each>
           </xsl:for-each>
         </xsl:for-each>

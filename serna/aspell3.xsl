@@ -21,7 +21,7 @@
 </xsl:text>
     <xsl:variable name="functions" select="//Function"/>
     <xsl:for-each select="$functions">
-      <xsl:if test="not(@attributes != '') and not(Ellipsis)">
+      <xsl:if test="not(@attributes != '') and not(Ellipsis) and not(Argument/@name = 'LEVEL') and not(contains(@name, '__builtin'))">
         <xsl:variable name="return_type">
           <xsl:call-template name="get_type">
             <xsl:with-param name="tid" select="@returns"/>

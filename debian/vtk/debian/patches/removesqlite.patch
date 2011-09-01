@@ -1,7 +1,7 @@
-Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
+Index: vtk-5.8.0~git2380fac/IO/vtkSQLiteDatabase.cxx
 ===================================================================
---- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:59:03.000000000 +0200
+--- vtk-5.8.0~git2380fac.orig/IO/vtkSQLiteDatabase.cxx	2011-09-01 16:05:34.000000000 +0200
++++ vtk-5.8.0~git2380fac/IO/vtkSQLiteDatabase.cxx	2011-09-01 16:09:45.000000000 +0200
 @@ -29,7 +29,7 @@
  #include <vtksys/ios/fstream>
  #include <vtksys/ios/sstream>
@@ -73,10 +73,10 @@ Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
 -  return vtk_sqlite3_errmsg(this->SQLiteInstance);
 +  return sqlite3_errmsg(this->SQLiteInstance);
  }
-Index: vtk-5.8.0/IO/vtkSQLiteQuery.cxx
+Index: vtk-5.8.0~git2380fac/IO/vtkSQLiteQuery.cxx
 ===================================================================
---- vtk-5.8.0.orig/IO/vtkSQLiteQuery.cxx	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteQuery.cxx	2011-09-01 15:57:14.000000000 +0200
+--- vtk-5.8.0~git2380fac.orig/IO/vtkSQLiteQuery.cxx	2011-09-01 16:05:34.000000000 +0200
++++ vtk-5.8.0~git2380fac/IO/vtkSQLiteQuery.cxx	2011-09-01 16:09:45.000000000 +0200
 @@ -25,7 +25,7 @@
  #include "vtkVariant.h"
  #include "vtkVariantArray.h"
@@ -462,10 +462,10 @@ Index: vtk-5.8.0/IO/vtkSQLiteQuery.cxx
      {
      vtksys_ios::ostringstream errormessage;
      errormessage << "sqlite_clear_bindings returned error: " << status;
-Index: vtk-5.8.0/IO/vtkSQLiteDatabase.h
+Index: vtk-5.8.0~git2380fac/IO/vtkSQLiteDatabase.h
 ===================================================================
---- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.h	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteDatabase.h	2011-09-01 15:57:14.000000000 +0200
+--- vtk-5.8.0~git2380fac.orig/IO/vtkSQLiteDatabase.h	2011-09-01 16:05:34.000000000 +0200
++++ vtk-5.8.0~git2380fac/IO/vtkSQLiteDatabase.h	2011-09-01 16:09:45.000000000 +0200
 @@ -48,7 +48,7 @@
  class vtkSQLQuery;
  class vtkSQLiteQuery;
@@ -484,10 +484,10 @@ Index: vtk-5.8.0/IO/vtkSQLiteDatabase.h
    
    // We want this to be private, a user of this class
    // should not be setting this for any reason
-Index: vtk-5.8.0/IO/vtkSQLiteQuery.h
+Index: vtk-5.8.0~git2380fac/IO/vtkSQLiteQuery.h
 ===================================================================
---- vtk-5.8.0.orig/IO/vtkSQLiteQuery.h	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteQuery.h	2011-09-01 15:57:14.000000000 +0200
+--- vtk-5.8.0~git2380fac.orig/IO/vtkSQLiteQuery.h	2011-09-01 16:05:34.000000000 +0200
++++ vtk-5.8.0~git2380fac/IO/vtkSQLiteQuery.h	2011-09-01 16:09:45.000000000 +0200
 @@ -46,7 +46,7 @@
  class vtkSQLiteDatabase;
  class vtkVariant;
@@ -506,3 +506,29 @@ Index: vtk-5.8.0/IO/vtkSQLiteQuery.h
    bool InitialFetch;
    int InitialFetchResult;
    char *LastErrorText;
+Index: vtk-5.8.0~git2380fac/IO/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0~git2380fac.orig/IO/CMakeLists.txt	2011-09-01 18:01:36.000000000 +0200
++++ vtk-5.8.0~git2380fac/IO/CMakeLists.txt	2011-09-01 18:01:42.000000000 +0200
+@@ -19,7 +19,7 @@
+ SET(KIT_JAVA_LIBS vtkFilteringJava)
+ SET(KIT_INTERFACE_LIBRARIES vtkFiltering)
+ SET(KIT_LIBS vtkDICOMParser netcdf netcdf_c++
+-  ${_VTK_METAIO_LIB} vtksqlite
++  ${_VTK_METAIO_LIB} sqlite3
+   ${VTK_PNG_LIBRARIES} ${VTK_JPEG_LIBRARIES}
+   ${VTK_TIFF_LIBRARIES} ${VTK_EXPAT_LIBRARIES} ${VTK_OGGTHEORA_LIBRARIES}
+   ${KWSYS_NAMESPACE})
+Index: vtk-5.8.0~git2380fac/Utilities/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0~git2380fac.orig/Utilities/CMakeLists.txt	2011-09-01 18:02:04.000000000 +0200
++++ vtk-5.8.0~git2380fac/Utilities/CMakeLists.txt	2011-09-01 18:02:09.000000000 +0200
+@@ -42,7 +42,7 @@
+   ADD_SUBDIRECTORY(vtkmetaio)
+   SET_PROPERTY(GLOBAL APPEND PROPERTY VTK_TARGETS vtkmetaio)
+ ENDIF(VTK_USE_METAIO)
+-ADD_SUBDIRECTORY(vtksqlite)
++#ADD_SUBDIRECTORY(vtksqlite)
+ 
+ IF(VTK_HAS_EXODUS)
+   ADD_SUBDIRECTORY(vtkexodus2)

@@ -1,0 +1,60 @@
+commit 38b915e459190945157d667354000f2c3142fbf3
+Author: Torsten Landschoff <torsten.landschoff@dynamore.de>
+Date:   Thu Sep 1 13:11:53 2011 +0200
+
+    Build the vtkftgl library with symbol versioning.
+    
+    This avoids name clashes between vtkftgl and the system ftgl library.
+
+Index: vtk-5.8.0/Utilities/ftgl/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/ftgl/CMakeLists.txt	2011-09-01 15:48:11.000000000 +0200
++++ vtk-5.8.0/Utilities/ftgl/CMakeLists.txt	2011-09-01 15:52:54.000000000 +0200
+@@ -1,5 +1,7 @@
+ PROJECT (VTKFTGL)
+ 
++INCLUDE(TestCXXAcceptsFlag)
++
+ #
+ # Dependency mask
+ #
+@@ -165,6 +167,39 @@
+ ENDIF(NOT VTK_INSTALL_NO_LIBRARIES)
+ 
+ #
++# To avoid name clashes (and the resulting crashes) between our FTGL and the
++# system FTGL, we configure the linker to add a prefix to all symbols.
++#
++
++if (CMAKE_COMPILER_IS_GNUCXX)
++
++  GET_TARGET_PROPERTY(VTKFTGL_LINK_FLAGS vtkftgl LINK_FLAGS)
++  IF(VTKFTGL_LINK_FLAGS)
++    SET(VTKFTGL_LINK_FLAGS "${VTKFTGL_LINK_FLAGS} ")
++  ELSE(VTKFTGL_LINK_FLAGS)
++    SET(VTKFTGL_LINK_FLAGS)
++  ENDIF(VTKFTGL_LINK_FLAGS)
++
++
++  set(_version_script_content "libvtkftgl { *; };")
++  set(_version_script "${CMAKE_CURRENT_BINARY_DIR}/version.script")
++  file(WRITE ${_version_script} "${_version_script_content}\n")
++
++  # Check if the linker supports version script (i.e. is GNU ld)
++  check_cxx_accepts_flag("-Wl,--version-script,${_version_script}"
++    LD_ACCEPTS_VERSION_SCRIPT)
++  if (LD_ACCEPTS_VERSION_SCRIPT)
++    set(_link_flags "-Wl,--version-script,'${_version_script}'")
++  endif (LD_ACCEPTS_VERSION_SCRIPT)
++
++  if (_link_flags)
++    SET_TARGET_PROPERTIES(vtkftgl PROPERTIES
++      LINK_FLAGS "${VTKFTGL_LINK_FLAGS}${_link_flags}")
++  endif (_link_flags)
++endif (CMAKE_COMPILER_IS_GNUCXX)
++
++
++#
+ # Do not cover this lib
+ #
+ CONFIGURE_FILE (${VTKFTGL_SOURCE_DIR}/.NoDartCoverage

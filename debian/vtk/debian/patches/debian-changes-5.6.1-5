@@ -1,0 +1,46 @@
+Description: Upstream changes introduced in version 5.6.1-5
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ vtk (5.6.1-5) unstable; urgency=low
+ .
+   *  Include <stddef.h> to ensure ptrdiff_t is defined. (Closes: #624878)
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Dominique Belhachemi <domibel@debian.org>
+Bug-Debian: http://bugs.debian.org/624878
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- vtk-5.6.1.orig/Utilities/vtkmetaio/metaUtils.cxx
++++ vtk-5.6.1/Utilities/vtkmetaio/metaUtils.cxx
+@@ -23,6 +23,7 @@
+ 
+ #include <stdio.h>
+ #include <ctype.h>
++#include <stddef.h>
+ 
+ #include <sys/stat.h>
+ #include <fcntl.h>
+--- vtk-5.6.1.orig/Common/vtkPythonUtil.h
++++ vtk-5.6.1/Common/vtkPythonUtil.h
+@@ -17,6 +17,7 @@
+ 
+ #include "vtkPython.h"
+ #include "vtkCommand.h"
++#include <stddef.h>
+ 
+ #if defined(WIN32)
+ # if defined(vtkCommonPythonD_EXPORTS)

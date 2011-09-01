@@ -1,0 +1,16 @@
+libvtkChartsPythonD                5.6         python-vtk
+libvtkCommonPythonD                5.6         python-vtk
+libvtkFilteringPythonD             5.6         python-vtk
+libvtkGenericFilteringPythonD      5.6         python-vtk
+libvtkGeovisPythonD                5.6         python-vtk
+libvtkGraphicsPythonD              5.6         python-vtk
+libvtkHybridPythonD                5.6         python-vtk
+libvtkImagingPythonD               5.6         python-vtk
+libvtkInfovisPythonD               5.6         python-vtk
+libvtkIOPythonD                    5.6         python-vtk
+libvtkParallelPythonD              5.6         python-vtk
+libvtkRenderingPythonD             5.6         python-vtk
+libvtkRenderingPythonTkWidgets     5.6         python-vtk
+libvtkViewsPythonD                 5.6         python-vtk
+libvtkVolumeRenderingPythonD       5.6         python-vtk
+libvtkWidgetsPythonD               5.6         python-vtk

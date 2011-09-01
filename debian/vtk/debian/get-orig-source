@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# as of Sept 1, 2011, tag v5.8.0 points to commit id 2380face149471e2d8872f52c5a5f6b68fa87885
+git clone git://vtk.org/VTK.git vtk-5.8.0
+cd vtk-5.8.0
+git checkout 2380face149471e2d8872f52c5a5f6b68fa87885
+rm -rf .git
+cd ..
+GZIP="--best --no-name" tar cfz vtk_5.8.0.orig.tar.gz vtk-5.8.0

@@ -1,0 +1,4 @@
+#! /bin/sh
+
+# Without this trick, vtk-doc takes more than 500MB
+/usr/bin/dot $(echo " $@ " | sed -e 's/ -Tpng / -Tpng:gd /g')

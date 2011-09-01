@@ -1,0 +1,15 @@
+libvtkChartsTCL               5.6            tcl-vtk
+libvtkCommonTCL               5.6            tcl-vtk
+libvtkFilteringTCL            5.6            tcl-vtk
+libvtkGenericFilteringTCL     5.6            tcl-vtk
+libvtkGeovisTCL               5.6            tcl-vtk
+libvtkGraphicsTCL             5.6            tcl-vtk
+libvtkHybridTCL               5.6            tcl-vtk
+libvtkImagingTCL              5.6            tcl-vtk
+libvtkInfovisTCL              5.6            tcl-vtk
+libvtkIOTCL                   5.6            tcl-vtk
+libvtkParallelTCL             5.6            tcl-vtk
+libvtkRenderingTCL            5.6            tcl-vtk
+libvtkViewsTCL                5.6            tcl-vtk
+libvtkVolumeRenderingTCL      5.6            tcl-vtk
+libvtkWidgetsTCL              5.6            tcl-vtk

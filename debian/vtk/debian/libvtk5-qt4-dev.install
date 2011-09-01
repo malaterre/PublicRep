@@ -1,0 +1,6 @@
+usr/include/vtk-5.6/QVTK*                      usr/include
+usr/include/vtk-5.6/vtkQt*                     usr/include
+usr/lib/vtk-5.6/libQVTK.so                     usr/lib
+usr/lib/vtk-5.6/libvtkQtChart.so               usr/lib
+usr/lib/vtk-5.6/VTKConfigQt.cmake              usr/lib
+usr/plugins/designer/*                         usr/lib/qt4/plugins/designer

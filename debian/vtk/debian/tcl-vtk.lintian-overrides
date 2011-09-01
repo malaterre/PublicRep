@@ -1,0 +1,17 @@
+tcl-vtk: package-name-doesnt-match-sonames libvtkChartsTCL5.6 libvtkCommonTCL5.6 libvtkFilteringTCL5.6 libvtkGenericFilteringTCL5.6 libvtkGeovisTCL5.6 libvtkGraphicsTCL5.6 libvtkHybridTCL5.6 libvtkIOTCL5.6 libvtkImagingTCL5.6 libvtkInfovisTCL5.6 libvtkParallelTCL5.6 libvtkRenderingTCL5.6 libvtkViewsTCL5.6 libvtkVolumeRenderingTCL5.6 libvtkWidgetsTCL5.6
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkChartsTCL.so.5.6.1 usr/lib/libvtkChartsTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkCommonTCL.so.5.6.1 usr/lib/libvtkCommonTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkFilteringTCL.so.5.6.1 usr/lib/libvtkFilteringTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkGenericFilteringTCL.so.5.6.1 usr/lib/libvtkGenericFilteringTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkGeovisTCL.so.5.6.1 usr/lib/libvtkGeovisTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkGraphicsTCL.so.5.6.1 usr/lib/libvtkGraphicsTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkHybridTCL.so.5.6.1 usr/lib/libvtkHybridTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkImagingTCL.so.5.6.1 usr/lib/libvtkImagingTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkInfovisTCL.so.5.6.1 usr/lib/libvtkInfovisTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkIOTCL.so.5.6.1 usr/lib/libvtkIOTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkParallelTCL.so.5.6.1 usr/lib/libvtkParallelTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkRenderingTCL.so.5.6.1 usr/lib/libvtkRenderingTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkViewsTCL.so.5.6.1 usr/lib/libvtkViewsTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkVolumeRenderingTCL.so.5.6.1 usr/lib/libvtkVolumeRenderingTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkWidgetsTCL.so.5.6.1 usr/lib/libvtkWidgetsTCL.so
+tcl-vtk: non-dev-pkg-with-shlib-symlink usr/lib/libvtkChartsTCL.so.5.6.1 usr/lib/libvtkChartsTCL.so

@@ -1,0 +1,64 @@
+Description: Upstream changes introduced in version 5.6.1-6
+ This patch has been created by dpkg-source during the package build.
+ Here's the last changelog entry, hopefully it gives details on why
+ those changes were made:
+ .
+ vtk (5.6.1-6) unstable; urgency=low
+ .
+   * VolumeRendering/vtkOpenGLGPUVolumeRayCastMapper.cxx:
+   *   - Make mapper more verbose if GPU is not supported.
+   *   - Don't deactivate the mapper if the 'OpenGL renderer string'
+   *     contains 'Mesa' (e.g. Intel GPU's) (Closes: #600424)
+ .
+ The person named in the Author field signed this changelog entry.
+Author: Dominique Belhachemi <domibel@debian.org>
+Bug-Debian: http://bugs.debian.org/600424
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: <vendor|upstream|other>, <url of original patch>
+Bug: <url in upstream bugtracker>
+Bug-Debian: http://bugs.debian.org/<bugnumber>
+Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
+Forwarded: <no|not-needed|url proving that it has been forwarded>
+Reviewed-By: <name and email of someone who approved the patch>
+Last-Update: <YYYY-MM-DD>
+
+--- vtk-5.6.1.orig/VolumeRendering/vtkOpenGLGPUVolumeRayCastMapper.cxx
++++ vtk-5.6.1/VolumeRendering/vtkOpenGLGPUVolumeRayCastMapper.cxx
+@@ -1998,7 +1998,7 @@ int vtkOpenGLGPUVolumeRayCastMapper::IsR
+     }
+   if(!this->LoadExtensionsSucceeded)
+     {
+-    vtkDebugMacro(
++    vtkErrorMacro(
+       "The following OpenGL extensions are required but not supported: "
+       << (this->UnsupportedRequiredExtensions->Stream.str()).c_str());
+     return 0;
+@@ -2080,21 +2080,8 @@ void vtkOpenGLGPUVolumeRayCastMapper::Lo
+   if(strstr(gl_vendor,"ATI")!=0)
+     {
+     this->LoadExtensionsSucceeded=0;
+-    return;
+-    }
+-  const char *gl_version=reinterpret_cast<const char *>(glGetString(GL_VERSION));
+-  if(strstr(gl_version,"Mesa")!=0)
+-    {
+-    // - GL_VENDOR cannot be used because it can be "Brian Paul" or
+-    // "Mesa project"
+-    // - GL_RENDERER cannot be used because it can be "Software Rasterizer" or
+-    // "Mesa X11"
+-    // - GL_VERSION is more robust. It has things like "2.0 Mesa 7.0.4" or
+-    // "2.1 Mesa 7.2" or "2.1 Mesa 7.3-devel"
+-    // Mesa does not work with multiple draw buffers:
+-    // "framebuffer has bad draw buffer"
+-    // "render clipped 1 ERROR (x506) invalid framebuffer operation ext"
+-    this->LoadExtensionsSucceeded=0;
++    this->UnsupportedRequiredExtensions->Stream<<
++      " ATI cards are not supported";
+     return;
+     }
+   

@@ -1,0 +1,5 @@
+usr/bin/vtkWrapJava                     usr/bin
+usr/bin/vtkParseJava                    usr/bin
+usr/include/vtk-5.6/vtkJavaUtil.h       usr/include/vtk-5.6
+usr/lib/vtk-5.6/*Java.so*               usr/lib/jni
+usr/share/java/vtk.jar                  usr/share/java

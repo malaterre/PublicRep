@@ -31,9 +31,11 @@ Forwarded: <no|not-needed|url proving that it has been forwarded>
 Reviewed-By: <name and email of someone who approved the patch>
 Last-Update: <YYYY-MM-DD>
 
---- vtk-5.6.1.orig/vtkGenerateVTKConfig.cmake
-+++ vtk-5.6.1/vtkGenerateVTKConfig.cmake
-@@ -242,7 +242,7 @@ IF(VTK_WRAP_JAVA)
+Index: vtk-5.8.0/vtkGenerateVTKConfig.cmake
+===================================================================
+--- vtk-5.8.0.orig/vtkGenerateVTKConfig.cmake	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/vtkGenerateVTKConfig.cmake	2011-09-01 15:49:34.000000000 +0200
+@@ -240,7 +240,7 @@
    SET(VTK_WRAP_JAVA_EXE_CONFIG ${DOLLAR}{VTK_INSTALL_PREFIX}${VTK_INSTALL_BIN_DIR}/vtkWrapJava${VTK_EXE_EXT})
    SET(VTK_JAVA_JAR_CONFIG ${DOLLAR}{VTK_INSTALL_PREFIX}${VTK_INSTALL_JAVA_DIR}/vtk.jar)
  ENDIF(VTK_WRAP_JAVA)
@@ -42,9 +44,11 @@ Last-Update: <YYYY-MM-DD>
  
  # VTK style script locations.
  SET(VTK_DOXYGEN_HOME_CONFIG ${DOLLAR}{VTK_INSTALL_PREFIX}${VTK_INSTALL_DOXYGEN_DIR})
---- vtk-5.6.1.orig/CMake/KitCommonPythonWrapBlock.cmake
-+++ vtk-5.6.1/CMake/KitCommonPythonWrapBlock.cmake
-@@ -52,6 +52,16 @@ IF(PYTHON_ENABLE_MODULE_vtk${KIT}Python)
+Index: vtk-5.8.0/CMake/KitCommonPythonWrapBlock.cmake
+===================================================================
+--- vtk-5.8.0.orig/CMake/KitCommonPythonWrapBlock.cmake	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/CMake/KitCommonPythonWrapBlock.cmake	2011-09-01 15:49:34.000000000 +0200
+@@ -80,6 +80,16 @@
    # vtkpython executable in the build tree should have the needed
    # RPATH anyway.
    SET_TARGET_PROPERTIES(vtk${KIT}Python PROPERTIES SKIP_BUILD_RPATH 1)
@@ -61,10 +65,12 @@ Last-Update: <YYYY-MM-DD>
    
    IF(WIN32 OR APPLE)
      TARGET_LINK_LIBRARIES (vtk${KIT}Python ${VTK_PYTHON_LIBRARIES})
---- vtk-5.6.1.orig/CMake/KitCommonTclWrapBlock.cmake
-+++ vtk-5.6.1/CMake/KitCommonTclWrapBlock.cmake
-@@ -4,6 +4,14 @@ VTK_WRAP_TCL3(vtk${KIT}TCL KitTCL_SRCS
- ADD_LIBRARY(vtk${KIT}TCL ${KitTCL_SRCS} ${Kit_TCL_EXTRA_SRCS})
+Index: vtk-5.8.0/CMake/KitCommonTclWrapBlock.cmake
+===================================================================
+--- vtk-5.8.0.orig/CMake/KitCommonTclWrapBlock.cmake	2011-09-01 15:48:07.000000000 +0200
++++ vtk-5.8.0/CMake/KitCommonTclWrapBlock.cmake	2011-09-01 15:49:34.000000000 +0200
+@@ -4,6 +4,14 @@
+ VTK_ADD_LIBRARY(vtk${KIT}TCL ${KitTCL_SRCS} ${Kit_TCL_EXTRA_SRCS})
  SET(KIT_LIBRARY_TARGETS ${KIT_LIBRARY_TARGETS} vtk${KIT}TCL)
  TARGET_LINK_LIBRARIES (vtk${KIT}TCL vtk${KIT} ${KIT_TCL_LIBS})
 +
@@ -77,49 +83,12 @@ Last-Update: <YYYY-MM-DD>
 +
  IF(NOT VTK_INSTALL_NO_LIBRARIES)
    INSTALL(TARGETS vtk${KIT}TCL
-     RUNTIME DESTINATION ${VTK_INSTALL_BIN_DIR_CM24} COMPONENT RuntimeLibraries
---- vtk-5.6.1.orig/CMake/vtkWrapJava.cmake
-+++ vtk-5.6.1/CMake/vtkWrapJava.cmake
-@@ -133,7 +133,8 @@ MACRO(VTK_GENERATE_JAVA_DEPENDENCIES TAR
-   ENDIF (USER_JAVA_CLASSPATH)
- 
-   SET (OUT_TEXT)
--  SET (classes)
-+  SET (sources)
-+  SET (driver)
- 
-   # get the classes for this lib 
-   FOREACH(srcName ${ARGN})
-@@ -147,17 +148,17 @@ MACRO(VTK_GENERATE_JAVA_DEPENDENCIES TAR
-     SET(className "${srcPath}/${srcNameWe}.class")
-     SET (OUT_TEXT ${OUT_TEXT} "\n    dummy = new ${srcNameWe}()")
- 
--    # On Unix we can just call javac ... *.java 
--    ADD_CUSTOM_COMMAND(
--      OUTPUT "${className}" 
--      COMMAND "${JAVA_COMPILE}" ARGS -classpath "${javaPath}" "${srcPath}/vtk${TARGET}Driver.java"
--      DEPENDS "${srcName}"
--      )
--    
--    SET (classes ${classes} ${className})
-+    SET(driver "${srcPath}/vtk${TARGET}Driver.class")
-+
-+    SET (sources ${sources} ${srcName})
-   ENDFOREACH(srcName)
- 
--  ADD_CUSTOM_COMMAND(TARGET ${TARGET} SOURCE ${TARGET} DEPENDS ${classes})
-+  ADD_CUSTOM_COMMAND(
-+    OUTPUT ${driver}
-+    COMMAND "${JAVA_COMPILE}" ARGS -source 5 -classpath "${javaPath}" "${srcPath}/vtk${TARGET}Driver.java"
-+    DEPENDS ${sources}
-+    )
-+  ADD_CUSTOM_COMMAND(TARGET ${TARGET} SOURCE ${TARGET} DEPENDS ${driver})
-   SET (TARGET_NAME ${TARGET})
-   CONFIGURE_FILE(
-     ${VTK_CMAKE_DIR}/vtkJavaDriver.java.in 
---- vtk-5.6.1.orig/Wrapping/Tcl/CMakeLists.txt
-+++ vtk-5.6.1/Wrapping/Tcl/CMakeLists.txt
-@@ -74,7 +74,7 @@ ENDIF(VTK_USE_CARBON)
+     EXPORT ${VTK_INSTALL_EXPORT_NAME}
+Index: vtk-5.8.0/Wrapping/Tcl/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Wrapping/Tcl/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Wrapping/Tcl/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -74,7 +74,7 @@
  
  IF (VTK_USE_RENDERING)
    TARGET_LINK_LIBRARIES(vtk vtkRenderingTCL)
@@ -128,7 +97,7 @@ Last-Update: <YYYY-MM-DD>
    TARGET_LINK_LIBRARIES(vtk vtkHybridTCL)
    TARGET_LINK_LIBRARIES(vtk vtkWidgetsTCL)
  ENDIF (VTK_USE_RENDERING)
-@@ -84,7 +84,7 @@ IF (VTK_USE_PARALLEL)
+@@ -84,7 +84,7 @@
  ENDIF (VTK_USE_PARALLEL)
  
  IF (VTK_USE_GEOVIS)
@@ -137,7 +106,7 @@ Last-Update: <YYYY-MM-DD>
  ENDIF (VTK_USE_GEOVIS)
  
  IF (VTK_USE_INFOVIS)
-@@ -148,16 +148,22 @@ IF (VTK_USE_PARALLEL)
+@@ -164,16 +164,22 @@
        vtkIOTCL
        vtkParallelTCL
        ${MPI_LIBRARIES}
@@ -162,31 +131,23 @@ Last-Update: <YYYY-MM-DD>
      ENDIF (VTK_USE_GEOVIS)
  
      IF (VTK_USE_INFOVIS)
---- vtk-5.6.1.orig/Wrapping/Java/CMakeLists.txt
-+++ vtk-5.6.1/Wrapping/Java/CMakeLists.txt
-@@ -206,7 +206,7 @@ IF(JAVA_COMPILE)
+Index: vtk-5.8.0/Wrapping/Java/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Wrapping/Java/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Wrapping/Java/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -216,7 +216,7 @@
          OUTPUTS ${class}
-         DEPENDS ${VTK_JAVA_HOME}/vtkPanel.java ${VTK_JAVA_HOME}/Algorithm.java
+         DEPENDS ${VTK_JAVA_HOME}/vtkPanel.java
          COMMAND ${JAVA_COMPILE}
 -        ARGS -classpath ${VTK_JAVA_HOME}/.. -d ${VTK_JAVA_HOME}/.. ${dst}
 +        ARGS -source 5 -classpath ${VTK_JAVA_HOME}/.. -d ${VTK_JAVA_HOME}/.. ${dst}
          )
  
        SET(CLASS_FILES ${CLASS_FILES} ${class})
---- vtk-5.6.1.orig/Utilities/CMakeLists.txt
-+++ vtk-5.6.1/Utilities/CMakeLists.txt
-@@ -35,7 +35,8 @@ SET( verdict_INSTALL_BIN_DIR ${VTK_INSTA
- SET( verdict_INSTALL_LIB_DIR ${VTK_INSTALL_LIB_DIR_CM24})
- SUBDIRS(verdict)
- 
--SUBDIRS(vtknetcdf)
-+#SUBDIRS(vtknetcdf)
-+
- IF(VTK_USE_METAIO)
-   SUBDIRS(vtkmetaio)
- ENDIF(VTK_USE_METAIO)
---- vtk-5.6.1.orig/Utilities/vtk_netcdf.h
-+++ vtk-5.6.1/Utilities/vtk_netcdf.h
+Index: vtk-5.8.0/Utilities/vtk_netcdf.h
+===================================================================
+--- vtk-5.8.0.orig/Utilities/vtk_netcdf.h	2011-09-01 15:48:11.000000000 +0200
++++ vtk-5.8.0/Utilities/vtk_netcdf.h	2011-09-01 15:49:34.000000000 +0200
 @@ -16,6 +16,9 @@
  #define __vtk_netcdf_h
  
@@ -198,8 +159,10 @@ Last-Update: <YYYY-MM-DD>
 +#include <netcdf.h>
  
  #endif
---- vtk-5.6.1.orig/Utilities/vtk_netcdfcpp.h
-+++ vtk-5.6.1/Utilities/vtk_netcdfcpp.h
+Index: vtk-5.8.0/Utilities/vtk_netcdfcpp.h
+===================================================================
+--- vtk-5.8.0.orig/Utilities/vtk_netcdfcpp.h	2011-09-01 15:48:11.000000000 +0200
++++ vtk-5.8.0/Utilities/vtk_netcdfcpp.h	2011-09-01 15:49:34.000000000 +0200
 @@ -16,6 +16,9 @@
  #define __vtk_netcdfcpp_h
  
@@ -211,11 +174,13 @@ Last-Update: <YYYY-MM-DD>
 +
  
  #endif
---- vtk-5.6.1.orig/Utilities/Cosmo/CMakeLists.txt
-+++ vtk-5.6.1/Utilities/Cosmo/CMakeLists.txt
-@@ -35,6 +35,13 @@ INCLUDE_DIRECTORIES (${Cosmo_SOURCE_DIR}
- ADD_LIBRARY(Cosmo ${Cosmo_SOURCES})
- TARGET_LINK_LIBRARIES(Cosmo vtksys vtkCommon ${Cosmo_LIBS})
+Index: vtk-5.8.0/Utilities/Cosmo/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/Cosmo/CMakeLists.txt	2011-09-01 15:48:10.000000000 +0200
++++ vtk-5.8.0/Utilities/Cosmo/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -43,6 +43,13 @@
+   SET_TARGET_PROPERTIES(Cosmo PROPERTIES ${VTK_LIBRARY_PROPERTIES})
+ ENDIF(VTK_LIBRARY_PROPERTIES)
  
 +# Apply user-defined properties to the library targets.
 +IF(VTK_LIBRARY_PROPERTIES)
@@ -226,12 +191,14 @@ Last-Update: <YYYY-MM-DD>
 +
  IF(NOT VTK_INSTALL_NO_LIBRARIES)
    INSTALL(TARGETS Cosmo
-     RUNTIME DESTINATION ${VTK_INSTALL_BIN_DIR_CM24} COMPONENT RuntimeLibraries
---- vtk-5.6.1.orig/Utilities/VPIC/CMakeLists.txt
-+++ vtk-5.6.1/Utilities/VPIC/CMakeLists.txt
-@@ -24,6 +24,14 @@ INCLUDE_DIRECTORIES (${VPIC_SOURCE_DIR}
+     EXPORT ${VTK_INSTALL_EXPORT_NAME}
+Index: vtk-5.8.0/Utilities/VPIC/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/VPIC/CMakeLists.txt	2011-09-01 15:48:11.000000000 +0200
++++ vtk-5.8.0/Utilities/VPIC/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -25,6 +25,14 @@
  
- ADD_LIBRARY(VPIC ${VPIC_SOURCES})
+ VTK_ADD_LIBRARY(VPIC ${VPIC_SOURCES})
  TARGET_LINK_LIBRARIES(VPIC vtksys )
 +
 +# Apply user-defined properties to the library targets.
@@ -244,8 +211,10 @@ Last-Update: <YYYY-MM-DD>
  IF(VTK_USE_MPI)
  TARGET_LINK_LIBRARIES(VPIC ${MPI_LIBRARY})
    IF(MPI_EXTRA_LIBRARY)
---- vtk-5.6.1.orig/Utilities/DICOMParser/DICOMParser.cxx
-+++ vtk-5.6.1/Utilities/DICOMParser/DICOMParser.cxx
+Index: vtk-5.8.0/Utilities/DICOMParser/DICOMParser.cxx
+===================================================================
+--- vtk-5.8.0.orig/Utilities/DICOMParser/DICOMParser.cxx	2011-09-01 15:48:10.000000000 +0200
++++ vtk-5.8.0/Utilities/DICOMParser/DICOMParser.cxx	2011-09-01 15:49:34.000000000 +0200
 @@ -41,6 +41,7 @@
  
  #include <string.h>
@@ -254,20 +223,11 @@ Last-Update: <YYYY-MM-DD>
  
  // Define DEBUG_DICOM to get debug messages sent to dicom_stream::cerr
  // #define DEBUG_DICOM
---- vtk-5.6.1.orig/Utilities/vtkexodus2/CMakeLists.txt
-+++ vtk-5.6.1/Utilities/vtkexodus2/CMakeLists.txt
-@@ -213,7 +213,7 @@ ENDIF(APPLE)
- 
- 
- ADD_LIBRARY(vtkexoIIc ${cbind_SRCS})
--TARGET_LINK_LIBRARIES(vtkexoIIc vtkNetCDF)
-+TARGET_LINK_LIBRARIES(vtkexoIIc netcdf)
- 
- # Apply user-defined properties to the library target.
- IF(VTK_LIBRARY_PROPERTIES)
---- vtk-5.6.1.orig/Utilities/vtkexodus2/test/CMakeLists.txt
-+++ vtk-5.6.1/Utilities/vtkexodus2/test/CMakeLists.txt
-@@ -21,7 +21,7 @@ CREATE_TEST_SOURCELIST( ExoIICTests
+Index: vtk-5.8.0/Utilities/vtkexodus2/test/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/vtkexodus2/test/CMakeLists.txt	2011-09-01 15:48:11.000000000 +0200
++++ vtk-5.8.0/Utilities/vtkexodus2/test/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -21,7 +21,7 @@
    )
  
  ADD_EXECUTABLE( ExoIICTests ${ExoIICTests} )
@@ -276,20 +236,11 @@ Last-Update: <YYYY-MM-DD>
  
  SET( TestsToRun ${ExoIICTests} )
  REMOVE( TestsToRun ExoIICTests.cxx )
---- vtk-5.6.1.orig/Geovis/CMakeLists.txt
-+++ vtk-5.6.1/Geovis/CMakeLists.txt
-@@ -4,7 +4,7 @@ SET(KIT_TCL_LIBS vtkWidgetsTCL vtkViewsT
- SET(KIT_PYTHON_LIBS vtkWidgetsPythonD vtkViewsPythonD)
- SET(KIT_JAVA_LIBS vtkWidgetsJava vtkViewsJava)
- SET(KIT_INTERFACE_LIBRARIES vtkWidgets vtkViews)
--SET(KIT_LIBS ${VTK_LIBPROJ4_LIBRARIES} ${OPENGL_LIBRARIES})
-+SET(KIT_LIBS ${VTK_LIBPROJ4_LIBRARIES} ${OPENGL_gl_LIBRARY})
- 
- SET( Kit_SRCS
-   vtkCompassRepresentation.cxx
---- vtk-5.6.1.orig/Rendering/CMakeLists.txt
-+++ vtk-5.6.1/Rendering/CMakeLists.txt
-@@ -9,9 +9,7 @@ IF (JAVA_AWT_LIBRARY)
+Index: vtk-5.8.0/Rendering/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Rendering/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Rendering/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -9,9 +9,7 @@
  ENDIF (JAVA_AWT_LIBRARY)
  
  SET(KIT_INTERFACE_LIBRARIES vtkGraphics vtkImaging)
@@ -300,7 +251,7 @@ Last-Update: <YYYY-MM-DD>
  #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGL.cmake)
  #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGLX.cmake)
  
-@@ -427,9 +425,9 @@ IF(VTK_USE_QT)
+@@ -440,9 +438,9 @@
    # path in install names. This workaround fixes the problem by forcing all libraries
    # and executables that depend on vtkRendering to also directly link to Qt libraries.
    IF (APPLE)
@@ -312,7 +263,7 @@ Last-Update: <YYYY-MM-DD>
    ENDIF (APPLE)
  
  ENDIF(VTK_USE_QT)
-@@ -525,7 +523,6 @@ ELSE (WIN32)
+@@ -538,7 +536,6 @@
      INCLUDE(CheckFunctionExists)
      SET(VTK_SAVE_CMAKE_REQUIRED_LIBRARIES "${CMAKE_REQUIRED_LIBRARIES}")
      SET(CMAKE_REQUIRED_LIBRARIES
@@ -320,7 +271,7 @@ Last-Update: <YYYY-MM-DD>
        ${CMAKE_THREAD_LIBS}
        ${CMAKE_REQUIRED_LIBRARIES}
        -lm
-@@ -762,7 +759,7 @@ IF (VTK_WRAP_TCL AND VTK_USE_TK)
+@@ -784,7 +781,7 @@
    # Use special interactor for X and Tk.
    IF(VTK_USE_X)
      SET(KitTCL_SRCS ${KitTCL_SRCS} vtkXRenderWindowTclInteractor.cxx)
@@ -329,7 +280,7 @@ Last-Update: <YYYY-MM-DD>
    ENDIF(VTK_USE_X)
    IF(VTK_USE_CARBON)
      SET(KIT_TCL_LIBS ${KIT_TCL_LIBS} "-framework Carbon")
-@@ -809,7 +806,7 @@ IF (VTK_WRAP_PYTHON AND VTK_USE_TK AND T
+@@ -837,7 +834,7 @@
                ${RenderingPythonTkWidgets_SRCS})
    SET(VTK_PYTHONTK_LIBRARIES ${VTK_TK_LIBRARIES})
    IF(VTK_USE_X)
@@ -338,7 +289,7 @@ Last-Update: <YYYY-MM-DD>
    ENDIF(VTK_USE_X)
    IF(VTK_USE_CARBON)
      SET(VTK_PYTHONTK_LIBRARIES ${VTK_PYTHONTK_LIBRARIES} "-framework Carbon")
-@@ -845,7 +842,7 @@ IF(VTK_USE_X)
+@@ -874,7 +871,7 @@
    IF (X11_Xt_LIB)
      TARGET_LINK_LIBRARIES(vtk${KIT} ${X11_Xt_LIB})
    ENDIF (X11_Xt_LIB)
@@ -347,7 +298,7 @@ Last-Update: <YYYY-MM-DD>
    IF (VTK_USE_TK)
      # Definitely needed in case we are linking against a Tcl/Tk 8.5 static,
      # which by default seems to be missing Xss and Xft. It can not just be
-@@ -854,12 +851,12 @@ IF(VTK_USE_X)
+@@ -883,12 +880,12 @@
      FIND_LIBRARY(X11_Xscreensaver_LIB Xss ${X11_LIB_SEARCH_PATH})
      MARK_AS_ADVANCED(X11_Xscreensaver_LIB)
      IF(X11_Xscreensaver_LIB)
@@ -362,9 +313,11 @@ Last-Update: <YYYY-MM-DD>
      ENDIF(X11_Xft_LIB)
      IF(APPLE)
        FIND_LIBRARY(X11_fontconfig_LIB fontconfig ${X11_LIB_SEARCH_PATH})
---- vtk-5.6.1.orig/Parallel/CMakeLists.txt
-+++ vtk-5.6.1/Parallel/CMakeLists.txt
-@@ -193,7 +193,7 @@ IF (VTK_USE_MPI)
+Index: vtk-5.8.0/Parallel/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Parallel/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Parallel/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -205,7 +205,7 @@
      MESSAGE("Could not find the required MPI libraries")
    ENDIF (MPI_LIBRARY)   
    IF (MPI_EXTRA_LIBRARY)   
@@ -373,7 +326,7 @@ Last-Update: <YYYY-MM-DD>
    ENDIF (MPI_EXTRA_LIBRARY) 
  ENDIF (VTK_USE_MPI)
  
-@@ -228,6 +228,8 @@ FOREACH(file ${glsl_files})
+@@ -240,6 +240,8 @@
  ENDFOREACH(file)
  ENDIF(VTK_USE_RENDERING)
  
@@ -382,9 +335,11 @@ Last-Update: <YYYY-MM-DD>
  #-----------------------------------------------------------------------------
  # Include CMake code common to all kits.
  INCLUDE(${VTK_CMAKE_DIR}/KitCommonBlock.cmake)
---- vtk-5.6.1.orig/Charts/CMakeLists.txt
-+++ vtk-5.6.1/Charts/CMakeLists.txt
-@@ -68,9 +68,9 @@ IF(VTK_USE_QT)
+Index: vtk-5.8.0/Charts/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Charts/CMakeLists.txt	2011-09-01 15:48:07.000000000 +0200
++++ vtk-5.8.0/Charts/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -98,9 +98,9 @@
    SET(QT_DONT_USE_QTGUI)
    INCLUDE(${QT_USE_FILE})
    IF (APPLE)
@@ -396,20 +351,11 @@ Last-Update: <YYYY-MM-DD>
    ENDIF (APPLE)
  ENDIF(VTK_USE_QT)
  
---- vtk-5.6.1.orig/IO/vtkMINCImageReader.cxx
-+++ vtk-5.6.1/IO/vtkMINCImageReader.cxx
-@@ -67,7 +67,7 @@ POSSIBILITY OF SUCH DAMAGES.
- 
- #include "vtkMINCImageAttributes.h"
- #include "vtkMINC.h"
--#include "vtknetcdf/netcdf.h"
-+#include "vtk_netcdf.h"
- 
- #include <stdlib.h>
- #include <ctype.h>
---- vtk-5.6.1.orig/IO/CMakeLists.txt
-+++ vtk-5.6.1/IO/CMakeLists.txt
-@@ -18,9 +18,9 @@ SET(KIT_TCL_LIBS vtkFilteringTCL)
+Index: vtk-5.8.0/IO/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/IO/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/IO/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
+@@ -18,9 +18,9 @@
  SET(KIT_PYTHON_LIBS vtkFilteringPythonD)
  SET(KIT_JAVA_LIBS vtkFilteringJava)
  SET(KIT_INTERFACE_LIBRARIES vtkFiltering)
@@ -421,47 +367,3 @@ Last-Update: <YYYY-MM-DD>
    ${VTK_TIFF_LIBRARIES} ${VTK_EXPAT_LIBRARIES} ${VTK_OGGTHEORA_LIBRARIES}
    ${KWSYS_NAMESPACE})
  
---- vtk-5.6.1.orig/IO/vtkSLACReader.cxx
-+++ vtk-5.6.1/IO/vtkSLACReader.cxx
-@@ -46,7 +46,7 @@
- #define VTK_CREATE(type, name) \
-   vtkSmartPointer<type> name = vtkSmartPointer<type>::New()
- 
--#include <netcdf.h>
-+#include "vtk_netcdf.h"
- 
- #include <vtkstd/algorithm>
- #include <vtkstd/map>
---- vtk-5.6.1.orig/IO/vtkMINCImageWriter.cxx
-+++ vtk-5.6.1/IO/vtkMINCImageWriter.cxx
-@@ -71,7 +71,7 @@ POSSIBILITY OF SUCH DAMAGES.
- 
- #include "vtkMINCImageAttributes.h"
- #include "vtkMINC.h"
--#include "vtknetcdf/netcdf.h"
-+#include "vtk_netcdf.h"
- 
- #ifdef _WIN32
- #include "vtkWindows.h"
---- vtk-5.6.1.orig/IO/vtkSLACParticleReader.cxx
-+++ vtk-5.6.1/IO/vtkSLACParticleReader.cxx
-@@ -43,7 +43,7 @@
- #define VTK_CREATE(type, name) \
-   vtkSmartPointer<type> name = vtkSmartPointer<type>::New()
- 
--#include <netcdf.h>
-+#include "vtk_netcdf.h"
- 
- //=============================================================================
- #define CALL_NETCDF(call)                       \
---- vtk-5.6.1.orig/IO/vtkMINCImageAttributes.cxx
-+++ vtk-5.6.1/IO/vtkMINCImageAttributes.cxx
-@@ -62,7 +62,7 @@ POSSIBILITY OF SUCH DAMAGES.
- #include "vtkSmartPointer.h"
- 
- #include "vtkMINC.h"
--#include "vtknetcdf/netcdf.h"
-+#include "vtk_netcdf.h"
- 
- #include <stdlib.h>
- #include <ctype.h>

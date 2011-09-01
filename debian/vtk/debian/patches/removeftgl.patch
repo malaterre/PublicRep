@@ -1,7 +1,7 @@
-Index: vtk-5.6.1/Hybrid/CMakeLists.txt
+Index: vtk-5.8.0/Hybrid/CMakeLists.txt
 ===================================================================
---- vtk-5.6.1.orig/Hybrid/CMakeLists.txt	2011-08-22 22:22:28.000000000 +0200
-+++ vtk-5.6.1/Hybrid/CMakeLists.txt	2011-08-22 22:22:31.000000000 +0200
+--- vtk-5.8.0.orig/Hybrid/CMakeLists.txt	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Hybrid/CMakeLists.txt	2011-09-01 15:49:47.000000000 +0200
 @@ -26,7 +26,7 @@
  ENDIF (WIN32)
  
@@ -11,10 +11,10 @@ Index: vtk-5.6.1/Hybrid/CMakeLists.txt
  
  SET ( Kit_SRCS
  vtk3DSImporter.cxx
-Index: vtk-5.6.1/Rendering/CMakeLists.txt
+Index: vtk-5.8.0/Rendering/CMakeLists.txt
 ===================================================================
---- vtk-5.6.1.orig/Rendering/CMakeLists.txt	2011-08-22 22:22:20.000000000 +0200
-+++ vtk-5.6.1/Rendering/CMakeLists.txt	2011-08-22 22:22:24.000000000 +0200
+--- vtk-5.8.0.orig/Rendering/CMakeLists.txt	2011-09-01 15:49:34.000000000 +0200
++++ vtk-5.8.0/Rendering/CMakeLists.txt	2011-09-01 15:49:47.000000000 +0200
 @@ -9,7 +9,7 @@
  ENDIF (JAVA_AWT_LIBRARY)
  
@@ -24,36 +24,10 @@ Index: vtk-5.6.1/Rendering/CMakeLists.txt
  #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGL.cmake)
  #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGLX.cmake)
  
-Index: vtk-5.6.1/Utilities/CMakeLists.txt
+Index: vtk-5.8.0/Rendering/vtkFreeTypeUtilities.cxx
 ===================================================================
---- vtk-5.6.1.orig/Utilities/CMakeLists.txt	2011-08-22 20:55:47.000000000 +0200
-+++ vtk-5.6.1/Utilities/CMakeLists.txt	2011-08-22 22:10:33.000000000 +0200
-@@ -67,7 +67,7 @@
- ENDIF(VTK_USE_PARALLEL)
- 
- IF(VTK_USE_RENDERING)
--  SUBDIRS(ftgl ParseOGLExt)
-+  SUBDIRS(ParseOGLExt)
- ENDIF(VTK_USE_RENDERING)
- 
- IF(NOT VTK_INSTALL_NO_DEVELOPMENT)
-Index: vtk-5.6.1/Charts/CMakeLists.txt
-===================================================================
---- vtk-5.6.1.orig/Charts/CMakeLists.txt	2011-08-22 20:57:34.000000000 +0200
-+++ vtk-5.6.1/Charts/CMakeLists.txt	2011-08-22 20:57:39.000000000 +0200
-@@ -10,7 +10,7 @@
- ENDIF (JAVA_AWT_LIBRARY)
- 
- SET(KIT_INTERFACE_LIBRARIES vtkHybrid vtkViews)
--SET(KIT_LIBS vtkIO vtkftgl
-+SET(KIT_LIBS vtkIO ftgl
-   ${VTK_FREETYPE_LIBRARIES}
- )
- 
-Index: vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx
-===================================================================
---- vtk-5.6.1.orig/Rendering/vtkFreeTypeUtilities.cxx	2011-08-22 21:48:12.000000000 +0200
-+++ vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx	2011-08-22 22:06:26.000000000 +0200
+--- vtk-5.8.0.orig/Rendering/vtkFreeTypeUtilities.cxx	2011-09-01 15:48:13.000000000 +0200
++++ vtk-5.8.0/Rendering/vtkFreeTypeUtilities.cxx	2011-09-01 15:49:47.000000000 +0200
 @@ -23,9 +23,10 @@
  
  // FTGL
@@ -94,18 +68,7 @@ Index: vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx
  
    return NULL;
  }
-@@ -1394,8 +1395,8 @@
-   if (this->Entries[i]->Font)
-     {
-     printf(" [F: %p]", static_cast<void *>(this->Entries[i]->Font));
--    printf("\n                                                [f: %p]", 
--           static_cast<void*>(*(this->Entries[i]->Font->Face()->Face())));
-+//    printf("\n                                                [f: %p]", 
-+//           static_cast<void*>(*(this->Entries[i]->Font->Face()->Face())));
-     }
-   
-   printf("\n");
-@@ -1544,7 +1545,7 @@
+@@ -1513,7 +1514,7 @@
  
    // OK the font is not cached, try to create one
  
@@ -114,7 +77,7 @@ Index: vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx
  
    // A face file name has been provided, try to load it, otherwise
    // just use the embedded fonts (i.e. font family, bold and italic attribs)
-@@ -1649,7 +1650,8 @@
+@@ -1618,7 +1619,8 @@
      unsigned char *ptr = EmbeddedFonts
        [tprop->GetFontFamily()][tprop->GetBold()][tprop->GetItalic()].ptr;
  
@@ -124,10 +87,10 @@ Index: vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx
        {
        vtkErrorWithObjectMacro(
          tprop,
-Index: vtk-5.6.1/Rendering/vtkOpenGLFreeTypeTextMapper.cxx
+Index: vtk-5.8.0/Rendering/vtkOpenGLFreeTypeTextMapper.cxx
 ===================================================================
---- vtk-5.6.1.orig/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-08-22 22:07:09.000000000 +0200
-+++ vtk-5.6.1/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-08-22 22:09:04.000000000 +0200
+--- vtk-5.8.0.orig/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-09-01 15:48:10.000000000 +0200
++++ vtk-5.8.0/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-09-01 15:49:47.000000000 +0200
 @@ -23,11 +23,11 @@
  #include "vtkToolkits.h"  // for VTK_USE_GL2PS
  

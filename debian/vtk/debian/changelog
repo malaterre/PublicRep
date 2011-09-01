@@ -1,4 +1,4 @@
-vtk (5.8.0~git2380face-1) unstable; urgency=low
+vtk (5.8.0~git2380fac-1) unstable; urgency=low
 
   * New upstream: 5.8.0
   * Fix cmake transitive linking speading. Closes: #506992

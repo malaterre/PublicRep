@@ -1,20 +1,7 @@
-Index: vtk-5.6.1/Utilities/CMakeLists.txt
+Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
 ===================================================================
---- vtk-5.6.1.orig/Utilities/CMakeLists.txt	2011-08-22 20:55:47.000000000 +0200
-+++ vtk-5.6.1/Utilities/CMakeLists.txt	2011-08-22 22:10:33.000000000 +0200
-@@ -40,7 +40,7 @@
- IF(VTK_USE_METAIO)
-   SUBDIRS(vtkmetaio)
- ENDIF(VTK_USE_METAIO)
--SUBDIRS(vtksqlite)
-+#SUBDIRS(vtksqlite)
- 
- IF(VTK_HAS_EXODUS)
-   SUBDIRS(vtkexodus2)
-Index: vtk-5.6.1/IO/vtkSQLiteDatabase.cxx
-===================================================================
---- vtk-5.6.1.orig/IO/vtkSQLiteDatabase.cxx	2011-08-22 22:22:20.000000000 +0200
-+++ vtk-5.6.1/IO/vtkSQLiteDatabase.cxx	2011-08-22 22:22:24.000000000 +0200
+--- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:48:09.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:49:55.000000000 +0200
 @@ -29,7 +29,7 @@
  #include <vtksys/ios/fstream>
  #include <vtksys/ios/sstream>
@@ -24,26 +11,6 @@ Index: vtk-5.6.1/IO/vtkSQLiteDatabase.cxx
  
  vtkStandardNewMacro(vtkSQLiteDatabase);
  
-@@ -307,15 +307,15 @@
-       }
-     }
- 
--  int result = vtk_sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
-+  int result = sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
- 
--  if (result != VTK_SQLITE_OK)
-+  if (result != SQLITE_OK)
-     {
-     vtkDebugMacro(<<"SQLite open() failed.  Error code is " 
-                   << result << " and message is " 
--                  << vtk_sqlite3_errmsg(this->SQLiteInstance) );
-+                  << sqlite3_errmsg(this->SQLiteInstance) );
- 
--    vtk_sqlite3_close(this->SQLiteInstance);
-+    sqlite3_close(this->SQLiteInstance);
-     return false;
-     }
-   else
 @@ -334,8 +334,8 @@
      }
    else
@@ -73,23 +40,10 @@ Index: vtk-5.6.1/IO/vtkSQLiteDatabase.cxx
      query->Delete();
      return NULL;
      }
-@@ -466,10 +466,10 @@
- // ----------------------------------------------------------------------
- bool vtkSQLiteDatabase::HasError()
- { 
--  return (vtk_sqlite3_errcode(this->SQLiteInstance)!=VTK_SQLITE_OK);
-+  return (sqlite3_errcode(this->SQLiteInstance)!=SQLITE_OK);
- }
- 
- const char* vtkSQLiteDatabase::GetLastErrorText()
- {
--  return vtk_sqlite3_errmsg(this->SQLiteInstance);
-+  return sqlite3_errmsg(this->SQLiteInstance);
- }
-Index: vtk-5.6.1/IO/vtkSQLiteQuery.cxx
+Index: vtk-5.8.0/IO/vtkSQLiteQuery.cxx
 ===================================================================
---- vtk-5.6.1.orig/IO/vtkSQLiteQuery.cxx	2011-08-22 22:22:20.000000000 +0200
-+++ vtk-5.6.1/IO/vtkSQLiteQuery.cxx	2011-08-22 22:22:24.000000000 +0200
+--- vtk-5.8.0.orig/IO/vtkSQLiteQuery.cxx	2011-09-01 15:48:09.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteQuery.cxx	2011-09-01 15:49:55.000000000 +0200
 @@ -25,7 +25,7 @@
  #include "vtkVariant.h"
  #include "vtkVariantArray.h"
@@ -475,10 +429,10 @@ Index: vtk-5.6.1/IO/vtkSQLiteQuery.cxx
      {
      vtksys_ios::ostringstream errormessage;
      errormessage << "sqlite_clear_bindings returned error: " << status;
-Index: vtk-5.6.1/IO/vtkSQLiteDatabase.h
+Index: vtk-5.8.0/IO/vtkSQLiteDatabase.h
 ===================================================================
---- vtk-5.6.1.orig/IO/vtkSQLiteDatabase.h	2011-08-22 22:22:20.000000000 +0200
-+++ vtk-5.6.1/IO/vtkSQLiteDatabase.h	2011-08-22 22:22:24.000000000 +0200
+--- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.h	2011-09-01 15:48:09.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteDatabase.h	2011-09-01 15:49:55.000000000 +0200
 @@ -48,7 +48,7 @@
  class vtkSQLQuery;
  class vtkSQLiteQuery;
@@ -497,10 +451,10 @@ Index: vtk-5.6.1/IO/vtkSQLiteDatabase.h
    
    // We want this to be private, a user of this class
    // should not be setting this for any reason
-Index: vtk-5.6.1/IO/vtkSQLiteQuery.h
+Index: vtk-5.8.0/IO/vtkSQLiteQuery.h
 ===================================================================
---- vtk-5.6.1.orig/IO/vtkSQLiteQuery.h	2011-08-22 22:22:20.000000000 +0200
-+++ vtk-5.6.1/IO/vtkSQLiteQuery.h	2011-08-22 22:22:24.000000000 +0200
+--- vtk-5.8.0.orig/IO/vtkSQLiteQuery.h	2011-09-01 15:48:09.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteQuery.h	2011-09-01 15:49:55.000000000 +0200
 @@ -46,7 +46,7 @@
  class vtkSQLiteDatabase;
  class vtkVariant;
@@ -510,7 +464,7 @@ Index: vtk-5.6.1/IO/vtkSQLiteQuery.h
  
  class VTK_IO_EXPORT vtkSQLiteQuery : public vtkSQLQuery
  {
-@@ -156,7 +156,7 @@
+@@ -154,7 +154,7 @@
    vtkSQLiteQuery(const vtkSQLiteQuery &); // Not implemented.
    void operator=(const vtkSQLiteQuery &); // Not implemented.
  

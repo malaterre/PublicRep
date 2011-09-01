@@ -1,8 +1,8 @@
-usr/lib/vtk-5.6/*TCL.so*                  usr/lib
+usr/lib/vtk-5.8/*TCL.so*                  usr/lib
 usr/bin/vtk
 usr/bin/vtkWrapTcl
 usr/bin/vtkWrapTclInit
 ../../Wrapping/Tcl/vtkinteraction         usr/share/tcltk/tcl8.5/vtk
-usr/lib/vtk-5.6/testing/*tcl              usr/share/tcltk/tcl8.5/vtk
-usr/lib/vtk-5.6/tcl                       usr/lib/vtk-5.6
-usr/lib/vtk-5.6/pkgIndex.tcl              usr/lib/vtk-5.6
+usr/lib/vtk-5.8/testing/*tcl              usr/share/tcltk/tcl8.5/vtk
+usr/lib/vtk-5.8/tcl                       usr/lib/vtk-5.8
+usr/lib/vtk-5.8/pkgIndex.tcl              usr/lib/vtk-5.8

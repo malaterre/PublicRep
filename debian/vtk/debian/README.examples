@@ -17,7 +17,7 @@ export VTK_DATA_ROOT=/usr/share/VTKData
      ***      ***       ***
 For example, to compile the Cone4 Cxx example program yourself, try:
 
-g++ -I/usr/include/vtk-5.6 -o Cone /usr/share/vtk/Tutorial/Step4/Cxx/Cone4.cxx /usr/lib/libvtkGraphics.so  /usr/lib/libvtkCommon.so -L /usr/X11R6/lib -lGL -lXt -lX11 /usr/lib/libvtkImaging.so /usr/lib/libvtkRendering.so /usr/lib/libvtkFiltering.so
+g++ -I/usr/include/vtk-5.8 -o Cone /usr/share/vtk/Tutorial/Step4/Cxx/Cone4.cxx /usr/lib/libvtkGraphics.so  /usr/lib/libvtkCommon.so -L /usr/X11R6/lib -lGL -lXt -lX11 /usr/lib/libvtkImaging.so /usr/lib/libvtkRendering.so /usr/lib/libvtkFiltering.so
 
 And then run it:
 
@@ -73,5 +73,5 @@ vtk keyBottle.tcl
 VTK is built against tcl8.5, and extends it. Try:
  $ tclsh
  % package require vtk
- 5.6
+ 5.8
  %

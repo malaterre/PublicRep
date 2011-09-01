@@ -50,7 +50,7 @@ Description: C++, Tcl and Python example programs/scripts for VTK
  The Python and Tcl examples can be run with the corresponding packages
  (python-vtk, tcl-vtk).
 
-Package: libvtk5.6
+Package: libvtk5.8
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: libvtk, libvtk32, libvtk4, libvtk4c2, libvtk4c2a, python-vtk (<< 4.4), libvtk5
@@ -91,7 +91,7 @@ Package: libvtk5-dev
 Architecture: any
 Conflicts: libvtk4-dev, libvtk-dev, libvtk32-dev
 Replaces: libvtk4-dev, libvtk-dev, libvtk32-dev
-Depends: ${misc:Depends}, libvtk5.6 (= ${binary:Version}), libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev,
+Depends: ${misc:Depends}, libvtk5.8 (= ${binary:Version}), libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev,
  libx11-dev, libxt-dev, x11proto-core-dev, libc6-dev, libxss-dev, libxft-dev,
  libexpat-dev, libjpeg-dev, libpng-dev, libtiff-dev, zlib1g-dev, tcl8.5-dev, tk8.5-dev,
  libavformat-dev, libavutil-dev, libavcodec-dev, libswscale-dev, libgl2ps-dev,
@@ -106,7 +106,7 @@ Description: VTK header files for building C++ code
  This package provides the VTK header files required to compile
  C++ programs that use VTK to do 3D visualisation.
 
-Package: libvtk5.6-qt4
+Package: libvtk5.8-qt4
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Section: libs
@@ -119,7 +119,7 @@ Description: Visualization Toolkit - A high level 3D visualization library
 
 Package: libvtk5-qt4-dev
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libvtk5.6-qt4 (= ${binary:Version}), libvtk5-dev (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, libvtk5.8-qt4 (= ${binary:Version}), libvtk5-dev (= ${binary:Version})
 Conflicts: libvtk5-qt3-dev
 Breaks: libvtk5-qt4 (<< 5.4.2-8)
 Replaces: libvtk5-qt4 (<< 5.4.2-8)
@@ -134,7 +134,7 @@ Description: Visualization Toolkit - A high level 3D visualization library
 
 Package: tcl-vtk
 Architecture: any
-Depends: libvtk5.6 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends: libvtk5.8 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Suggests: vtk-examples, vtk-doc
 Replaces: vtk, vtk-tcl
 Section: interpreters

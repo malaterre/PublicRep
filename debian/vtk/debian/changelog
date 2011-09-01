@@ -3,7 +3,7 @@ vtk (5.8.0~git2380face-1) unstable; urgency=low
   * New upstream: 5.8.0
   * Fix cmake transitive linking speading. Closes: #506992
   * Adapt to new libav. Closes: #638559
-  * Remove convinient sqlite copy. Closes: #638883
+  * Remove convenient sqlite copy. Closes: #638883
     - Use lintian to hide ftgl copy
 
  -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Thu, 01 Sep 2011 15:21:52 +0200

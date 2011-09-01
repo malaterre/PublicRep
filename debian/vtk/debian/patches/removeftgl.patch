@@ -1,0 +1,162 @@
+Index: vtk-5.6.1/Hybrid/CMakeLists.txt
+===================================================================
+--- vtk-5.6.1.orig/Hybrid/CMakeLists.txt	2011-08-22 22:22:28.000000000 +0200
++++ vtk-5.6.1/Hybrid/CMakeLists.txt	2011-08-22 22:22:31.000000000 +0200
+@@ -26,7 +26,7 @@
+ ENDIF (WIN32)
+ 
+ # for vtkImageDataLIC2D and vtkStructuredGridLIC2D
+-SET( KIT_LIBS ${KIT_LIBS} vtkftgl )
++SET( KIT_LIBS ${KIT_LIBS} ftgl )
+ 
+ SET ( Kit_SRCS
+ vtk3DSImporter.cxx
+Index: vtk-5.6.1/Rendering/CMakeLists.txt
+===================================================================
+--- vtk-5.6.1.orig/Rendering/CMakeLists.txt	2011-08-22 22:22:20.000000000 +0200
++++ vtk-5.6.1/Rendering/CMakeLists.txt	2011-08-22 22:22:24.000000000 +0200
+@@ -9,7 +9,7 @@
+ ENDIF (JAVA_AWT_LIBRARY)
+ 
+ SET(KIT_INTERFACE_LIBRARIES vtkGraphics vtkImaging)
+-SET(KIT_LIBS vtkIO vtkftgl)
++SET(KIT_LIBS vtkIO ftgl)
+ #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGL.cmake)
+ #INCLUDE(${VTK_CMAKE_DIR}/vtkTestGLX.cmake)
+ 
+Index: vtk-5.6.1/Utilities/CMakeLists.txt
+===================================================================
+--- vtk-5.6.1.orig/Utilities/CMakeLists.txt	2011-08-22 20:55:47.000000000 +0200
++++ vtk-5.6.1/Utilities/CMakeLists.txt	2011-08-22 22:10:33.000000000 +0200
+@@ -67,7 +67,7 @@
+ ENDIF(VTK_USE_PARALLEL)
+ 
+ IF(VTK_USE_RENDERING)
+-  SUBDIRS(ftgl ParseOGLExt)
++  SUBDIRS(ParseOGLExt)
+ ENDIF(VTK_USE_RENDERING)
+ 
+ IF(NOT VTK_INSTALL_NO_DEVELOPMENT)
+Index: vtk-5.6.1/Charts/CMakeLists.txt
+===================================================================
+--- vtk-5.6.1.orig/Charts/CMakeLists.txt	2011-08-22 20:57:34.000000000 +0200
++++ vtk-5.6.1/Charts/CMakeLists.txt	2011-08-22 20:57:39.000000000 +0200
+@@ -10,7 +10,7 @@
+ ENDIF (JAVA_AWT_LIBRARY)
+ 
+ SET(KIT_INTERFACE_LIBRARIES vtkHybrid vtkViews)
+-SET(KIT_LIBS vtkIO vtkftgl
++SET(KIT_LIBS vtkIO ftgl
+   ${VTK_FREETYPE_LIBRARIES}
+ )
+ 
+Index: vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx
+===================================================================
+--- vtk-5.6.1.orig/Rendering/vtkFreeTypeUtilities.cxx	2011-08-22 21:48:12.000000000 +0200
++++ vtk-5.6.1/Rendering/vtkFreeTypeUtilities.cxx	2011-08-22 22:06:26.000000000 +0200
+@@ -23,9 +23,10 @@
+ 
+ // FTGL
+ 
+-#include "vtkftglConfig.h"
+-#include "FTLibrary.h"
+-#include "FTGLPixmapFont.h"
++//#include "vtkftglConfig.h"
++//#include "FTLibrary.h"
++//#include "FTGLPixmapFont.h"
++#include <FTGL/ftgl.h>
+ 
+ // The embedded fonts
+ 
+@@ -81,7 +82,7 @@
+ #if VTK_FTFC_DEBUG_CD
+   printf("vtkFreeTypeUtilitiesCleanup::vtkFreeTypeUtilitiesCleanup\n");
+ #endif
+-  FTLibraryCleanup::AddDependency(&vtkFreeTypeUtilitiesCleanupCallback);
++  //FTLibraryCleanup::AddDependency(&vtkFreeTypeUtilitiesCleanupCallback);
+ }
+ 
+ //----------------------------------------------------------------------------
+@@ -181,11 +182,11 @@
+   printf("vtkFreeTypeUtilities::GetLibrary\n");
+ #endif
+ 
+-  FTLibrary *ftgl_lib = FTLibrary::GetInstance();
+-  if (ftgl_lib)
+-    {
+-    return ftgl_lib->GetLibrary();
+-    }
++  //FTLibrary *ftgl_lib = FTLibrary::GetInstance();
++  //if (ftgl_lib)
++  //  {
++  //  return ftgl_lib->GetLibrary();
++  //  }
+ 
+   return NULL;
+ }
+@@ -1394,8 +1395,8 @@
+   if (this->Entries[i]->Font)
+     {
+     printf(" [F: %p]", static_cast<void *>(this->Entries[i]->Font));
+-    printf("\n                                                [f: %p]", 
+-           static_cast<void*>(*(this->Entries[i]->Font->Face()->Face())));
++//    printf("\n                                                [f: %p]", 
++//           static_cast<void*>(*(this->Entries[i]->Font->Face()->Face())));
+     }
+   
+   printf("\n");
+@@ -1544,7 +1545,7 @@
+ 
+   // OK the font is not cached, try to create one
+ 
+-  FTFont *font = new FTGLPixmapFont;
++  FTFont *font = NULL; // = new FTGLPixmapFont;
+ 
+   // A face file name has been provided, try to load it, otherwise
+   // just use the embedded fonts (i.e. font family, bold and italic attribs)
+@@ -1649,7 +1650,8 @@
+     unsigned char *ptr = EmbeddedFonts
+       [tprop->GetFontFamily()][tprop->GetBold()][tprop->GetItalic()].ptr;
+ 
+-    if (!font->Open(ptr, length, false))
++    font = new FTGLPixmapFont(ptr, length);
++    if (false /* !font->Open(ptr, length, false) */ )
+       {
+       vtkErrorWithObjectMacro(
+         tprop,
+Index: vtk-5.6.1/Rendering/vtkOpenGLFreeTypeTextMapper.cxx
+===================================================================
+--- vtk-5.6.1.orig/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-08-22 22:07:09.000000000 +0200
++++ vtk-5.6.1/Rendering/vtkOpenGLFreeTypeTextMapper.cxx	2011-08-22 22:09:04.000000000 +0200
+@@ -23,11 +23,11 @@
+ #include "vtkToolkits.h"  // for VTK_USE_GL2PS
+ 
+ #include "vtkFreeTypeUtilities.h"
+-#include "vtkftglConfig.h"
++//#include "vtkftglConfig.h"
+ 
+ #include "vtkgluPickMatrix.h"
+ 
+-#include "FTFont.h"
++#include <FTGL/ftgl.h>
+ 
+ #ifdef VTK_USE_GL2PS
+ #include "vtk_gl2ps.h"
+@@ -429,7 +429,7 @@
+ 
+     // Draw the shadow text
+ 
+-    shadow_font->render(this->Input, ftgl_context);
++    //shadow_font->Render(this->Input, ftgl_context);
+ 
+     // Get the font again, Duh, since it may have been freed from the
+     // cache by the shadow font
+@@ -466,7 +466,7 @@
+ 
+   // Display a string
+ 
+-  font->render(this->Input, ftgl_context);
++  //font->render(this->Input, ftgl_context);
+ 
+   glFlush();
+ 

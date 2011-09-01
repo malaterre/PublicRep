@@ -1,7 +1,7 @@
 Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
 ===================================================================
 --- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:49:55.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteDatabase.cxx	2011-09-01 15:59:03.000000000 +0200
 @@ -29,7 +29,7 @@
  #include <vtksys/ios/fstream>
  #include <vtksys/ios/sstream>
@@ -11,6 +11,26 @@ Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
  
  vtkStandardNewMacro(vtkSQLiteDatabase);
  
+@@ -307,15 +307,15 @@
+       }
+     }
+ 
+-  int result = vtk_sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
++  int result = sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
+ 
+-  if (result != VTK_SQLITE_OK)
++  if (result != SQLITE_OK)
+     {
+     vtkDebugMacro(<<"SQLite open() failed.  Error code is "
+                   << result << " and message is "
+-                  << vtk_sqlite3_errmsg(this->SQLiteInstance) );
++                  << sqlite3_errmsg(this->SQLiteInstance) );
+ 
+-    vtk_sqlite3_close(this->SQLiteInstance);
++    sqlite3_close(this->SQLiteInstance);
+     return false;
+     }
+   else
 @@ -334,8 +334,8 @@
      }
    else
@@ -40,10 +60,23 @@ Index: vtk-5.8.0/IO/vtkSQLiteDatabase.cxx
      query->Delete();
      return NULL;
      }
+@@ -467,10 +467,10 @@
+ // ----------------------------------------------------------------------
+ bool vtkSQLiteDatabase::HasError()
+ {
+-  return (vtk_sqlite3_errcode(this->SQLiteInstance)!=VTK_SQLITE_OK);
++  return (sqlite3_errcode(this->SQLiteInstance)!=SQLITE_OK);
+ }
+ 
+ const char* vtkSQLiteDatabase::GetLastErrorText()
+ {
+-  return vtk_sqlite3_errmsg(this->SQLiteInstance);
++  return sqlite3_errmsg(this->SQLiteInstance);
+ }
 Index: vtk-5.8.0/IO/vtkSQLiteQuery.cxx
 ===================================================================
 --- vtk-5.8.0.orig/IO/vtkSQLiteQuery.cxx	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteQuery.cxx	2011-09-01 15:49:55.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteQuery.cxx	2011-09-01 15:57:14.000000000 +0200
 @@ -25,7 +25,7 @@
  #include "vtkVariant.h"
  #include "vtkVariantArray.h"
@@ -432,7 +465,7 @@ Index: vtk-5.8.0/IO/vtkSQLiteQuery.cxx
 Index: vtk-5.8.0/IO/vtkSQLiteDatabase.h
 ===================================================================
 --- vtk-5.8.0.orig/IO/vtkSQLiteDatabase.h	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteDatabase.h	2011-09-01 15:49:55.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteDatabase.h	2011-09-01 15:57:14.000000000 +0200
 @@ -48,7 +48,7 @@
  class vtkSQLQuery;
  class vtkSQLiteQuery;
@@ -454,7 +487,7 @@ Index: vtk-5.8.0/IO/vtkSQLiteDatabase.h
 Index: vtk-5.8.0/IO/vtkSQLiteQuery.h
 ===================================================================
 --- vtk-5.8.0.orig/IO/vtkSQLiteQuery.h	2011-09-01 15:48:09.000000000 +0200
-+++ vtk-5.8.0/IO/vtkSQLiteQuery.h	2011-09-01 15:49:55.000000000 +0200
++++ vtk-5.8.0/IO/vtkSQLiteQuery.h	2011-09-01 15:57:14.000000000 +0200
 @@ -46,7 +46,7 @@
  class vtkSQLiteDatabase;
  class vtkVariant;

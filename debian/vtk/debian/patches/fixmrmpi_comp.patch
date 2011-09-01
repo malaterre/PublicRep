@@ -1,0 +1,93 @@
+Index: vtk-5.8.0/Utilities/mrmpi/src/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/mrmpi/src/CMakeLists.txt	2011-09-01 11:52:05.000000000 +0200
++++ vtk-5.8.0/Utilities/mrmpi/src/CMakeLists.txt	2011-09-01 11:53:52.000000000 +0200
+@@ -7,6 +7,9 @@
+         memory.cpp
+         error.cpp)
+ 
++      INCLUDE_DIRECTORIES(
++        ${MPI_INCLUDE_PATH}
++        )
+ VTK_ADD_LIBRARY (MapReduceMPI ${mrmpi_SOURCES})
+ TARGET_LINK_LIBRARIES (MapReduceMPI ${mrmpi_LIBS})
+ IF(VTK_LIBRARY_PROPERTIES)
+Index: vtk-5.8.0/Parallel/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Parallel/CMakeLists.txt	2011-09-01 11:52:05.000000000 +0200
++++ vtk-5.8.0/Parallel/CMakeLists.txt	2011-09-01 11:53:52.000000000 +0200
+@@ -152,6 +152,9 @@
+   INCLUDE (FindMPI)
+ 
+   INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++  INCLUDE_DIRECTORIES(
++  ${MPI_INCLUDE_PATH}
++  )
+ 
+   SET ( Kit_SRCS
+     ${Kit_SRCS}
+Index: vtk-5.8.0/Utilities/VPIC/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/VPIC/CMakeLists.txt	2011-09-01 11:52:05.000000000 +0200
++++ vtk-5.8.0/Utilities/VPIC/CMakeLists.txt	2011-09-01 11:53:52.000000000 +0200
+@@ -17,7 +17,7 @@
+ )
+ 
+ IF(VTK_USE_MPI)
+-  INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++  INCLUDE_DIRECTORIES(${MPI_INCLUDE_PATH})
+   ADD_DEFINITIONS("-DUSE_PARALLEL_VPIC -DMPICH_IGNORE_CXX_SEEK")
+ ENDIF(VTK_USE_MPI)
+ 
+Index: vtk-5.8.0/Utilities/Cosmo/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Utilities/Cosmo/CMakeLists.txt	2011-09-01 12:01:54.000000000 +0200
++++ vtk-5.8.0/Utilities/Cosmo/CMakeLists.txt	2011-09-01 12:02:00.000000000 +0200
+@@ -5,7 +5,7 @@
+ 
+ SET(Cosmo_LIBS)
+ IF(VTK_USE_MPI)
+-  INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++  INCLUDE_DIRECTORIES(${MPI_INCLUDE_PATH})
+   IF(MPI_EXTRA_LIBRARY)
+     SET(Cosmo_LIBS ${MPI_LIBRARY} ${MPI_EXTRA_LIBRARY})
+   ELSE(MPI_EXTRA_LIBRARY)
+Index: vtk-5.8.0/Examples/ParallelProcessing/Generic/Cxx/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Examples/ParallelProcessing/Generic/Cxx/CMakeLists.txt	2011-09-01 13:52:18.000000000 +0200
++++ vtk-5.8.0/Examples/ParallelProcessing/Generic/Cxx/CMakeLists.txt	2011-09-01 13:52:25.000000000 +0200
+@@ -1,7 +1,7 @@
+ INCLUDE_REGULAR_EXPRESSION("^(lex|vtk|png|j|Task|Pipe).*$")
+ 
+ IF (VTK_USE_MPI)
+-  INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++  INCLUDE_DIRECTORIES(${MPI_INCLUDE_PATH})
+   IF (MPI_LIBRARY) 
+     SET(MPI_LIBRARIES ${MPI_LIBRARY})   
+   ENDIF (MPI_LIBRARY)   
+Index: vtk-5.8.0/Wrapping/Python/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Wrapping/Python/CMakeLists.txt	2011-09-01 14:22:35.000000000 +0200
++++ vtk-5.8.0/Wrapping/Python/CMakeLists.txt	2011-09-01 14:22:47.000000000 +0200
+@@ -295,7 +295,7 @@
+ SET(PVTKPYTHON_EXECUTABLE)
+ # Create the pvtkpython Python wrapper executable with MPI support.
+ IF (VTK_USE_PARALLEL AND VTK_USE_MPI)
+-  INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++  INCLUDE_DIRECTORIES(${MPI_INCLUDE_PATH})
+   IF (MPI_LIBRARY)
+     SET(MPI_LIBRARIES ${MPI_LIBRARY})
+   ENDIF (MPI_LIBRARY)
+Index: vtk-5.8.0/Wrapping/Tcl/CMakeLists.txt
+===================================================================
+--- vtk-5.8.0.orig/Wrapping/Tcl/CMakeLists.txt	2011-09-01 14:33:23.000000000 +0200
++++ vtk-5.8.0/Wrapping/Tcl/CMakeLists.txt	2011-09-01 14:33:28.000000000 +0200
+@@ -135,7 +135,7 @@
+ # Create the pvtk Tcl wrapper executable with MPI support.
+ IF (VTK_USE_PARALLEL)
+   IF (VTK_USE_MPI)
+-    INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
++    INCLUDE_DIRECTORIES(${MPI_INCLUDE_PATH})
+     IF (MPI_LIBRARY) 
+       SET(MPI_LIBRARIES ${MPI_LIBRARY})   
+     ENDIF (MPI_LIBRARY)   

@@ -1,5 +1,6 @@
 ../../Common/vtkTemplateAliasMacro.h            usr/include/vtk-5.8
 usr/bin/vtkEncodeString                         usr/lib/vtk-5.8
+usr/bin/vtkWrapHierarchy                        usr/lib/vtk-5.8
 usr/include/vtk-5.8                             usr/include
 usr/lib/vtk-5.8/*.cmake
 usr/lib/vtk-5.8/CMake
@@ -8,6 +9,7 @@ usr/lib/vtk-5.8/libCosmo.so                     usr/lib
 usr/lib/vtk-5.8/libMapReduceMPI.so              usr/lib
 usr/lib/vtk-5.8/libVPIC.so                      usr/lib
 usr/lib/vtk-5.8/libvtkalglib.so                 usr/lib
+usr/lib/vtk-5.8/libvtkhdf5.so                   usr/lib
 usr/lib/vtk-5.8/libvtkCharts.so                 usr/lib
 usr/lib/vtk-5.8/libvtkCommon.so                 usr/lib
 usr/lib/vtk-5.8/libvtkDICOMParser.so            usr/lib

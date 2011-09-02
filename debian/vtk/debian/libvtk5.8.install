@@ -19,7 +19,6 @@ usr/lib/vtk-5.8/libvtkmetaio.so.*                 usr/lib
 usr/lib/vtk-5.8/libvtkParallel.so.*               usr/lib
 usr/lib/vtk-5.8/libvtkproj4.so.*                  usr/lib
 usr/lib/vtk-5.8/libvtkRendering.so.*              usr/lib
-usr/lib/vtk-5.8/libvtksqlite.so.*                 usr/lib
 usr/lib/vtk-5.8/libvtksys.so.*                    usr/lib
 usr/lib/vtk-5.8/libvtkverdict.so.*                usr/lib
 usr/lib/vtk-5.8/libvtkViews.so.*                  usr/lib

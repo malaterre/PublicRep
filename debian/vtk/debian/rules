@@ -62,8 +62,8 @@ endif
 
 PYVERS=$(shell pyversions -r debian/control)
 MAJOR=5
-MINOR=6
-PATCH=1
+MINOR=8
+PATCH=0
 
 # Automagically set BUILDNAME and version dependent items
 DEBVERSION:=$(shell head -n 1 debian/changelog | sed -e 's/^[^(]*(\([^)]*\)).*/\1/')
@@ -121,7 +121,7 @@ build-stamp: configure-stamp
 	if [ "X$(DARTP)" = XUSE_DART ]; then cd Build && xvfb-run -s "-screen 0 1024x768x24" $(MAKE) $(JOBS) Experimental; else cd Build && $(MAKE) $(JOBS);fi
 	if [ "X$(DARTP)" = XUSE_DART ]; then cd Build && $(MAKE) $(JOBS) ExperimentalSubmit; fi
 
-	sed -i -e "s#/usr/lib/\(`dpkg-architecture -qDEB_HOST_MULTIARCH`/\)\?lib\([^;]*\)\.so#\2#g" Build/VTKLibraryDepends.cmake
+	#sed -i -e "s#/usr/lib/\(`dpkg-architecture -qDEB_HOST_MULTIARCH`/\)\?lib\([^;]*\)\.so#\2#g" Build/VTKLibraryDepends.cmake
  
 	touch build-stamp
 

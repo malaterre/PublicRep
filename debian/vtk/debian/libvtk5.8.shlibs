@@ -19,7 +19,6 @@ libvtkmetaio            5.8            libvtk5.8
 libvtkParallel          5.8            libvtk5.8
 libvtkproj4             5.8            libvtk5.8
 libvtkRendering         5.8            libvtk5.8
-libvtksqlite            5.8            libvtk5.8
 libvtksys               5.8            libvtk5.8
 libvtkverdict           5.8            libvtk5.8
 libvtkViews             5.8            libvtk5.8

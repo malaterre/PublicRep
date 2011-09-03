@@ -1,1 +1,2 @@
 libvtk5.8: package-name-doesnt-match-sonames libCosmo5.8 libMapReduceMPI5.8 libVPIC5.8 libvtkCharts5.8 libvtkCommon5.8 libvtkDICOMParser5.8 libvtkFiltering5.8 libvtkGenericFiltering5.8 libvtkGeovis5.8 libvtkGraphics5.8 libvtkHybrid5.8 libvtkIO5.8 libvtkImaging5.8 libvtkInfovis5.8 libvtkParallel5.8 libvtkRendering5.8 libvtkViews5.8 libvtkVolumeRendering5.8 libvtkWidgets5.8 libvtkalglib5.8 libvtkexoIIc5.8 libvtkftgl5.8 libvtkmetaio5.8 libvtkproj4-5.8 libvtksys5.8 libvtkverdict5.8
+libvtk5.8: embedded-library usr/lib/libvtkftgl.so.5.8.0: ftgl

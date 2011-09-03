@@ -1,12 +1,28 @@
-vtk (5.8.0~git2380fac-1) unstable; urgency=low
+vtk (5.8.0-1) unstable; urgency=low
 
   * New upstream: 5.8.0
-  * Fix cmake transitive linking speading. Closes: #506992
   * Adapt to new libav. Closes: #638559
   * Remove convenient sqlite copy. Closes: #638883
     - Use lintian to hide ftgl copy
 
  -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Thu, 01 Sep 2011 15:21:52 +0200
+
+vtk (5.6.1-6.1) unstable; urgency=low
+
+  [ Michael Schutte ]
+  * Non-maintainer upload.
+  * Remove absolute paths to required libraries from
+    /usr/lib/vtk-5.6/VTKLibraryDepends.cmake after building, closes:
+    #506992.  Due to the multiarch transition, the original behavior
+    frequently causes reverse build-deps to FTBFS.  This change should
+    probably be reverted once all required libraries are multiarched.
+  
+  [ Steve M. Robbins ]
+  * Override lintian diagnostic about embedded libraries ftgl and sqlite.
+  * IO/vtkFFMPEGWriter.cxx: Applied fix from #638246 to build with libav
+    0.7.
+
+ -- Steve M. Robbins <smr@debian.org>  Thu, 01 Sep 2011 23:35:32 -0500
 
 vtk (5.6.1-6) unstable; urgency=low
 

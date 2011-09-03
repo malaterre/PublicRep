@@ -3,3 +3,4 @@ fixmrmpi_comp.patch
 #removeftgl.patch
 removesqlite.patch
 version_symbols_ftgl.diff
+debian-changes-5.6.1-6.1

@@ -12,6 +12,7 @@ usr/bin/vtkEncodeString usr/bin
 usr/bin/vtkWrapClientServer usr/bin
 usr/bin/vtkWrapHierarchy usr/bin
 usr/lib usr
+usr/share
 usr/lib/paraview/vistrails/plugin/pgui/resources/images/* usr/share/doc/paraview/images/vistrails/pgui/images
 usr/lib/paraview/vistrails/plugin/app/resources/images/app_icon.png usr/share/doc/paraview/images/vistrails/app/images
 usr/lib/paraview/CMake/branded_splash.png usr/share/doc/paraview/images/CMake/

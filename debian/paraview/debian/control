@@ -9,14 +9,14 @@ Uploaders: Christophe Prud'homme <prudhomm@debian.org>,
 Build-Depends: debhelper (>= 7.0.50~), quilt (>= 0.46-4), cmake (>= 2.6.3), 
  libqt4-dev (>= 4.3.3-2),
  qt4-dev-tools, libboost-all-dev, 
- libavformat-dev (>= 0.svn20080206),
+ libavformat-dev (>= 0.7.1),
  libavutil-dev, libavcodec-dev, libswscale-dev, python-dev, python-support, 
- chrpath, libglu1-mesa-dev, libxt-dev, python-all, python-all-dev,
+ libglu1-mesa-dev, libxt-dev, python-all, python-all-dev,
  libxext-dev, doxygen, graphviz, gnuplot, libtiff-dev, libpng-dev, libjpeg-dev, 
  libxml2-dev, libexpat-dev,
  zlib1g-dev, libfreetype6-dev, libmysqlclient-dev, libpq-dev, libtheora-dev, 
  libogg-dev, mpi-default-dev, libhdf5-mpi-dev, hdf5-tools,
- libgl2ps-dev, libgl2ps0
+ libgl2ps-dev
 Standards-Version: 3.9.2
 X-Python-Version: >=2.6
 Homepage: http://www.paraview.org/
@@ -26,8 +26,8 @@ Vcs-Browser: http://git.debian.org/?p=debian-science/packages/paraview.git
 Package: paraview
 Architecture: any
 Depends: qt4-dev-tools, tcl8.5 | tclsh, ${shlibs:Depends}, ${misc:Depends}
-Recommends: qt4-dev-tools (>= 4.3.3-2), mpi-default-bin, paraview-python, paraview-doc
 Suggests: hdf5-tools, h5utils
+Recommends: mpi-default-bin, paraview-python, paraview-doc
 Description: Parallel Visualization Application
  ParaView is an open-source, multi-platform application designed to
  visualize data sets of size varying from small to very large. The
@@ -46,10 +46,10 @@ Description: Parallel Visualization Application
  interface written using Qt.
  
 Package: paraview-dev
-Architecture: all
+Architecture: any
 Section: libdevel
-Depends: ${misc:Depends}
-Recommends: paraview
+Depends: qt4-dev-tools, ${misc:Depends}, paraview (= ${binary:Version})
+Recommends: qt4-dev-tools (>= 4.3.3-2)
 Description: Parallel Visualization Application. Development header files
  ParaView is an open-source, multi-platform application designed to
  visualize data sets of size varying from small to very large. The
@@ -95,6 +95,7 @@ Section: python
 Depends: paraview, ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}
 Provides: ${python:Provides}
 Conflicts: python-vtk
+XB-Python-Version: ${python:Versions}
 Description: Parallel Visualization Application. Python-support
  ParaView is an open-source, multi-platform application designed to
  visualize data sets of size varying from small to very large. The

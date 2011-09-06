@@ -1,5 +1,4 @@
 stddef_ptrdiff.patch
-enable_some_more_plugins.patch
 fix_manpages_errors.patch
 change_std_parameter_for_compiler.patch
 paraview-fix-libav07-compat.patch

@@ -3,16 +3,23 @@ BUILDDIR = $(CURDIR)/debian/build
 DESTDIR = $(CURDIR)/debian/tmp
 
 %:
-	dh $@ --buildsystem=cmake --builddirectory=$(BUILDDIR) --with=python2
+	dh $@ --parallel --buildsystem=cmake --builddirectory=$(BUILDDIR) --with=python2
 
 export LD_LIBRARY_PATH+=:$(CURDIR)/debian/paraview/usr/lib/paraview
 
 # -lXt is added for compiling not in clean environment. It gives an error without it.
-CFLAGS := -Wall -lXt $(shell dpkg-buildflags --get CFLAGS)
-CXXFLAGS := -Wall -lXt $(shell dpkg-buildflags --get CXXFLAGS)
+#CFLAGS := -Wall -lXt $(shell dpkg-buildflags --get CFLAGS)
+#CXXFLAGS := -Wall -lXt $(shell dpkg-buildflags --get CXXFLAGS)
 
+# CMAKE_SKIP_RPATH=OFF is important otherwise documentation generation will fails with:
+# vtkSMExtractDocumentation: error while loading shared libraries: libvtkPVServerManager.so:
+# No rule to make target `Documentation/ParaViewWriters.html', needed by `Documentation/paraview.qhp'.  Stop.
+
+# Explicit settings of MPI_* is required see
+# http://www.vtk.org/Bug/view.php?id=12572
 PYVER = $(shell pyversions -dv)
 extra_flags += 	-DPARAVIEW_GENERATE_PROXY_DOCUMENTATION=ON \
+	-DCMAKE_SKIP_RPATH=OFF \
 	-DBUILD_SHARED_LIBS=ON \
 	-DVTK_USE_SYSTEM_FREETYPE=ON \
 	-DVTK_USE_SYSTEM_JPEG=ON \
@@ -39,17 +46,21 @@ extra_flags += 	-DPARAVIEW_GENERATE_PROXY_DOCUMENTATION=ON \
 	-DVTK_USE_POSTGRES=ON \
 	-DVTK_USE_N_WAY_ARRAYS=ON \
 	-DPARAVIEW_USE_MPI=ON \
-	-DMPI_INCLUDE_PATH=/usr/include/mpi \
+	-DMPI_INCLUDE_PATH:STRING="/usr/include/mpi" \
+	-DMPI_LIBRARY:STRING="/usr/lib/libmpi++.so" \
 	-DPARAVIEW_USE_SYSTEM_HDF5=ON \
 	-DHDF5_ENABLE_PARALLEL=ON \
 	-DVTK_USE_SYSTEM_HDF5=ON \
-	-DMPI_LINK_FLAGS=-Wl \
 	-DPARAVIEW_ENABLE_PYTHON=ON \
 	-DVTK_USE_OGGTHEORA_ENCODER=ON \
 	-DVTK_USE_SYSTEM_OGGTHEORA=ON \
-	-DCMAKE_C_FLAGS='$(CFLAGS)' \
-	-DCMAKE_CXX_FLAGS='$(CXXFLAGS)' \
+	-DPARAVIEW_BUILD_PLUGIN_AdiosReader:BOOL=ON \
+	-DPARAVIEW_BUILD_PLUGIN_EyeDomeLighting:BOOL=ON \
 
+
+#	-DMPI_LINK_FLAGS=-Wl \
+#	-DCMAKE_C_FLAGS='$(CFLAGS)' \
+#	-DCMAKE_CXX_FLAGS='$(CXXFLAGS)' \
 
 override_dh_auto_configure:
 	dh_auto_configure -- $(extra_flags)
@@ -66,6 +77,9 @@ override_dh_auto_build:
 override_dh_auto_install:
 	dh_auto_install -- DESTDIR=$(DESTDIR)
 	chmod a+x $(DESTDIR)/usr/lib/paraview/testing/FindString.tcl
+
+override_dh_install:
+	dh_install --list-missing
 
 override_dh_makeshlibs:
 

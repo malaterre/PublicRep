@@ -1,1 +1,2 @@
-debian/tmp/usr/include usr
+usr/include
+usr/lib/paraview/CMake/

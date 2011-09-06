@@ -1,0 +1,25 @@
+Description: fix compilation with gcc-4.6
+Author: Mathieu Malaterre <mathieu.malaterre@gmail.com>, Anton Gladky <gladky.anton@gmail.com>
+Last-Update: 2011-06-21
+
+--- a/VTK/Utilities/vtkmetaio/metaUtils.cxx
++++ b/VTK/Utilities/vtkmetaio/metaUtils.cxx
+@@ -18,6 +18,7 @@
+ 
+ #include <stdio.h>
+ #include <ctype.h>
++#include <stddef.h>
+ 
+ #include <sys/stat.h>
+ #include <fcntl.h>
+--- a/VTK/Wrapping/Python/PyVTKObject.cxx
++++ b/VTK/Wrapping/Python/PyVTKObject.cxx
+@@ -32,7 +32,7 @@
+ #include "vtkPythonUtil.h"
+ #include "vtkObjectBase.h"
+ #include "vtkDataArray.h"
+-
++#include <stddef.h>
+ #include <vtksys/ios/sstream>
+ 
+ //--------------------------------------------------------------------

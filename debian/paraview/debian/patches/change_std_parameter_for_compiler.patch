@@ -1,0 +1,17 @@
+Description: Change -std=c99 on -std=gnu99 to fix FTBFS on KFreeBSD.
+ The error message was like:
+ "/usr/include/sys/proc.h:518:2: error: unknown type name 'u_int'"
+Author: Anton Gladky <gladky.anton@gmail.com>
+Last-Update: 2011-08-13
+
+--- paraview-3.10.1.orig/VTK/Utilities/vtkhdf5/CMakeLists.txt
++++ paraview-3.10.1/VTK/Utilities/vtkhdf5/CMakeLists.txt
+@@ -285,7 +285,7 @@ ENDIF (CMAKE_BUILD_TYPE MATCHES Debug)
+ # Compiler specific flags : Shouldn't there be compiler tests for these
+ #-----------------------------------------------------------------------------
+ IF (NOT WIN32)
+-  SET (CMAKE_C_FLAGS "${CMAKE_ANSI_CFLAGS} ${CMAKE_C_FLAGS} -std=c99 -fomit-frame-pointer -finline-functions -fno-common")
++  SET (CMAKE_C_FLAGS "${CMAKE_ANSI_CFLAGS} ${CMAKE_C_FLAGS} -std=gnu99 -fomit-frame-pointer -finline-functions -fno-common")
+ ENDIF (NOT WIN32)
+ 
+ #-----------------------------------------------------------------------------

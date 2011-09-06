@@ -1,0 +1,3 @@
+debian/build/Utilities/VTKPythonWrapping/site-packages/paraview/*.py paraview
+debian/build/Utilities/VTKPythonWrapping/site-packages/paraview/demos/*.py paraview.demos
+debian/build/Utilities/VTKPythonWrapping/site-packages/paraview/vtk/*.py paraview.vtk

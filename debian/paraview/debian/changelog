@@ -1,0 +1,324 @@
+paraview (3.10.1-5) unstable; urgency=low
+
+  * [c75b9bf] Fix FTBFS with libav/0.7.1. 
+    Thanks to Moritz Mühlenhoff <jmm@inutil.org>. (Closes: #638246)
+
+ -- Anton Gladky <gladky.anton@gmail.com>  Sat, 03 Sep 2011 19:34:04 +0200
+
+paraview (3.10.1-4) unstable; urgency=low
+
+  * [cb824b2] Revert hurd-i386 restriction, because it does not help to 
+              resolve BD-problems for this platform.
+  * [2e250a5] Use packaged-HDF5. Hopefully fixes FTBFS on mipsel and sparc.
+
+ -- Anton Gladky <gladky.anton@gmail.com>  Wed, 31 Aug 2011 18:01:19 +0200
+
+paraview (3.10.1-3) unstable; urgency=low
+
+  * [e5cb2e3] Put pvpython, vtkWrapPython, vtkWrapPythonInit into 
+              paraview-python binary. (Closes: #637397)
+  * [0dd738f] Remove mpi-default-dev from BD for hurd-i386. Hopefully 
+              fixes FTBFS on this platform.
+  * [2293398] Add gl2ps library and headers to BD. VTK_USE_SYSTEM_GL2PS 
+              is on (should use system`s gl2ps-library). (Closes: #638797)
+  * [8696bbf] Make paraview-python arch-dependend because of binaries.
+  * [9e50716] Add ${shlibs:Depends} to depends of paraview-python.
+
+ -- Anton Gladky <gladky.anton@gmail.com>  Sun, 28 Aug 2011 09:33:24 +0200
+
+paraview (3.10.1-2) unstable; urgency=low
+
+  * [27f6ded] Split paraview into paraview and paraview-python. 
+              (Closes: #637397)
+  * [ea0f0df] Add paraview-python in "Recommends" section of paraview.
+  * [19d9bc5] Fix FTBFS on KFreeBSD, changing -std=c99 parameter on -std=gnu99.
+  * [25e3fe9] Fix BD-problem on hurd-i386, deleting libhdf5-mpi-dev from BD.
+  * [f9c008d] Make paraview-python and paraview-doc architecture independent.
+
+ -- Anton Gladky <gladky.anton@gmail.com>  Sat, 13 Aug 2011 15:49:29 +0200
+
+paraview (3.10.1-1) unstable; urgency=low
+
+  [ Mathieu Malaterre ]
+  * [a111d9b] Fix compilation on gcc 4.6. (Closes: #625055) 
+
+  [ Anton Gladky ]
+  * [e88f820] Imported Upstream version 3.10.1. (Closes: #619270) 
+  * [4e6920c] Switch to 3.0 (quilt).
+  * [f94868b] Update build-depends.
+  * [b407944] Switch to Standards-Version: 3.9.2 (no changes).
+  * [03177f7] Switch to dh 7.
+  * [63c1c38] Change VCS-fields to git.
+  * [82dd5e9] Enable Ogg/Theora. (Closes: #616549)
+  * [0cc8ce1] Divide binary-library and development files. (Closes: #528615)
+  * [42b2c6b] Fix lintian warning in control-file.
+  * [6d564e4] Add paraview-doc binary. Rename libparaview-dev to 
+      paraview-dev. (Closes: #587504)
+  * [7516e41] Add .links file to prevent images file being in /usr/lib.
+  * [88a5551] Fix warnings in manpages.
+  * [729c6cf] Add myself to uploaders.
+  * [41db40f] Add lintian-overrides to block unresolvable errors.
+  * [a0d65b4] Enable python-support. (Closes: #576837)
+  * [5c7c089] Install .desktop and .pixmap files with .install. 
+      (Closes: #595683)
+  * [5c7c089] Switch hardcoded install of python-files to more 
+      reliable dh_python2. (Closes: #585267)
+
+ -- Anton Gladky <gladky.anton@gmail.com>  Tue, 26 Jul 2011 00:37:47 +0200
+
+paraview (3.8.1-3) unstable; urgency=low
+
+  * Fix compilation with FFMPEG (Closes: #614471)
+  * Package contains final 3.8.1 source (Closes: #611840)
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Fri, 25 Feb 2011 14:32:09 +0100
+
+paraview (3.8.1-2) unstable; urgency=low
+
+  * Team upload
+  * Fix a merge error in the description of the package. (Closes: #600993)
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Wed, 27 Oct 2010 20:23:33 +0200
+
+paraview (3.8.1-1) unstable; urgency=low
+
+  * New upstream: 3.8.1. Closes: #591137
+  * Do not install system lib (ffmpeg, qt)
+  * Update Standard-Version: 3.9.1 (no change required)
+  * Some debian/rules cleanups
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Fri, 30 Jul 2010 11:56:30 +0200
+
+paraview (3.8.0-1) unstable; urgency=low
+
+  * New upstream
+  * Update debian control to 3.9.0
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Mon, 05 Jul 2010 17:05:12 +0200
+
+paraview (3.6.2-5) unstable; urgency=low
+
+  * Building MySQL and PostreSQL for consistency with VTK
+    This will be needed for OverView
+  * Fix watch file to only check release (even number).
+  * Fix compilation on armel. Closes: #587712
+  * Use virtual package for jpeg, tiff, png & expat
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Thu, 01 Jul 2010 04:33:09 +0200
+
+paraview (3.6.2-4) unstable; urgency=low
+
+  * Adding myself to maintainers.
+  * Fix FTBFS with boost 1.42. Closes: #580974
+  * Fix vtkPVPluginInit.cxx.in installation. Closes: #580959
+  * Fix lintian issue with deprecated manpages.
+  * Fix path to pqClientDocFinder.txt. Closes: #544665
+  * Fix min version for libhdf5-serial-dev. Closes: #581014
+  * Fix plugin path. Closes: #537169
+  * Fix vtkWrapClientServer installation. Closes: #581017
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Mon, 10 May 2010 15:41:21 +0200
+
+paraview (3.6.2-3) unstable; urgency=low
+
+  * Package migrated to Debian Science
+  * Standards-Version updated to version 3.8.4
+  * postrm-has-useless-call-to-ldconfig postinst-has-useless-call-to-ldconfig
+    warning removed
+  * XS-DM-Upload-Allowed removed
+
+ -- Sylvestre Ledru <sylvestre@debian.org>  Tue, 16 Mar 2010 15:35:02 +0100
+
+paraview (3.6.2-2) unstable; urgency=low
+
+  [Konstantinos Poulios]
+  * Add .desktop file and mimetype file
+
+  [Christophe Prud'homme]
+  * update mimetype file with ensight case files
+  * Bug fix: "[paraview] saving to png kills paraview", thanks to Ondrej
+    Certik (Closes: #492869).
+  * Bug fix: "[paraview] paraview sometimes kills xserver", thanks to
+    Ondrej Certik (Closes: #494126).
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Sun, 31 Jan 2010 11:59:37 +0100
+
+paraview (3.6.2-1) unstable; urgency=low
+
+  [Christophe Prud'homme]
+  * New upstream release
+  * debian/control: updated Standards-Version to 3.8.3 (no changes)
+  * added patch to fix build for hdf5
+  * Bug fix: "Package is uninstallable", thanks to Boris Pek (Closes:
+    #558329).
+  * Bug fix: "CVE-2009-3560 and CVE-2009-3720 denial-of-services", thanks
+    to Michael Gilbert (Closes: #560935).
+  * Bug fix: "Paraview 3.6.1 update", thanks to Mathieu Malaterre (Closes:
+    #549211).
+  * Bug fix: "patch for NMU 3.4.0-4.1", thanks to Francesco P. Lovergine
+    (Closes: #550407).
+  * Bug fix: "Updating the paraview Maintainer/Uploaders list", thanks to
+    Sandro Tosi (Closes: #550415).
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Thu, 14 Jan 2010 10:23:56 +0100
+
+paraview (3.4.0-4) unstable; urgency=low
+
+  [ Rafael Laboissiere ]
+  * debian/control: The Debian packaging files are now maintained through
+    a Git repository at alioth.debian.org.  Switch the Vcs-* URLs to Git,
+    accordingly.
+
+  [ Christophe Prud'homme ]
+  * debian/control: update Standards-Version to 3.8.1 (no change)
+  * debian/{compat,control}: increase dh compat to 7
+  * Fixes "undeclared conflicts with python-vtk" thanks to S Robbins (Closes: #516689).
+  * Bug fix: "doesn&#39;t build from deb package", thanks to Gerber van
+    der Graaf (Closes: #528640).
+  * Bug fix: "paraview fails to build with some QT lib 4.x versions",
+    thanks to Andres E. Rodriguez Lazo (Closes: #529632).
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Thu, 21 May 2009 07:25:30 +0200
+
+paraview (3.4.0-3) unstable; urgency=low
+
+  * debian/control: build-depends on mpi-default-dev, paraview depends on
+    mpi-default instead of openmpi
+  * debian/patches/use-ffmpeg-swscaler.patch: update patch with changes in
+    header location
+  * Bug fix: "&#39;class vtkFFMPEGWriterInternal&#39; has no member named
+    &#39;rgbInput&#39;", thanks to Adeodato Simó (Closes: #517763).
+  * Bug fix: "No such file or directory", thanks to Kurt Roeckx (Closes:
+    #518232).
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Thu, 05 Mar 2009 21:53:21 +0100
+
+paraview (3.4.0-2) unstable; urgency=low
+
+  * applied patch from Nick Ellery <nick.ellery@ubuntu.com> :
+     - Use swscaler from ffmpeg rather than img_convert;
+     - Add libswscale-dev to Build-Depends.
+  * debian/control: added qt4-dev-tools to Build-Depends
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Sun, 22 Feb 2009 12:29:56 +0100
+
+paraview (3.4.0-1) unstable; urgency=low
+
+  * New upstream release: here is the list of new features
+    - Added support for plotting multiple point/cell values over time.
+    - Save screenshot now allows saving of all views.
+    - It is not possible to save higher resolution screenshots.
+    - Added support for picking end*points of lines widgets (used in plot
+      over line and streamlines) using 'p'.
+    - Added support for scene exporters. Supported formats are X3D (binary
+      and ascii), VRML 2 and POV (Persistence of Vision Raytracer).  - Added
+      ability to open multiple CTH and Exodus restart files.  - Added
+      temporal statistics filter that can be used to find average, min, max
+      and standard deviation of arrays over time.
+    - Added support for choosing (picking) custom center of rotation.
+    - Added volume rendering support for multi*block datasets. The user now
+      chooses which block to volume render.
+    - Added filter to append all blocks of a multi*block dataset to one
+      unstructured grid. Can be used to volume render the whole multi*block
+      dataset.
+    - Added support to color by block.
+    - Added 2D views / slice representation for volumes (vtkImageData).
+    - Added box and sphere widgets for slicing and clipping.
+    - Added cube axes that can be used to show scale of a dataset.
+    - Added support to color by AMR level.
+    - Added support to turn on/off the visibility of multiple objects.
+      Select multiple objects in the pipeline browser and click on one of
+      the eyeballs.
+    - Added multiple selection using ctrl (command on Mac). When
+      performing selection after the first time, hold ctrl to add to the
+      existing selection.
+    - Added "Normal Glyphs" custom filter.
+    - Added "zoom" to individual arrays in the spreadsheet view.
+      Double*click on the title*bar to activate/deactivate.
+    - Added support for displaying textures on polygonal data.
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Fri, 17 Oct 2008 17:47:41 +0200
+
+paraview (3.2.3-4) unstable; urgency=low
+
+  [ Christophe Prud'homme ]
+  * debian/control: depends on qt4-dev-tools to ensure that the help is
+    available
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Wed, 10 Sep 2008 06:53:28 +0200
+
+paraview (3.2.3-3) unstable; urgency=low
+
+  [ Ondrej Certik ]
+  * Build-Depend on libavformat-dev (>= 0.svn20080206-1). (Closes: #495822)
+
+  [ Christophe Prud'homme ]
+  * Bug fix: "paraview_3.2.3-2(sparc/unstable): FTBFS on sparc, bus error" (Closes: #494031)
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Tue, 26 Aug 2008 15:29:02 +0200
+
+paraview (3.2.3-2) unstable; urgency=low
+
+  [Christophe Prud'homme]
+  * debian/rules: enable hdf5 with parallel support
+  * debian/rules: enable documentation and examples
+  * debian/control: added libxext-dev to fix QT_X11_Xext_LIBRARY not set properly
+  * Bug fix: "paraview: Help->Help doesn't work", thanks to Thomas
+    Weber (Closes: #488671).
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Fri, 01 Aug 2008 23:39:13 +0200
+
+paraview (3.2.3-1) unstable; urgency=low
+
+  [Christophe Prud'homme]
+  * New upstream release
+  * attempt to fix vtkFFMPEGWriter (0x9d62518): Error initializing
+    video stream.
+  * cmake 2.6 patch removed, applied upstream
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Tue, 29 Jul 2008 14:03:01 +0200
+
+paraview (3.2.2-1) unstable; urgency=low
+
+  [ Ondrej Certik ]
+  * Upload to unstable (Closes: #462631)
+  * New upstream release
+  * debian/patches updated to the 3.2.2 source code
+  * cmake2.6.patch added to configure well with cmake2.6
+  * libglu1-mesa-dev and libxt-dev added to Build-Depends
+  * gcc4.3.patch added with fixes to compile with gcc 4.3
+  * Standards-Version bumped to 3.8.0 (no action needed)
+  * debian/rules: python 2.4 changed to 2.5
+  * README.Debian updated to python2.5
+  * lintian override for binary-or-shlib-defines-rpath added
+
+  [Christophe Prud'homme]
+  * added paraview manapage by Gerber van der Graaf
+  * -DMPI_EXTRA_LIBRARY="/usr/lib/libmpi++.so" added
+  * added and install manpages to all binaries
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Sun, 15 Jun 2008 22:04:41 +0200
+
+paraview (3.2.1-1) UNRELEASED; urgency=low
+
+  [ Ondrej Certik ]
+  * Initial Debian packaging
+  * XS-Vcs-Svn and XS-Vcs-Browser fields added
+  * Python scripting fixed
+  * Build against Python 2.4
+  * /usr/lib/paraview/doc directory removed
+  * /usr/bin/vtkWrapPythonInit removed
+  * /usr/bin/vtkWrapPython removed
+
+  [ Christophe Prud'homme ]
+  * debian/copyright: added all the copyrights and licenses
+  * debian/{rules,control}: use cdbs
+  * debian/{rules,control}: depends on ffmpeg encoder
+  * debian/{rules,control}: depends on python2.5
+  * debian/{rules,control}: depends on openmpi
+  * debian/rules: enable shared libs and reduce package size tremendously
+  * debian/rules: set the installation directories
+  * debian/{rules, patches/configure.patch} applied patch for Qt4.4 by
+    Gerber van der Graaf <gerber.vdgraaf@gmail.com>.
+
+ -- Christophe Prud'homme <prudhomm@debian.org>  Sat, 17 May 2008 08:58:58 +0200

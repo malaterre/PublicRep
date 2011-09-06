@@ -1,0 +1,4 @@
+version=3
+# do not consider release candidates (RC), as it makes the script report bogus result
+#http://paraview.org/files/v([\d\.]+)/[pP]ara[vV]iew-([\d\.RC-]+)\.tar\.gz
+http://paraview.org/files/v([\d]+.[\d]*[02468]+)/[pP]ara[vV]iew-([\d\.]+)\.tar\.gz

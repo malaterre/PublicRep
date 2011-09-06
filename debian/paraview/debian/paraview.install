@@ -1,0 +1,17 @@
+debian/*.xpm usr/share/pixmaps/
+debian/*.desktop usr/share/applications/
+usr/bin/kwProcessXML usr/bin
+usr/bin/paraview usr/bin
+usr/bin/pvbatch usr/bin
+usr/bin/pvblot usr/bin
+usr/bin/pvdataserver usr/bin
+usr/bin/pvrenderserver usr/bin
+usr/bin/pvserver usr/bin
+usr/bin/smTestDriver usr/bin
+usr/bin/vtkEncodeString usr/bin
+usr/bin/vtkWrapClientServer usr/bin
+usr/bin/vtkWrapHierarchy usr/bin
+usr/lib usr
+usr/lib/paraview/vistrails/plugin/pgui/resources/images/* usr/share/doc/paraview/images/vistrails/pgui/images
+usr/lib/paraview/vistrails/plugin/app/resources/images/app_icon.png usr/share/doc/paraview/images/vistrails/app/images
+usr/lib/paraview/CMake/branded_splash.png usr/share/doc/paraview/images/CMake/

@@ -1,0 +1,4 @@
+# These embedded libraries, seems, have different versions than in repository.
+# The code is incompatible with repo-versions.
+paraview binary: embedded-library usr/lib/paraview/libvtkftgl.so.pv3.10: ftgl
+paraview binary: embedded-library usr/lib/paraview/libvtksqlite.so.pv3.10: sqlite

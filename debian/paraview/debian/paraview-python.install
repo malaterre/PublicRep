@@ -1,0 +1,3 @@
+usr/bin/pvpython usr/bin
+usr/bin/vtkWrapPython usr/bin
+usr/bin/vtkWrapPythonInit usr/bin

@@ -1,0 +1,26 @@
+#!/bin/sh
+set -ex
+
+PACKAGE=net-luminis-build-plugin
+
+
+VERSION=${VERSION:-$2}
+TARFILE=${TARFILE:-$3}
+
+if [ -z ${VERSION}]; then
+VERSION=`dpkg-parsechangelog | sed -n -e 's/^Version: \(.*\)-[^-]*$/\1/p'`
+fi
+
+REVISION=`echo $VERSION | sed -e 's/^.*svn//g'`
+
+
+if [ -z ${TARFILE}]; then
+TARFILE=${PACKAGE}_${VERSION}.orig.tar.gz
+fi
+
+FOLDER=${PACKAGE}-${VERSION}
+
+svn export -r 1321 https://opensource.luminis.net/svn/BUNDLES/releases/build-plugin-0.2.0/ ${FOLDER}
+
+GZIP="--best --no-name" tar czf ${TARFILE} ${FOLDER}
+rm -rf ${FOLDER}

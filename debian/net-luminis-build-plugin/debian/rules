@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE=1
+
+JAVA_HOME=/usr/lib/jvm/default-java
+CLASSPATH=/usr/share/java/bnd.jar
+#DEB_ANT_BUILD_TARGET := dist
+
+%:
+	dh $@
+
+get-orig-source:
+	./debian/get-orig-source

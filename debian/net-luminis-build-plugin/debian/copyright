@@ -1,0 +1,28 @@
+Format: http://dep.debian.net/deps/dep5/
+Upstream-Name: JEBL
+Upstream-Contact: Andrew Rambaut <a.rambaut@ed.ac.uk>
+Source: http://code.google.com/p/jebl2/source/checkout
+
+Files: *
+Copyright: © 2009-2010 Andrew Rambaut <a.rambaut@ed.ac.uk>
+Licence: LGPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+Comment:
+ On Debian systems, you can read the full text of the GNU Lesser General Public
+ License in ‘/usr/share/common-licenses/LGPL-3’.
+
+Files: debian/*
+Copyright: © 2011 Andreas Tille <tille@debian.org>
+License: PD
+ The packaging work is in the public domain unless stated otherwise.

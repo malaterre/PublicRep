@@ -1,0 +1,50 @@
+Index: net-luminis-build-plugin/net-luminis-build-plugin-0.2.0/build.xml
+===================================================================
+--- net-luminis-build-plugin.orig/net-luminis-build-plugin-0.2.0/build.xml	2011-09-07 18:09:12.000000000 +0200
++++ net-luminis-build-plugin/net-luminis-build-plugin-0.2.0/build.xml	2011-09-07 18:09:22.000000000 +0200
+@@ -1,17 +1,30 @@
+-<project name="build-plugin" basedir="..">
+-    <target name="init" />
+-    <target name="build">
+-        <jar jarfile="deploy/net.luminis.build.plugin-0.2.0.jar" update="true">
+-            <fileset dir="classes">
+-                <include name="net/luminis/build/plugin/bnd/**" />
+-            </fileset>
+-            <fileset dir="shared/OSGI-OPT">
+-                <include name="NOTICE" />
+-                <include name="LICENSE" />
+-            </fileset>
+-            <zipfileset src="ext/bnd-0.0.238.jar" includes="**/*.class" />
+-        </jar>
++<project name="build-plugin" basedir=".">
++    <!-- set global properties for this build -->
++    <property name="src" location="src"/>
++    <property name="build" location="build"/>
++    <property name="dist"  location="dist"/>
++    <target name="init">
++        <!-- Create the time stamp -->
++        <tstamp/>
++        <!-- Create the build directory structure used by compile -->
++        <mkdir dir="${build}"/>
++    </target>
++    <target name="compile" depends="init"
++        description="compile the source " >
++        <!-- Compile the java code from ${src} into ${build} -->
++        <javac srcdir="${src}" destdir="${build}"/>
++    </target>
++    <target name="dist" depends="compile"
++        description="generate the distribution" >
++        <!-- Create the distribution directory -->
++        <mkdir dir="${dist}/lib"/>
++        <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
++        <jar jarfile="${dist}/lib/net.luminis.build.plugin-0.2.0.jar" update="true" basedir="${build}" />
++    </target>
++    <target name="clean"
++        description="clean up" >
++        <!-- Delete the ${build} and ${dist} directory trees -->
++        <delete dir="${build}"/>
++        <delete dir="${dist}"/>
+     </target>
+-    <target name="deploy" />
+-    <target name="clean" />
+ </project>

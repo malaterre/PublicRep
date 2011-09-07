@@ -1,0 +1,25 @@
+Source: net-luminis-build-plugin
+Priority: optional
+Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
+DM-Upload-Allowed: yes
+Uploaders: Mathieu Malaterre <mathieu.malaterre@gmail.com>
+Build-Depends: debhelper (>= 8), javahelper (>=0.25), bnd
+Build-Depends-Indep: default-jdk, ant
+Standards-Version: 3.9.2
+Section: java
+Homepage: https://opensource.luminis.net/wiki/display/SITE/OSGi+Bundle+Ant+Task
+Vcs-Browser: http://svn.debian.org/wsvn/debian-med/trunk/packages/bio-formats/trunk/
+Vcs-Svn: svn://svn.debian.org/svn/debian-med/trunk/packages/bio-formats/trunk/
+
+Package: libnet-luminis-build-plugin-java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Recommends: ${java:Recommends}
+Description: Java Evolutionary Biology Library 
+ A Java library for evolutionary biology and bioinformatics, including
+ objects representing biomolecular sequences, multiple sequence
+ alignments and phylogenetic trees.
+ .
+ This is a branch of the original JEBL on
+ http://sourceforge.net/projects/jebl/ to develop a new API and class
+ library.

@@ -1,0 +1,5 @@
+net-luminis-build-plugin (0.2.0-1) unstable; urgency=low
+
+  * Initial Debian Upload (Closes: #??????)
+
+ -- Andreas Tille <tille@debian.org>  Thu, 10 Feb 2011 10:26:38 +0100

@@ -3,6 +3,11 @@
 #include <jawt.h>
 #include <jni.h>
 
+#include "vtkRenderWindow.h"
+#include "vtkJavaUtil.h"
+
+#undef VTK_JAVA_DEBUG
+
 // Don't mangle names for the JVM
 extern "C" {
 
@@ -156,5 +161,234 @@ JNIEXPORT void JNICALL Java_test_Transparency_setTransparency
 #endif
 }
 
+  extern "C" {int vtkXError(Display *display, XErrorEvent *err)
+  {
+  char errorText[1024];
+  XGetErrorText( display, err->error_code, errorText, sizeof(errorText) );
+  printf( "**********************************\n" );
+  printf( "X Error: %s\n", errorText );
+  printf( "**********************************\n" );
+
+  // cause a segfault
+//    *(float *)(0x01) = 1.0;
+    return 1;
+  }}
+
+JNIEXPORT jint  JNICALL 
+Java_vtk2_vtkJPanel_RenderCreate(JNIEnv *env, jobject canvas, jobject id0)
+{
+    printf("Coucou\n");
+#if defined(WIN32_JAWT_LOCK_HACK)
+  int hash;
+  WJLH_HASH_FUNC(env, canvas, hash);
+  WJLH_lock_map[hash] = 0;
+#endif
+
+  JAWT awt;
+  JAWT_DrawingSurface* ds;
+  JAWT_DrawingSurfaceInfo* dsi;
+  jint lock;
+
+  // get the render window pointer
+  vtkRenderWindow *temp0;
+  temp0 = (vtkRenderWindow *)(vtkJavaGetPointerFromObject(env,id0));
+  
+  /* Get the AWT */
+  awt.version = JAWT_VERSION_1_3;
+  if (JAWT_GetAWT(env, &awt) == JNI_FALSE) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("AWT Not found\n");
+#endif
+    return 1;
+    }
+  
+  /* Get the drawing surface */
+  ds = awt.GetDrawingSurface(env, canvas);
+  if (ds == NULL) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("NULL drawing surface\n");
+#endif
+    return 1;
+    }
+  
+  /* Lock the drawing surface */
+  lock = ds->Lock(ds);
+  if((lock & JAWT_LOCK_ERROR) != 0) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("Error locking surface\n");
+#endif
+    awt.FreeDrawingSurface(ds);
+    return 1;
+    }
+
+  /* Get the drawing surface info */
+  dsi = ds->GetDrawingSurfaceInfo(ds);
+  if (dsi == NULL) 
+    {
+    printf("Error getting surface info\n");
+    ds->Unlock(ds);
+    awt.FreeDrawingSurface(ds);
+    return 1;
+    }
+  
+// Here is the win32 drawing code
+#if defined(_WIN32) || defined(WIN32)
+  temp0->Finalize();
+  JAWT_Win32DrawingSurfaceInfo* dsi_win;
+  dsi_win = (JAWT_Win32DrawingSurfaceInfo*)dsi->platformInfo;
+  temp0->SetWindowId((void *)dsi_win->hwnd);
+  temp0->SetDisplayId((void *)dsi_win->hdc);
+  // also set parent id to avoid border sizes being added
+  temp0->SetParentId((void *)dsi_win->hdc);
+// use mac code
+#elif defined(__APPLE__)
+  JAWT_MacOSXDrawingSurfaceInfo* dsi_mac;
+  dsi_mac = (JAWT_MacOSXDrawingSurfaceInfo*)dsi->platformInfo;
+  temp0->SetWindowId(dsi_mac->cocoaViewRef);
+// otherwise use X11 code
+#else
+  JAWT_X11DrawingSurfaceInfo* dsi_x11;
+  dsi_x11 = (JAWT_X11DrawingSurfaceInfo*)dsi->platformInfo;
+  temp0->SetDisplayId((void *)dsi_x11->display);
+//  temp0->SetWindowId((void *)dsi_x11->drawable);
+//  temp0->SetParentId((void *)dsi_x11->display);
+
+//  temp0->SetWindowId((void *)dsi_x11->display);
+//  temp0->SetDisplayId(temp0->GetGenericDisplayId());
+    if (dsi_x11->display)
+      {
+        XSynchronize(dsi_x11->display,1);
+      }
+     XSetErrorHandler(vtkXError);
+
+#endif
+  
+  /* Free the drawing surface info */
+  ds->FreeDrawingSurfaceInfo(dsi);
+  
+  /* Unlock the drawing surface */
+  ds->Unlock(ds);
+  
+  /* Free the drawing surface */
+  awt.FreeDrawingSurface(ds);
+
+#if defined(WIN32_JAWT_LOCK_HACK)
+if (WJLH_init_check == 0)
+{
+  WJLH_init_check = 1;
+}
+  WJLH_lock_map[hash] = 1;
+#endif
+  return 0;
+
+}
+
+JNIEXPORT jint  JNICALL 
+Java_vtk2_vtkJPanel_Lock(JNIEnv *env, 
+                       jobject canvas)
+{
+  JAWT awt;
+  JAWT_DrawingSurface* ds;
+  jint lock;
+
+  /* Get the AWT */
+  awt.version = JAWT_VERSION_1_3;
+  if (JAWT_GetAWT(env, &awt) == JNI_FALSE) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("AWT Not found\n");
+#endif
+    return 1;
+    }
+  
+  /* Get the drawing surface */
+  ds = awt.GetDrawingSurface(env, canvas);
+  if (ds == NULL) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("NULL drawing surface\n");
+#endif
+    return 1;
+    }
+
+#if defined(WIN32_JAWT_LOCK_HACK)
+  int hash;
+  WJLH_HASH_FUNC(env, canvas, hash);
+  if (WJLH_init_check && WJLH_lock_map[hash] > WJLH_MAX_COUNT)
+  {
+    env->MonitorEnter(canvas);      
+  }
+  else
+  {
+#endif
+  /* Lock the drawing surface */
+  lock = ds->Lock(ds);
+  if((lock & JAWT_LOCK_ERROR) != 0) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("Error locking surface\n");
+#endif
+    awt.FreeDrawingSurface(ds);
+    return 1;
+    }
+#if defined(WIN32_JAWT_LOCK_HACK)
+  }
+#endif
+
+  return 0;
+}
+
+JNIEXPORT jint  JNICALL 
+Java_vtk2_vtkJPanel_UnLock(JNIEnv *env, 
+                         jobject canvas)
+{
+  JAWT awt;
+  JAWT_DrawingSurface* ds;
+
+  /* Get the AWT */
+  awt.version = JAWT_VERSION_1_3;
+  if (JAWT_GetAWT(env, &awt) == JNI_FALSE) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("AWT Not found\n");
+#endif
+    return 1;
+    }
+  
+  /* Get the drawing surface */
+  ds = awt.GetDrawingSurface(env, canvas);
+  if (ds == NULL) 
+    {
+#ifndef VTK_JAVA_DEBUG
+    printf("NULL drawing surface\n");
+#endif
+    return 1;
+    }
+
+#if defined(WIN32_JAWT_LOCK_HACK)
+  int hash;
+  WJLH_HASH_FUNC(env, canvas, hash);
+  if (WJLH_init_check && WJLH_lock_map[hash] > WJLH_MAX_COUNT)
+  {
+    env->MonitorExit(canvas);
+  }
+  else
+  {
+    if (WJLH_init_check) WJLH_lock_map[hash]++;
+#endif
+  /* Unlock the drawing surface */
+  ds->Unlock(ds);
+#if defined(WIN32_JAWT_LOCK_HACK)
+  }
+#endif
+  
+  /* Free the drawing surface */
+  awt.FreeDrawingSurface(ds);
+
+  return 0;
+}
 
 } // extern "C"

@@ -1,8 +1,8 @@
 package test;
-
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import java.awt.event.*;
+import vtk2.*;
 
 public class MyFrame implements ActionListener
 {
@@ -20,7 +20,7 @@ public class MyFrame implements ActionListener
       button.setBounds( 20, 20, 50, 10 );
       button.addActionListener( this );
 
-      JPanel panel = new JPanel();
+      vtkJPanel panel = new vtkJPanel();
       panel.add( button );
 
       frame.setContentPane( panel );

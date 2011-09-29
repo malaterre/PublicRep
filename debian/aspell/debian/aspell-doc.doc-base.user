@@ -1,0 +1,16 @@
+Document: aspell-user
+Title: GNU Aspell User Manual
+Author: Kevin Atkinson <kevina@gnu.org>
+Abstract: This manual provides in-depth information on how to configure
+ and use the GNU Aspell spell-checker.
+Section: Apps/Text
+
+Format: text
+Files: /usr/share/doc/aspell-doc/man-text/*.txt.gz
+
+Format: HTML
+Index: /usr/share/doc/aspell-doc/man-html/index.html
+Files: /usr/share/doc/aspell-doc/man-html/*.html
+
+Format: PostScript
+Files: /usr/share/doc/aspell-doc/user-manual.ps.gz

@@ -1,0 +1,4 @@
+debian/manpages/aspell.1
+debian/manpages/run-with-aspell.1
+debian/manpages/word-list-compress.1
+debian/manpages/aspell-import.1

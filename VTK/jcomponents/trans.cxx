@@ -258,11 +258,11 @@ Java_vtk2_vtkJPanel_RenderCreate(JNIEnv *env, jobject canvas, jobject id0)
 
 //  temp0->SetWindowId((void *)dsi_x11->display);
 //  temp0->SetDisplayId(temp0->GetGenericDisplayId());
-    if (dsi_x11->display)
-      {
-        XSynchronize(dsi_x11->display,1);
-      }
-     XSetErrorHandler(vtkXError);
+//    if (dsi_x11->display)
+//      {
+//        XSynchronize(dsi_x11->display,1);
+//      }
+//     XSetErrorHandler(vtkXError);
 
 #endif
   

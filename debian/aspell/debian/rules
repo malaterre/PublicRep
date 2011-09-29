@@ -1,0 +1,118 @@
+#!/usr/bin/make -f
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+CFLAGS = -Wall -g
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+
+configure-stamp:
+	dh_testdir
+
+	CFLAGS='$(CFLAGS)' ./configure \
+		--host=$(DEB_HOST_GNU_TYPE) \
+		--build=$(DEB_BUILD_GNU_TYPE) \
+		--prefix=/usr \
+		--mandir=\$${prefix}/share/man \
+		--infodir=\$${prefix}/share/info \
+		--sysconfdir=/etc
+
+	touch configure-stamp
+
+build-arch:  configure-stamp build-arch-stamp
+build-arch-stamp:
+	dh_testdir
+
+	$(MAKE)
+
+	touch build-arch-stamp
+
+build-indep: configure-stamp build-indep-stamp
+build-indep-stamp:
+	dh_testdir
+
+	dvips -o manual/devel-manual.ps manual/devel.dvi
+	dvips -o manual/user-manual.ps manual/manual.dvi
+
+	touch build-indep-stamp
+
+build: build-arch
+
+clean:
+	dh_testdir
+	rm -f build-arch-stamp build-indep-stamp configure-stamp
+
+	-$(MAKE) distclean
+	rm -f manual/*.ps
+
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	$(MAKE) install DESTDIR=`pwd`/debian/tmp/
+
+	dh_install --exclude=.aux \
+		   --exclude=.lyx \
+		   --exclude=.dvi \
+		   --exclude=devel.tex \
+		   --exclude=manual.tex \
+		   --exclude=dev-text/index.txt \
+		   --list-missing \
+		   --sourcedir=debian/tmp
+
+install-indep: build-indep
+	dh_testdir
+	cp manual/*.ps debian/aspell-doc/usr/share/doc/aspell-doc/
+
+binary-indep: build install install-indep
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs -i
+	dh_installman -i
+	dh_installinfo -i
+	dh_installchangelogs -i ChangeLog
+	install -d debian/aspell/usr/share/lintian/overrides
+	install --mode=644 debian/aspell.overrides \
+		debian/aspell/usr/share/lintian/overrides/aspell
+	dh_link -i
+	dh_compress -i `pwd`/debian/aspell-doc/usr/share/doc/aspell-doc/man-text/*.txt
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installdocs -paspell-bin debian/README.Debian
+	dh_installman -a
+	dh_installinfo -a
+	dh_installchangelogs -a ChangeLog
+	install -d debian/aspell-bin/usr/share/lintian/overrides
+	install --mode=644 debian/aspell-bin.overrides \
+		debian/aspell-bin/usr/share/lintian/overrides/aspell-bin
+	dh_strip -a
+	dh_link -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_makeshlibs -a -V
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install 

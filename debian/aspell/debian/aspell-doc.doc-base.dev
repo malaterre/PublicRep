@@ -1,0 +1,16 @@
+Document: aspell-dev
+Title: GNU Aspell Developer Manual
+Author: Kevin Atkinson <kevina@gnu.org>
+Abstract: This manual is designed for those who which to develop Aspell.
+ It describes the coding style and overall design of the source code.
+Section: Devel
+
+Format: text
+Files: /usr/share/doc/aspell-doc/dev-text/devel.txt.gz
+
+Format: HTML
+Index: /usr/share/doc/aspell-doc/dev-html/index.html
+Files: /usr/share/doc/aspell-doc/dev-html/*.html
+
+Format: PostScript
+Files: /usr/share/doc/aspell-doc/devel-manual.ps.gz

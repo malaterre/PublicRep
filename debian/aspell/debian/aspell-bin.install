@@ -1,0 +1,4 @@
+usr/bin/aspell
+usr/bin/aspell-import
+usr/bin/run-with-aspell
+usr/bin/word-list-compress

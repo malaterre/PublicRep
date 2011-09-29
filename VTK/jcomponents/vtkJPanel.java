@@ -183,7 +183,9 @@ public class vtkJPanel extends JPanel implements
   
   public void paint(Graphics g)
   {
+            Lock();
     this.Render();
+            UnLock();
   }
 
   public void update(Graphics g) {

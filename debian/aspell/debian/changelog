@@ -1,0 +1,544 @@
+aspell (0.50.5-5) unstable; urgency=low
+
+  * Included the contents of the GFDL license in the copyright file of the
+    aspell-doc package to conform with policy.  Removed the separate FDL
+    document.
+  * Updated the manpages with newer ones from Aspell 0.60.
+
+ -- Brian Nelson <pyro@debian.org>  Sat,  4 Dec 2004 13:14:38 -0800
+
+aspell (0.50.5-4) unstable; urgency=low
+
+  * debian/control: made libpspell-dev conflict with and replace
+    libpspell4 since otherwise it may break upgrades from woody to sarge,
+    apparently (Closes: #278166)
+
+ -- Brian Nelson <pyro@debian.org>  Mon, 25 Oct 2004 09:35:02 -0700
+
+aspell (0.50.5-3) unstable; urgency=medium
+
+  * Applied a patch from upstream to fix a buffer overflow in the
+    word-list-compress utility.  This is a minor security hole, so bumped
+    the urgency to medium.
+  * debian/rules: Don't pass a version value with "dh_makeshlibs -V".  The
+    default is fine.
+  * debian/rules: Don't set CC=g++ when running configure.  This was a
+    hack to work around an old broken libtool and is no longer necessary.
+
+ -- Brian Nelson <pyro@debian.org>  Fri, 25 Jun 2004 15:47:48 -0700
+
+aspell (0.50.5-2) unstable; urgency=low
+
+  * libaspell15 "Replaces: aspell-bg (<= 3.0-1)" due to that package
+    erroneously including /usr/share/aspell/cp* files that are the domain
+    of libaspell15. (Closes: #233511)
+
+ -- Brian Nelson <pyro@debian.org>  Thu, 19 Feb 2004 12:24:51 -0800
+
+aspell (0.50.5-1) unstable; urgency=low
+
+  * New upstream release
+  * Fixed spelling error in description (Closes: #222868)
+  * Updated and improved the debian/copyright
+
+ -- Brian Nelson <pyro@debian.org>  Wed, 11 Feb 2004 22:23:03 -0800
+
+aspell (0.50.4.1-1) unstable; urgency=low
+
+  * New upstream version
+    - Integrates fix introduced in 0.50.4-2
+
+ -- Brian Nelson <pyro@debian.org>  Sat, 15 Nov 2003 23:38:40 -0800
+
+aspell (0.50.4-2) unstable; urgency=low
+
+  * Applied patch from upstream to fix a bug causing Aspell to drop the
+    last character in a word when saving the word to the personal
+    dictionary, in some situations.
+
+ -- Brian Nelson <pyro@debian.org>  Tue,  7 Oct 2003 18:47:04 -0700
+
+aspell (0.50.4-1) unstable; urgency=low
+
+  * New upstream release
+    - Complain instead of doing nothing or aborting for unimplemented
+      functions in Aspell utility, especially 'aspell filter'.
+      (Closes: #189759)
+    - Aspell API documentation fixes (Closes: #187290)
+  * Integrate upstream fixes to #185142 as well as g++ 3.3 fixes.
+  * Upstream now uses newer, less broken libtool, so there's no longer a
+    need to rerun the autotool chain and include it in the .diff.gz.
+
+ -- Brian Nelson <pyro@debian.org>  Sat,  4 Oct 2003 10:11:09 -0700
+
+aspell (0.50.3-13) unstable; urgency=low
+
+  * Added tetex-extra, gs-common, and psutils to the Build-Depends-Indep
+    so that the postscript documents generated actually contain something
+    (Closes: #206236)
+  * Bumped up standards version to 3.6.1
+
+ -- Brian Nelson <pyro@debian.org>  Sat, 23 Aug 2003 20:42:10 -0700
+
+aspell (0.50.3-12) unstable; urgency=low
+
+  * debian/rules: Use "DESTDIR" instead of "prefix" in install target, and
+    pass configure --sysconfdir=/etc.  This will properly set the conf-dir
+    to /etc instead of /usr/etc.  (Closes: #194480)
+  * prog/checker_string.cpp: added an #include <cassert> to fix
+    a failure-to-build with g++ 3.3.
+
+ -- Brian Nelson <pyro@debian.org>  Fri, 23 May 2003 13:16:36 -0700
+
+aspell (0.50.3-11) unstable; urgency=low
+
+  * Removed unnecessary dh_testroot from debian/rules clean target.
+  * Bumped up standards version.
+  * Changed section of -dev packages to libdevel.
+  * Fixed some minor mistakes in the aspell.1 manpage.
+  * Reran autotools stuff and included in diff; don't run them at build
+    time nor build-depend on them.
+
+ -- Brian Nelson <pyro@debian.org>  Mon, 28 Apr 2003 10:12:02 -0700
+
+aspell (0.50.3-10) unstable; urgency=low
+
+  * Added a fix to prevent segfaults in the trim_wspace function in
+    aspell.cpp. (Closes: #185142)
+
+ -- Brian Nelson <pyro@debian.org>  Mon, 17 Mar 2003 13:04:29 -0800
+
+aspell (0.50.3-9) unstable; urgency=low
+
+  * Rewrote the aspell.1 manpage to get in sync with upstream's user manual.
+  * Corrected an erroneous example in the aspell.1 that incorrectly
+    documented use of the "lang" option.  This caused confusion on how to
+    use this option.  Also, noted the correct usage in README.Debian.
+    (Closes: #182077)  
+  * Added a copy of the FDL to reference from the aspell.1 manpage.
+  * Added a debian/aspell-doc.copyright that notes the true license (FDL)
+    of the aspell documentation.
+  * Added libcurses5-dev as alternative to libcurses-dev in build-depends.
+  * Added lintian overrides for false positives on spelling errors.
+
+ -- Brian Nelson <pyro@debian.org>  Thu, 13 Mar 2003 01:49:10 -0800
+
+aspell (0.50.3-8) unstable; urgency=low
+
+  * Use debian/compat instead of DH_COMPAT=n in debian/rules.
+  * Added the homepage to the description.
+  * Disabled the static libraries again. According to upstream, libtool
+    static C++ libraries don't work properly.
+  * Added version info to shlibs.
+
+ -- Brian Nelson <pyro@debian.org>  Wed,  5 Mar 2003 19:18:30 -0800
+
+aspell (0.50.3-7) unstable; urgency=low
+
+  * Fixed error in aspell-doc.doc-base.dev file path. (Closes: #183162)
+  * Compress all .txt files in aspell-doc/man-text.
+
+ -- Brian Nelson <pyro@debian.org>  Mon,  3 Mar 2003 20:30:19 -0800
+
+aspell (0.50.3-6) unstable; urgency=low
+
+  * Updated the copyright file.
+  * Added doc-base support for aspell-doc's documentation.
+  * Removed .tex, .lyx, .dvi, and dev-html/index.txt from aspell-doc.
+  * Produce PostScript documentation in the build-indep target.
+  * Added tetex-bin to Build-Depends-Indep.
+
+ -- Brian Nelson <pyro@debian.org>  Thu, 27 Feb 2003 22:37:07 -0800
+
+aspell (0.50.3-5) unstable; urgency=low
+
+  * libaspell15 now Conflicts/Replaces with all of the old libaspell's to
+    ensure they aren't left lying around from old installations.
+    (Closes: #179466)
+  * Commented out the AC_DISABLE_STATIC macro in configure.ac so that the
+    static library is built, as required by Policy 11.2.
+  * Updated maintainer email address.
+
+ -- Brian Nelson <pyro@debian.org>  Wed, 19 Feb 2003 18:05:18 -0800
+
+aspell (0.50.3-4) unstable; urgency=low
+
+  * Moved /usr/share/aspell/* from aspell-bin back to libaspell where they
+    belong. (Closes: #179173)
+
+ -- Brian Nelson <nelson@bignachos.com>  Fri, 31 Jan 2003 08:54:28 -0800
+
+aspell (0.50.3-3) unstable; urgency=low
+
+  * Bumped up Build-depends to automake1.7, since this is what upstream
+    uses.  Modified debian/rules accordingly.
+  * Install upstream's changelog.
+  * Conflict with aspell-bg (<= 2.0-2.2).
+  * Moved pspell-config and its manpage to libpspell-dev.  It had
+    inadvertently been moved from libpspell to aspell-bin. (Closes: #178637)
+  * Improved the package descriptions.  Thanks Filip Van Raemdonck
+    <mechanix@debian.org> for the suggestions. (Closes: #177528)
+  * Things to note that were not mentioned in changelog for the 0.33.x to
+    0.50.x release:
+    - The library sonames changed, so no explicit action was necessary for
+      the GCC 3.2 transition.
+    - libaspell15 explicitly conflicts with every old aspell-dictionary
+      package.  Since the dictionary format changed, libaspell15 is unable
+      to coexist with older libaspell libraries as the libraries would not
+      be able to share dictionaries (and quiet breakage would occur).
+
+ -- Brian Nelson <nelson@bignachos.com>  Tue, 28 Jan 2003 16:58:30 -0800
+
+aspell (0.50.3-2) unstable; urgency=low
+
+  * Added a Conflicts with libpspell4c102.
+  * Moved libpspell15 library to libaspell11 package since it's only a 3k
+    library.
+  * Renamed libaspell11 to libaspell15 to match the library's soname.
+
+ -- Brian Nelson <nelson@bignachos.com>  Wed, 15 Jan 2003 13:27:05 -0800
+
+aspell (0.50.3-1) unstable; urgency=low
+
+  * New upstream release (Closes: #163989, #169890)
+  * Updated copyright file
+  * Set CC=g++ when running configure to work around a bug causing the
+    libraries to not build and link properly.
+  * Removed  build-dep on libltdl is  since it is no longer used
+    (Closes: #172098)
+  * Made aspell a meta-package that depends on aspell-bin and an
+    dictionary (Closes: #140183)
+  * The libpspell_aspell library is obsolete and no longer included in the
+    package (Closes: #160453)
+  * Updated for Debian policy version 3.5.8.0
+  * Wrote a new manpage for aspell-import
+  * aspell-en is now distributed in a separate package
+  * Remove the .aux temporary files from aspell-doc (Closes: #156686)
+  
+ -- Brian Nelson <nelson@bignachos.com>  Mon,  9 Dec 2002 22:22:47 -0800
+
+aspell (0.33.7.1-12) unstable; urgency=low
+
+  * New maintainer
+  * Changed Architecture fields to "any" now that the libtool bug causing
+    the FTBFS on hppa has hopefully been fixed (Closes: #139515)
+  * Add the correct copyright file to aspell-en 
+
+ -- Brian Nelson <nelson@bignachos.com>  Tue, 26 Nov 2002 23:52:53 -0800
+
+aspell (0.33.7.1-11) unstable; urgency=low
+
+  * New Maintainer (Closes: #148990)
+  * Remove bashism from debian/rules.
+
+ -- Peter Makholm <peter@makholm.net>  Thu,  1 Aug 2002 12:15:17 +0200
+
+aspell (0.33.7.1-10) unstable; urgency=low
+
+  * Adjusted Architecture fields in order to build only on systems that
+    do not use gcc 3.0 as the default compiler. These actually are hppa.
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 22 Apr 2002 18:35:28 +0200
+
+aspell (0.33.7.1-9) unstable; urgency=low
+
+  * Started using aspell-dictionary virtual package.
+  * Added spellutils to Suggests.
+  * Added autotools-dev to Build-Depends. config.{guess,sub} are now
+    updated from /usr/share/misc at build time.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 21 Mar 2002 12:28:24 +0100
+
+aspell (0.33.7.1-8) unstable; urgency=low
+
+  * Updated config.{guess,sub} to allow (maybe) building on mipsel
+    (Closes: #132351).
+  * libpspell4 minimum required version for build is now 0.12.2-5.
+
+ -- Domenico Andreoli <cavok@debian.org>  Tue,  5 Feb 2002 18:58:44 +0100
+
+aspell (0.33.7.1-7) unstable; urgency=low
+
+  * aspell-en Replaces older libaspell10 packages (Closes: #131408).
+  * libaspell10 is back Recommends-ing at least one of the available
+    dictionaries.  This breaks the dependency loop introduced in -5
+    (Closes: #131290).
+
+ -- Domenico Andreoli <cavok@debian.org>  Tue, 29 Jan 2002 18:43:26 +0100
+
+aspell (0.33.7.1-6) unstable; urgency=low
+
+  * Fixed aspell-en dependencies to cope with older libaspell packages
+    (Closes: #130306, #130454).
+
+ -- Domenico Andreoli <cavok@debian.org>  Wed, 23 Jan 2002 20:09:59 +0100
+
+aspell (0.33.7.1-5) unstable; urgency=low
+
+  * At least one dictionary is now required instead of being only
+    recommended, as it was until this release (Closes: #126594).
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon,  7 Jan 2002 22:58:36 +0100
+
+aspell (0.33.7.1-4) unstable; urgency=low
+
+  * Strictened aspell-en dependencies. Now libaspell10 (>= 0.33.7.1-3)
+    is required (Closes: #121840).
+  * libaspell10 now suggests aspell (as it was before 0.33.7.1-1).
+  * Standards version is now 3.5.6.
+
+ -- Domenico Andreoli <cavok@debian.org>  Sun,  2 Dec 2001 13:26:03 +0100
+
+aspell (0.33.7.1-3) unstable; urgency=low
+
+  * More language dictionaries are available (Closes: #82880). aspell
+    recommends (but not strictly requires) at least one of them.
+  * Now separate aspell-en package is generated, just in case one didn't
+    want to install it.
+  * Added support for DVORAK keyboard (closes: #114048).
+  * Fixed ./configure, now it uses "lt_cv_deplibs_check_method=pass_all"
+    also on ARM arch (Closes: #120395).
+
+ -- Domenico Andreoli <cavok@debian.org>  Sun, 18 Nov 2001 18:57:49 +0100
+
+aspell (0.33.7.1-2) unstable; urgency=low
+
+  * Fixed pointers to /usr/doc (now /usr/share/doc) in aspell man page
+    and all the pointers to /usr/share/doc/aspell-doc/man-txt (now
+    /usr/share/doc/aspell-doc/man-text) in man pages (Closes: #111931).
+  * Added pointers to /usr/share/doc/aspell-doc documentation in
+    word-list-compress man page.
+
+ -- Domenico Andreoli <cavok@debian.org>  Sun, 16 Sep 2001 22:50:47 +0200
+
+aspell (0.33.7.1-1) unstable; urgency=low
+
+  * New upstream version. 
+  * Reworked package relationships:
+    - added libstdc++-dev to Build-Depends
+    - added aspell-da to aspell's Suggests
+    - removed Suggests from libaspell10
+    - removed aspell from libaspell-dev's Suggests
+
+ -- Domenico Andreoli <cavok@debian.org>  Sat,  1 Sep 2001 13:59:25 +0200
+
+aspell (0.33.7-2) unstable; urgency=low
+
+  * Strictened build dependencies on libpspell-dev (Closes: #109777).
+  * Moved libpspell_aspell.la from libaspell-dev to libaspell10 (Closes: #86914).
+
+ -- Domenico Andreoli <cavok@debian.org>  Mon, 27 Aug 2001 17:02:16 +0200
+
+aspell (0.33.7-1) unstable; urgency=low
+
+  * New upstream version, it compiles with gcc 3.0 (Closes: #106443).
+  * New maintainer
+    (Closes: #107416, #107417, #107418, #107419, #107420, #107422, #107423).
+  * Acknowledged NMUs
+    (Closes: #83853, #94597, #98685, #104372, #90437, #101450, #101770).
+  * Fixed pointers to /usr/doc (now /usr/share/doc) in run-with-aspell
+    man page, patch courtesy of Stephen Stafford (Closes: #103172).
+
+ -- Domenico Andreoli <cavok@debian.org>  Tue, 14 Aug 2001 01:37:19 +0200
+
+aspell (0.32.6-3.4) unstable; urgency=low
+
+  * Non Maintainer Upload.
+  * Fixed missing libtool in Build-Depends (Closes: #104372).
+
+ -- Domenico Andreoli <cavok@debian.org>  Fri, 13 Jul 2001 18:21:22 +0200
+
+aspell (0.32.6-3.3) unstable; urgency=low
+
+  * Non Maintainer Upload.
+  * libtool stuff has been upgraded (Closes: #94597).
+
+ -- Domenico Andreoli <cavok@debian.org>  Tue, 10 Jul 2001 15:42:07 +0200
+
+aspell (0.32.6-3.2) unstable; urgency=low
+
+  * Non Maintainer Upload.
+  * Fixed Build-Depends, now uses libltdl3-dev (instead of libltdl0-dev).
+  * Recompiled with more recent packages (Closes: #98685).
+  * libpspell-impl seems to be loaded ok now (Closes: #90437).
+  * Added man page for word-list-compress, patch courtesy of Aaron Lehmann
+    (Closes: #101450).
+  * Added entry in libaspell8.shlibs for libpspell_aspell library.
+
+ -- Domenico Andreoli <cavok@debian.org>  Thu, 14 Jun 2001 01:13:30 +0200
+
+aspell (0.32.6-3.1) unstable; urgency=low
+
+  * Non Maintainer Upload.
+  * Added the missing build dependencies on libpspell-dev and libltdl0-dev
+    (Closes: #83853).
+  * Standards-Version: 3.1.1
+
+ -- Adrian Bunk <bunk@fs.tum.de>  Sat, 24 Feb 2001 02:13:58 +0100
+
+aspell (0.32.6-3) unstable; urgency=low
+
+  * Fixing bug # 75914
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 17 Jan 2001 17:45:52 -0800
+
+aspell (0.32.6-2) unstable; urgency=low
+
+  * Fixed .shlibs file, it was pointing to libaspell6.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue, 16 Jan 2001 18:01:58 -0800
+
+aspell (0.32.6-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Fri,  5 Jan 2001 13:56:36 -0800
+
+aspell (0.31-1) unstable; urgency=low
+
+  * New upstream version. This version works with libpspell2.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 14 Jun 2000 17:30:00 -0700
+
+aspell (0.30.1-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon,  1 May 2000 17:18:09 -0700
+
+aspell (0.30-1) unstable; urgency=low
+
+  * New upstream version.
+  * aspell now uses the pspell (separate Debian package) spell library.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue,  4 Apr 2000 14:04:18 -0700
+
+aspell (0.29.1-2) unstable; urgency=low
+
+  * Compiling for release into woody
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue, 14 Mar 2000 17:31:08 -0800
+
+aspell (0.29.1-1) frozen; urgency=high
+
+  * New upstream version.
+  * On the packaging side:
+    - Fixed crash on powerpc (Closes: #58358)
+    - Fixed empty README.Debian (Closes: #54378)
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon, 21 Feb 2000 11:24:24 -0800
+
+aspell (0.29-1) unstable; urgency=low
+
+  * New upstream version. Changes includes:
+    - Rudimentary filter support for HTML, TeX etc.
+    - Reworked replacement suggestion code for better results
+    - Table driven phonetic code
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue,  8 Feb 2000 13:33:38 -0800
+
+aspell (0.28.3-2) unstable; urgency=low
+
+  * Fixing bug # 54378
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon, 10 Jan 2000 11:55:54 -0800
+
+aspell (0.28.3-1) unstable; urgency=low
+
+  * New upstream version. Changes includes:
+    - Fixed a bug that caused aspell to crash when spell checking words over 60
+      characters long.
+    - Reworked ``aspell check'' so that
+      1. You no longer have to hit enter when making a choice.
+      2. It will now overwrite the original file instead of creating a
+         new file. An optional backup can be made by using the -b
+         option.
+    - Fixed a few bugs in data.cc.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue, 23 Nov 1999 10:51:10 -0800
+
+aspell (0.28.2.1-3) unstable; urgency=low
+
+  * Fixing file conflict (Closes: #47294, #47316).
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 13 Oct 1999 11:53:27 -0700
+
+aspell (0.28.2.1-2) unstable; urgency=low
+
+  * Moved /usr/share/aspell from aspell package to the libaspell one (Closes: #46472).
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon, 11 Oct 1999 11:13:57 -0700
+
+aspell (0.28.2.1-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon, 27 Sep 1999 13:47:13 -0700
+
+aspell (0.28.1-3) unstable; urgency=low
+
+  * Fixing bug # 42652.  Made call to ldconfig conditional in
+    libaspell?.postinst
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon,  9 Aug 1999 18:04:49 -0700
+
+aspell (0.28.1-2) unstable; urgency=low
+
+  * Fixing bugs #42193 and #42194
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Fri, 30 Jul 1999 10:08:06 -0700
+
+aspell (0.28.1-1) unstable; urgency=low
+
+  * New upstream version, fixes minor bugs.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 28 Jul 1999 09:43:41 -0700
+
+aspell (0.28-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon, 26 Jul 1999 17:52:02 -0700
+
+aspell (0.27.2-2) unstable; urgency=low
+
+  * Fixed bug #38006.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 21 Jul 1999 14:20:19 -0700
+
+aspell (0.27.2-1) unstable; urgency=low
+
+  * New upstream version (Closes: #34441, #35575).
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 14 Apr 1999 14:42:47 -0700
+
+aspell (0.27-3) unstable; urgency=low
+
+  * Moved libaspell1 to section libs from section devel.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue,  9 Mar 1999 14:35:14 -0800
+
+aspell (0.27-2) unstable; urgency=low
+
+  * Fixed path in SEE ALSO section of the man page (Closes: #34176).
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon,  8 Mar 1999 10:15:56 -0800
+
+aspell (0.27-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Wed, 24 Feb 1999 13:41:15 -0800
+
+aspell (0.26.2-2) unstable; urgency=low
+
+  * Fixed copyright. aspell is licensed under LGPL and not GPL.  Also corrected
+    the description of the various packages in the control file.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Tue, 16 Feb 1999 11:24:30 -0800
+
+aspell (0.26.2-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Sudhakar Chandrasekharan <thaths@netscape.com>  Mon,  8 Feb 1999 14:49:01 -0800

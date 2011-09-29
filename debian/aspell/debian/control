@@ -1,0 +1,98 @@
+Source: aspell
+Section: text
+Priority: optional
+Maintainer: Brian Nelson <pyro@debian.org>
+Build-Depends: debhelper (>= 4.0.4), libncurses5-dev | libncurses-dev
+Build-Depends-Indep: tetex-bin, tetex-extra, gs-common, psutils
+Standards-Version: 3.6.1
+
+Package: aspell
+Architecture: all
+Depends: aspell-bin, aspell-en | aspell-dictionary
+Description: GNU Aspell spell-checker
+ GNU Aspell is a spell-checker which can be used either as a standalone
+ application or embedded in other programs.  Its main feature is that it
+ does a much better job of suggesting possible spellings than just about
+ any other spell-checker available for the English language, including
+ Ispell and Microsoft Word.  It also has many other technical
+ enhancements over Ispell such as using shared memory for dictionaries
+ and intelligently handling personal dictionaries when more than one
+ Aspell process is open at once.
+ .
+ Aspell is designed to be a drop-in replacement for Ispell.
+ .
+ This is a meta-package for installing the GNU Aspell standalone
+ utilities along with an Aspell dictionary.
+ .
+  Homepage: http://aspell.net/
+
+Package: aspell-bin
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: libpspell4
+Replaces: libpspell4, aspell (<< 0.50)
+Suggests: aspell-doc, spellutils
+Description: GNU Aspell standalone spell-check utilities
+ GNU Aspell is a spell-checker which can be used either as a standalone
+ application or embedded in other programs.  Its main feature is that it
+ does a much better job of suggesting possible spellings than just about
+ any other spell-checker available for the English language, including
+ Ispell and Microsoft Word.  It also has many other technical
+ enhancements over Ispell such as using shared memory for dictionaries
+ and intelligently handling personal dictionaries when more than one
+ Aspell process is open at once.
+ .
+ GNU Aspell is designed to be a drop-in replacement for Ispell.
+
+Package: aspell-doc
+Architecture: all
+Section: doc
+Description: Documentation for GNU Aspell spell-checker
+ This package contains the documentation for GNU Aspell in various
+ formats.  The aspell-bin package comes with minimal man pages.  Install
+ this package if you need further information on the development process
+ and workings of Aspell.
+
+Package: libaspell15
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}
+Conflicts: libaspell0, libaspell1, libaspell2, libaspell3, libaspell4, libaspell5, libaspell6, libaspell8, libaspell10, libaspell11, libpspell2, libpspell4, libpspell4c102, aspell-en (<< 0.50), aspell-da (<= 1.4.22-2.3), aspell-de (<= 0.1-3-3), aspell-es (<= 0.0-3-3), aspell-fo (<= 0.1.16-2.3), aspell-fr (<= 0.1-3-4), aspell-nl (<= 1:0.1e-26), aspell-no (<= 2.0-9), aspell-pt (<= 0.0-3-4), aspell-bg (<= 2.0-2.2)
+Replaces: libaspell0, libaspell1, libaspell2, libaspell3, libaspell4, libaspell5, libaspell6, libaspell8, libaspell10, libaspell11, libpspell2, libpspell4, libpspell15, aspell-bin (<< 0.50.3-4), aspell-bg (<= 3.0-1)
+Provides: libaspell11
+Recommends: aspell-en | aspell-dictionary
+Suggests: aspell-bin
+Description: The GNU Aspell spell-checker runtime toolkits
+ These are the runtime parts of the Aspell and pspell spell-checking
+ toolkits, needed by applications that use the toolkits at runtime.
+ .
+ For a standalone spell-checker, install aspell-bin as well.
+
+Package: libaspell-dev
+Architecture: any
+Section: libdevel
+Depends: libaspell15 (= ${Source-Version})
+Suggests: aspell-doc
+Description: Development files for applications with GNU Aspell support
+ This package contains the headers and static libraries for developing
+ applications with Aspell spell-checking support.
+ .
+ You need this package ONLY if you plan to build applications that link
+ against the Aspell libraries.  You do not have to install this package
+ if all you want to do is use the Aspell program to spell-check
+ documents.
+
+Package: libpspell-dev
+Architecture: any
+Section: libdevel
+Depends: libaspell15 (= ${Source-Version}), libaspell-dev
+Conflicts: libpspell4
+Replaces: aspell-bin (<< 0.50.3-3), libpspell4
+Suggests: aspell-doc
+Description: Development files for applications with pspell support
+ This package contains the headers and static libraries for developing
+ applications with portable spell-checking interface (pspell) support.
+ .
+ You need this package ONLY if you plan to build applications that link
+ against the pspell static libraries.  You do not have to install this
+ package if all you want to do is use the Aspell program to spell-check.

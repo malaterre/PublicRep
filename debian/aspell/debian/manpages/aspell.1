@@ -1,0 +1,267 @@
+.TH ASPELL 1 "2004-03-03" "GNU" "Aspell Abbreviated User's Manual"
+.SH NAME
+aspell \- interactive spell checker
+.SH SYNOPSIS
+.B aspell
+.I "[options] <command>"
+.br
+.SH "DESCRIPTION"
+This manual page documents briefly the GNU Aspell interactive spell
+checker.  This manual page was written for the Debian GNU/Linux
+distribution because the original program does not have a manual page.
+Instead, it has documentation in HTML and text formats; see below.
+.PP
+.B aspell
+is a utility that can function as an 
+.B "ispell -a"
+replacement, as an independent spell checker, as a test utility to test
+out Aspell features, and as a utility for managing dictionaries.
+.SH COMMANDS
+.I "<command>"
+is one of:
+.TP
+.B \-?,help
+display the help message
+.TP
+.BI "\-c,check " file
+to spell-check a file
+.TP
+.B \-a,pipe
+.I "ispell -a"
+compatibility mode
+.TP
+.B \-l,list
+produce a list of misspelled words from standard input
+.TP
+.B [dump] config
+dump the current configuration to stdout
+.TP
+.BI "config " key
+print the current value of an option
+.TP
+.B soundslike
+return the soundslike equivalent for each word entered
+.TP
+.B filter
+pass standard input through the same set of filters that would be used
+to spell check a document
+.TP
+.B \-v,version
+print version number and exit
+.TP
+.BI "dump|create|merge master|personal|repl " "wordlist"
+dump, create, or merge a master, personal, or replacement word list
+.SH DICTIONARY OPTIONS
+The following options may be used to control which dictionaries to use
+and how they behave.
+.TP
+.BI "\-d,\-\-master="string
+base name of the dictionary to use. If this option is specified then
+Aspell will either use this dictionary or die.
+.TP
+.BI "\-\-dict\-dir="dir
+location of the main word list 
+.TP
+.BI "\-\-lang="string
+language to use, it follows the same format of the LANG environmental
+variable on most systems. It consists of the two letter ISO 639 language
+code and an optional two letter ISO 3166 country code after a dash or
+underscore. The default value is based on the value of the LC_MESSAGES
+locale.
+.TP
+.BI "\-\-size="string
+the preferred size of the word list 
+.TP
+.BI "\-\-jargon="string
+an extra information to distinguish two different words lists that have
+the same lang and size.
+.TP
+.BI "\-\-word\-list\-path="list
+search path for word list information files
+.TP
+.BI "\-\-module\-search\-order="list
+list of available modules, modules that come first on this list have a
+higher priority. Currently there is only one speller module.
+.TP
+.BI "\-p,\-\-personal="file
+personal word list file name
+.TP
+.BI "\-\-repl="file
+replacements list file name
+.TP
+.BI "\-\-extra\-dicts="list
+extra dictionaries to use.
+.TP
+.BI "\-\-strip\-accents="boolean
+strip accents from all words in the dictionary
+.SH CHECKER OPTIONS
+These options control the behavior of Aspell when checking documents.
+.TP
+.BI "\-W,\-\-ignore="integer
+ignore words <= n chars 
+.TP
+.BI "\-\-ignore\-case="boolean
+ignore case when checking words
+.TP
+.BI "\-\-ignore\-accents="boolean
+ignore accents when checking words
+.TP
+.BI "\-\-ignore\-repl="boolean
+ignore commands to store replacement pairs
+.TP
+.BI "\-\-save\-repl="boolean
+save the replacement word list on save allkeyboard (file) the base name
+of the keyboard definition file to use (see section 4.4.3)
+.TP
+.BI "\-\-sug\-mode="mode
+suggestion mode = ultra | fast | normal | bad-spellers
+.SH FILTER OPTIONS
+These options modify the behavior of the various filters.
+.TP
+.BI "\-\-filter="list
+add or removes a filter
+.TP
+.BI "\-\-mode="string
+sets the filter mode. Mode is one if none, url, email, sgml, or
+tex. (The short cut options '-e' may be used for email, '-H' for
+Html/Sgml, or '-t' for Tex)
+.TP
+.BI "\-\-encoding="string
+The encoding the input text is in. Valid values are ``utf-8'',
+``iso8859-*'', ``koi8-r'', ``viscii'', ``cp1252'', ``machine unsigned
+16'', ``machine unsigned 32''. However, the Aspell utility will
+currently only function correctly with 8-bit encodings. utf-8 support is
+planned for the future. The two ``machine unsigned'' encodings are
+intended to be used by other programs using the Aspell library and it
+is unlikely the Aspell utility will ever support these encodings.
+.TP
+.BI "\-\-add|rem\-email\-quote="list
+email quote characters
+.TP
+.BI "\-\-email\-margin="integer
+number of chars that can appear before the quote char
+.TP
+.BI "\-\-sgml\-check="list
+SGML attributes to always check
+.TP
+.BI "\-\-sgml\-extension="list
+SGML file extensions
+.TP
+.BI "\-\-tex\-command="list
+TeX commands
+.TP
+.BI "\-\-tex\-check\-comments="boolean
+check TeX comments
+.SH RUN\-TOGETHER WORD OPTIONS
+These may be used to control the behavior of run-together words.
+.TP
+.BI "\-C|\-B,\-\-run-together="boolean
+consider run-together words legal
+.TP
+.BI "\-\-run\-together\-limit="integer
+maximum numbers that can be strung together
+.TP
+.BI "\-\-run\-together\-min="integer
+minimal length of interior words
+.SH MISC OPTIONS
+Miscellaneous options that don't fall under any other category.
+.TP
+.BI "\-\-conf="file
+main configuration file
+.TP
+.BI "\-\-conf\-dir="dir
+location of main configuration file
+.TP
+.BI "\-\-data\-dir="dir
+location of language data files
+.TP
+.BI "\-\-local\-data\-dir="dir
+alternative location of language data files. This directory is searched
+before data-dir. It defaults to the same directory the actual main word
+list is in (which is not necessarily dict-dir).
+.TP
+.BI "\-\-home\-dir="dir
+location for personal files
+.TP
+.BI "\-\-per\-conf="file
+personal configuration file
+.TP
+.BI "\-\-prefix="dir
+prefix directory
+.SH UTILITY OPTIONS
+.TP
+.BI "\-b|\-x\-\-backup="boolean
+create a backup file by appending 
+.I .bak
+to the file name. Only applies when the command is check.
+.TP
+.BI "\-\-time="boolean
+time load time and suggest time in pipe mode.
+.TP
+.BI "\-\-reverse="boolean
+reverse the order of the suggestions list
+.TP
+.BI "\-\-keymapping="string
+the keymapping to use, either 
+.I aspell
+for the default mapping or
+.I ispell
+to use the same mapping that the ispell utility uses
+.PP
+In addition Aspell will try to make sense out of ispell's command line
+options so that it can function as a drop in replacement for ispell.  If
+Aspell is run without any command line options it will display a brief help
+screen and quit.
+.SH CONFIGURATION
+Aspell can also accept options via a personal or global configuration
+file. The exact files to used are specified by the options per-conf and
+conf respectfully but the personal configuration file is normally
+.I ".aspell.conf"
+located in the
+.B "$HOME"
+directory.
+.pp
+Each line of the configuration file has the format:
+.PP
+.RS
+.BI "option "[value]
+.RE
+.PP
+where 
+.B option
+is any one of the standard library options above without the leading
+dashes.  For example the following line will set the default language to
+Swiss German:
+.PP
+.RS
+.B lang de_CH
+.RE
+.PP
+There may any number of spaces between the option and the value however
+it can only be spaces, i.e. there is no '=' between the option name and
+the value. Comments may also be included by preceding them with a '#' as
+anything from a '#' to a newline is ignored. Blank lines are also
+allowed.  Values set in the personal configuration file override those
+in the global file. Options specified at either the command line or via
+an environmental variable override those specified by either
+configuration file.
+.PP
+The global configuration file for Aspell is 
+.I "/etc/aspell.conf"
+and the per user configuration file is 
+.I "~/.aspell.conf"
+.SH SEE ALSO
+.PP
+.BR run\-with\-aspell (1),
+.BR word\-list\-compress (1),
+.BR aspell\-import (1)
+.PP
+Aspell is fully documented in the
+.B "aspell\-doc"
+package. Install that package and see
+.I "/usr/share/doc/aspell-doc/man-html"
+or
+.IR "/usr/share/doc/aspell-doc/man-text".
+.SH AUTHOR
+This manual page was written by Brian Nelson <pyro@debian.org> based on
+the Aspell User's Manual, Copyright \(co 2002 Kevin Atkinson.

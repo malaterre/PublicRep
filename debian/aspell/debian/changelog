@@ -1,3 +1,10 @@
+aspell (0.50.5-5.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- Mathieu Malaterre <mathieu.malaterre@gmail.com>  Thu, 29 Sep 2011 15:43:35 +0200
+
 aspell (0.50.5-5) unstable; urgency=low
 
   * Included the contents of the GFDL license in the copyright file of the

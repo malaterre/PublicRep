@@ -1,0 +1,85 @@
+Index: aspell-0.50.5/common/fstream.hpp
+===================================================================
+--- aspell-0.50.5.orig/common/fstream.hpp	2002-09-18 14:38:18.000000000 +0200
++++ aspell-0.50.5/common/fstream.hpp	2011-09-29 15:40:58.000000000 +0200
+@@ -43,7 +43,7 @@
+ 
+     // NOTE: Use c_stream only as a last resort as it may
+     //       disappear if the underlining impl changes
+-    std::FILE * c_stream();
++    FILE * c_stream();
+     // However, file_no will always be available.
+     int file_no();
+ 
+Index: aspell-0.50.5/common/string_list.hpp
+===================================================================
+--- aspell-0.50.5.orig/common/string_list.hpp	2004-01-31 02:06:06.000000000 +0100
++++ aspell-0.50.5/common/string_list.hpp	2011-09-29 15:40:58.000000000 +0200
+@@ -8,6 +8,7 @@
+ #include "string_enumeration.hpp"
+ #include "mutable_container.hpp"
+ #include "posib_err.hpp"
++#include "stdlib.h"
+ 
+ namespace acommon {
+ 
+Index: aspell-0.50.5/modules/speller/default/block_vector.hpp
+===================================================================
+--- aspell-0.50.5.orig/modules/speller/default/block_vector.hpp	2001-11-30 04:55:47.000000000 +0100
++++ aspell-0.50.5/modules/speller/default/block_vector.hpp	2011-09-29 15:40:58.000000000 +0200
+@@ -14,6 +14,7 @@
+ #define __autil_block_vector__
+ 
+ #include <iterator>
++#include <stddef.h>
+ 
+ namespace aspeller {
+ 
+Index: aspell-0.50.5/modules/speller/default/data.cpp
+===================================================================
+--- aspell-0.50.5.orig/modules/speller/default/data.cpp	2003-01-13 12:14:02.000000000 +0100
++++ aspell-0.50.5/modules/speller/default/data.cpp	2011-09-29 15:40:58.000000000 +0200
+@@ -12,6 +12,7 @@
+ #include "fstream.hpp"
+ #include "language.hpp"
+ #include "speller_impl.hpp"
++#include "stdlib.h"
+ 
+ namespace aspeller {
+ 
+Index: aspell-0.50.5/modules/speller/default/data.hpp
+===================================================================
+--- aspell-0.50.5.orig/modules/speller/default/data.hpp	2004-01-31 02:06:06.000000000 +0100
++++ aspell-0.50.5/modules/speller/default/data.hpp	2011-09-29 15:40:58.000000000 +0200
+@@ -4,6 +4,7 @@
+ #define ASPELLER_DATA__HPP
+ 
+ #include <assert.h>
++#include <stdlib.h>
+ 
+ #include "copy_ptr.hpp"
+ #include "enumeration.hpp"
+Index: aspell-0.50.5/modules/speller/default/phonet.cpp
+===================================================================
+--- aspell-0.50.5.orig/modules/speller/default/phonet.cpp	2002-08-11 14:58:30.000000000 +0200
++++ aspell-0.50.5/modules/speller/default/phonet.cpp	2011-09-29 15:40:58.000000000 +0200
+@@ -26,6 +26,7 @@
+ 
+ #include <string.h>
+ #include <assert.h>
++#include <stdlib.h>
+ 
+ #include <vector>
+ 
+Index: aspell-0.50.5/prog/check_funs.cpp
+===================================================================
+--- aspell-0.50.5.orig/prog/check_funs.cpp	2004-02-10 06:54:26.000000000 +0100
++++ aspell-0.50.5/prog/check_funs.cpp	2011-09-29 15:40:58.000000000 +0200
+@@ -30,6 +30,7 @@
+ #endif
+ 
+ #include <signal.h>
++#include <stdlib.h>
+ 
+ #include "asc_ctype.hpp"
+ #include "check_funs.hpp"

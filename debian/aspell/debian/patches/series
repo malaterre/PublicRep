@@ -1,1 +1,4 @@
 aspell_comp.patch
+readonly_ws.cpp.patch
+getdata.cpp.patch
+phonet.cpp.patch

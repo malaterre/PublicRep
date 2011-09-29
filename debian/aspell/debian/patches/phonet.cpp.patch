@@ -1,0 +1,35 @@
+Index: aspell-0.50.5/modules/speller/default/phonet.cpp
+===================================================================
+--- aspell-0.50.5.orig/modules/speller/default/phonet.cpp	2011-09-29 17:17:10.000000000 +0200
++++ aspell-0.50.5/modules/speller/default/phonet.cpp	2011-09-29 17:17:50.000000000 +0200
+@@ -41,7 +41,7 @@
+ 
+ namespace aspeller {
+ 
+-  const char * const PhonetParms::rules_end = "";
++  const char * const PhonetParms::rules_end = "\0";
+   
+   static bool to_bool(const String & str) {
+     if (str == "1" || str == "true") return true;
+@@ -86,7 +86,7 @@
+       rules = &rdata.front();
+       int i = 0;
+       for (;other.rules[i] != rules_end; ++i) {
+-	rules[i] = &data.front() + (&other.data.front() - other.rules[i]);
++	rules[i] = &data.front() + (other.rules[i] - &other.data.front());
+       }
+       rules[i]   = rules_end;
+       rules[i+1] = rules_end;
+@@ -118,10 +118,10 @@
+       }
+     }
+ 
+-    parms->data.reserve(size);
++    parms->data.resize(size);
+     char * d = &parms->data.front();
+ 
+-    parms->rdata.reserve(2 * num + 2);
++    parms->rdata.resize(2 * num + 2);
+     std::vector<const char *>::iterator r = parms->rdata.begin();
+ 
+     in.restart();

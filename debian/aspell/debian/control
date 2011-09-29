@@ -2,8 +2,7 @@ Source: aspell
 Section: text
 Priority: optional
 Maintainer: Brian Nelson <pyro@debian.org>
-Build-Depends: debhelper (>= 4.0.4), libncurses5-dev | libncurses-dev
-Build-Depends-Indep: tetex-bin, tetex-extra, gs-common, psutils
+Build-Depends: debhelper (>= 4), libncursesw5-dev | libncurses-dev, cdbs (>= 0.4.0), texinfo
 Standards-Version: 3.6.1
 
 Package: aspell

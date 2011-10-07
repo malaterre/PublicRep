@@ -1,0 +1,100 @@
+Only in cableswig-0.1.0+cvs20110226.orig.new/: Build
+diff -ru cableswig-0.1.0+cvs20110226.orig//Cable/CxxTypes/CMakeLists.txt cableswig-0.1.0+cvs20110226.orig.new//Cable/CxxTypes/CMakeLists.txt
+--- cableswig-0.1.0+cvs20110226.orig//Cable/CxxTypes/CMakeLists.txt	2003-08-07 19:31:44.000000000 +0200
++++ cableswig-0.1.0+cvs20110226.orig.new//Cable/CxxTypes/CMakeLists.txt	2011-10-07 10:52:12.000000000 +0200
+@@ -7,6 +7,10 @@
+ ADD_LIBRARY(CxxTypes STATIC ${CxxTypes_SRCS})
+ ADD_DEFINITIONS(-D_cxx_STATIC)
+ 
++INSTALL(TARGETS CxxTypes
++  ARCHIVE DESTINATION ${CableSwig_INSTALL_ROOT}lib
++  COMPONENT Development)
++
+ IF(NOT CABLE_NO_INSTALL_FACILITIES)
+   INSTALL_FILES(/include/Cable/CxxTypes "^cxx.*\\.h$")
+ ENDIF(NOT CABLE_NO_INSTALL_FACILITIES)
+diff -ru cableswig-0.1.0+cvs20110226.orig//Cable/Generators/CMakeLists.txt cableswig-0.1.0+cvs20110226.orig.new//Cable/Generators/CMakeLists.txt
+--- cableswig-0.1.0+cvs20110226.orig//Cable/Generators/CMakeLists.txt	2003-04-09 20:40:00.000000000 +0200
++++ cableswig-0.1.0+cvs20110226.orig.new//Cable/Generators/CMakeLists.txt	2011-10-07 10:51:46.000000000 +0200
+@@ -10,3 +10,15 @@
+ )
+ 
+ TARGET_LINK_LIBRARIES(CableGenerators CableParsers CxxTypes CableExpat)
++
++INSTALL(TARGETS CableGenerators
++  ARCHIVE DESTINATION ${CableSwig_INSTALL_ROOT}lib
++  COMPONENT Development)
++
++INSTALL(FILES
++  cableCvTypeWriter.h
++  cableGenerator.h
++  cableTclGenerator.h
++  cableSystemTools.h
++  DESTINATION ${CableSwig_INSTALL_ROOT}include/Cable
++  COMPONENT Development)
+diff -ru cableswig-0.1.0+cvs20110226.orig//Cable/Parsers/CMakeLists.txt cableswig-0.1.0+cvs20110226.orig.new//Cable/Parsers/CMakeLists.txt
+--- cableswig-0.1.0+cvs20110226.orig//Cable/Parsers/CMakeLists.txt	2002-05-08 21:45:24.000000000 +0200
++++ cableswig-0.1.0+cvs20110226.orig.new//Cable/Parsers/CMakeLists.txt	2011-10-07 10:51:46.000000000 +0200
+@@ -40,3 +40,49 @@
+ )
+ 
+ TARGET_LINK_LIBRARIES(CableParsers CxxTypes CableExpat)
++
++INSTALL(TARGETS CableParsers
++  ARCHIVE DESTINATION ${CableSwig_INSTALL_ROOT}lib
++  COMPONENT Development)
++
++INSTALL(FILES
++  cableSmartPointer.h
++  cableUtils.h
++
++  cableArrayType.h
++  cableClass.h
++  cableClassType.h
++  cableConstructor.h
++  cableContext.h
++  cableConverter.h
++  cableDestructor.h
++  cableEnumeration.h
++  cableEnumerationType.h
++  cableField.h
++  cableFunction.h
++  cableFunctionType.h 
++  cableFundamentalType.h
++  cableIndent.h
++  cableMethod.h
++  cableMethodType.h
++  cableNamed.h
++  cableNamespace.h
++  cableNamespaceAlias.h
++  cableObject.h
++  cableOffsetType.h
++  cableOperatorFunction.h
++  cableOperatorMethod.h
++  cablePointerType.h
++  cableReferenceType.h
++  cableSourceObject.h
++  cableSourceRepresentation.h
++  cableStruct.h
++  cableType.h
++  cableTypedef.h
++  cableUnion.h
++  cableVariable.h
++  cableXMLParser.h
++  cableXMLSourceElement.h
++  cableXMLSourceParser.h
++  DESTINATION ${CableSwig_INSTALL_ROOT}include/Cable
++  COMPONENT Development)
+diff -ru cableswig-0.1.0+cvs20110226.orig//CMakeLists.txt cableswig-0.1.0+cvs20110226.orig.new//CMakeLists.txt
+--- cableswig-0.1.0+cvs20110226.orig//CMakeLists.txt	2009-06-26 01:56:00.000000000 +0200
++++ cableswig-0.1.0+cvs20110226.orig.new//CMakeLists.txt	2011-10-07 10:51:44.000000000 +0200
+@@ -92,7 +92,7 @@
+ SUBDIRS(SWIG Cable)
+ 
+ # Tell CABLE to not install CxxTypes headers.
+-SET(CABLE_NO_INSTALL_FACILITIES 1)
++SET(CABLE_NO_INSTALL_FACILITIES 0)
+ # make sure CableSwig_INSTALL_ROOT has a / on the end
+ IF(NOT "${CableSwig_INSTALL_ROOT}" MATCHES "/$")
+   SET(CableSwig_INSTALL_ROOT "${CableSwig_INSTALL_ROOT}/")
+Only in cableswig-0.1.0+cvs20110226.orig.new/: debian

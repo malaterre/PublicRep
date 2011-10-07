@@ -24,3 +24,6 @@ debian/cswig.1: debian/cswig.1.in
 
 binary-install/cableswig::
 	dh_installman debian/cswig.1 debian/cableidx.1
+
+get-orig-source:
+	./debian/makeSource.sh

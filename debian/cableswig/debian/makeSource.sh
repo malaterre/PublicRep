@@ -5,6 +5,7 @@ set -e
 VERSION=0.1.0
 ITKBRANCHTAG=ITK-3-20
 DATE=20110226
+export CVSROOT=:pserver:anonymous@public.kitware.com:/cvsroot/CableSwig
 
 cvsdirname=`pwd`
 dirname=cableswig-${VERSION}+cvs${DATE}.orig

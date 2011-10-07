@@ -1,0 +1,6 @@
+		CableSwig for Debian
+		--------------------
+
+The upstream Cableswig source code includes a copy of gccxml sources
+(a modified version of gcc's front end).  The Debian build, however,
+does not use it, but instead uses gccxml from the gccxml package.

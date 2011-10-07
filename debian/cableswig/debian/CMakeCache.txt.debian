@@ -1,0 +1,16 @@
+#--------------------------------------------------------------------------
+# CMakeCache.txt - primer for Debian build of CableSwig
+#--------------------------------------------------------------------------
+
+// Be explicit about specifying g++
+CMAKE_CXX_COMPILER:STRING=g++
+
+// Build optimised version
+CMAKE_BUILD_TYPE:STRING=RELEASE
+
+// We don't want rpath
+CMAKE_SKIP_RPATH:BOOL=ON
+
+// Use already-installed gccxml
+CSWIG_USE_SYSTEM_GCCXML:BOOL=ON
+GCCXML_PATH:FILEPATH=/usr/bin/gccxml

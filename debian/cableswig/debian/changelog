@@ -1,0 +1,72 @@
+cableswig (0.1.0+cvs20110226-1) unstable; urgency=low
+
+  * New upstream, pulled from ITK-3-20 CVS branch.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 26 Feb 2011 18:25:46 -0600
+
+cableswig (0.1.0+cvs20100501-1) unstable; urgency=low
+
+  * New upstream, pulled from ITK-3-18 CVS branch.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 01 May 2010 15:19:45 -0500
+
+cableswig (0.1.0+cvs20090916-1) unstable; urgency=low
+
+  * New upstream, pulled from ITK-3-16 CVS branch.
+
+  * control: Remove Gavin Baker as maintainer, as he has never uploaded.
+    Set debhelper dependency to version 7.  Set Standards-Version to
+    3.8.3.0.
+  
+ -- Steve M. Robbins <smr@debian.org>  Mon, 21 Sep 2009 22:12:13 -0500
+
+cableswig (0.1.0+cvs20090701-1) unstable; urgency=low
+
+  * New upstream, pulled from ITK-3-14 CVS branch.
+    - patches/01_SWIG-CMakeLists-SWIG_LIB_INSTALL.diff: Remove.  Applied
+    upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 01 Jul 2009 06:05:48 -0500
+
+cableswig (0.1.0+cvs20080508-1) unstable; urgency=low
+
+  * New upstream, pulled from ITK-3-6 CVS branch.
+    debian/patches/02_gcc-4.3.diff: Removed, patch incorporated upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Thu, 08 May 2008 08:30:49 -0500
+
+cableswig (0.1.0+cvs20080107-2) unstable; urgency=low
+
+  * patches/02_gcc-4.3.diff: New.  Fixes to build with GCC 4.3.  Closes: #454888.
+
+  * CMakeCache.txt.debian: Remove setting for prefix; already specified on
+    command line in debian/rules.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 28 Jan 2008 02:18:29 -0600
+
+cableswig (0.1.0+cvs20080107-1) unstable; urgency=low
+
+  * New upstream release.  From ITK-3-4 CVS branch.  All source patches
+    (CMakeLists.txt, Executables/cableSwigMain.cxx, and
+    Executables/cableidx.cxx) removed as they have already been
+    incorporated upstream.
+  
+  * rules:
+  * control: Rewrite using cdbs.  Update Standards-Version to 3.7.3.
+  
+  * patches/01_SWIG-CMakeLists-SWIG_LIB_INSTALL.diff: Set variable
+    SWIG_LIB_INSTALL before using it to generate swigconfig.h.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 07 Jan 2008 23:09:01 -0600
+
+cableswig (0.1.0+cvs20060311-1) unstable; urgency=low
+
+  * Initial upload.  Closes: #348156.
+  
+  * Started from Gavin Baker's debian package.  Sources from CVS ITK-2-4
+    branch, dated 2006-03-11.  Remove directories GCC and GCC_XML.
+  
+  * Generated cswig manpage using help2man.  Wrote cableidx manpage using
+    text from ITK website.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 12 Mar 2006 23:13:26 -0500

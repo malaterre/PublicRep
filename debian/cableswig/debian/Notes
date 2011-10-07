@@ -1,0 +1,12 @@
+Build from upstream CVS snapshot along the ITK-2-4 branch.
+
+	sh debian/makeSource.sh
+
+Build
+
+	cd ../cableswig-0.1.0+cvs20060311
+	debuild
+
+
+
+

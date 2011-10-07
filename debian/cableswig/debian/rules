@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/makefile.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_BUILDDIR = $(CURDIR)/Build
+DEB_DESTDIR = $(CURDIR)/debian/cableswig
+
+DEB_MAKE_INSTALL_TARGET = install DESTDIR=$(DEB_DESTDIR)
+
+clean::
+	rm -rf $(DEB_BUILDDIR)
+
+common-configure-arch::
+	cp debian/CMakeCache.txt.debian $(DEB_BUILDDIR)/CMakeCache.txt
+	cd $(DEB_BUILDDIR) && cmake ../ -DCMAKE_INSTALL_PREFIX:PATH=/usr
+
+# Note: for this to work, help2man has to be modified NOT to discard stderr
+debian/cswig.1: debian/cswig.1.in
+	help2man --include=debian/cswig.1.in \
+		--output=debian/cswig.1 --no-info \
+		--help-option=-help --version-option=-version cswig
+
+binary-install/cableswig::
+	dh_installman debian/cswig.1 debian/cableidx.1

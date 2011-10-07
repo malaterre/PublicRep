@@ -1,0 +1,15 @@
+.TH CABLEIDX "1" "March 2006" "cableidx " "User Commands"
+.SH NAME
+cableidx \- generate index files from gccxml xml files.
+.SH SYNOPSIS
+.B cableidx
+.I "input.xml" "output.idx"
+.SH DESCRIPTION
+The command cableidx generates index files from gccxml xml files. The index
+files tell cswig what classes are wrapped in which libraries. This is
+important because swig needs to know if a class is not wrapped or
+wrapped in another module, and if it is wrapped which module it is
+wrapped in.
+.SH "SEE ALSO"
+.BR cswig (1),
+.BR gccxml (1).

@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --buildsystem=cmake --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DGCCXML_DOC_DIR:STRING=/share/doc/gccxml
+
+override_dh_auto_build:
+	cp -a debian/Support/* GCC_XML/Support
+	dh_auto_build
+
+VER_FULL = $(shell dpkg-parsechangelog | grep '^Version' | cut -d' ' -f2 | cut -f1 -d-)
+# See Ginkgo CADx rules for original source
+
+

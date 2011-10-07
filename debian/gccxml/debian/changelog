@@ -1,0 +1,177 @@
+gccxml (0.9.0+cvs20110723-3) unstable; urgency=low
+
+  * patches/hurd-build.patch: New.  Fix build on hurd-i386 (thanks, Samuel
+    Thibault).  Closes: #638577.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 03 Sep 2011 14:52:11 -0500
+
+gccxml (0.9.0+cvs20110723-2) unstable; urgency=low
+
+  * Upload to unstable.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 23 Jul 2011 23:47:47 -0500
+
+gccxml (0.9.0+cvs20110723-1) experimental; urgency=low
+
+  * New cvs snapshot.
+
+  * Support/4.6/s390-linux-gnu:
+  * Support/4.6/powerpc-linux-gnu: Remove.  The attempt to override
+    c++config.h for these architectures did not work.  The gccxml wrapper
+    puts /usr/share/gccxml-0.9/GCC/${GCC_VERSION} on the include path so
+    can find in overrides for <header>, but not the architecture-specific
+    headers in ${GCC_VERSION}/${ARCHITECTURE}.
+  
+  * Support/GCC/4.6/bits/c++config.h: New.  Use the amd64 version of this file
+    which does not define symbols _GLIBCXX_INLINE_VERSION nor
+    _GLIBCXX_LONG_DOUBLE_COMPAT and therefore avoids use of "inline
+    namespace".
+  
+  * gccxml.install: Remove.
+  * rules: Copy debian/Support to GCC_XML/Support prior to running tests.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 23 Jul 2011 13:53:27 -0500
+
+gccxml (0.9.0+cvs20110626-2) experimental; urgency=low
+
+  * Support: install override c++config.h for powerpc, s390.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 28 Jun 2011 02:00:54 -0500
+
+gccxml (0.9.0+cvs20110626-1) experimental; urgency=low
+
+  * New cvs snapshot.
+    - support/4.4/bits/c++config.h:  Remove.  Fixed upstream.
+    - support/4.6/complex: Remove.  Fixed upstream.
+
+  * rules: Rewrite using dh.
+  * source/format: Change to 3.0 (quilt).
+  * patches: Add series, tweak patches to "quilt format".
+  
+  * patches/debian-tests:
+  * Testing: Add test cases for: cmath, complex, and
+    tr1/type_traits (bug 626781).
+  
+ -- Steve M. Robbins <smr@debian.org>  Mon, 27 Jun 2011 00:32:04 -0500
+
+gccxml (0.9.0+cvs20110506-1) unstable; urgency=low
+
+  * New cvs snapshot.
+  
+  * support/4.6/complex: New, from
+    http://www.cmake.org/Bug/view.php?id=12158.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 06 May 2011 00:29:21 -0500
+
+gccxml (0.9.0+cvs20110222-1) unstable; urgency=low
+
+  * New cvs snapshot.  
+    - Includes fix for libc6 2.12.  Closes: #609000.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 22 Feb 2011 00:36:29 -0600
+
+gccxml (0.9.0+cvs20100501-2) unstable; urgency=low
+
+  * debian/support/4.4/bits/c++config.h: New.  Override to disable
+    _GLIBCXX_LONG_DOUBLE_COMPAT, allowing compile that includes <complex>.
+    Closes: #581051.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 04 Jun 2010 03:22:24 -0500
+
+gccxml (0.9.0+cvs20100501-1) unstable; urgency=low
+
+  * New cvs snapshot for ITK 3.18.
+    - mipspro/find_flags fixed.  Closes: #496391.
+  
+ -- Steve M. Robbins <smr@debian.org>  Sat, 01 May 2010 20:42:01 -0500
+
+gccxml (0.9.0+cvs20090916-1) unstable; urgency=low
+
+  * New cvs snapshot for ITK 3.16.
+  
+  * control: Set Standards-Version to 3.8.3.  Update debhelper dependency
+    to version 7.  Add Homepage.
+  * compat: Set compat level to 7.
+
+ -- Steve M. Robbins <smr@debian.org>  Mon, 21 Sep 2009 21:34:29 -0500
+
+gccxml (0.9.0+cvs20090701-1) unstable; urgency=low
+
+  * New cvs snapshot.
+    - patches/03_gcc-4.3.diff: Remove.  Applied upstream.
+
+ -- Steve M. Robbins <smr@debian.org>  Wed, 01 Jul 2009 06:57:07 -0500
+
+gccxml (0.9.0+cvs20080525-1) unstable; urgency=low
+
+  * New cvs snapshot.  Includes some support for GCC 4.3 builtins.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 25 May 2008 23:43:55 -0500
+
+gccxml (0.9.0+cvs20080508-1) unstable; urgency=low
+
+  * New cvs snapshot.
+
+ -- Steve M. Robbins <smr@debian.org>  Thu, 08 May 2008 02:08:00 -0500
+
+gccxml (0.9.0+cvs20071228-2) unstable; urgency=low
+
+  * patches/03_gcc-4.3.diff: New.  Add two includes to build using GCC
+    4.3.  Closes: #455440.
+
+ -- Steve M. Robbins <smr@debian.org>  Sat, 16 Feb 2008 20:10:34 -0600
+
+gccxml (0.9.0+cvs20071228-1) unstable; urgency=low
+
+  * New cvs snapshot.  Now version 0.9.0.
+    - Updated internal parser to GCC 4.2.  Closes: #456333.
+  
+  * control:
+  * rules: Rewrite using cdbs.
+  
+  * patches/01_remove-xatexit.diff: Created from previous debian patch.
+    Fix CMakeLists.txt to reflect the fact that xatexit is removed from
+    original sources.
+  
+  * patches/02_quote-target-cpu-default.diff: Created from previous debian
+    patch.  Quote value of ${target_cpu_default} as it may contain
+    parentheses.
+  
+  * watch: Removed (closes: #449832).  Upstream has made no release since
+    2004 and suggests using the CVS version only.
+
+ -- Steve M. Robbins <smr@debian.org>  Fri, 28 Dec 2007 18:19:21 -0600
+
+gccxml (0.7.0+cvs20070318-1) unstable; urgency=low
+
+  * New cvs snapshot.
+  
+  * debian/control: Update Standards-Version to 3.7.2.2 (no changes
+    required).
+  
+  * GCC/config.guess:
+  * GCC/config.sub: Replace with current version from package
+    autotools-dev.  Closes: #370294.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 18 Mar 2007 22:33:51 -0500
+
+gccxml (0.7.0+cvs20060311-2) unstable; urgency=low
+
+  * GCC/config_cmake/gcc_platform.sh: quote value of ${target_cpu_default}
+  as it may contain parentheses.  Closes: #358467.
+
+ -- Steve M. Robbins <smr@debian.org>  Tue, 28 Mar 2006 23:13:09 -0500
+
+gccxml (0.7.0+cvs20060311-1) unstable; urgency=low
+
+  * Initial upload.  Closes: #189927.
+  
+  * Build from CVS (snapshot as of 2006-03-11) for GCC 4 support;
+    c.f. http://public.kitware.com/pipermail/gccxml/2005-October/000681.html
+
+  * Source in .orig.tar.gz is modified from upstream: removed file
+  GCC/libiberty/xatexit.c and directory GCC_XML/Support/Borland as 
+  there is no clear permission to distribute all these files.
+
+ -- Steve M. Robbins <smr@debian.org>  Sun, 12 Mar 2006 17:01:48 -0500
+

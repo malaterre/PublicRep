@@ -1,0 +1,5 @@
+hurd-build.patch
+01_remove-xatexit.diff
+02_quote-target-cpu-default.diff
+debian-tests
+debian-changes-0.9.0+cvs20110723-3

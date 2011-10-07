@@ -1,0 +1,11 @@
+--- gccxml-0.9.0+cvs20110626.orig/CMakeLists.txt
++++ gccxml-0.9.0+cvs20110626/CMakeLists.txt
+@@ -31,5 +31,8 @@
+ # Build GCC and GCC_XML.
+ SUBDIRS(GCC GCC_XML)
+ 
++# Debian tests
++SUBDIRS(debian/Testing)
++
+ # Use CPack to build a redistributable installer
+ INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/gccxmlCPack.cmake")

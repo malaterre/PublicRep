@@ -1,0 +1,11 @@
+--- gccxml-0.9.0+cvs20110626.orig/GCC/config_cmake/gcc_platform.sh
++++ gccxml-0.9.0+cvs20110626/GCC/config_cmake/gcc_platform.sh
+@@ -50,7 +50,7 @@
+ SET(extra_options ${extra_options})
+ SET(c_target_objs ${c_target_objs})
+ SET(cxx_target_objs ${cxx_target_objs})
+-SET(target_cpu_default ${target_cpu_default})
++SET(target_cpu_default "${target_cpu_default}")
+ SET(out_host_hook_obj ${out_host_hook_obj})
+ EOF
+ 

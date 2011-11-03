@@ -1,9 +1,10 @@
 Source: dktools
-Homepage: http://www.itk.org/HTML/CableSwig.html
-Section: devel
+Homepage: http://dktools.sourceforge.net/
+Section: libs
 Priority: optional
-Maintainer: Mathieu Malaterre <mathieu.malaterre@gmail.com>
-Build-Depends: debhelper (>= 8)
+Maintainer: Debian PhotoTools Maintainers <pkg-phototools-devel@lists.alioth.debian.org>
+Uploaders: Mathieu Malaterre <mathieu.malaterre@gmail.com>
+Build-Depends: debhelper (>= 8), libdb-dev, perl
 Standards-Version: 3.9.2
 
 Package: cableswig

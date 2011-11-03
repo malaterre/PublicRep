@@ -4,7 +4,7 @@
 #include /usr/share/dpkg/buildflags.mk
 
 %:
-	dh $@
+	dh $@ --with autotools_dev -- --prefix=/usr
 
 get-orig-source:
-	uscan --force-download --repack
+	uscan --force-download --repack --rename

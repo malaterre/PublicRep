@@ -1,0 +1,18 @@
+Source: tifffile
+Priority: optional
+Section: python
+Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
+DM-Upload-Allowed: yes
+Uploaders: Mathieu Malaterre <mathieu.malaterre@gmail.com>
+Build-Depends: debhelper (>= 8), python-all (>= 2.6.6-3~), python-numpy
+Standards-Version: 3.9.2
+X-Python-Version: 2.6
+Homepage: http://bla.com
+Vcs-Browser: http://svn.debian.org/wsvn/debian-med/trunk/packages/jai-core/trunk/
+Vcs-Svn: svn://svn.debian.org/svn/debian-med/trunk/packages/jai-core/trunk/
+
+
+Package: tifffile
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}, python-matplotlib
+Description: lib tiff

@@ -4,7 +4,7 @@ Section: python
 Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
 DM-Upload-Allowed: yes
 Uploaders: Mathieu Malaterre <mathieu.malaterre@gmail.com>
-Build-Depends: debhelper (>= 8), python-all-dev (>= 2.6.6-3~), python-numpy
+Build-Depends: debhelper (>= 8), python-dev (>= 2.6.6-3~), python-numpy
 Standards-Version: 3.9.2
 Homepage: http://www.lfd.uci.edu/~gohlke/
 Vcs-Browser: http://svn.debian.org/wsvn/debian-med/trunk/packages/tifffile/trunk/

@@ -4,15 +4,17 @@ Section: python
 Maintainer: Debian Med Packaging Team <debian-med-packaging@lists.alioth.debian.org>
 DM-Upload-Allowed: yes
 Uploaders: Mathieu Malaterre <mathieu.malaterre@gmail.com>
-Build-Depends: debhelper (>= 8), python-all (>= 2.6.6-3~), python-numpy
+Build-Depends: debhelper (>= 8), python-all-dev (>= 2.6.6-3~), python-numpy
 Standards-Version: 3.9.2
-X-Python-Version: 2.6
-Homepage: http://bla.com
-Vcs-Browser: http://svn.debian.org/wsvn/debian-med/trunk/packages/jai-core/trunk/
-Vcs-Svn: svn://svn.debian.org/svn/debian-med/trunk/packages/jai-core/trunk/
-
+Homepage: http://www.lfd.uci.edu/~gohlke/
+Vcs-Browser: http://svn.debian.org/wsvn/debian-med/trunk/packages/tifffile/trunk/
+Vcs-Svn: svn://svn.debian.org/svn/debian-med/trunk/packages/tifffile/trunk/
 
 Package: tifffile
 Architecture: all
-Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}, python-matplotlib
-Description: lib tiff
+Depends: ${python:Depends}, ${misc:Depends}, ${shlibs:Depends}, python-matplotlib, python-tk
+Provides: ${python:Provides}
+Description: Reads image & metadata from TIFF, STK, LSM, OME-TIFF and FluoView files.
+ Various scientific formats are supported, such as uncompressed or losslessly
+ compressed integer images of any bit size, 32 and 64-bit floating point images,
+ Carl Zeiss LSM files, and MetaMorph(r) STK stacks.

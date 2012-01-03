@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with autoreconf
+
+get-orig-source:
+	git clone git://github.com/Bumblebee-Project/bumblebeed.git
+	rm -rf bumblebeed/.git

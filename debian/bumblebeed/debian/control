@@ -1,0 +1,12 @@
+Source: bumblebeed
+Priority: optional
+Section: libs
+Maintainer: Mathieu Malaterre <mathieu.malaterre@gmail.com>
+Build-Depends: debhelper (>= 8)
+Standards-Version: 3.9.2
+Homepage: http://www.exmaple.com
+
+Package: bumblebeed
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: optimus stuff

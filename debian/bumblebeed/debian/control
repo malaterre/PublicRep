@@ -2,11 +2,17 @@ Source: bumblebeed
 Priority: optional
 Section: libs
 Maintainer: Mathieu Malaterre <mathieu.malaterre@gmail.com>
-Build-Depends: debhelper (>= 8)
+Build-Depends: debhelper (>= 8), dh-autoreconf
 Standards-Version: 3.9.2
-Homepage: http://www.exmaple.com
+Homepage: https://github.com/Bumblebee-Project/
 
 Package: bumblebeed
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: optimus stuff
+Description: bumblebeed daemon utilities
+ Bumblebee daemon is a rewrite of the original
+ [Bumblebee](https://github.com/Bumblebee-Project/Bumblebee)
+ service, providing an elegant and stable means of managing Optimus
+ hybrid graphics chipsets. A primary goal of this project is to not only
+ enable use of the discrete GPU for rendering, but also to enable
+ smart power management of the dGPU when it's not in use.

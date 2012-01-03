@@ -4,5 +4,6 @@
 	dh $@ --with autoreconf
 
 get-orig-source:
-	git clone git://github.com/Bumblebee-Project/bumblebeed.git
-	rm -rf bumblebeed/.git
+	git clone git://github.com/Bumblebee-Project/bumblebeed.git bumblebeed-1.0
+	rm -rf bumblebeed-1.0/.git
+	tar cfz bumblebeed_1.0.orig.tar.gz bumblebeed-1.0

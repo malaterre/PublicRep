@@ -4,11 +4,12 @@ cmake_minimum_required(VERSION 2.8)
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})
 
+find_package(PythonLibs)
 include_directories(
 ${PYTHON_INCLUDE_PATH}
 )
 
-add_library(thelib SHARED myfile.cxx)
+add_library(thelib SHARED myvector.cxx)
 
 find_package(PythonLibs)
 set_source_files_properties(demo.i PROPERTIES CPLUSPLUS ON)

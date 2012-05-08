@@ -14,9 +14,11 @@ class MY_EXPORT my_vector
 {
  std::vector<int> I;
 public:
- typedef std::vector<int>::size_type SizeType; // not working
- //typedef size_t SizeType; // nope...
+ //typedef std::vector<int>::size_type SizeType; // not working
+ typedef size_t SizeType; // nope...
  //typedef int SizeType; // yay !
 
  SizeType Count() const;
+
+ std::vector<int> const & GetI() const;
 };

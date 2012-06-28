@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Wine configuration
+Comment=Setup the compatibility layer for Windows programs
+Comment[ca]=Configura la capa de compatibilitat per a programes de Windows
+Exec=winecfg
+Icon=/usr/share/pixmaps/wine.xpm
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;System;

@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+git-buildpackage --git-pristine-tar \
+ --git-upstream-tag="wine-%(version)s" \
+ --git-debian-tag="wine-%(version)s" \
+ "$@"

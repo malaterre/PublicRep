@@ -1,0 +1,3 @@
+debian/tmp/usr/lib/wine/wine-kthread
+debian/tmp/usr/lib/wine/wine-pthread
+debian/tmp/usr/lib/wine/wine-preloader

@@ -1,0 +1,42 @@
+From: Ove Kaaven <ovek@arcticnet.no>
+Last-Update: 2010-07-16
+Subject: [PATCH 1/1] Patches for using function_grep.pl in /usr/share/wine.
+Origin: vendor
+
+---
+ tools/winedump/Makefile.in |    5 ++++-
+ tools/winedump/search.c    |    2 +-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+--- a/tools/winedump/Makefile.in
++++ b/tools/winedump/Makefile.in
+@@ -26,6 +26,8 @@ C_SRCS = \
+ 
+ INSTALLDIRS = $(DESTDIR)$(bindir) $(DESTDIR)$(mandir)/man$(prog_manext)
+ 
++MODCFLAGS = -DDATADIR=\"$(datadir)/wine$(DATASUFFIX)/\"
++
+ all: $(PROGRAMS)
+ 
+ @MAKE_RULES@
+@@ -35,7 +37,8 @@ winedump$(EXEEXT): $(OBJS)
+ 
+ install install-dev:: $(PROGRAMS) $(DESTDIR)$(bindir)
+ 	$(INSTALL_PROGRAM) winedump$(EXEEXT) $(DESTDIR)$(bindir)/winedump$(EXEEXT)
+-	$(INSTALL_SCRIPT) $(srcdir)/function_grep.pl $(DESTDIR)$(bindir)/function_grep.pl
++	$(INSTALL_PROGRAM) -d $(DESTDIR)$(datadir)/wine$(DATASUFFIX)
++	$(INSTALL_SCRIPT) $(srcdir)/function_grep.pl $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/function_grep.pl
+ 
+ uninstall::
+ 	$(RM) $(DESTDIR)$(bindir)/function_grep.pl $(DESTDIR)$(bindir)/winedump$(EXEEXT)
+--- a/tools/winedump/search.c
++++ b/tools/winedump/search.c
+@@ -98,7 +98,7 @@ int symbol_search (parsed_symbol *sym)
+       if (VERBOSE)
+         puts (grep_buff);
+ 
+-      cmd = str_create (5, "function_grep.pl ", sym->symbol,
++      cmd = str_create (5, DATADIR "function_grep.pl ", sym->symbol,
+                         " \"", grep_buff, "\"");
+ 
+       if (VERBOSE)

@@ -1,0 +1,34 @@
+#!/bin/sh
+set -e
+version=`dpkg-parsechangelog|sed -n 's/Version: \(.*\)/\1/p'`
+distribution=`dpkg-parsechangelog|sed -n 's/Distribution: \(.*\)/\1/p'`
+# see if the version in the changelog is tagged (already built)
+obj_type="`git cat-file -t "wine-$version" 2>/dev/null`" || true
+if [ -n "$obj_type" ]
+then
+  # it is, so only grab changes since then
+  last_version="$version"
+else
+  # it's not, this must be the dummy changelog from import-done,
+  # so grab changes since version before that
+  last_version=`dpkg-parsechangelog -o1 -c1|sed -n 's/Version: \(.*\)/\1/p'`
+fi
+# build changelog
+if [ "$distribution" = "UNRELEASED" ]; then
+  sed -i "1,6d" debian/changelog # delete dummy entry (6 lines)
+  version_arg="--new-version=\"$version\""
+fi
+git-dch --release --auto --full --meta \
+ --debian-tag="wine-$last_version" \
+ --git-log="--first-parent" \
+ $version_arg
+# commit changelog
+version=`dpkg-parsechangelog|sed -n 's/Version: \(.*\)/\1/p'`
+git add debian/changelog
+git commit -m "Release $version"
+# build package
+git-buildpackage --git-pristine-tar \
+ --git-upstream-tag="wine-%(version)s" \
+ --git-debian-tag="wine-%(version)s" \
+ --git-tag \
+ "$@"

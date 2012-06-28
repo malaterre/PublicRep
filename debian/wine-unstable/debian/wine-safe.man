@@ -1,0 +1,24 @@
+.TH "wine-safe" "1" "2009-08-03"
+
+.SH "NAME" 
+wine-safe \- Start a program with wine(1) after confirmation
+
+.SH "SYNOPSIS"
+.PP
+.BI "wine-safe " program
+
+.SH "DESCRIPTION" 
+.PP
+This manual page documents briefly the \fBwine-safe\fR command.
+.PP
+\fBwine-safe\fR asks for a confirmation before launching a program using \fBwine\fR(1), in order to prevent the execution of a program without user's knowledge. This command is mainly used by various third-party programs (web browsers, mail readers...).
+
+.SH "SEE ALSO"
+.BR wine (1)
+
+.SH "AUTHOR"
+.PP
+Unknown.
+
+This manual page was written by Francois Wendling <frwendling@free.fr> for the
+Debian GNU/Linux system (but may be used by others).

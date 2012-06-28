@@ -1,0 +1,263 @@
+Description: Formerly direct changes to upstream source.
+ These changes originate from the official Debian wine-unstable package.
+ They are needed for a clean build on Debian.
+ .
+ This patch is constantly adapted to the latest upstream release and might
+ therefore deviate from the patch given on the Origin header.
+Author: Debian Wine Party <pkg-wine-party@lists.alioth.debian.org>
+Origin: vendor, http://patch-tracker.debian.org/patch/nondebian/view/wine-unstable/1.1.32-1
+Forwarded: not-needed
+Last-Update: 2011-05-13
+
+---
+ Make.vars.in                |    3 ++-
+ configure                   |   33 ---------------------------------
+ configure.ac                |    7 -------
+ dlls/Makedll.rules.in       |    2 +-
+ dlls/comdlg32/Makefile.in   |    4 ++--
+ dlls/wineps.drv/Makefile.in |    6 +++---
+ libs/wine/Makefile.in       |   28 ++++++++++++++--------------
+ loader/wine.man.in          |    4 ++--
+ tools/Makefile.in           |   10 +++++-----
+ 9 files changed, 29 insertions(+), 68 deletions(-)
+
+--- a/Make.vars.in
++++ b/Make.vars.in
+@@ -8,7 +8,7 @@ datarootdir     = @datarootdir@
+ datadir         = @datadir@
+ infodir         = @infodir@
+ mandir          = @mandir@
+-fontdir         = $(datadir)/wine/fonts
++fontdir         = $(datadir)/wine-unstable/fonts
+ includedir      = @includedir@/wine
+ dlldir          = @libdir@/wine
+ fakedlldir      = $(dlldir)/fakedlls
+@@ -86,6 +86,7 @@ INSTALL_DATA    = @INSTALL_DATA@ $(INSTA
+ prog_manext     = 1
+ api_manext      = 3w
+ conf_manext     = 5
++LIBSUFFIX       = -unstable
+ @SET_MAKE@
+ 
+ all:
+--- a/configure
++++ b/configure
+@@ -6891,39 +6891,6 @@ fi
+ eval ac_res=\$$as_ac_var
+ 	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+ $as_echo "$ac_res" >&6; }
+-if test `eval 'as_val=${'$as_ac_var'};$as_echo "$as_val"'` = yes; then :
+-  LDRPATH_INSTALL="-Wl,--rpath,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
+-                       LDRPATH_LOCAL="-Wl,--rpath,\\\$\$ORIGIN/\$(top_builddir)/libs/wine"
+-else
+-  as_ac_var=`$as_echo "ac_cv_cflags_-fPIC -Wl,-R,\\$ORIGIN/../lib" | $as_tr_sh`
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -fPIC -Wl,-R,\$ORIGIN/../lib" >&5
+-$as_echo_n "checking whether the compiler supports -fPIC -Wl,-R,\$ORIGIN/../lib... " >&6; }
+-if eval \${$as_ac_var+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  ac_wine_try_cflags_saved=$CFLAGS
+-CFLAGS="$CFLAGS -fPIC -Wl,-R,\$ORIGIN/../lib"
+-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-int main(int argc, char **argv) { return 0; }
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  eval "$as_ac_var=yes"
+-else
+-  eval "$as_ac_var=no"
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+-CFLAGS=$ac_wine_try_cflags_saved
+-fi
+-eval ac_res=\$$as_ac_var
+-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
+-$as_echo "$ac_res" >&6; }
+-if test `eval 'as_val=${'$as_ac_var'};$as_echo "$as_val"'` = yes; then :
+-  LDRPATH_INSTALL="-Wl,-R,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
+-                            LDRPATH_LOCAL="-Wl,-R,\\\$\$ORIGIN/\$(top_builddir)/libs/wine"
+-fi
+-fi
+ 
+       { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the compiler supports -Wl,--enable-new-dtags" >&5
+ $as_echo_n "checking whether the compiler supports -Wl,--enable-new-dtags... " >&6; }
+--- a/configure.ac
++++ b/configure.ac
+@@ -844,13 +844,6 @@ case $host_os in
+       WINE_TRY_CFLAGS([-fPIC -Wl,--export-dynamic],
+                       [AC_SUBST(LDEXECFLAGS,["-Wl,--export-dynamic"])])
+ 
+-      WINE_TRY_CFLAGS([-fPIC -Wl,--rpath,\$ORIGIN/../lib],
+-                      [LDRPATH_INSTALL="-Wl,--rpath,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
+-                       LDRPATH_LOCAL="-Wl,--rpath,\\\$\$ORIGIN/\$(top_builddir)/libs/wine"],
+-          [WINE_TRY_CFLAGS([-fPIC -Wl,-R,\$ORIGIN/../lib],
+-                           [LDRPATH_INSTALL="-Wl,-R,\\\$\$ORIGIN/\`\$(RELPATH) \$(bindir) \$(libdir)\`"
+-                            LDRPATH_LOCAL="-Wl,-R,\\\$\$ORIGIN/\$(top_builddir)/libs/wine"])])
+-
+       WINE_TRY_CFLAGS([-Wl,--enable-new-dtags],
+                       [LDRPATH_INSTALL="$LDRPATH_INSTALL -Wl,--enable-new-dtags"])
+ 
+--- a/dlls/Makedll.rules.in
++++ b/dlls/Makedll.rules.in
+@@ -17,7 +17,7 @@ IMPLIB_OBJS = $(IMPLIB_SRCS:.c=.o)
+ IMPLIBFLAGS = $(TARGETFLAGS) $(EXTRAIMPLIBFLAGS)
+ IMPORTLIBFILE = $(IMPORTLIB:%=lib%.@IMPLIBEXT@)
+ STATICIMPLIB  = $(IMPORTLIBFILE:.def=.def.a)
+-INSTALLDIRS = $(DESTDIR)$(dlldir) $(DESTDIR)$(fakedlldir) $(DESTDIR)$(datadir)/wine
++INSTALLDIRS = $(DESTDIR)$(dlldir) $(DESTDIR)$(fakedlldir) $(DESTDIR)$(datadir)/wine$(DATASUFFIX)
+ 
+ @MAKE_RULES@
+ 
+--- a/dlls/comdlg32/Makefile.in
++++ b/dlls/comdlg32/Makefile.in
+@@ -1,7 +1,7 @@
+ MODULE    = comdlg32.dll
+ IMPORTLIB = comdlg32
+-IMPORTS   = uuid shell32 shlwapi comctl32 winspool user32 gdi32 advapi32
+-DELAYIMPORTS = ole32
++IMPORTS   = uuid shell32 shlwapi comctl32 user32 gdi32 advapi32
++DELAYIMPORTS = ole32 winspool
+ 
+ C_SRCS = \
+ 	cdlg32.c \
+--- a/dlls/wineps.drv/Makefile.in
++++ b/dlls/wineps.drv/Makefile.in
+@@ -69,12 +69,12 @@ EXTRASUBDIRS = data
+ 
+ @MAKE_DLL_RULES@
+ 
+-install-ppd:: $(DESTDIR)$(datadir)/wine dummy
+-	$(INSTALL_DATA) $(srcdir)/generic.ppd $(DESTDIR)$(datadir)/wine/generic.ppd
++install-ppd:: $(DESTDIR)$(datadir)/wine$(DATASUFFIX) dummy
++	$(INSTALL_DATA) $(srcdir)/generic.ppd $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/generic.ppd
+ 
+ .PHONY: install-ppd
+ 
+ @WOW64_DISABLE@ install install-lib:: install-ppd
+ 
+ uninstall::
+-	$(RM) $(DESTDIR)$(datadir)/wine/generic.ppd
++	$(RM) $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/generic.ppd
+--- a/libs/wine/Makefile.in
++++ b/libs/wine/Makefile.in
+@@ -6,7 +6,7 @@ DEFS      = -D__WINESRC__ -DWINE_UNICODE
+ 
+ VERSION   = 1.0
+ SOVERSION = 1
+-SONAME    = libwine.so.$(SOVERSION)
++SONAME    = libwine$(LIBSUFFIX).so.$(SOVERSION)
+ DYNAME    = libwine.$(SOVERSION).dylib
+ 
+ INSTALLDIRS = $(DESTDIR)$(libdir)
+@@ -101,26 +101,26 @@ all: $(MODULE) $(MODULE:.dll=.a)
+ # Special defines needed for config.c
+ 
+ CONFIGDIRS = \
+-	-DBINDIR='"$(bindir)"' \
++	-DBINDIR='"$(dlldir)"' \
+ 	-DDLLDIR='"$(dlldir)"' \
+-	-DLIB_TO_BINDIR=\"`$(RELPATH) $(libdir) $(bindir)`\" \
++	-DLIB_TO_BINDIR=\"`$(RELPATH) $(libdir) $(dlldir)`\" \
+ 	-DLIB_TO_DLLDIR=\"`$(RELPATH) $(libdir) $(dlldir)`\" \
+-	-DBIN_TO_DLLDIR=\"`$(RELPATH) $(bindir) $(dlldir)`\" \
+-	-DBIN_TO_DATADIR=\"`$(RELPATH) $(bindir) $(datadir)/wine`\"
++	-DBIN_TO_DLLDIR=\"`$(RELPATH) $(dlldir) $(dlldir)`\" \
++	-DBIN_TO_DATADIR=\"`$(RELPATH) $(bindir) ../$(datadir)/wine$(DATASUFFIX)`\"
+ 
+ config.o: config.c $(RELPATH)
+ 	$(CC) -c $(ALLCFLAGS) -o $@ $(srcdir)/config.c $(CONFIGDIRS)
+ 
+ # Linking rules
+ 
+-libwine.so.$(VERSION): $(OBJS) $(VERSCRIPT) Makefile.in
++libwine$(LIBSUFFIX).so.$(VERSION): $(OBJS) $(VERSCRIPT) Makefile.in
+ 	$(LDSHARED) $(OBJS) $(EXTRALIBS) $(LDFLAGS) $(LIBS) -o $@
+ 
+-libwine.so.$(SOVERSION): libwine.so.$(VERSION)
+-	$(RM) $@ && $(LN_S) libwine.so.$(VERSION) $@
++libwine$(LIBSUFFIX).so.$(SOVERSION): libwine$(LIBSUFFIX).so.$(VERSION)
++	$(RM) $@ && $(LN_S) libwine$(LIBSUFFIX).so.$(VERSION) $@
+ 
+-libwine.so: libwine.so.$(SOVERSION)
+-	$(RM) $@ && $(LN_S) libwine.so.$(SOVERSION) $@
++libwine.so: libwine$(LIBSUFFIX).so.$(SOVERSION)
++	$(RM) $@ && $(LN_S) libwine$(LIBSUFFIX).so.$(SOVERSION) $@
+ 
+ libwine.a: wine.def
+ 	$(DLLTOOL) -l $@ -d $(srcdir)/wine.def
+@@ -143,9 +143,9 @@ libwine.dylib: libwine.$(SOVERSION).dyli
+ 
+ .PHONY: install-lib-so install-lib-dll install-lib-dylib install-dev-so install-dev-dll install-dev-dylib
+ 
+-install-lib-so: libwine.so.$(VERSION) $(DESTDIR)$(libdir) dummy
+-	$(INSTALL_PROGRAM) libwine.so.$(VERSION) $(DESTDIR)$(libdir)/libwine.so.$(VERSION)
+-	cd $(DESTDIR)$(libdir) && $(RM) libwine.so.$(SOVERSION) && $(LN_S) libwine.so.$(VERSION) libwine.so.$(SOVERSION)
++install-lib-so: libwine$(LIBSUFFIX).so.$(VERSION) $(DESTDIR)$(libdir) dummy
++	$(INSTALL_PROGRAM) libwine$(LIBSUFFIX).so.$(VERSION) $(DESTDIR)$(libdir)/libwine$(LIBSUFFIX).so.$(VERSION)
++	cd $(DESTDIR)$(libdir) && $(RM) libwine$(LIBSUFFIX).so.$(SOVERSION) && $(LN_S) libwine$(LIBSUFFIX).so.$(VERSION) libwine$(LIBSUFFIX).so.$(SOVERSION)
+ 
+ install-lib-dll: libwine.dll $(DESTDIR)$(libdir) dummy
+ 	$(INSTALL_DATA) libwine.dll $(DESTDIR)$(libdir)/libwine.dll
+@@ -155,7 +155,7 @@ install-lib-dylib: libwine.$(VERSION).dy
+ 	cd $(DESTDIR)$(libdir) && $(RM) libwine.$(SOVERSION).dylib && $(LN_S) libwine.$(VERSION).dylib libwine.$(SOVERSION).dylib
+ 
+ install-dev-so: $(DESTDIR)$(libdir) dummy
+-	cd $(DESTDIR)$(libdir) && $(RM) libwine.so && $(LN_S) libwine.so.$(VERSION) libwine.so
++	cd $(DESTDIR)$(libdir) && $(RM) libwine.so && $(LN_S) libwine$(LIBSUFFIX).so.$(VERSION) libwine.so
+ 
+ install-dev-dll: libwine.a $(DESTDIR)$(libdir) dummy
+ 	$(INSTALL_DATA) libwine.a $(DESTDIR)$(libdir)/libwine.a
+--- a/loader/wine.man.in
++++ b/loader/wine.man.in
+@@ -87,7 +87,7 @@ processes.
+ Specifies the path and name of the
+ .B wineserver
+ binary. If not set, Wine will try to load
+-.BR @bindir@/wineserver ,
++.BR @dlldir@/wineserver ,
+ and if this doesn't exist it will then look for a file named
+ "wineserver" in the path and in a few other likely locations.
+ .TP
+@@ -246,7 +246,7 @@ The
+ .B wine 
+ program loader for CUI (console) applications.
+ .TP
+-.I @bindir@/wineserver
++.I @dlldir@/wineserver
+ The 
+ .B wine 
+ server 
+--- a/tools/Makefile.in
++++ b/tools/Makefile.in
+@@ -30,7 +30,7 @@ EXTRASUBDIRS = winapi
+ INSTALLDIRS = \
+ 	$(DESTDIR)$(bindir) \
+ 	$(DESTDIR)$(datadir)/applications \
+-	$(DESTDIR)$(datadir)/wine \
++	$(DESTDIR)$(datadir)/wine$(DATASUFFIX) \
+ 	$(DESTDIR)$(mandir)/man$(prog_manext) \
+ 	$(DESTDIR)$(mandir)/de.UTF-8/man$(prog_manext) \
+ 	$(DESTDIR)$(mandir)/fr.UTF-8/man$(prog_manext)
+@@ -66,8 +66,8 @@ wineapploader: wineapploader.in
+ 	sed -e 's,@bindir\@,$(bindir),g' $(srcdir)/wineapploader.in >$@ || ($(RM) $@ && false)
+ 
+ install install-lib:: wine.inf $(INSTALLDIRS)
+-	$(INSTALL_DATA) wine.inf $(DESTDIR)$(datadir)/wine/wine.inf
+-	$(INSTALL_DATA) $(srcdir)/l_intl.nls $(DESTDIR)$(datadir)/wine/l_intl.nls
++	$(INSTALL_DATA) wine.inf $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/wine.inf
++	$(INSTALL_DATA) $(srcdir)/l_intl.nls $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/l_intl.nls
+ 	$(INSTALL_DATA) $(srcdir)/wine.desktop $(DESTDIR)$(datadir)/applications/wine.desktop
+ 	-$(UPDATE_DESKTOP_DATABASE)
+ 
+@@ -79,8 +79,8 @@ install-man-pages:: $(EXTRA_MANPAGES) $(
+ 	$(INSTALL_DATA) winemaker.fr.man $(DESTDIR)$(mandir)/fr.UTF-8/man$(prog_manext)/winemaker.$(prog_manext)
+ 
+ uninstall::
+-	$(RM) $(DESTDIR)$(datadir)/wine/wine.inf \
+-		$(DESTDIR)$(datadir)/wine/l_intl.nls \
++	$(RM) $(DESTDIR)$(datadir)/wine$(DATASUFFIX)/wine.inf \
++		$(DESTDIR)$(datadir)/wine$(DATASUFFIX)/l_intl.nls \
+ 		$(DESTDIR)$(datadir)/applications/wine.desktop \
+ 		$(DESTDIR)$(bindir)/winemaker \
+ 		$(DESTDIR)$(mandir)/de.UTF-8/man$(prog_manext)/winemaker.$(prog_manext) \

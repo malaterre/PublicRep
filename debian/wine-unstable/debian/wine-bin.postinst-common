@@ -1,0 +1,13 @@
+#!/bin/sh -e
+if [ -e /usr/share/debconf/confmodule ]; then
+    . /usr/share/debconf/confmodule
+    db_purge
+fi
+
+if [ "$1" = "configure" ] ; then
+  if [ -x /usr/sbin/update-binfmts ]; then
+    /usr/sbin/update-binfmts --import wine || true
+  fi
+fi
+
+#DEBHELPER#

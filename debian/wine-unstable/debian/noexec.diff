@@ -1,0 +1,51 @@
+diff --git a/configure.ac b/configure.ac
+index 37cc2ae..ee52fe1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -941,6 +941,18 @@ int main(void) {
+   fi
+ fi
+ 
++AC_SUBST(EXECSTACK,"")
++saved_LDFLAGS="$LDFLAGS"
++LDFLAGS="$LDFLAGS -z execstack"
++AC_CACHE_CHECK([for -z execstack], ac_cv_z_execstack,
++   AC_TRY_LINK([],[int main(void) {return 0;}],
++               ac_cv_z_execstack=yes,ac_cv_z_execstack=no))
++if test $ac_cv_z_execstack
++then
++  EXECSTACK="-z execstack"
++fi
++LDFLAGS="$saved_LDFLAGS"
++
+ dnl **** Check how to define a function in assembly code ****
+ 
+ AC_CACHE_CHECK([how to define a function in assembly code], ac_cv_asm_func_def,
+diff --git a/loader/Makefile.in b/loader/Makefile.in
+index 47a8629..2ef5dfe 100644
+--- a/loader/Makefile.in
++++ b/loader/Makefile.in
+@@ -28,18 +28,19 @@ all: $(WINE_BINARIES) $(MODULE) $(MANPAG
+ 
+ LIBPTHREAD  = @LIBPTHREAD@
+ LDEXECFLAGS = @LDEXECFLAGS@
++EXECSTACK = @EXECSTACK@
+ 
+ wine-glibc: glibc.o Makefile.in
+ 	$(CC) -o $@ glibc.o $(LIBWINE_LDFLAGS) $(LIBPORT) $(LIBPTHREAD) $(EXTRALIBS) $(LDFLAGS)
+ 
+ wine-preloader: preloader.o Makefile.in
+-	$(CC) -o $@ -static -nostartfiles -nodefaultlibs -Wl,-Ttext=0x7c000000 preloader.o $(LIBPORT) $(LDFLAGS)
++	$(CC) -o $@ -static -nostartfiles -nodefaultlibs -Wl,-Ttext=0x7c000000 preloader.o $(LIBPORT) $(LDFLAGS) $(EXECSTACK)
+ 
+ wine-kthread: $(KTHREAD_OBJS) Makefile.in
+-	$(CC) -o $@ $(LDEXECFLAGS) $(KTHREAD_OBJS) $(LIBWINE_LDFLAGS) $(LIBPORT) $(EXTRALIBS) $(LDFLAGS)
++	$(CC) -o $@ $(LDEXECFLAGS) $(KTHREAD_OBJS) $(LIBWINE_LDFLAGS) $(LIBPORT) $(EXTRALIBS) $(LDFLAGS) $(EXECSTACK)
+ 
+ wine-pthread: $(PTHREAD_OBJS) Makefile.in
+-	$(CC) -o $@ $(LDEXECFLAGS) $(PTHREAD_OBJS) $(LIBWINE_LDFLAGS) $(LIBPORT) $(LIBPTHREAD) $(EXTRALIBS) $(LDFLAGS)
++	$(CC) -o $@ $(LDEXECFLAGS) $(PTHREAD_OBJS) $(LIBWINE_LDFLAGS) $(LIBPORT) $(LIBPTHREAD) $(EXTRALIBS) $(LDFLAGS) $(EXECSTACK)
+ 
+ $(MODULE): $(MAIN_BINARY)
+ 	$(RM) $(MODULE) && $(LN_S) $(MAIN_BINARY) $(MODULE)
+

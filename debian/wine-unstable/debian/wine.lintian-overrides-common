@@ -1,0 +1,2 @@
+# depends on wine-bin and libwine-*, which depend on libwine
+wine binary: usr-share-doc-symlink-without-dependency

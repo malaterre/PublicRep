@@ -1,0 +1,35 @@
+debian/tmp/usr/bin/msiexec
+debian/tmp/usr/bin/notepad
+debian/tmp/usr/bin/regedit
+debian/tmp/usr/bin/regsvr32
+debian/tmp/usr/bin/wine
+debian/tmp/usr/bin/wineboot
+debian/tmp/usr/bin/winecfg
+debian/tmp/usr/bin/winedbg
+debian/tmp/usr/bin/wineconsole
+debian/tmp/usr/bin/winefile
+debian/tmp/usr/bin/winemine
+debian/tmp/usr/bin/winepath
+debian/tmp/usr/share/binfmts
+debian/tmp/usr/share/mime-info
+debian/tmp/usr/share/applications/wine.desktop
+debian/tmp/usr/share/wine/wine.inf
+debian/tmp/usr/share/wine/l_intl.nls
+debian/uninstaller.desktop usr/share/applications
+debian/winecfg.desktop usr/share/applications
+programs/winemenubuilder/wine*.xpm usr/share/pixmaps
+debian/bug/wine-bin usr/share/bug
+debian/tmp/usr/share/man/*/man1/wine.1
+debian/tmp/usr/share/man/man1/regsvr32.1
+debian/tmp/usr/share/man/man1/winemine.1
+debian/tmp/usr/share/man/man1/winepath.1
+debian/tmp/usr/share/man/man1/regedit.1
+debian/tmp/usr/share/man/man1/wineboot.1
+debian/tmp/usr/share/man/man1/winecfg.1
+debian/tmp/usr/share/man/man1/winecpp.1
+debian/tmp/usr/share/man/man1/notepad.1
+debian/tmp/usr/share/man/man1/msiexec.1
+debian/tmp/usr/share/man/man1/wineconsole.1
+debian/tmp/usr/share/man/man1/winefile.1
+debian/tmp/usr/share/man/man1/wine.1
+debian/tmp/usr/share/man/man1/winedbg.1

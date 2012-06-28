@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Wine Uninstaller
+Comment=Uninstall Windows programs
+Comment[ca]=Desinstaŀla programes de Windows
+Exec=wine uninstaller
+Icon=/usr/share/pixmaps/wine.xpm
+Terminal=false
+Categories=Application;System;

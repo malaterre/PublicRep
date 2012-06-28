@@ -1,0 +1,13 @@
+ntoskrnl.exe
+*.dll
+*.dll16
+*.drv
+*.drv16
+*.sys
+*.vxd
+*.exe16
+*.mod16
+*.acm
+*.ocx
+*.tlb
+*.ds

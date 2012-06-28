@@ -1,0 +1,27 @@
+.TH "wine\-auto" "1" "2008\-09\-20"
+
+.SH "NAME" 
+wine\-auto \- Wrapper around wine(1)
+
+.SH "SYNOPSIS"
+.PP
+.B wine\-auto
+.RI "[ " program " ]"
+
+.SH "DESCRIPTION" 
+.PP
+This manual page documents briefly the \fBwine\-auto\fR command.
+.PP
+.\" it's kinda crude but it's all we can say about it ;)
+.B wine\-auto 
+is a wrapper around \fBwine\fR(1) that asks for the user confirmation before
+running \fBwine\fR(1) if called as \fBwine\-safe\fR(1), and checks libraries on
+x86_64 systems.
+
+.SH "SEE ALSO"
+.BR wine "(1), " wine-safe (1) 
+
+.SH "AUTHOR"
+
+This manual page was written by Francois Wendling <frwendling@free.fr> for the
+Debian GNU/Linux system (but may be used by others).

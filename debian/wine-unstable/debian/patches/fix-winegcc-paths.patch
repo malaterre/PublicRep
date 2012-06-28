@@ -1,0 +1,18 @@
+From: Sascha Wilde <wilde@sha-bang.de>
+Subject: Allow winegcc to work with wine-unstable paths
+Last-Update: 2012-03-17
+Forwarded: not-needed
+---
+ tools/winegcc/winegcc.c |    1 +
+ 1 file changed, 1 insertion(+)
+
+--- a/tools/winegcc/winegcc.c
++++ b/tools/winegcc/winegcc.c
+@@ -720,6 +720,7 @@ static void build(struct options* opts)
+         char *lib_dir = get_lib_dir( opts );
+         lib_dirs = strarray_dup(opts->lib_dirs);
+         strarray_add( lib_dirs, strmake( "%s/wine", lib_dir ));
++        strarray_add( lib_dirs, DLLDIR );
+         strarray_add( lib_dirs, lib_dir );
+     }
+     else

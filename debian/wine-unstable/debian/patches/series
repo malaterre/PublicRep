@@ -1,0 +1,7 @@
+debian-changes-from-1.1.32-1.patch
+readd_xpm.patch
+function_grep.patch
+Bug#29669_proposed-fix.patch
+fix-winegcc-paths.patch
+Bug#28898_squashed-proposed-patches.patch
+Bug#28201_proposed-fix-modified.patch

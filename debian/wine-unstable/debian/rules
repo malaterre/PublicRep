@@ -1,0 +1,449 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+export SHELL=bash
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
+CFLAGS=-O0 -g
+else
+CFLAGS=-O2 -g
+endif
+LDFLAGS=
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+CONFIGOPTS = --with-x --disable-tests
+
+DEB_HOST_GNU_SYSTEM	?= $(shell dpkg-architecture -qDEB_HOST_GNU_SYSTEM)
+DEB_HOST_GNU_CPU	?= $(shell dpkg-architecture -qDEB_HOST_GNU_CPU)
+DEB_HOST_GNU_TYPE	?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+DEBIAN_VERSION := $(shell cat /etc/debian_version)
+VERSION := $(lastword $(shell dpkg-parsechangelog|grep "^Version: "))
+
+#DEBIAN_SID := $(findstring sid,$(DEBIAN_VERSION))
+
+VERSUFFIX=-unstable
+
+# Maybe make this conditional on debian version compiled for, for backports
+# Can be set to:
+#  "n": Install into traditional paths, /usr/lib and /usr/lib32
+#  "p": Install into multiarch paths, /usr/lib/x86_64-linux-gnu and /usr/lib/i486-linux-gnu
+#  "y": Full multiarch, build natively only
+MULTIARCH=n
+
+# Win64 is not ready yet
+ENABLE_WIN64=n
+
+# 2011-12-31/Cùran:
+# make sure we use GCC 4.5 as newer GCCs (4.6 atm) break parts of Wine, this is
+# NOT a Wine bug AFAICT, but a GCC regression, see
+# <http://bugs.winehq.org/show_bug.cgi?id=22053> for more information.
+#
+# 2012-03-17/Cùran:
+# Wine started FTBFS with gcc-4.5 for i386 (cross-building on amd64) with a
+# file truncation error. Using the "normal" GCC (4.6 atm) gets me a build but
+# probably at the cost of Steam failing again for i386 users. *sigh*
+#
+ifeq ($(DEB_HOST_GNU_CPU),x86_64)
+CC=gcc-4.5
+CXX=g++-4.5
+else
+CC=gcc
+CXX=g++
+endif
+ifneq (n,$(MULTIARCH))
+LIBDIR=usr/lib/$(DEB_HOST_GNU_TYPE)
+else
+LIBDIR=usr/lib
+endif
+LIBDIRS=$(LIBDIR)
+
+IA32_CC := $(CC)
+IA32_CXX := $(CXX)
+IA32_CFLAGS := $(CFLAGS)
+IA32_LDFLAGS := $(LDFLAGS)
+IA32_LIBDIR := $(LIBDIR)
+
+# Win64 version requires gcc >= 4.4
+AMD64_CC := gcc-4.4
+AMD64_CFLAGS := $(CFLAGS)
+AMD64_LDFLAGS := $(LDFLAGS)
+AMD64_LIBDIR := $(LIBDIR)
+
+ifeq ($(DEB_HOST_GNU_CPU),x86_64)
+
+IA32_LIBS := /emul/ia32-linux
+IA32_LDFLAGS += -L$(CURDIR)/lib32
+ifneq (n,$(MULTIARCH))
+IA32_LIBDIR := usr/lib/i486-$(DEB_HOST_GNU_SYSTEM)
+else
+IA32_LIBDIR := usr/lib32
+IA32_LIBDIR_LINK := $(shell readlink /$(IA32_LIBDIR))
+ifneq (,$(IA32_LIBDIR_LINK))
+IA32_LIBDIR := $(patsubst /%,%,$(IA32_LIBDIR_LINK))
+endif
+endif
+
+ifeq (y,$(MULTIARCH))
+# full multiarch, cannot build 32-bit Wine on amd64
+BUILDS =
+LIBDIRS =
+#TRANSPREFIX = ia32-
+#TRANSSUFFIX = $(VERSUFFIX)
+else
+BUILDS = build32
+LIBDIRS = $(IA32_LIBDIR)
+ifeq (usr/lib32,$(IA32_LIBDIR))
+# for /emul/ia32-linux/usr/lib -> /usr/lib32 transition
+LIBWINE_PREDEPS = libc6-i386 (>= 2.9-18)
+endif
+ifeq (usr/lib/i486-linux-gnu,$(IA32_LIBDIR))
+# need ld.so support for multiarch path
+LIBWINE_DEPS = libc6-i386 (>= 2.9-24)
+endif
+endif
+
+ifeq (y,$(ENABLE_WIN64))
+BUILDS += build64
+LIBDIRS += $(AMD64_LIBDIR)
+endif
+
+else # !x86_64
+
+BUILDS = build32
+
+endif # x86_64
+
+IA32_WINEDIR = $(IA32_LIBDIR)/wine$(VERSUFFIX)
+IA32_OVERRIDES = LIBSUFFIX="$(VERSUFFIX)" DATASUFFIX="$(VERSUFFIX)" dlldir="/$(IA32_WINEDIR)"
+AMD64_WINEDIR = $(AMD64_LIBDIR)/wine$(VERSUFFIX)
+AMD64_OVERRIDES = LIBSUFFIX="$(VERSUFFIX)" DATASUFFIX="$(VERSUFFIX)" dlldir="/$(AMD64_WINEDIR)"
+
+LOADERS = wine-kthread wine-pthread wine-preloader
+
+empty:=
+space:=$(empty) $(empty)
+
+SHLIBS_OPTS = -Llibwine$(VERSUFFIX) -l$(subst $(space),:,$(patsubst %,$(CURDIR)/debian/libwine$(VERSUFFIX)/%,$(LIBDIRS)))
+
+control-stamp: debian/control.in
+ifneq (,$(BUILDS))
+	bash debian/prep-control.sh "$(VERSUFFIX)"
+else
+	bash debian/prep-control-transit.sh "$(VERSUFFIX)" "$(TRANSPREFIX)" "$(TRANSSUFFIX)"
+endif
+	bash debian/multiarch-control.sh "$(MULTIARCH)" "$(ENABLE_WIN64)"
+	touch control-stamp
+
+configure-ia32: configure-ia32-stamp
+configure-ia32-stamp: control-stamp
+	dh_testdir
+ifneq (,$(IA32_LIBS))
+	mkdir lib32 || true
+	bash debian/ia32.sh $(IA32_LIBS) lib32
+endif
+	touch configure-ia32-stamp
+
+configure-arch32: configure-arch32-stamp
+configure-arch32-stamp: configure-ia32-stamp control-stamp
+	dh_testdir
+ifeq (,$(DEB_SAVEBUILD))
+	mkdir build32 || true
+	cd build32 && \
+	CC="$(IA32_CC)" \
+	CXX="$(IA32_CXX)" \
+	CFLAGS="$(IA32_CFLAGS)" \
+	LDFLAGS="$(IA32_LDFLAGS)" \
+	../configure --disable-win64 $(CONFIGOPTS) \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--bindir=/usr/bin \
+	--libdir=/$(IA32_LIBDIR) \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info
+else
+	mv /tmp/build32 .
+endif
+
+	touch configure-arch32-stamp
+
+configure-arch64: configure-arch64-stamp
+configure-arch64-stamp: configure-ia32-stamp control-stamp
+	dh_testdir
+ifeq (,$(DEB_SAVEBUILD))
+	mkdir build64 || true
+	cd build64 && \
+	CC="$(AMD64_CC)" \
+	CFLAGS="$(AMD64_CFLAGS)" \
+	LDFLAGS="$(AMD64_LDFLAGS)" \
+	../configure --enable-win64 $(CONFIGOPTS) \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--bindir=/usr/bin \
+	--libdir=/$(AMD64_LIBDIR) \
+	--mandir=/usr/share/man \
+	--infodir=/usr/share/info
+else
+	mv /tmp/build64 .
+endif
+
+	touch configure-arch64-stamp
+
+build-indep: build-indep-stamp
+build-indep-stamp: control-stamp
+	dh_testdir
+
+	touch build-indep-stamp
+
+build-arch32: build-arch32-stamp
+build-arch32-stamp: configure-arch32-stamp
+	dh_testdir
+
+ifeq (,$(DEB_SAVEBUILD))
+	$(MAKE) -C build32 $(IA32_OVERRIDES) depend
+	# build wine & tools
+	$(MAKE) -C build32 $(IA32_OVERRIDES) $(BUILDOPTS)
+endif
+
+	touch build-arch32-stamp
+
+build-arch64: build-arch64-stamp
+build-arch64-stamp: configure-arch64-stamp
+	dh_testdir
+
+ifeq (,$(DEB_SAVEBUILD))
+	$(MAKE) -C build64 $(AMD64_OVERRIDES) depend
+	# build wine & tools
+	$(MAKE) -C build64 $(AMD64_OVERRIDES) $(BUILDOPTS)
+endif
+
+	touch build-arch64-stamp
+
+build-arch: $(patsubst build%,build-arch%,$(BUILDS))
+build: build-indep build-arch
+
+clean-arch32: control-stamp
+	dh_testdir
+	rm -f install-arch32-stamp build-arch32-stamp configure-arch32-stamp
+#	-$(MAKE) -C build32 distclean
+ifeq (,$(DEB_SAVEBUILD))
+	rm -rf build32
+else
+	mv build32 /tmp || true
+endif
+
+clean-arch64: control-stamp
+	dh_testdir
+	rm -f install-arch64-stamp build-arch64-stamp configure-arch64-stamp
+#	-$(MAKE) -C build64 distclean
+ifeq (,$(DEB_SAVEBUILD))
+	rm -rf build64
+else
+	mv build64 /tmp || true
+endif
+
+clean: clean-arch32 clean-arch64
+	dh_testdir
+	dh_testroot
+	bash debian/clean-install.sh "$(VERSUFFIX)"
+	rm -f install-arch-stamp build-indep-stamp configure-ia32-stamp control-stamp
+	rm -rf lib32
+	dh_clean
+	# can't rm debian/control here because it'd break dpkg-buildpackage.
+
+install-indep: build-indep
+	dh_testdir
+	dh_testroot
+	dh_installdirs -i
+
+install-arch32: install-arch32-stamp
+install-arch32-stamp: build-arch32-stamp
+	dh_testdir
+	dh_testroot
+
+	# install wine, libwine, fonts, and tools
+	$(MAKE) -C build32 install $(IA32_OVERRIDES) DESTDIR=$(CURDIR)/debian/tmp
+	# move the real binaries into /$(IA32_WINEDIR)
+	mv debian/tmp/usr/bin/wine debian/tmp/$(IA32_WINEDIR)/wine.bin
+	for ldr in $(LOADERS); do \
+	 [ ! -f debian/tmp/usr/bin/$$ldr ] || \
+	 mv debian/tmp/usr/bin/$$ldr debian/tmp/$(IA32_WINEDIR); \
+	done
+	mv debian/tmp/usr/bin/wineserver debian/tmp/$(IA32_WINEDIR)/wineserver
+	# install manpages
+	$(MAKE) -C build32/loader install-man-pages DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build32/server install-man-pages DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build32/documentation install-man DESTDIR=$(CURDIR)/debian/tmp
+	mv debian/tmp/usr/share/man/man3w debian/tmp/usr/share/man/man3
+	# install winelib programs
+	rm -f debian/tmp/usr/bin/winelauncher
+	sed "s,usr/lib/wine,$(IA32_WINEDIR)," debian/winelauncher > debian/tmp/usr/bin/wine
+
+	touch install-arch32-stamp
+
+# If building both 32-bit and 64-bit into the same packages, this will overwrite any 32-bit stuff
+# outside /usr/lib with their 64-bit equivalents. This is intentional.
+install-arch64: install-arch64-stamp
+install-arch64-stamp: build-arch64-stamp $(patsubst build%,install-arch%-stamp,$(filter build32,$(BUILDS)))
+	dh_testdir
+	dh_testroot
+
+	# install wine, libwine, fonts, and tools
+	$(MAKE) -C build64 install $(AMD64_OVERRIDES) DESTDIR=$(CURDIR)/debian/tmp/usr
+	# move the real binaries into /$(AMD64_WINEDIR)
+	mv debian/tmp/usr/bin/wine debian/tmp/$(AMD64_WINEDIR)/wine.bin
+	mv debian/tmp/usr/bin/wineserver debian/tmp/$(AMD64_WINEDIR)/wineserver
+	# install manpages
+	$(MAKE) -C build64/loader install-man-pages DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build64/server install-man-pages DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build64/documentation install-man DESTDIR=$(CURDIR)/debian/tmp
+	mv debian/tmp/usr/share/man/man3w debian/tmp/usr/share/man/man3
+	# install winelib programs
+	rm -f debian/tmp/usr/bin/winelauncher
+	sed "s,usr/lib/wine,$(AMD64_WINEDIR)," debian/winelauncher > debian/tmp/usr/bin/wine
+
+	touch install-arch64-stamp
+
+install-arch: install-arch-stamp
+install-arch-stamp: $(patsubst build%,install-arch%-stamp,$(BUILDS))
+	dh_testdir
+	dh_testroot
+
+	# MIME and binfmt databases
+	mkdir -p debian/tmp/usr/share/{mime-info,binfmts}
+	cp debian/mime-info.mime	debian/tmp/usr/share/mime-info/wine.mime
+	cp debian/mime-info.keys	debian/tmp/usr/share/mime-info/wine.keys
+	cp debian/wine.binfmt		debian/tmp/usr/share/binfmts/wine
+	# other documentation
+	mkdir -p debian/tmp/usr/share/doc/wine
+	cp tools/winedump/README	debian/tmp/usr/share/doc/wine/README.winedump
+
+	touch install-arch-stamp
+
+install: install-arch
+
+# Build architecture-independent files here.
+binary-indep: build-indep install-indep
+	dh_testdir
+	dh_testroot
+
+	dh_installdocs -i
+	dh_installchangelogs -i
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+ifneq (,$(BUILDS))
+binary-arch: install-arch-stamp
+	dh_testdir
+	dh_testroot
+	# create installation directories
+	dh_installdirs -s
+
+	# create usr/share/doc symlinks
+	bash debian/doclink.sh libwine$(VERSUFFIX)
+
+	# prepare <packagename>.install files
+	bash debian/prep-install.sh "$(VERSUFFIX)" "$(LIBDIRS)"
+
+	# distribute files into debian/<packagename>
+	# according to the <packagename>.install files
+	dh_install -s --list-missing
+
+	# patch marlett.ttf due to fontforge bug #458234
+	#mensis -script debian/marlett.mensis debian/libwine$(VERSUFFIX)/usr/share/wine/fonts/marlett.ttf
+	#rm -f debian/libwine$(VERSUFFIX)/usr/share/wine/fonts/marlett.ttf~
+
+	# split up libwine
+	bash debian/split.sh "$(VERSUFFIX)" libwine $(patsubst %,%/wine$(VERSUFFIX),$(LIBDIRS))
+
+	dh_installdocs -plibwine$(VERSUFFIX)
+	dh_installchangelogs -plibwine$(VERSUFFIX)
+
+	dh_installman -s
+#	dh_installmenu -s
+	dh_installdebconf -s
+	dh_installmime -s
+
+	dh_link -s
+
+	# Wine uses many "interesting" linker options,
+	# so objcopy barfs on several Wine binaries.
+	# I'll just have to exclude them here, I guess.
+	# (They're pretty small ones anyway...)
+	dh_strip -s --dbg-package=libwine-dbg$(VERSUFFIX) \
+	 -Xwine-kthread -Xwine-pthread -Xwine-preloader -Xwine.bin
+
+	# We don't need symbols for the build tools...
+	rm -rf debian/libwine-dbg$(VERSUFFIX)/usr/lib/debug/usr/bin
+
+	# debhelper 6 has dh_lintian, but I don't want to depend on it yet...
+	for fn in debian/*.lintian-overrides; do \
+	 sfn="`basename "$$fn" .lintian-overrides`"; \
+	 install -D -m 644 "$$fn" "debian/$$sfn/usr/share/lintian/overrides/$$sfn"; \
+	done
+
+	dh_compress -s
+	dh_fixperms -s
+
+	echo "wine:Pre-Depends=$(LIBWINE_PREDEPS)" >> debian/libwine$(VERSUFFIX).substvars
+	echo "wine:Depends=$(LIBWINE_DEPS)" >> debian/libwine$(VERSUFFIX).substvars
+
+	# tight libwine dependencies for packages built here
+	dh_makeshlibs -plibwine$(VERSUFFIX) -n -V "libwine$(VERSUFFIX) (= $(VERSION))"
+
+	# forcing extra dependencies
+	bash debian/gendeps.sh "$(VERSUFFIX)" $(patsubst build%,%,$(BUILDS))
+	dh_shlibdeps -s $(SHLIBS_OPTS) -Xextrarecs
+	bash debian/recs.sh "$(VERSUFFIX)"
+	bash debian/cleandeps.sh "$(VERSUFFIX)"
+
+	# relaxed libwine dependencies for everyone else
+	dh_makeshlibs -s
+
+	dh_installdeb -s
+
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+else
+binary-arch: control-stamp
+	# Create dummy (transition) packages. The control-stamp rule
+	# will make them depend on the desired packages.
+	dh_testdir
+	dh_testroot
+	# create installation directories
+	dh_installdirs -s
+
+	bash debian/doclink.sh libwine$(VERSUFFIX)
+
+	dh_installdocs -plibwine$(VERSUFFIX)
+	dh_installchangelogs -plibwine$(VERSUFFIX)
+
+	dh_compress -s
+	dh_fixperms -s
+
+	dh_installdeb -s
+
+	dh_gencontrol -s
+	dh_md5sums -s
+	dh_builddeb -s
+endif
+
+binary: binary-arch binary-indep
+
+.PHONY: configure-arch32 configure-arch64 \
+	build-indep build-arch32 build-arch64 build-arch build \
+	clean-arch32 clean-arch64 clean \
+	install-indep install-arch32 install-arch64 install-arch install \
+	binary-indep binary-arch binary

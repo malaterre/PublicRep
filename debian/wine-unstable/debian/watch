@@ -1,0 +1,4 @@
+version=3
+opts="uversionmangle=s/-rc/~rc/" \
+  http://mirrors.ibiblio.org/wine/source/(\d\.\d)/wine-([\d\.rc\-]+)\.tar\.bz2
+  debian git-import-orig

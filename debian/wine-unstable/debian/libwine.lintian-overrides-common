@@ -1,0 +1,8 @@
+# the preloader is a self-contained binary on purpose
+libwine binary: statically-linked-binary ./usr/lib/wine/wine-preloader
+# specially linked binaries, leaving them unstripped for now,
+# as dh_strip is currently unable to handle them properly
+libwine binary: unstripped-binary-or-object ./usr/lib/wine/wine-preloader
+libwine binary: unstripped-binary-or-object ./usr/lib/wine/wine-kthread
+libwine binary: unstripped-binary-or-object ./usr/lib/wine/wine-pthread
+libwine binary: unstripped-binary-or-object ./usr/lib/wine/wine.bin

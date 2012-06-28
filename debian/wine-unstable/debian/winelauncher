@@ -1,0 +1,64 @@
+#!/bin/bash
+
+XMESSAGE=/usr/bin/xmessage
+ARCH="`dpkg --print-architecture`"
+
+# Give a warning if launched from mailcap
+if [ `basename $0` = "wine-safe" ]; then
+ $XMESSAGE -center \
+ -title "Launching Wine" \
+ -default "No" \
+ -buttons "No":0,"Yes":2 \
+ "
+ Wine will launch to run the requested Windows executable.
+ To protect you from accidentally running a Windows virus,
+ you must confirm that this is what you intended to do.
+ " 2>/dev/null
+ safe_launch=$?
+ if [ $safe_launch -eq 0 ] ; then
+  exit 1
+ fi
+ if [ $safe_launch -eq 1 ] ; then
+  # xmessage was unable to ask the user, try tty instead
+  echo "Wine will launch to run the requested Windows executable." >&2
+  echo "To protect you from accidentally running a Windows virus," >&2
+  echo "you must confirm that this is what you intended to do." >&2
+  echo -n "(yes/no) " >&2
+  read safe_confirm
+  if [ "$safe_confirm" != 'yes' -a "$safe_confirm" != 'y' ] ; then
+   exit 1
+  fi
+ fi
+fi
+
+# Check for known problem with amd64
+if [ "$ARCH" = "amd64" ]; then
+
+# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=430845
+if grep -q "^hosts:.*mdns4_minimal \[NOTFOUND=return\]" /etc/nsswitch.conf && \
+   [ ! -e /usr/lib32/libnss_mdns4.so.2 ]; then
+ $XMESSAGE -center \
+ -title "Wine Warning" \
+ "
+ It appears that libnss-mdns is installed on your system,
+ but lib32nss-mdns is not. Please note that Wine will not be
+ able to access the Internet unless you either install
+ lib32nss-mdns (or ia32-libnss-mdns), or uninstall libnss-mdns.
+ " 2>/dev/null
+ notify=$?
+ if [ $notify -eq 1 ] ; then
+  # xmessage was unable to notify the user, try tty instead
+  echo "It appears that libnss-mdns is installed on your system," >&2
+  echo "but lib32nss-mdns is not. Please note that Wine will not be" >&2
+  echo "able to access the Internet unless you either install" >&2
+  echo "lib32nss-mdns (or ia32-libnss-mdns), or uninstall libnss-mdns." >&2
+  echo -n "(okay) " >&2
+  read confirm
+ fi
+fi # nss_mdns4
+
+fi # amd64
+
+# Launch Wine
+export WINELOADER="/usr/lib/wine/wine.bin"
+exec "$WINELOADER" "$@"

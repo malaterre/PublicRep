@@ -1,0 +1,7 @@
+debian/tmp/usr/lib/libwine*.so.*
+debian/tmp/usr/lib/wine/wine.bin
+debian/tmp/usr/lib/wine/wineserver
+debian/tmp/usr/share/wine/generic.ppd
+debian/tmp/usr/share/wine/fonts
+debian/tmp/usr/share/man/man1/wineserver.1
+debian/tmp/usr/share/man/*/man1/wineserver.1

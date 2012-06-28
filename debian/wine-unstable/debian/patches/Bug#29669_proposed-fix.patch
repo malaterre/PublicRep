@@ -1,0 +1,323 @@
+From: Dan Kegel <dank@kegel.com>
+Last-Update: 2012-02-16
+Subject: Proposed patch series to fix #29669.
+Origin: upstream, http://bugs.winehq.org/attachment.cgi?id=38919
+Bug: http://bugs.winehq.org/show_bug.cgi?id=29669
+---
+ dlls/kernel32/tests/Makefile.in |    1 
+ dlls/kernel32/tests/cdrom.c     |  244 ++++++++++++++++++++++++++++++++++++++++
+ dlls/ntdll/cdrom.c              |   10 +
+ include/ddk/ntddcdvd.h          |    5 
+ 4 files changed, 257 insertions(+), 3 deletions(-)
+
+--- a/dlls/kernel32/tests/Makefile.in
++++ b/dlls/kernel32/tests/Makefile.in
+@@ -5,6 +5,7 @@ C_SRCS = \
+ 	actctx.c \
+ 	alloc.c \
+ 	atom.c \
++	cdrom.c \
+ 	change.c \
+ 	codepage.c \
+ 	comm.c \
+--- /dev/null
++++ b/dlls/kernel32/tests/cdrom.c
+@@ -0,0 +1,244 @@
++/*
++ * Unit test suite for cdrom/dvd functions
++ *
++ * Copyright (C) 2012 Dan Kegel
++ *
++ * This library is free software; you can redistribute it and/or
++ * modify it under the terms of the GNU Lesser General Public
++ * License as published by the Free Software Foundation; either
++ * version 2.1 of the License, or (at your option) any later version.
++ *
++ * This library is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++ * Lesser General Public License for more details.
++ *
++ * You should have received a copy of the GNU Lesser General Public
++ * License along with this library; if not, write to the Free Software
++ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
++ */
++
++#include <windows.h>
++#include <winternl.h>
++#include <ddk/ntddcdvd.h>
++#include <ntddscsi.h>
++#include <stdio.h>
++#include <stddef.h>
++#include "wine/test.h"
++
++/* Not in wine headers yet */
++#include <pshpack1.h>
++#define SCSIOP_READ_DVD_STRUCTURE 0xad
++struct _READ_DVD_STRUCTURE {
++    UCHAR OperationCode;        /* = SCSIOP_READ_DVD_STRUCTURE */
++    UCHAR Reserved1:5;
++    UCHAR Lun:3;
++    UCHAR RMDBlockNumber[4];
++    UCHAR LayerNumber;
++    UCHAR Format;
++    USHORT AllocationLength;
++    UCHAR Reserved3:6;
++    UCHAR AGID:2;
++    UCHAR Control;
++};
++
++/* Not in wine headers yet */
++struct _SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER {
++    SCSI_PASS_THROUGH_DIRECT spt;
++    ULONG reserved;
++    UCHAR senseBuf[32];
++};
++#include <poppack.h>
++
++#ifdef WORDS_BIGENDIAN
++#define GET_BE_DWORD(x) (x)
++#else
++#define GET_BE_DWORD(x) RtlUlongByteSwap(x)
++#endif
++
++#include <pshpack1.h>
++struct DVD_LAYER_DESCRIPTOR_WITH_HEADER {
++    struct _DVD_DESCRIPTOR_HEADER h;
++    struct _DVD_LAYER_DESCRIPTOR layer;
++    /* Must have size 22, or Windows returns ERROR_INVALID_ARGUMENT. */
++    char Reserved;
++};
++
++struct DVD_MANUFACTURER_DESCRIPTOR_WITH_HEADER {
++    struct _DVD_DESCRIPTOR_HEADER h;
++    struct _DVD_MANUFACTURER_DESCRIPTOR layer;
++};
++#include <poppack.h>
++
++/* Largest useful buffer ever returned by IOCTL_DVD_READ_STRUCTURE */
++#define SIZEOF_DVD_DESCRIPTOR_WITH_HEADER 2052
++
++static void test_readStruct_layer_byteorder(HANDLE hdevice)
++{
++    struct DVD_READ_STRUCTURE ibuf;
++    struct DVD_LAYER_DESCRIPTOR_WITH_HEADER obuf;
++    BOOL bRet;
++    DWORD firstSector;
++    DWORD bytes_read;
++
++    ZeroMemory(&ibuf, sizeof(ibuf));
++    ibuf.Format = DvdPhysicalDescriptor;
++    bRet = DeviceIoControl(hdevice, IOCTL_DVD_READ_STRUCTURE,
++                           &ibuf, sizeof(ibuf),
++                           &obuf, sizeof(obuf),
++                           &bytes_read,  /* required, despite what MSDN says */
++                           NULL);
++    ok(bRet, "can't read layer via IOCTL_DVD_READ_STRUCTURE\n");
++    if (!bRet) {
++        skip("can't check endinanness\n");
++        return;
++    }
++
++    /* The StartingDataSector field is defined by the
++     * "Multi-Media Commands - 6 (MMC-6)" standards document, which says:
++     *  "The Starting Sector Number of Data Area field (Table 425)
++     *  specifies the first block that contains user data.
++     *  Table 425 - Starting Physical Sector Number of Data Area field
++     *  Starting Sector Number  Media Type
++     *    30000h                DVD-ROM,DVD-R SL & DL,DVD-RW,DVD+R/+RW SL & DL,
++     *                          HD DVD-ROM, HD DVD-RAM, HD DVD-R
++     *    31000h                DVD-RAM
++     *    Others                Reserved"
++     * Verifying this is a convenient way of checking that we have the
++     * byte order right for at least one field.
++     */
++    firstSector = GET_BE_DWORD(obuf.layer.StartingDataSector);
++    ok(firstSector == 0x30000 ||
++       firstSector == 0x31000,
++       "StartingDataSector was %x, expected 0x30000 or 0x31000\n", firstSector);
++}
++
++/* Another way to do the same thing as IOCTL_DVD_READ_STRUCTURE */
++static DWORD read_discStructure(HANDLE device, int format, void *obuf, int obuflen)
++{
++    struct _SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER ibuf;
++    struct _READ_DVD_STRUCTURE cdb;
++    DWORD bytes_read;
++    DWORD bRet;
++
++    ZeroMemory(&ibuf, sizeof(ibuf));
++    ibuf.spt.DataBuffer = obuf;
++    ibuf.spt.DataTransferLength = obuflen;
++    ibuf.spt.DataIn = SCSI_IOCTL_DATA_IN;
++    ibuf.spt.CdbLength = sizeof(cdb);
++    ibuf.spt.Length = sizeof(SCSI_PASS_THROUGH_DIRECT);
++    ibuf.spt.SenseInfoLength = sizeof(ibuf.senseBuf);
++    ibuf.spt.SenseInfoOffset = offsetof(struct _SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER, senseBuf);
++    ibuf.spt.TimeOutValue = 10000;
++
++    ZeroMemory(&cdb, sizeof(cdb));
++    cdb.OperationCode = SCSIOP_READ_DVD_STRUCTURE;
++    cdb.AllocationLength = sizeof(struct _READ_DVD_STRUCTURE);
++    cdb.Format = format;
++    memcpy(ibuf.spt.Cdb, &cdb, sizeof(cdb));
++
++    bRet = DeviceIoControl(device, IOCTL_SCSI_PASS_THROUGH_DIRECT,
++                           &ibuf, sizeof(ibuf),
++                           &ibuf, sizeof(ibuf),
++                           &bytes_read, NULL);
++    return bRet;
++}
++
++/* Compare two different ways of reading metadata from the dvd */
++static void test_readStruct_vs_passthrough(HANDLE hdevice, int obuflen, int format)
++{
++    char obuf1[SIZEOF_DVD_DESCRIPTOR_WITH_HEADER];
++    char obuf2[SIZEOF_DVD_DESCRIPTOR_WITH_HEADER];
++    DVD_READ_STRUCTURE ibuf2;
++    DWORD bytes_read;
++    BOOL bRet;
++
++    memset(&obuf1, '1', sizeof(obuf1));
++    bRet = read_discStructure(hdevice, format, obuf1, obuflen);
++    ok(bRet, "can't read format %d via SCSI_PASS_THROUGH_DIRECT\n", format);
++
++    ZeroMemory(&ibuf2, sizeof(ibuf2));
++    ibuf2.Format = format;
++    memset(&obuf2, '2', sizeof(obuf2));
++    bRet = DeviceIoControl(hdevice, IOCTL_DVD_READ_STRUCTURE,
++                           &ibuf2, sizeof(ibuf2),
++                           obuf2, obuflen, &bytes_read, 0);
++    ok(bRet, "can't read format %d via IOCTL_DVD_READ_STRUCTURE, error %d\n",
++       format, GetLastError());
++
++    ok(!memcmp(obuf1 + sizeof(struct _DVD_DESCRIPTOR_HEADER),
++               obuf2 + sizeof(struct _DVD_DESCRIPTOR_HEADER),
++               obuflen - sizeof(struct _DVD_DESCRIPTOR_HEADER)),
++       "SCSI_PASS_THROUGH_DIRECT and IOCTL_DVD_READ_STRUCTURE report different results for format %d\n", format);
++}
++
++static BOOL isDvd(HANDLE hdevice)
++{
++    struct DVD_READ_STRUCTURE ibuf;
++    struct DVD_LAYER_DESCRIPTOR_WITH_HEADER obuf;
++    DWORD bytes_read;
++
++    /* Real Windows programs use IOCTL_STORAGE_GET_MEDIA_TYPES_EX
++     * to distinguish between CD and DVD discs, but Wine doesn't
++     * quite support that yet, so just do any specific DVD ioctl
++     * and see if it succeeds.
++     */
++    ZeroMemory(&ibuf, sizeof(ibuf));
++    ibuf.Format = DvdPhysicalDescriptor;
++    return DeviceIoControl(hdevice, IOCTL_DVD_READ_STRUCTURE,
++                           &ibuf, sizeof(ibuf),
++                           &obuf, sizeof(obuf),
++                           &bytes_read,  /* required, despite what MSDN says */
++                           NULL);
++}
++
++static HANDLE openFirstDvd(void)
++{
++    int i;
++
++    for (i='c'; i < 'z'; i++) {
++        char drivepath[256];
++        HANDLE hdevice;
++        sprintf(drivepath, "%c:", i);
++        if (GetDriveTypeA(drivepath) != DRIVE_CDROM)
++            continue;
++
++        sprintf(drivepath, "\\\\.\\%c:", i);
++        /* Windows 7 requires write access for IOCTL_SCSI_PASS_THROUGH_DIRECT */
++        hdevice = CreateFileA(drivepath, GENERIC_READ|GENERIC_WRITE,
++                               FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, NULL);
++        /* FIXME: On Mac OS X, cdrom can only be opened readonly.
++         * Happily, Wine doesn't require GENERIC_WRITE like Windows does,
++         * so falling back to opening readonly will let us run the tests.
++         */
++        if (hdevice == INVALID_HANDLE_VALUE)
++            hdevice = CreateFileA(drivepath, GENERIC_READ, FILE_SHARE_READ,
++                                  NULL, OPEN_EXISTING, 0, NULL);
++        if (hdevice == INVALID_HANDLE_VALUE)
++            continue;
++
++        if (isDvd(hdevice))
++            return hdevice;
++
++        CloseHandle(hdevice);
++    }
++    return INVALID_HANDLE_VALUE;
++}
++
++START_TEST(cdrom)
++{
++    HANDLE hdevice = openFirstDvd();
++    if (hdevice == INVALID_HANDLE_VALUE) {
++        skip("Can't read DVD info from any drive.\n\
++Insert a DVD, or try Linux kernel 3.1 or higher; see\n\
++https://bugzilla.kernel.org/show_bug.cgi?id=39062\n");
++
++        return;
++    }
++
++    test_readStruct_layer_byteorder(hdevice);
++    test_readStruct_vs_passthrough(hdevice, sizeof(struct DVD_LAYER_DESCRIPTOR_WITH_HEADER), DvdPhysicalDescriptor);
++    test_readStruct_vs_passthrough(hdevice, sizeof(struct DVD_MANUFACTURER_DESCRIPTOR_WITH_HEADER), DvdManufacturerDescriptor);
++
++    CloseHandle(hdevice);
++}
+--- a/dlls/ntdll/cdrom.c
++++ b/dlls/ntdll/cdrom.c
+@@ -245,6 +245,10 @@ typedef struct
+     UCHAR Reserved6;
+ } internal_dvd_layer_descriptor;
+ 
++struct DVD_MANUFACTURER_DESCRIPTOR_WITH_HEADER {
++    struct _DVD_DESCRIPTOR_HEADER h;
++    struct _DVD_MANUFACTURER_DESCRIPTOR manufacturer;
++};
+ 
+ static NTSTATUS CDROM_ReadTOC(int, int, CDROM_TOC*);
+ static NTSTATUS CDROM_GetStatusCode(int);
+@@ -2611,7 +2615,7 @@ static NTSTATUS DVD_ReadStructure(int de
+ 
+     case DvdManufacturerDescriptor:
+         {
+-            PDVD_MANUFACTURER_DESCRIPTOR p = (PDVD_MANUFACTURER_DESCRIPTOR) layer;
++            PDVD_MANUFACTURER_DESCRIPTOR p = &((struct DVD_MANUFACTURER_DESCRIPTOR_WITH_HEADER *)layer)->manufacturer;
+ 
+             memcpy(p->ManufacturingInformation, s.manufact.value, 2048);
+         }
+@@ -2636,7 +2640,7 @@ static NTSTATUS DVD_ReadStructure(int de
+         internal_dvd_layer_descriptor *xlayer;
+         PDVD_COPYRIGHT_DESCRIPTOR copy;
+         PDVD_DISK_KEY_DESCRIPTOR disk_key;
+-        PDVD_MANUFACTURER_DESCRIPTOR manf;
++        struct DVD_MANUFACTURER_DESCRIPTOR_WITH_HEADER manf;
+     } nt_desc;
+ 
+     nt_desc.layer = layer;
+@@ -2724,7 +2728,7 @@ static NTSTATUS DVD_ReadStructure(int de
+ 
+         case DvdManufacturerDescriptor:
+             memcpy(
+-                nt_desc.manf->ManufacturingInformation,
++                nt_desc.manf->manufacturer.ManufacturingInformation,
+                 desc.manf.discManufacturingInfo,
+                 2048);
+             break;
+--- a/include/ddk/ntddcdvd.h
++++ b/include/ddk/ntddcdvd.h
+@@ -51,6 +51,11 @@ typedef ULONG DVD_SESSION_ID, *PDVD_SESS
+ 
+ #include <pshpack1.h>
+ 
++typedef struct _DVD_DESCRIPTOR_HEADER {
++    USHORT Length;
++    UCHAR Reserved[2];
++} DVD_DESCRIPTOR_HEADER, *PDVD_DESCRIPTOR_HEADER;
++
+ typedef struct _DVD_COPY_PROTECT_KEY {
+     ULONG KeyLength;
+     DVD_SESSION_ID SessionId;

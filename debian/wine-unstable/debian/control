@@ -1,0 +1,244 @@
+Source: wine-unstable
+Section: otherosfs
+Priority: optional
+Maintainer: Debian Wine Party <pkg-wine-party@lists.alioth.debian.org>
+Uploaders: Ove Kaaven <ovek@arcticnet.no>, Arthur Loiret <arthur.loiret@gmail.com>
+Build-Depends: debhelper, flex, bison,
+ libx11-dev, libxext-dev, libxi-dev, libxrandr-dev,
+ libxrender-dev, libxt-dev,
+ libxkbfile-dev,
+ libxxf86dga-dev,
+ libxxf86vm-dev,
+ libxinerama-dev,
+ libxcomposite-dev,
+ libgl1-mesa-dev | libgl-dev,
+ libglu1-mesa-dev | libglu-dev,
+ freeglut3-dev | libglut-dev, libxmu-dev,
+ libxcursor-dev, libncurses5-dev, libcups2-dev,
+ libjpeg-dev, libpng-dev,
+ libfreetype6-dev, libfontconfig1-dev, libopenal-dev,
+ libasound2-dev [i386 amd64 powerpc sparc],
+ oss4-dev,
+ libsane-dev, libusb-dev, libgsm1-dev, libmpg123-dev,
+ libcapi20-dev [i386 amd64 powerpc sparc],
+ libdbus-1-dev | dbus-1-dev, libgphoto2-2-dev, liblcms1-dev, libldap2-dev,
+ libssl-dev, libgnutls-dev, libxml2-dev, libxslt1-dev, unixodbc-dev, prelink [i386 amd64],
+ dctrl-tools | grep-dctrl, lzma, sharutils,
+ gcc-4.5-multilib [amd64 kfreebsd-amd64], gcc-4.5 [amd64 kfreebsd-amd64],
+ g++-4.5 [amd64 kfreebsd-amd64],
+ ia32-libs-dev [amd64 kfreebsd-amd64], lib32z1-dev [amd64 kfreebsd-amd64],
+ libgstreamer-plugins-base0.10-dev, gettext, lib32v4l-dev [amd64],
+ lib32ncurses5-dev [amd64], lib32asound2-dev [amd64],
+ valgrind
+Standards-Version: 3.8.4
+Homepage: http://www.winehq.org/
+Vcs-Browser: http://git.debian.org/?p=pkg-wine/wine.git
+Vcs-Git: git://git.debian.org/git/pkg-wine/wine.git
+
+Package: wine-unstable
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: wine-bin-unstable (= ${binary:Version}),
+ libwine-alsa-unstable (= ${binary:Version}) [i386 amd64 powerpc sparc] | libwine-oss-unstable (= ${binary:Version}),
+ libwine-gl-unstable (= ${binary:Version}), libwine-print-unstable (= ${binary:Version}), libwine-sane-unstable (= ${binary:Version}),
+ libwine-cms-unstable (= ${binary:Version}), libwine-gphoto2-unstable (= ${binary:Version}), libwine-ldap-unstable (= ${binary:Version}),
+ libwine-openal-unstable (= ${binary:Version}), ${misc:Depends}
+Recommends: ttf-liberation
+Suggests: wine-doc, binfmt-support, ttf-mscorefonts-installer, winbind, avscan | klamav | clamav, gstreamer0.10-plugins-good, gstreamer0.10-plugins-ugly
+Conflicts: wine
+Description: Windows API implementation - standard suite
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This is a dummy package that depends on the standard Wine components.
+
+Package: wine-bin-unstable
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, libwine-bin-unstable (= ${binary:Version}), x11-utils | xbase-clients (>= 4.0) | xcontrib, ${misc:Depends}
+Suggests: libwine-print-unstable, libwine-gl-unstable
+Conflicts: binfmt-support (<< 1.1.2), wine-bin
+Replaces: libwine-unstable (<< 0.0.20010216), wine-utils-unstable (<< 1.1.25-1), wine-unstable (<< 0.9.35)
+Description: Windows API implementation - binary loader
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides the binary loader program for running Windows
+ executables.
+
+Package: libwine-dbg-unstable
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Section: debug
+Priority: extra
+Depends: libwine-unstable (= ${binary:Version}), ${misc:Depends}
+Conflicts: libwine-dbg
+Description: Windows API implementation - debugging symbols
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides debugging symbols.
+
+Package: libwine-dev-unstable
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Section: libdevel
+Depends: ${shlibs:Depends}, libwine-unstable (= ${binary:Version}), libc6-dev, libc6-dev-i386 [amd64 kfreebsd-amd64], ${misc:Depends}
+Replaces: libwine-unstable (<< 0.0.20010216), wine-utils-unstable (<< 1.1.25-1)
+Suggests: wine-doc
+Conflicts: libwine-dev
+Description: Windows API implementation - development files
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides the C header files.
+
+Package: libwine-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${wine:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Pre-Depends: ${wine:Pre-Depends}
+Replaces: wine-unstable (<< 0.9.11-1), libwine-twain-unstable (<< 0.9.13), libwine-gl-unstable (<< 0.9.53-1)
+Recommends: ${shlibs:Recommends}
+Suggests: wine-doc, libtxc-dxtn0 [i386 kfreebsd-i386], ia32-libs-libtxc-dxtn0
+Conflicts: libwine
+Description: Windows API implementation - library
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides the library that implements the Windows API.
+
+Package: libwine-alsa-unstable
+Section: libs
+Architecture: i386 amd64 powerpc sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libwine-alsa
+Description: Windows API implementation - ALSA sound module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains an ALSA sound driver.
+
+Package: libwine-bin-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: wine-bin-unstable (<< 1.1.25-1), wine-utils-unstable (<< 1.1.25-1)
+Conflicts: libwine-bin
+Description: Windows API implementation - system services
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package provides system services and utilities needed to use many
+ Windows applications.
+
+Package: libwine-capi-unstable
+Section: libs
+Priority: extra
+Architecture: i386 amd64 powerpc sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libwine-capi
+Description: Windows API implementation - ISDN module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a CAPI interface that allows Windows applications
+ to communicate with ISDN cards supported by capi4linux.
+
+Package: libwine-cms-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libwine-unstable (<< 0.0.20050830)
+Conflicts: libwine-cms
+Description: Windows API implementation - color management module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a Color Management System implementation that
+ lets Windows applications calibrate the colors used for display and print.
+
+Package: libwine-gl-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libwine-unstable (<< 0.9.56)
+Conflicts: libwine-gl
+Description: Windows API implementation - OpenGL module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains the OpenGL and Direct3D modules that allow
+ Windows applications to use 3D acceleration.
+
+Package: libwine-gphoto2-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libwine-gphoto2
+Description: Windows API implementation - camera module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a TWAIN interface that allows Windows applications
+ to communicate with cameras supported by gphoto2.
+
+Package: libwine-ldap-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libwine-ldap
+Description: Windows API implementation - LDAP module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a module that allows Windows applications to access
+ LDAP directory services.
+
+Package: libwine-openal-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libwine-openal
+Description: Windows API implementation - OpenAL module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains the OpenAL module, which allows Windows applications
+ to use advanced 3D sound effects.
+
+Package: libwine-oss-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, oss-compat, ${misc:Depends}
+Replaces: libwine-unstable (<< 0.9.35)
+Conflicts: libwine-oss
+Description: Windows API implementation - OSS sound module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains an OSS sound driver.
+
+Package: libwine-print-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: cups-bsd | cupsys-bsd | lpr
+Replaces: libwine-unstable (<< 0.0.20020710)
+Conflicts: libwine-print
+Description: Windows API implementation - printing module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a CUPS-enabled spooler and a PostScript driver,
+ allowing Windows applications to print.
+
+Package: libwine-sane-unstable
+Section: libs
+Architecture: i386 hurd-i386 kfreebsd-i386 netbsd-i386 amd64 kfreebsd-amd64 powerpc hurd-powerpc kfreebsd-powerpc netbsd-powerpc sparc hurd-sparc kfreebsd-sparc netbsd-sparc
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: libwine-twain-unstable (<< 0.9.13)
+Conflicts: libwine-sane
+Description: Windows API implementation - scanner module
+ Wine is a free MS-Windows API implementation.
+ This is still a work in progress and many applications may still not work.
+ .
+ This package contains a TWAIN interface that allows Windows applications
+ to communicate with scanners supported by SANE.
+

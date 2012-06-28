@@ -1,0 +1,419 @@
+From: Erich E. Hoover <ehoover@mymail.mines.edu>
+Subject: Squashed version of the proposed series.
+Last-Update: 2012-05-14
+Bug: http://bugs.winehq.org/show_bug.cgi?id=28898
+Origin: upstream, http://www.winehq.org/pipermail/wine-patches/2012-May/114192.html and http://www.winehq.org/pipermail/wine-patches/2012-May/114193.html and http://www.winehq.org/pipermail/wine-patches/2012-May/114194.html
+---
+ dlls/ws2_32/socket.c           |    8 +++---
+ dlls/ws2_32/tests/sock.c       |   50 ++++++++++++++++++++---------------------
+ include/wine/server_protocol.h |    2 -
+ server/async.c                 |   24 ++++++++++++++++++-
+ server/fd.c                    |    9 +++++++
+ server/file.c                  |    3 +-
+ server/file.h                  |    4 +++
+ server/mailslot.c              |    9 ++++---
+ server/mapping.c               |    3 +-
+ server/named_pipe.c            |    7 ++++-
+ server/serial.c                |    3 +-
+ server/signal.c                |    3 +-
+ server/sock.c                  |   13 +++++++++-
+ server/thread.c                |    3 +-
+ server/trace.c                 |    1 
+ 15 files changed, 99 insertions(+), 43 deletions(-)
+
+--- a/dlls/ws2_32/socket.c
++++ b/dlls/ws2_32/socket.c
+@@ -1706,7 +1706,7 @@ static NTSTATUS WS2_async_accept( void *
+     if (status != STATUS_PENDING)
+         goto finish;
+ 
+-    return STATUS_SUCCESS;
++    return STATUS_MORE_PROCESSING_REQUIRED;
+ 
+ finish:
+     iosb->u.Status = status;
+@@ -1714,8 +1714,6 @@ finish:
+ 
+     if (wsa->user_overlapped->hEvent)
+         SetEvent(wsa->user_overlapped->hEvent);
+-    if (wsa->cvalue)
+-        WS_AddCompletion( HANDLE2SOCKET(wsa->listen_socket), wsa->cvalue, iosb->u.Status, iosb->Information );
+ 
+     *apc = ws2_async_accept_apc;
+     return status;
+@@ -2046,7 +2044,9 @@ static BOOL WINAPI WS2_AcceptEx(SOCKET l
+         req->async.callback = wine_server_client_ptr( WS2_async_accept );
+         req->async.iosb     = wine_server_client_ptr( overlapped );
+         req->async.arg      = wine_server_client_ptr( wsa );
+-        /* We don't set event or completion since we may also have to read */
++        req->async.cvalue   = cvalue;
++        /* We don't set event since we may also have to read, the APC returns STATUS_MORE_PROCESSING_REQUIRED
++         * to indicate that the async operation is incomplete and that no completion should be queued. */
+         status = wine_server_call( req );
+     }
+     SERVER_END_REQ;
+--- a/dlls/ws2_32/tests/sock.c
++++ b/dlls/ws2_32/tests/sock.c
+@@ -5494,11 +5494,11 @@ static void test_completion_port(void)
+ 
+     bret = GetQueuedCompletionStatus(io_port, &num_bytes, &key, &olp, 100);
+     ok(bret == FALSE, "failed to get completion status %u\n", bret);
+-    todo_wine ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
+-    todo_wine ok(key == 125, "Key is %lu\n", key);
+-    todo_wine ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
+-    todo_wine ok(olp == &ov, "Overlapped structure is at %p\n", olp);
+-    todo_wine ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
++    ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
++    ok(key == 125, "Key is %lu\n", key);
++    ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
++    ok(olp == &ov, "Overlapped structure is at %p\n", olp);
++    ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
+ 
+     SetLastError(0xdeadbeef);
+     key = 0xdeadbeef;
+@@ -5537,11 +5537,11 @@ static void test_completion_port(void)
+ 
+     bret = GetQueuedCompletionStatus(io_port, &num_bytes, &key, &olp, 100);
+     ok(bret == FALSE, "failed to get completion status %u\n", bret);
+-    todo_wine ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
+-    todo_wine ok(key == 125, "Key is %lu\n", key);
+-    todo_wine ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
+-    todo_wine ok(olp == &ov, "Overlapped structure is at %p\n", olp);
+-    todo_wine ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
++    ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
++    ok(key == 125, "Key is %lu\n", key);
++    ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
++    ok(olp == &ov, "Overlapped structure is at %p\n", olp);
++    ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
+ 
+     SetLastError(0xdeadbeef);
+     key = 0xdeadbeef;
+@@ -5596,11 +5596,11 @@ static void test_completion_port(void)
+     olp = (WSAOVERLAPPED *)0xdeadbeef;
+     bret = GetQueuedCompletionStatus(io_port, &num_bytes, &key, &olp, 100);
+     ok(bret == FALSE, "failed to get completion status %u\n", bret);
+-    todo_wine ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
+-    todo_wine ok(key == 125, "Key is %lu\n", key);
+-    todo_wine ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
+-    todo_wine ok(olp == &ov, "Overlapped structure is at %p\n", olp);
+-    todo_wine ok(olp && olp->Internal == (ULONG)STATUS_CANCELLED, "Internal status is %lx\n", olp ? olp->Internal : 0);
++    ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
++    ok(key == 125, "Key is %lu\n", key);
++    ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
++    ok(olp == &ov, "Overlapped structure is at %p\n", olp);
++    ok(olp && olp->Internal == (ULONG)STATUS_CANCELLED, "Internal status is %lx\n", olp ? olp->Internal : 0);
+ 
+     SetLastError(0xdeadbeef);
+     key = 0xdeadbeef;
+@@ -5663,11 +5663,11 @@ static void test_completion_port(void)
+ 
+     bret = GetQueuedCompletionStatus(io_port, &num_bytes, &key, &olp, 100);
+     ok(bret == FALSE, "failed to get completion status %u\n", bret);
+-    todo_wine ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
+-    todo_wine ok(key == 125, "Key is %lu\n", key);
+-    todo_wine ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
+-    todo_wine ok(olp == &ov, "Overlapped structure is at %p\n", olp);
+-    todo_wine ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
++    ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
++    ok(key == 125, "Key is %lu\n", key);
++    ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
++    ok(olp == &ov, "Overlapped structure is at %p\n", olp);
++    ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
+ 
+     SetLastError(0xdeadbeef);
+     key = 0xdeadbeef;
+@@ -5719,11 +5719,11 @@ static void test_completion_port(void)
+ 
+     bret = GetQueuedCompletionStatus(io_port, &num_bytes, &key, &olp, 100);
+     ok(bret == FALSE, "failed to get completion status %u\n", bret);
+-    todo_wine ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
+-    todo_wine ok(key == 125, "Key is %lu\n", key);
+-    todo_wine ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
+-    todo_wine ok(olp == &ov, "Overlapped structure is at %p\n", olp);
+-    todo_wine ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
++    ok(GetLastError() == ERROR_OPERATION_ABORTED, "Last error was %d\n", GetLastError());
++    ok(key == 125, "Key is %lu\n", key);
++    ok(num_bytes == 0, "Number of bytes transferred is %u\n", num_bytes);
++    ok(olp == &ov, "Overlapped structure is at %p\n", olp);
++    ok(olp && (olp->Internal == (ULONG)STATUS_CANCELLED), "Internal status is %lx\n", olp ? olp->Internal : 0);
+ 
+     SetLastError(0xdeadbeef);
+     key = 0xdeadbeef;
+--- a/include/wine/server_protocol.h
++++ b/include/wine/server_protocol.h
+@@ -5648,6 +5648,6 @@ union generic_reply
+     struct set_suspend_context_reply set_suspend_context_reply;
+ };
+ 
+-#define SERVER_PROTOCOL_VERSION 432
++#define SERVER_PROTOCOL_VERSION 433
+ 
+ #endif /* __WINE_WINE_SERVER_PROTOCOL_H */
+--- a/server/async.c
++++ b/server/async.c
+@@ -214,11 +214,12 @@ struct async *create_async( struct threa
+     async->timeout = NULL;
+     async->queue   = (struct async_queue *)grab_object( queue );
+     async->completion = NULL;
+-    if (queue->fd) async->completion = fd_get_completion( queue->fd, &async->comp_key );
+ 
+     list_add_tail( &queue->queue, &async->queue_entry );
+     grab_object( async );
+ 
++    async_update( async->queue );
++
+     if (queue->fd) set_fd_signaled( queue->fd, 0 );
+     if (event) reset_event( event );
+     return async;
+@@ -258,7 +259,9 @@ void async_set_result( struct object *ob
+         if (async->timeout) remove_timeout_user( async->timeout );
+         async->timeout = NULL;
+         async->status = status;
+-        if (async->completion && async->data.cvalue)
++        if (status == STATUS_MORE_PROCESSING_REQUIRED)
++            async->status = STATUS_PENDING;
++        else if (async->completion && async->data.cvalue)
+             add_completion( async->completion, async->comp_key, async->data.cvalue, status, total );
+         if (apc)
+         {
+@@ -330,3 +333,20 @@ void async_wake_up( struct async_queue *
+         if (status == STATUS_ALERTED) break;  /* only wake up the first one */
+     }
+ }
++
++/* update an async to correspond to new file object information */
++void async_update( struct async_queue *queue )
++{
++    struct list *ptr, *next;
++
++    if (!queue) return;
++
++    LIST_FOR_EACH_SAFE( ptr, next, &queue->queue )
++    {
++        struct async *async = LIST_ENTRY( ptr, struct async, queue_entry );
++
++        if (!async->completion && async->queue->fd)
++            async->completion = fd_get_completion( async->queue->fd, &async->comp_key );
++    }
++}
++
+--- a/server/fd.c
++++ b/server/fd.c
+@@ -2103,6 +2103,14 @@ void default_fd_cancel_async( struct fd
+         set_error( STATUS_NOT_FOUND );
+ }
+ 
++/* default update_async() fd routine */
++void default_fd_update_async( struct fd *fd )
++{
++    async_update( fd->read_q );
++    async_update( fd->write_q );
++    async_update( fd->wait_q );
++}
++
+ /* default flush() routine */
+ void no_flush( struct fd *fd, struct event **event )
+ {
+@@ -2350,6 +2358,7 @@ DECL_HANDLER(set_completion_info)
+         {
+             fd->completion = get_completion_obj( current->process, req->chandle, IO_COMPLETION_MODIFY_STATE );
+             fd->comp_key = req->ckey;
++            fd->fd_ops->update_async( fd );
+         }
+         else set_error( STATUS_INVALID_PARAMETER );
+         release_object( fd );
+--- a/server/file.c
++++ b/server/file.c
+@@ -102,7 +102,8 @@ static const struct fd_ops file_fd_ops =
+     default_fd_ioctl,             /* ioctl */
+     default_fd_queue_async,       /* queue_async */
+     default_fd_reselect_async,    /* reselect_async */
+-    default_fd_cancel_async       /* cancel_async */
++    default_fd_cancel_async,      /* cancel_async */
++    default_fd_update_async       /* update_async */
+ };
+ 
+ static inline int is_overlapped( const struct file *file )
+--- a/server/file.h
++++ b/server/file.h
+@@ -48,6 +48,8 @@ struct fd_ops
+     void (*reselect_async)( struct fd *, struct async_queue *queue );
+     /* cancel an async operation */
+     void (*cancel_async)(struct fd *, struct process *process, struct thread *thread, client_ptr_t iosb);
++    /* update an async operation to correspond to changes in the file object */
++    void (*update_async)(struct fd *);
+ };
+ 
+ /* file descriptor functions */
+@@ -92,6 +94,7 @@ extern void no_fd_queue_async( struct fd
+ extern void default_fd_queue_async( struct fd *fd, const async_data_t *data, int type, int count );
+ extern void default_fd_reselect_async( struct fd *fd, struct async_queue *queue );
+ extern void default_fd_cancel_async( struct fd *fd, struct process *process, struct thread *thread, client_ptr_t iosb );
++extern void default_fd_update_async( struct fd *fd );
+ extern void no_flush( struct fd *fd, struct event **event );
+ extern void main_loop(void);
+ extern void remove_process_locks( struct process *process );
+@@ -164,6 +167,7 @@ extern void async_terminate( struct asyn
+ extern int async_wake_up_by( struct async_queue *queue, struct process *process,
+                              struct thread *thread, client_ptr_t iosb, unsigned int status );
+ extern void async_wake_up( struct async_queue *queue, unsigned int status );
++extern void async_update( struct async_queue *queue );
+ extern struct completion *fd_get_completion( struct fd *fd, apc_param_t *p_key );
+ extern void fd_copy_completion( struct fd *src, struct fd *dst );
+ 
+--- a/server/mailslot.c
++++ b/server/mailslot.c
+@@ -102,7 +102,8 @@ static const struct fd_ops mailslot_fd_o
+     default_fd_ioctl,           /* ioctl */
+     mailslot_queue_async,       /* queue_async */
+     default_fd_reselect_async,  /* reselect_async */
+-    default_fd_cancel_async     /* cancel_async */
++    default_fd_cancel_async,    /* cancel_async */
++    default_fd_update_async     /* update_async */
+ };
+ 
+ 
+@@ -152,7 +153,8 @@ static const struct fd_ops mail_writer_f
+     default_fd_ioctl,            /* ioctl */
+     default_fd_queue_async,      /* queue_async */
+     default_fd_reselect_async,   /* reselect_async */
+-    default_fd_cancel_async      /* cancel_async */
++    default_fd_cancel_async,     /* cancel_async */
++    default_fd_update_async      /* update_async */
+ };
+ 
+ 
+@@ -202,7 +204,8 @@ static const struct fd_ops mailslot_devi
+     default_fd_ioctl,               /* ioctl */
+     default_fd_queue_async,         /* queue_async */
+     default_fd_reselect_async,      /* reselect_async */
+-    default_fd_cancel_async         /* cancel_async */
++    default_fd_cancel_async,        /* cancel_async */
++    default_fd_update_async         /* update_async */
+ };
+ 
+ static void mailslot_destroy( struct object *obj)
+--- a/server/mapping.c
++++ b/server/mapping.c
+@@ -103,7 +103,8 @@ static const struct fd_ops mapping_fd_op
+     no_fd_ioctl,                  /* ioctl */
+     no_fd_queue_async,            /* queue_async */
+     default_fd_reselect_async,    /* reselect_async */
+-    default_fd_cancel_async       /* cancel_async */
++    default_fd_cancel_async,      /* cancel_async */
++    default_fd_update_async       /* update_async */
+ };
+ 
+ static struct list shared_list = LIST_INIT(shared_list);
+--- a/server/named_pipe.c
++++ b/server/named_pipe.c
+@@ -173,6 +173,7 @@ static const struct fd_ops pipe_server_f
+     default_fd_queue_async,       /* queue_async */
+     default_fd_reselect_async,    /* reselect_async */
+     default_fd_cancel_async,      /* cancel_async */
++    default_fd_update_async       /* update_async */
+ };
+ 
+ /* client end functions */
+@@ -212,7 +213,8 @@ static const struct fd_ops pipe_client_f
+     default_fd_ioctl,             /* ioctl */
+     default_fd_queue_async,       /* queue_async */
+     default_fd_reselect_async,    /* reselect_async */
+-    default_fd_cancel_async       /* cancel_async */
++    default_fd_cancel_async,      /* cancel_async */
++    default_fd_update_async       /* update_async */
+ };
+ 
+ static void named_pipe_device_dump( struct object *obj, int verbose );
+@@ -256,7 +258,8 @@ static const struct fd_ops named_pipe_de
+     named_pipe_device_ioctl,          /* ioctl */
+     default_fd_queue_async,           /* queue_async */
+     default_fd_reselect_async,        /* reselect_async */
+-    default_fd_cancel_async           /* cancel_async */
++    default_fd_cancel_async,          /* cancel_async */
++    default_fd_update_async           /* update_async */
+ };
+ 
+ static void named_pipe_dump( struct object *obj, int verbose )
+--- a/server/serial.c
++++ b/server/serial.c
+@@ -112,7 +112,8 @@ static const struct fd_ops serial_fd_ops
+     default_fd_ioctl,             /* ioctl */
+     serial_queue_async,           /* queue_async */
+     default_fd_reselect_async,    /* reselect_async */
+-    default_fd_cancel_async       /* cancel_async */
++    default_fd_cancel_async,      /* cancel_async */
++    default_fd_update_async       /* update_async */
+ };
+ 
+ /* check if the given fd is a serial port */
+--- a/server/signal.c
++++ b/server/signal.c
+@@ -90,7 +90,8 @@ static const struct fd_ops handler_fd_op
+     NULL,                     /* ioctl */
+     NULL,                     /* queue_async */
+     NULL,                     /* reselect_async */
+-    NULL                      /* cancel_async */
++    NULL,                     /* cancel_async */
++    NULL                      /* update_async */
+ };
+ 
+ static struct handler *handler_sighup;
+--- a/server/sock.c
++++ b/server/sock.c
+@@ -119,6 +119,7 @@ static enum server_fd_type sock_get_fd_t
+ static void sock_queue_async( struct fd *fd, const async_data_t *data, int type, int count );
+ static void sock_reselect_async( struct fd *fd, struct async_queue *queue );
+ static void sock_cancel_async( struct fd *fd, struct process *process, struct thread *thread, client_ptr_t iosb );
++static void sock_update_async( struct fd *fd );
+ 
+ static int sock_get_ntstatus( int err );
+ static int sock_get_error( int err );
+@@ -153,7 +154,8 @@ static const struct fd_ops sock_fd_ops =
+     default_fd_ioctl,             /* ioctl */
+     sock_queue_async,             /* queue_async */
+     sock_reselect_async,          /* reselect_async */
+-    sock_cancel_async             /* cancel_async */
++    sock_cancel_async,            /* cancel_async */
++    sock_update_async             /* update_async */
+ };
+ 
+ 
+@@ -573,6 +575,15 @@ static void sock_cancel_async( struct fd
+         set_error( STATUS_NOT_FOUND );
+ }
+ 
++static void sock_update_async( struct fd *fd )
++{
++    struct sock *sock = get_fd_user( fd );
++    assert( sock->obj.ops == &sock_ops );
++
++    async_update( sock->read_q );
++    async_update( sock->write_q );
++}
++
+ static struct fd *sock_get_fd( struct object *obj )
+ {
+     struct sock *sock = (struct sock *)obj;
+--- a/server/thread.c
++++ b/server/thread.c
+@@ -157,7 +157,8 @@ static const struct fd_ops thread_fd_ops
+     NULL,                       /* ioctl */
+     NULL,                       /* queue_async */
+     NULL,                       /* reselect_async */
+-    NULL                        /* cancel_async */
++    NULL,                       /* cancel_async */
++    NULL                        /* update_async */
+ };
+ 
+ static struct list thread_list = LIST_INIT(thread_list);
+--- a/server/trace.c
++++ b/server/trace.c
+@@ -4724,6 +4724,7 @@ static const struct
+     { "IO_TIMEOUT",                  STATUS_IO_TIMEOUT },
+     { "KEY_DELETED",                 STATUS_KEY_DELETED },
+     { "MAPPED_FILE_SIZE_ZERO",       STATUS_MAPPED_FILE_SIZE_ZERO },
++    { "MORE_PROCESSING_REQUIRED",    STATUS_MORE_PROCESSING_REQUIRED },
+     { "MUTANT_NOT_OWNED",            STATUS_MUTANT_NOT_OWNED },
+     { "NAME_TOO_LONG",               STATUS_NAME_TOO_LONG },
+     { "NETWORK_BUSY",                STATUS_NETWORK_BUSY },

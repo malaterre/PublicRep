@@ -1,0 +1,25 @@
+debian/tmp/usr/lib/libwine*.so
+debian/tmp/usr/lib/wine/*.a
+debian/tmp/usr/lib/wine/*.def
+debian/tmp/usr/bin/widl
+debian/tmp/usr/bin/winebuild
+debian/tmp/usr/bin/winecpp
+debian/tmp/usr/bin/winedump
+debian/tmp/usr/bin/winegcc
+debian/tmp/usr/bin/wineg++
+debian/tmp/usr/bin/winemaker
+debian/tmp/usr/bin/wmc
+debian/tmp/usr/bin/wrc
+debian/tmp/usr/include
+debian/tmp/usr/share/man/man1/widl.1
+debian/tmp/usr/share/man/man1/winebuild.1
+debian/tmp/usr/share/man/man1/winedump.1
+debian/tmp/usr/share/man/man1/winegcc.1
+debian/tmp/usr/share/man/man1/wineg++.1
+debian/tmp/usr/share/man/man1/winemaker.1
+debian/tmp/usr/share/man/*/man1/winemaker.1
+debian/tmp/usr/share/man/man1/wmc.1
+debian/tmp/usr/share/man/man1/wrc.1
+debian/tmp/usr/share/man/man3
+debian/tmp/usr/share/wine/function_grep.pl
+debian/tmp/usr/share/doc/wine/README.winedump usr/share/doc/libwine-dev

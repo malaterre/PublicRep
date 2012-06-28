@@ -51,8 +51,8 @@ ENABLE_WIN64=n
 # probably at the cost of Steam failing again for i386 users. *sigh*
 #
 ifeq ($(DEB_HOST_GNU_CPU),x86_64)
-CC=gcc-4.5
-CXX=g++-4.5
+CC=gcc-4.4
+CXX=g++-4.4
 else
 CC=gcc
 CXX=g++

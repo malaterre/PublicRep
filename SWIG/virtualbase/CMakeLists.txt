@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 project(my)
 
 add_library(thelib SHARED virt.cxx)
+add_executable(simple simple.cxx)
+target_link_libraries(simple thelib)
 
 find_package(SWIG REQUIRED)
 include(${SWIG_USE_FILE})

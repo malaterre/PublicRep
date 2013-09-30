@@ -2,12 +2,21 @@
 
 #include <iostream>
 
-base * base::create_concrete()
+void Ko::threats() {}
+
+base * base::create_concrete(bool b)
 {
-  return new concrete;
+  if( b )
+    return new concrete;
+  return NULL;
 }
 
 void concrete::foo()
 {
   std::cout << "foo" << std::endl;
+}
+
+base * create_concrete_for_swig()
+{
+  return base::create_concrete();
 }

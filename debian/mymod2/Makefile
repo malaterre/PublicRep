@@ -8,6 +8,6 @@ else
 	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 	PWD := $(shell pwd)
 default:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(MAKE) -k -C $(KERNELDIR) M=$(PWD) modules VERBOSE=1 DEBUG=1
 endif
 

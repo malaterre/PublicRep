@@ -11,9 +11,13 @@ base * base::create_concrete(bool b)
   return NULL;
 }
 
+void base::foo()
+{
+  std::cout << "base::foo" << std::endl;
+}
 void concrete::foo()
 {
-  std::cout << "foo" << std::endl;
+  std::cout << "concrete::foo" << std::endl;
 }
 
 base * create_concrete_for_swig()

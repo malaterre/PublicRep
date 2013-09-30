@@ -7,7 +7,8 @@ public:
 // does not work:
 struct base
 {
-  virtual void foo() = 0;
+  //virtual void foo() = 0;
+  virtual void foo();
   static base * create_concrete(bool b = true);
 };
 

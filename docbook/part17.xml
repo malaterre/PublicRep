@@ -1,0 +1,1343 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" label="PS3.17" version="5.0" xml:id="PS3.17">
+  <title>PS3.17</title>
+  <subtitle>DICOM PS3.17 2016e - Explanatory Information</subtitle>
+  <info>
+    <author>
+      <orgname>DICOM Standards Committee</orgname>
+    </author>
+    <copyright>
+      <year>2016</year>
+      <holder>NEMA</holder>
+    </copyright>
+  </info>
+  <chapter label="WWW" status="1" xml:id="chapter_WWW">
+    <title>Tractography Results (Informative)</title>
+    <section label="WWW.2" status="2" xml:id="sect_WWW.2">
+      <title>Encoding Example</title>
+      <table frame="box" label="WWW-1" rules="all" xml:id="table_WWW-1">
+        <caption>Example of the Tractography Results Module</caption>
+        <thead>
+          <tr valign="top">
+            <th align="left" colspan="4" rowspan="1">
+              <para xml:id="para_935cfaad-376e-4de0-b56a-7289ac0bc8f5">
+                <emphasis role="bold">Name</emphasis>
+              </para>
+            </th>
+            <th align="left" colspan="1" rowspan="1">
+              <para xml:id="para_334fb074-a60e-490d-8fe5-a56de92108d8">
+                <emphasis role="bold">Tag</emphasis>
+              </para>
+            </th>
+            <th align="left" colspan="1" rowspan="1">
+              <para xml:id="para_24519bf2-cce1-4330-b11b-d86f999b475e">
+                <emphasis role="bold">Value</emphasis>
+              </para>
+            </th>
+            <th align="left" colspan="1" rowspan="1">
+              <para xml:id="para_4ba9f598-be5f-4d58-9f67-75f1072257ae">
+                <emphasis role="bold">Comment</emphasis>
+              </para>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_b5856f54-15fe-47bb-a746-6cebd426ca97">Instance Number</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_61941177-70f9-49b8-95e1-841123168525">(0020,0013)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_76a9d052-4925-4e9b-8639-3da4e881670f">1</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_3cd3b999-4226-48f3-a21e-ae5c41ac7dd4">Content Label</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b2517ae9-ac89-44c8-8327-60ef25a22ae6">(0070,0080)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_eefea71e-0fe3-45a6-8bc0-dc757293aa91">Left and Right</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_818f6108-b1d4-4176-9805-f2801c921e2b">Content Description</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_551e70e6-b3c0-45e4-a692-33e74fc965d6">(0070,0081)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8ad663ae-5b15-464f-8b63-3391549ecfba">Two Sample Tracksets</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_f17716c0-c4a9-40ee-96b8-86b87a8090e7">Content Creator's Name</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_7555bf8d-fe29-4ca2-990a-f7aadf5f8a9e">(0070,0084)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2a7d4e87-13e5-4112-9dd0-8d7a3c469785">&lt;empty&gt;</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_42ad9234-5e65-4c4f-a746-20b14830f38d">
+                <emphasis role="italic">Type 2 Attribute</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_09b49d8d-c992-47a8-896a-ffe4f9703a40">Content Date</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_eb227ee3-4b8b-4d04-8083-30e88178c549">(0008,0023)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a72b2418-2515-4b5e-8565-406d26368801">20150529</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_2efdcf92-9183-4245-a7f8-65623666a1db">Content Time</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_06701caf-b294-4730-a871-7f37807702f5">(0008,0033)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5e9d3a55-63b5-4c05-a435-91c4e4a619f0">121933.000000</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_e3814dd6-c95c-4ade-8274-c662ded0960b">Track Set Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_913fc132-8548-4cef-bc37-e3164d704385">(0066,0101)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="88"/>
+            <td align="left" colspan="6" rowspan="1">
+              <para xml:id="para_a02c977e-35a0-429f-9ac6-e9e86c414f06">
+                <emphasis role="italic">Item 1 (First Track Set "Track Set Left")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_7060338b-74cf-4eba-8d81-ccd310e26e57">&gt;Track Set Number</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8b2baf78-fc71-4fc7-bbc2-7292cd261d1a">(0066,0105)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_704b0e76-3f73-47b7-ba85-4c7ecf66df7f">1</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_96a265ae-46e8-4101-91e9-d8ffca758515">&gt;Track Set Label</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e679633d-49d4-4142-96e9-3c5a8ab459f7">(0066,0106)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5e015642-3f76-4321-b7b6-4d6568f7d57a">Track Set Left</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_ad4c1f0f-56c2-4122-9d4b-9b006ea08a89">&gt;Track Set Anatomical Type Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1b128b73-83c9-4c9c-ad97-1424c1abf804">(0066,0108)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_c1929e7b-6622-455e-8d08-6c39fe82a1d1">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_102c7d96-e420-49e8-a9ea-a5021fb7aa02">(0008,0100)</para>
+              <para xml:id="para_a91421ee-b3ac-4f28-9c16-aab3ef92bff0">(0008,0102)</para>
+              <para xml:id="para_4e421a1d-4903-496e-87ed-8b03771fd1e4">(0008,0104)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_6e59b407-d30d-4351-b497-da997aa3c05c">(T-A0095, SRT, "White matter of brain and spinal cord")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1b2f3b3b-6409-45d6-b0dc-3328c0440e55">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7710" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_0afd11e1-faf7-4678-9c94-1d07b5d6b396">&gt;&gt;Modifier Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_506139d0-6d65-4684-9dfe-522c38d9f05c">(0040,A195)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="2"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_63bcec32-45ce-45b4-b721-ea8969f8039d">
+                <emphasis role="italic">Item 1</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_28d71659-25b7-41ea-81cd-5a07996da764">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b86f8d84-32d5-41a8-b376-cb91b2178436">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1a07825f-bbd2-4962-9814-dd8013ef2172">(G-A101, SRT, "Left")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_bb195316-fddb-487d-8120-5f82eb1270c2">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_244" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_9696c9be-091e-4e6e-8ed6-7708a669463d">&gt;Track Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_38c51a05-cb1a-44b6-a69d-9c7fbe31d739">(0066,0102)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="6"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_937b6980-b757-41f2-b6e6-bf7be5416e48">
+                <emphasis role="italic">Item 1 (First Track "A")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_c3ed912b-a5cb-4fad-8636-85d211d8a047">&gt;&gt;Point Coordinates Data</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b2f3850b-fa2a-4139-a13f-8f3ca49b1321">(0066,0016)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_aac1a9bc-2369-4a2f-8480-1441d27424ef"> 0, 0, 0 </para>
+              <para xml:id="para_cbac67e8-f0c4-45bc-9bae-d00a8e7ed292"> 1.5, 0.2, 0 </para>
+              <para xml:id="para_7ceec80e-32ac-4b6f-aea5-6a1810f4106a"> 3.5, -0.1, 0 </para>
+              <para xml:id="para_5a81c12d-7e69-40c0-8390-af1471538684"> 5.5, 0.5, 0 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_7e2ee22d-71de-4d75-8d40-68c47dca3cbb">Coordinates of A1, A2, A3, A4</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_8d5287ac-cbe8-4ed5-a20a-07d9cb6fa8a5">&gt;&gt;Recommended Display CIELab Value List</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2e297719-83bc-4779-8abb-439cc148cc54">(0066,0103)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_0f5dc184-b8be-4483-879f-9449f161674b"> 47270/40385/52501/ </para>
+              <para xml:id="para_d778c1b9-18ee-4020-b890-300bf3032ca5"> 34751/53214/49924/ </para>
+              <para xml:id="para_4b27154b-5311-4d5b-bbd5-13a049cd96da"> 57318/11632/54042 </para>
+              <para xml:id="para_115a237f-0c39-4e48-a941-3aa0e548d838"> 22077/53113/5901/ </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_149b9691-a54c-4d64-9e8d-58f8a4b94047">Colors of A1, A2, A3, A4</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_48376016-8bd6-4713-887e-bd320efb6412">
+                <emphasis role="italic">Item 2 (Second Track "B")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_6dd98117-9e2a-49ed-bd7a-6ae3bf05fd81">&gt;&gt;Point Coordinates Data</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_48e8a2a4-96b8-4084-9461-c1fbf9d1ae6a">(0066,0016)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_ac16603a-dfde-4184-884e-5dbcef5689b6"> 0, -4, 0 </para>
+              <para xml:id="para_838b2785-a961-471a-89a6-db501d15c71e"> 2,-3.8, 0 </para>
+              <para xml:id="para_635db457-327f-41cc-b177-ac58e0e38063"> 4,-4, 0 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e6f379f9-e530-4264-af1c-885ba4e26f78">Coordinates of B1, B2, B3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_22672ffc-3181-4051-9564-432bb26de81a">&gt;&gt;Recommended Display CIELab Value</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_34f0e868-b6e1-4b95-ae39-960ab6f1b74a">(0062,000D)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_448b29a0-b955-40fe-a3af-e7a027658e02"> 57318/11632/54042 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_069325a2-7e75-4d1e-a8a1-ed898ff72946">Color of B1, B2, B3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_552ec5e7-d922-4663-be1e-f0ad80ac5c31">&gt;Measurements Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e68f8612-dea1-44df-b853-cb1f048ff9f8">(0066,0121)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="22"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_40a601d3-bebd-4da2-9e0c-8028e8a7735f">
+                <emphasis role="italic">Item 1 (Fractional Anisotropy (FA) values stored on each Track)</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_46f6a2ed-262a-4ec2-9e04-ea947fee8de6">&gt;&gt;Concept Name Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_0978b6f4-3cfe-4d31-97d3-3dc57d6b6921">(0040,A043)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_bac13390-cc99-4b5a-92a3-04d6136f6a44">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8e55ff57-0f1d-4e59-a938-09585b11769b">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_380f82f2-839f-48ff-a9b6-7ebd1d87b68e">(110808, DCM, "Fractional Anisotropy")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_85b880ce-2a39-4ea9-b263-3d6cf0b865d0">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7263" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_94a4e3a5-bea8-4a99-82b5-c9f762ef4295">&gt;&gt;Measurement Units Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_63030187-f3b3-4738-b4dc-564509ecfe47">(0040,08EA)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_cbd73ef5-0c55-4777-b1d2-09d4634c85ed">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_44fe71cd-c224-4002-a9d9-4bf094238c17">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_28df95cf-77e2-4271-b913-c3e67df66ad3">(1, UCUM, "no units")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5067f37e-4e5c-46d0-b766-796cfbac4b9c">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_82" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_39875d1e-12dd-4638-8ef3-16f1fef13304">&gt;&gt;Measurement Values Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_df708267-c455-489e-9bf7-7acab6540c3a">(0066,0132)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="4"/>
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_e203adf9-3c8d-4b90-ad8b-0dd144d14afe">
+                <emphasis role="italic">Item 1 (FA Values for each point on first Track "A")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_712acccd-62a6-4811-b8c8-1f9d2b524e34">&gt;&gt;&gt;Floating Point Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_53f0f752-3211-4786-bdce-cebd861d77b8">(0066,0125)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_040fe6d5-ea2a-4f8f-b529-f27c187f1730"> 0.2,0.4,0.5,0.8 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_79854b75-30b2-427d-b887-034f183c2256">FA values of A1, A2, A3, A4</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_d196e49c-c40f-4152-8ac6-e903ec60fc31">
+                <emphasis role="italic">Item 2 (FA Values for each point on second Track "B")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_00a23fc9-c21d-44e6-a1cf-dec701f67e49">&gt;&gt;&gt;Floating Point Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5a51f75b-0833-4fd1-be63-f2cc778e9f60">(0066,0125)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c89fa138-8d34-495a-af58-8cc077eef201"> 0.3, 0.8, 0.9 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_ff6187e3-d970-4746-ac04-0153579e76d0">FA values of B1, B2, B3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_572404b9-c17a-4fe0-8ecd-8adaf2f18b63">
+                <emphasis role="italic">Item 2 (Apparent Diffusion Coefficient (ADC) values stored on each Track)</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_fb646dc2-5492-4b31-bdbf-d1caf0381678">&gt;&gt;Concept Name Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_59d81f56-fbed-4a5c-ba03-da2330dbf200">(0040,A043)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_e1b1e60b-4fc8-45d8-ab90-e1e2b209c8ea">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f7dd9bc1-b0a8-4bcb-ac4b-4330c4c6f397">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_41022bf6-94b4-4680-8927-586eae52de08">(113041, DCM, "Apparent Diffusion Coefficient")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5e6e9d54-0495-40b6-8e12-1adbe729c1cb">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7263" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_580b2fac-1858-4337-9537-cabea1851c0f">&gt;&gt;Measurement Units Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_0c19b299-2d03-42bc-8a14-6bbb24d6a959">(0040,08EA)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_1996e59b-1e48-4b0c-96f4-8067400f1656">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2ab85755-0c37-443e-ac56-67535d1c1638">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_dd88fbaa-18f6-4583-bbc4-1e3d70a9f434">(1, UCUM, "no units")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8895c2d7-e907-4e6e-a7f3-7a6898256514">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_82" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_7c483a8c-f5b0-4d85-a759-906ca0418d27">&gt;&gt;Measurement Values Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_054e796b-6d5c-4259-b27a-967e34723b86">(0066,0132)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_ae59c0c3-0196-4e4a-96fd-3e6d97ac70ed">
+                <emphasis role="italic">Item 1 (ADC Values stored on 1<superscript>st</superscript> and 3<superscript>rd</superscript> point of first Track "A")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="6"/>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5db3b086-0ff9-4fcc-b7b9-a994a4b917ce">&gt;&gt;&gt;Floating Point Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e41ad817-07bc-4a6e-ac86-e77b12ed4e82">(0066,0125)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_12c01314-6fde-43b8-b273-a2244830365f"> 0.6,0.7 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c0cbb417-dd17-49b2-8c6e-b76f07eb9f6b">ADC values of A1 and A3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8ca1ca75-ca43-4918-a9d9-2316461d88c5">&gt;&gt;&gt;Track Point Index List</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_aa52022f-0afe-40af-bb79-5b6ebb13b539">(0066,0129)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_00f99c63-8ed1-4265-8520-ac84d40a8e88">1, 3</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_f9a94482-8b15-4120-adab-884615571aa0">
+                <emphasis role="italic">Item 2 (ADC Values stored on 2<superscript>nd</superscript> point of second Track "B")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2b2dce24-2b17-46da-8630-efab9309c264">&gt;&gt;&gt;Floating Point Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c4b00030-a5b6-49d5-96cd-42c2ba0faa58">(0066,0125)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_681a4a01-e3fa-476a-874d-46a763c642ab"> 0.5 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_d5eaf1af-fe4d-40cc-b17b-0514aa4a9f90">ADC value of B2</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_18e8a1ca-e20f-4103-8d3e-4891438807da">&gt;&gt;&gt;Track Point Index List</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_d1c635a2-961c-4802-8475-89d52f3dcc18">(0066,0129)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_396a8ef5-8c02-4d03-a1b5-bb4251ddac37">2</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_c8efc5bc-06b3-4702-bbe8-acfb5f01a070">&gt;Track Statistics Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_82ea73ff-2e38-49d9-8090-2339674c6bfb">(0066,0130)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5ce962be-0577-4109-8d5d-f7942d8c0231">
+                <emphasis role="italic">Statistical values derived from each Track</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="8"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_e3039e20-eeaa-4509-bcc9-f3763778337d">
+                <emphasis role="italic">Item 1 (Mean FA values for Tracks "A" and "B")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_fdc426e7-b9a1-434b-a963-be66fe449c61">&gt;&gt;Concept Name Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_61ada8d9-f60e-4f35-b9e7-57256f5fcd70">(0040,A043)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_ed13976f-31d3-402e-ae1f-10489a9ad58f">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_6a365641-5029-4037-a926-c0365804a205">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_cb07b397-bf67-4ba3-b25d-45e60bcaacc2">(110808, DCM, "Fractional Anisotropy")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_49ce7fde-e973-4cf6-af58-942ed341c1b8">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7263" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_d4846b3f-e92e-4dec-ad18-8774a3ca8e68">&gt;&gt;Modifier Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_9735ebcf-b7e9-47ae-991f-1115c3ecc511">(0040,A195)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_1372c0aa-601f-4e9e-b6a9-3ccce679ad55">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_6173b34d-92a4-45a9-bfab-a190821edf4d">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2ca69813-e82e-49ce-8724-c79a53bbda1c">(R-00317, SRT, "Mean")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_500178f4-5424-4f98-8326-d8696ee8c5e2">
+                <emphasis role="italic"><olink targetdoc="PS3.16" targetptr="sect_CID_3488" xrefstyle="select: labelnumber"/> (part of <olink targetdoc="PS3.16" targetptr="sect_CID_7464" xrefstyle="select: labelnumber"/>)</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_ee601be1-cb71-4179-b045-5f68dc57002a">&gt;&gt;Measurement Units Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_6b94df1c-0999-4f25-8950-dcf9f7fd5348">(0040,08EA)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_6a2239da-dea0-4ad6-a3e9-3c5310e6188a">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_4a01a89c-1438-4ba2-9766-572d63276fba">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_d8c67fc1-ac30-491d-b82f-13a124b2c2aa">(1, UCUM, "no units")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_3a9ac7d3-2f0c-4c0f-a1bf-8017645b52b8">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_82" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_81185aba-7365-4e41-bcd7-ffbd0ae1c5c9">&gt;&gt;Floating Point Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_76096855-8dec-4489-bced-cbd79380e595">(0066,0125)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_edc4a6a2-5f5e-451b-b502-94120d66122d">0.475, 0.667</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_d40eb8f2-f49d-4bb1-8ee4-b671d39220be">&gt;Track Set Statistics Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f0b4e324-68e9-4b71-8dc5-10f429e835cf">(0066,0124)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_123b8a71-3fac-4633-aef6-de9dd1882737">
+                <emphasis role="italic">Statistical values derived from whole track set</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="8"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_5bc179d4-b4a7-46cb-959a-c067f0b5f10e">
+                <emphasis role="italic">Item 1 (Maximum FA value of whole Track Set "Track Set Left")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_81048386-84f0-4130-a60a-ad223b3ea382">&gt;&gt;Concept Name Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b3241e3b-39f3-42df-bba0-c1982e38c26d">(0040,A043)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_f9cd08a0-8346-4a9c-a076-baabef8a7245">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_18e60122-33e1-4cf1-9fdd-283f2bf25b18">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_56aa35f0-ad98-4590-a949-d5fe372562de">(110808, DCM, "Fractional Anisotropy")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_3496fc98-88f8-4d3c-8018-5eb1979814bf">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7263" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_7bbf1b56-9114-45f6-a01f-644b0766b1ee">&gt;&gt;Modifier Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_ff8f347c-6983-4945-8202-1fdeea396f96">(0040,A195)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_25ba1a8b-c76d-4a91-9b39-b63206962819">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_02b32d85-4c23-4bdb-8223-6bd5482a7853">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f9ef48a4-6bde-4655-a05d-49309bcee002">(G-A437, SRT, "Maximum")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a2137ab7-c5d2-4384-aabe-da92115fec93">
+                <emphasis role="italic"><olink targetdoc="PS3.16" targetptr="sect_CID_3488" xrefstyle="select: labelnumber"/> (part of <olink targetdoc="PS3.16" targetptr="sect_CID_7464" xrefstyle="select: labelnumber"/>)</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_83f7d115-855e-4d75-a0ab-68834c56f44b">&gt;&gt;Measurement Units Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8c144428-2715-49d2-8d6c-2979b0f57ef1">(0040,08EA)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_af78055d-0cc6-405b-82fd-c654bfe74c99">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_ce248e60-bccc-4028-a208-0a066093dd0b">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c9e64e89-8d14-4a4f-b72c-b59fc2c89d0c">(1, UCUM, "no units")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_9540b602-eace-4b41-8608-258d2e34a6dd">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_82" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_be19e68e-c793-457e-8076-cbb26051a0d2">&gt;&gt;Floating Point Value</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2b2c6719-e11b-4e75-ad14-4ec7f1c32d99">(0040,A161)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_749b514e-8d33-44ea-93bd-8ad7bbf64968">0.9</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_6f4ab3dc-0961-4fd4-af0e-94cbdfccd889">&gt;Diffusion Acquisition Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_83ca95da-cf99-46d9-96a9-8e88ff478578">(0066,0133)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_f96085e6-6527-4d09-b5ba-03f25449871d">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a432cb65-39b6-410b-98f0-0b8ae0445609">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_3eaf84d3-d774-4e62-bbda-39d0c5547db9">(113223, DCM, "DTI")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8575b700-60d2-445b-a179-3d874bf952a4">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7260" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_bc3c0bff-f961-4886-8588-6dc050f7f00b">&gt;Diffusion Model Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a7bc3053-d997-4e5f-97c7-b4dd6e7b53eb">(0066,0134)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_9d98cf9c-56df-4975-abb5-b69c5084998d">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_4b91ed8c-46a3-464c-ad7b-251831edecf4">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_23eedd22-8ee9-45a1-8dda-d0052dd50426">(113231, DCM, "Single Tensor")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8cd80726-c637-496d-8374-2fce50371d94">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7261" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_de6926cc-d5a8-42fb-8239-508a6a0b3185">&gt;Tracking Algorithm Identification Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f5ec57b8-626f-4563-a8e5-95a34921485b">(0066,0104)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="5"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_c90c2aee-1a0b-4e99-9eb5-77e9d88c8b0d">
+                <emphasis role="italic">Item 1</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_4d26360e-87db-4c05-b283-087d24ab703d">&gt;&gt;Algorithm Family Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1a8d888a-8f3b-4ad9-a323-8f8e9689bf0d">(0066,002F)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_bfbf1e00-ca71-435d-af34-267e9831eb5a">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f36c9fb7-468b-4cb4-90ae-793b9c532801">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5adbeaf7-d388-4ddf-97cb-7855f580a09b">(113211, DCM, "Deterministic")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c0741553-34fb-4aff-bb9f-4a0af0933f8f">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7262" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_736bf44e-6c1e-4354-9afc-655b074c3173">&gt;&gt;Algorithm Name</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_63d1af13-0902-4b20-b020-55cdaab71163">(0066,0036)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_75eaee1a-8772-4825-8eb7-c42ec05f1d8d">Example</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_56d4a425-6e46-4a66-b5a7-5f3c1bbe10f6">&gt;&gt;Algorithm Version</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_d90e5252-549e-4d8f-b172-68666da62fdc">(0066,0031)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_7e24d831-c170-45ad-96eb-72f25608a01f">1.0</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="6" rowspan="1">
+              <para xml:id="para_42389cc9-6273-4a3e-af95-538dd4701ce2">
+                <emphasis role="italic">Item 2 (Second Track Set "Track Set Right")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_db8aeeb8-73bb-47d3-ad01-3ed1ce59b89a">&gt;Track Set Number</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b7f8e1b9-5f72-4afc-8e1f-2df9711247f9">(0066,0105)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f9d5d362-4bb0-4fa7-b345-b5546bb14086">2</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_2c5f6f2e-6537-4be2-8fb1-dfc39918e063">&gt;Track Set Label</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2a587e69-f531-478a-bb9e-5648d4fff727">(0066,0106)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b5782dd9-108d-408d-94dd-82e8459108fb">Track Set Right</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_9b686b06-6b47-4b06-ba6f-cb3f960583a5">&gt;Track Set Anatomical Type Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_18e6eb47-b59c-45ce-a101-a00ab11c5a86">(0066,0108)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_da3ab781-a758-4dfa-b7ce-edfcc1a574bf">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8246bb7c-a8c9-4e50-8d3d-558f83f73a25">(0008,0102)</para>
+              <para xml:id="para_97422329-6917-406e-9a2a-0795aa45b496">(0008,0100)</para>
+              <para xml:id="para_432b6ebe-d697-454b-bad8-e82ce2dce2b6">(0008,0104)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_4ef79652-a40c-4df3-b5dd-a48d453960db">(T-A0095, SRT, "White matter of brain and spinal cord")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_c4c89410-cf4f-414d-90ac-0a7bf6bb0908">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7710" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_4745308c-01d1-4b89-bd5c-391f2140f8b3">&gt;&gt;Modifier Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_02236e26-5f54-4142-9367-dede302092e2">(0040,A195)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="2"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_e3c1c4fe-2614-4f0d-8326-c4286d886d3a">
+                <emphasis role="italic">Item 1</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_fba585dd-6f8d-4d67-80dd-79b38ae19faf">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5310021e-85d8-4a6c-a636-2aa72227f412">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_bde2e57d-9dfd-443f-90a7-a7fce1dffc55">(G-A100, SRT, "Right")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_8aaa48ae-c7ee-4667-a1e3-c8ba443bf813">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_244" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_7f8192da-7673-4785-8ffa-c83c758f5328">&gt;Track Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_9cc908b6-6fe4-41af-b7d2-3186f37570a6">(0066,0102)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="2"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_dc0caba1-bab5-4dbb-9a40-df92403c9bf3">
+                <emphasis role="italic">Item 1 (Single Track "C")</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_b101f530-d153-493e-a0dd-9476a0d6ac9a">&gt;&gt;Point Coordinates Data</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a2f7ff74-36dd-4176-afc8-1e47178647ca">(0066,0016)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_19eebbfa-e282-46ac-b991-9db9c39782b3"> 6, 0.1, 0 </para>
+              <para xml:id="para_061c3792-b926-4b17-87ee-cb3c7341a063"> 5.8, -2, 0 </para>
+              <para xml:id="para_799ea97d-5029-4195-8d4b-287f5a046d8e"> 6.2, -4.5, 0 </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b2a6add3-e8b1-4307-b727-7367fe811a51">Coordinates of C1, C2, C3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_754d3128-0f65-44c5-9dcc-7a36b1f758d4">&gt;Recommended Display CIELab Value</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1876664f-af92-4131-85ec-d09e0370f959">(0062,000D)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2f60937a-b318-4ca2-bbec-2a0b64eec1b5"> 34751/53214/49924/ </para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_030db21e-4e22-4f26-80fc-e6cc4f64d328">Color of C1, C2, C3</para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_0a0df3ad-4b65-430f-9f02-2669b58eec37">&gt;Diffusion Acquisition Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_794b911b-6c10-4f77-96e1-7ff562182d5e">(0066,0133)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_aa4b52ad-90bb-49a5-9c44-1525e2faeb03">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a608960e-159f-4bfd-8cdf-bda0750af791">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_718206eb-b9a7-4e3f-9e91-08b3799bbca5">(113223, DCM, "DTI")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_33a79bfc-c60b-4bfa-a24b-f7a2ba34208f">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7260" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_35ecb6b1-55ee-4876-862b-e8aa98088e0f">&gt;Diffusion Model Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_0931947c-12d7-4e98-b82f-3ca28f11f92f">(0066,0134)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_5b9c382d-7388-4d74-9efd-071719e032b5">&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_a4442e0c-2fe5-41a4-8096-757f2219d202">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_640bb448-99e5-4d65-b548-6312d70597b0">(113231, DCM, "Single Tensor")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_0a169109-b9f3-4ec7-ab6c-076a798ca2f6">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7261" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_9e4ef25b-2bca-4e5e-a106-7cbdb927999c">&gt;Tracking Algorithm Identification Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1300ed0b-fd93-4ba1-8362-56829ade6a08">(0066,0104)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="5"/>
+            <td align="left" colspan="5" rowspan="1">
+              <para xml:id="para_d2536882-80e7-4690-98b9-f981a50129c5">
+                <emphasis role="italic">Item 1</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_df325ce9-c70c-46c1-b550-c40ea8f96d69">&gt;&gt;Algorithm Family Code Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5175796b-c5c6-461f-9b9d-7aa30a0abf0b">(0066,002F)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_8ff49027-9519-4f04-a8a1-17ffcc64f32b">&gt;&gt;&gt;Code Sequence Macro Values</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5972bec0-a831-4c6f-ac32-113681dcf8e5">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_cb7bd7b0-71a4-4bf5-a025-c900f3592286">(113211, DCM, "Deterministic")</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_9c304d14-8f6b-41ea-b5c9-431994b5ac6f">
+                <emphasis role="italic">
+                  <olink targetdoc="PS3.16" targetptr="sect_CID_7262" xrefstyle="select: labelnumber"/>
+                </emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_2ec98c05-22f4-4121-86b0-e94f4818b8af">&gt;&gt;Algorithm Name</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_92fcd4de-a40d-43f1-8456-56e661c78554">(0066,0036)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_7fbcc2de-cf73-4973-b34c-b4e6270c349c">Example</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="2" rowspan="1">
+              <para xml:id="para_511520d5-41c2-4367-bf3d-abef17b1d0c9">&gt;&gt;Algorithm Version</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_38310447-a386-491b-9275-18f57092b542">(0066,0031)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_6911c901-a192-4a02-a89d-a8ef5ba4745e">1.0</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="4" rowspan="1">
+              <para xml:id="para_85fc1fff-eae1-418b-b50b-27ff0e5a8a79">Referenced Instance Sequence</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_2ed5281a-044f-4326-aa0e-a1c0674e84a5">(0008,114A)</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="1" rowspan="10"/>
+            <td align="left" colspan="6" rowspan="1">
+              <para xml:id="para_8c07ab2b-8592-485f-963a-b9ab3ee86bbc">
+                <emphasis role="italic">Item 1</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_203ff1f2-4055-42e7-9583-07c756d3f7c9">&gt;Referenced SOP Class UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5e56403f-653a-4487-8032-338275730bf1">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_08baa93e-29ea-4fe0-afe5-3997b4b8b1f9">1.2.840.10008.5.1.4.1.1.4</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e1b2a30d-5b30-444c-8ab1-d04856c442ce">
+                <emphasis role="italic">MR Image Storage</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_74455966-f5d3-4bc1-a156-acb7a43315e0">&gt;Referenced SOP Instance UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_28b78ff8-387a-4960-8b8c-e1497f07f531">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_e70bfdb9-d2b2-4414-8ac1-bb0d37d3290b">1.2.3.4.1</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="6" rowspan="1">
+              <para xml:id="para_6a44943d-7885-41b3-9b25-788c3f08a008">
+                <emphasis role="italic">Item 2</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_15997c8b-3835-4b23-b946-eb75306335bd">&gt;Referenced SOP Class UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_d9bde40d-114d-4fb4-bf5a-008753bcac87">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_1f3dd489-d79a-42bd-82b6-0ce7955cc9c9">1.2.840.10008.5.1.4.1.1.4</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_b0c2fd63-cbcf-447d-8835-431d53a3a529">
+                <emphasis role="italic">MR Image Storage</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_09b2c6e3-89ed-481f-8ee9-8eeecd3d01f0">&gt;Referenced SOP Instance UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f5239eea-f60f-46d8-9e89-83c667d7681a">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_7f15c43a-4923-451d-b847-1754a5169b18">1.2.3.4.2</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_82e451fc-6891-48a0-89e3-9b080009487f">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="6" rowspan="1">
+              <para xml:id="para_5279bfc6-5219-4581-85f8-58b40006e8a3">
+                <emphasis role="italic">Item n</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_04ff5e18-1be7-42dc-a8f1-1ab00285dbf2">&gt;Referenced SOP Class UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_3a7c538e-c962-4ec1-bd6f-6180b26f9621">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_5da6c2b1-2e21-47cc-aa9f-e42c75f89b90">1.2.840.10008.5.1.4.1.1.4</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_36e7bea0-da15-4a15-a34d-6deeb1739e93">
+                <emphasis role="italic">MR Image Storage</emphasis>
+              </para>
+            </td>
+          </tr>
+          <tr valign="top">
+            <td align="left" colspan="3" rowspan="1">
+              <para xml:id="para_afafd38d-77b8-4d93-91db-fa757613219c">&gt;Referenced SOP Instance UID</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_f3cfc8f9-f082-4ed0-b665-c8d339801201">…</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1">
+              <para xml:id="para_cfdadc37-62aa-4d06-ba9d-2b98e5f8fab3">1.5.6.1</para>
+            </td>
+            <td align="left" colspan="1" rowspan="1"/>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </chapter>
+</book>

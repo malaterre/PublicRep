@@ -1,101 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<article xmlns="http://docbook.org/ns/docbook" version="5.0" >
-          <title>Additional Protocols</title>
-          <para xml:id="para_7cd2b4ec-fce2-4d67-9915-a8c9b614e40a">EXAMPLE-INTEGRATED-MODLALITY conforms to the System Management Profiles listed in the Table below. All requested transactions for the listed profiles and actors are supported. Support for optional transactions are listed in the Table below:</para>
-          <table frame="box" label="B.4.3-2" rules="all" xml:id="table_B.4.3-2">
-            <caption>Supported System Management Profiles</caption>
-            <thead>
-              <tr valign="top">
-                <th align="center" colspan="1" rowspan="1">
-                  <para xml:id="para_f4ae6bab-cf30-4c7d-8c04-1c949fc715dc">Profile Name</para>
-                </th>
-                <th align="center" colspan="1" rowspan="1">
-                  <para xml:id="para_71e1899c-7118-49ac-84ae-41eda5ffe71e">Actor</para>
-                </th>
-                <th align="center" colspan="1" rowspan="1">
-                  <para xml:id="para_1fdb2d5a-0bbb-4449-97f0-ac67b7f4281a">Protocols Used</para>
-                </th>
-                <th align="center" colspan="1" rowspan="1">
-                  <para xml:id="para_8d612284-223d-41d8-8646-d4ef2378930b">Optional Transactions</para>
-                </th>
-                <th align="center" colspan="1" rowspan="1">
-                  <para xml:id="para_a51aafb6-e779-4cb3-9da0-cdd0f79abc22">Security Support</para>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr valign="top">
-                <td align="left" colspan="1" rowspan="2">
-                  <para xml:id="para_403c5756-7ca0-47d0-abc9-710c59a48805">Network Address Management</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_c29e0ee6-c5da-427d-a808-175a00a3250f">DHCP Client</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_814336ff-c5e2-42a8-acfd-b710d720c90d">DHCP</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_e396762a-9380-4864-af5e-da5d164a3094">N/A</para>
-                </td>
-                <td align="center" colspan="1" rowspan="1"/>
-              </tr>
-              <tr valign="top">
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_79a7696d-bd37-416d-8fb5-9930148a4d53">DNS Client</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_1b4208c7-a7e5-43fd-9151-8108f80e7496">DNS</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_8811ef66-1241-425f-834c-1b3ff279e749">N/A</para>
-                </td>
-                <td align="center" colspan="1" rowspan="1"/>
-              </tr>
-              <tr valign="top">
-                <td align="left" colspan="1" rowspan="2">
-                  <para xml:id="para_258b0072-af13-40a3-a4f0-f692ae4f72f6">Time Synchronization</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_e6ffcd55-69f2-4aae-a0e4-6900aa4056d6">NTP Client</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_70fa2451-6691-483e-9ad5-1811d77c46f7">NTP</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_12d23abb-3e53-440f-9ef3-d8cafad212a0">Find NTP Server</para>
-                </td>
-                <td align="center" colspan="1" rowspan="1"/>
-              </tr>
-              <tr valign="top">
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_bd9374bd-d6ac-4015-9ecc-50d73375706d">DHCP Client</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_891528f7-9414-41a5-a747-a7cb663927ec">DHCP</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_0c85236e-c3c0-4c0c-b5b6-05959cd482e0">N/A</para>
-                </td>
-                <td align="center" colspan="1" rowspan="1"/>
-              </tr>
-              <tr valign="top">
-                <td align="left" colspan="1" rowspan="2">
-                  <para xml:id="para_9d027eb4-38b1-4354-b392-34c0c6a7b3d8">DICOM Application Configuration Management</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_88d5e707-a1f6-4829-bbcd-ec96eaee8870">LDAP Client</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_97664c65-0ee1-4da1-8097-de02092e2c0e">LDAP</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_e9ef0a0e-200a-4630-b169-e3db8c096344">Client Update LDAP Server</para>
-                </td>
-                <td align="left" colspan="1" rowspan="1">
-                  <para xml:id="para_34822b9a-0d68-4b5b-aa39-c469ee0c5d38">See <xref linkend="sect_B.7" xrefstyle="select: label"/>
-</para>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+  <title>Additional Protocols</title>
+  <table frame="box" label="B.4.3-2" rules="all">
+    <caption>Supported System Management Profiles</caption>
+    <tbody>
+      <tr valign="top">
+        <td align="left" colspan="1" rowspan="2">
+          <para>DICOM Application Configuration Management</para>
+        </td>
+        <td align="left" colspan="1" rowspan="1">
+          <para>LDAP Client</para>
+        </td>
+        <td align="left" colspan="1" rowspan="1">
+          <para>LDAP</para>
+        </td>
+        <td align="left" colspan="1" rowspan="1">
+          <para>Client Update LDAP Server</para>
+        </td>
+        <td align="left" colspan="1" rowspan="1">
+          <para>See </para>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </article>

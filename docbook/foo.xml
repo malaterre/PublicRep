@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <article xmlns="http://docbook.org/ns/docbook" version="5.0">
   <title>Additional Protocols</title>
-  <table frame="box" label="B.4.3-2" rules="all">
-    <caption>Supported System Management Profiles</caption>
+  <table>
+    <caption>caption</caption>
     <tbody>
-      <tr valign="top">
-        <td align="left" colspan="1" rowspan="2">
+      <tr>
+        <td rowspan="2">
           <para>DICOM Application Configuration Management</para>
-        </td>
-        <td align="left" colspan="1" rowspan="1">
-          <para>LDAP Client</para>
-        </td>
-        <td align="left" colspan="1" rowspan="1">
-          <para>LDAP</para>
-        </td>
-        <td align="left" colspan="1" rowspan="1">
-          <para>Client Update LDAP Server</para>
-        </td>
-        <td align="left" colspan="1" rowspan="1">
-          <para>See </para>
         </td>
       </tr>
     </tbody>

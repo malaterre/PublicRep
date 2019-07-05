@@ -50,12 +50,28 @@ set(LIBRARY_OUTPUT_PATH    ${str_BINARY_DIR}/bin CACHE PATH "Single output direc
 #  ${LIBRARY_OUTPUT_PATH}/testdemo.class
 #)
 
+add_custom_command(
+OUTPUT ${str_BINARY_DIR}/demo.dll
+COMMAND ${CMAKE_CSHARP_COMPILER} ARGS "/t:library" "/doc:${str_BINARY_DIR}/demo.dll.xml" "/out:${str_BINARY_DIR}/demo.dll" "*.cs"
+WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+DEPENDS "${swig_generated_file_fullname}"
+#${CMAKE_CURRENT_BINARY_DIR}/AssemblyInfo.cs
+COMMENT "csc *.cs"
+)
+
+
 # building HelloCSharpWorld:
 add_custom_command(
-  OUTPUT ${str_EXECUTABLE_DIR}/testdemo.exe
-  COMMAND ${CMAKE_CSHARP_COMPILER} ARGS "/r:${str_BINARY_DIR}/gdcm-sharp.dll" "/out:${str_BINARY_DIR}/HelloCsharpWorld.exe" ${CMAKE_CURRENT_SOURCE_DIR}/testdemo.cs
+  OUTPUT ${str_BINARY_DIR}/testdemo.exe
+  COMMAND ${CMAKE_CSHARP_COMPILER} ARGS "/r:${str_BINARY_DIR}/demo.dll" "/out:${str_BINARY_DIR}/testdemo.exe" ${CMAKE_CURRENT_SOURCE_DIR}/testdemo.cs
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   DEPENDS ${str_BINARY_DIR}/demo.dll
   ${CMAKE_CURRENT_SOURCE_DIR}/testdemo.cs
   COMMENT "Create testdemo.exe"
   )
+
+add_custom_target(BLA ALL
+  DEPENDS ${str_BINARY_DIR}/demo.dll
+  ${str_BINARY_DIR}/testdemo.exe
+)
+

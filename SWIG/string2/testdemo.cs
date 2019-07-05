@@ -1,5 +1,6 @@
-import demo.*;
-import java.io.*;
+using System;
+using demo;
+
 
 /*
  * usage:
@@ -42,11 +43,11 @@ public class testdemo
       }
     catch(IOException e)
       {
-      System.out.println("Error createNewFile:" + e);
+System.Console.WriteLine( "Error createNewFile:" + e);
       }
     }
 
-  public static void main(String[] args) throws Exception
+  public static int Main(string[] args)
     {
     String directory = args[0];
 

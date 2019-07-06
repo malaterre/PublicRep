@@ -17,6 +17,8 @@ set_source_files_properties(demo.i PROPERTIES CPLUSPLUS ON)
 
 #set(CMAKE_SWIG_FLAGS "-package demo")
 #separate_arguments(CMAKE_SWIG_FLAGS)
+set(CMAKE_SWIG_FLAGS "-namespace demo -dllimport demo")
+separate_arguments(CMAKE_SWIG_FLAGS)
 
 include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}

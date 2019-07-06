@@ -1,4 +1,4 @@
-using System;
+using System.IO;
 using demo;
 
 
@@ -10,9 +10,10 @@ using demo;
 
 public class testdemo
 {
+	/*
   public static void process(File file)
     {
-    String path = file.getPath();
+    string path = file.getPath();
     myfile mf = new myfile();
     boolean res = mf.open( path );
     }
@@ -32,10 +33,12 @@ public class testdemo
       process(dir);
       }
     }
+    */
 
-  public static void createNewEmptyFile(String dir)
+  public static void createNewEmptyFile(string dir)
     {
-    File file = new File( dir, "tête.txt");
+    System.IO.File.Create(@"tête.txt");
+    /*
     boolean b = false;
     try
       {
@@ -45,15 +48,17 @@ public class testdemo
       {
 System.Console.WriteLine( "Error createNewFile:" + e);
       }
+      */
     }
 
   public static int Main(string[] args)
     {
-    String directory = args[0];
+    string directory = args[0];
 
     createNewEmptyFile(directory);
 
-    File dir = new File(directory);
-    visitAllFiles(dir);
+//    File dir = new File(directory);
+//    visitAllFiles(dir);
+    return 0;
     }
 }

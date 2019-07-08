@@ -57,6 +57,7 @@ OUTPUT ${LIBRARY_OUTPUT_PATH}/demo.dll
 COMMAND ${CMAKE_CSHARP_COMPILER} ARGS "/t:library" "/doc:${LIBRARY_OUTPUT_PATH}/demo.dll.xml" "/out:${LIBRARY_OUTPUT_PATH}/demo.dll" "*.cs"
 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 DEPENDS "${swig_generated_file_fullname}"
+demo
 #${CMAKE_CURRENT_BINARY_DIR}/AssemblyInfo.cs
 COMMENT "csc *.cs"
 )

@@ -1,5 +1,7 @@
 %module(docstring="demo") demo
 
+%include <std_string.i>
+
 %{
 #include "myfile.h"
 %}

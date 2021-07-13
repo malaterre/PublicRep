@@ -7,8 +7,7 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 set(CMAKE_CXX_STANDARD 14)
 
 add_library(p SHARED p.cxx)
-set_target_properties(p PROPERTIES VERSION 0
-                                           SOVERSION 0)
+set_target_properties(p PROPERTIES VERSION 0 SOVERSION 0)
 
 add_executable(main main.c)
 target_link_libraries(main p)

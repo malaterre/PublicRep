@@ -22,6 +22,9 @@ int main()
   std::cout << cond.text() << std::endl;
 
   cond = DcmLongString::checkStringValue(geiis_bad, "1-n", "ISO_IR 192");
+  // Currently, the VR checker only supports ASCII (ISO_IR 6) and Latin-1
+  // (ISO_IR 100). All other specific character sets disable the check of the
+  // value representation.
   std::cout << cond.text() << std::endl;
 
   return 0;

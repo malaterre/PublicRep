@@ -1,7 +1,5 @@
 #include "dcmtk/config/osconfig.h"    /* make sure OS specific configuration is included first */
-#include "dcmtk/ofstd/oftest.h"
 #include "dcmtk/dcmdata/dctk.h"
-#include "dcmtk/dcmdata/vrscan.h"
 
 int main()
 {
@@ -19,6 +17,7 @@ int main()
   cond = DcmLongString::checkStringValue(geiis_bad, "1-n");
   std::cout << cond.text() << std::endl;
 
+  // http://dicom.nema.org/medical/dicom/current/output/chtml/part05/sect_6.2.html#para_5184abc4-043b-422d-8d27-8955f439cdb8
   cond = DcmLongString::checkStringValue(geiis_bad, "1-n", "ISO_IR 192");
   std::cout << cond.text() << std::endl;
 

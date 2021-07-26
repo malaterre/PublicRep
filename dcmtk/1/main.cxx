@@ -3,6 +3,7 @@
 
 int main()
 {
+  // http://dicom.nema.org/medical/dicom/current/output/chtml/part05/sect_6.2.html#para_5184abc4-043b-422d-8d27-8955f439cdb8
   static const char geiis[] = "GEIIS";
   OFString geiis_good = geiis;
   geiis_good += ' ';
@@ -17,7 +18,9 @@ int main()
   cond = DcmLongString::checkStringValue(geiis_bad, "1-n");
   std::cout << cond.text() << std::endl;
 
-  // http://dicom.nema.org/medical/dicom/current/output/chtml/part05/sect_6.2.html#para_5184abc4-043b-422d-8d27-8955f439cdb8
+  cond = DcmLongString::checkStringValue(geiis_bad, "1-n", "ISO_IR 100");
+  std::cout << cond.text() << std::endl;
+
   cond = DcmLongString::checkStringValue(geiis_bad, "1-n", "ISO_IR 192");
   std::cout << cond.text() << std::endl;
 

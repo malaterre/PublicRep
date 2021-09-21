@@ -37,8 +37,3 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/MyLibConfig.cmake"
               "${CMAKE_CURRENT_BINARY_DIR}/MyLibConfigVersion.cmake"
         DESTINATION lib/cmake/MyLib
         )
-
-export(TARGETS MyLib NAMESPACE MyLib:: FILE MyLibTargets.cmake)
-
-set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-export(PACKAGE MyLib)

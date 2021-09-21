@@ -91,4 +91,4 @@ export(EXPORT foo-targets
 
 # Register the package in the user's package registry.
 # https://cmake.org/cmake/help/v3.11/command/export.html
-export(PACKAGE foo)
+#export(PACKAGE foo)

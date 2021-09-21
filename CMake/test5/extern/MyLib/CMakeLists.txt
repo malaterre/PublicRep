@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.18)
-project(MyLib C)
+project(MyLib VERSION 1.0 LANGUAGES C)
 
 add_library(MyLib mylib.c)
 add_library(MyLib::MyLib ALIAS MyLib)
-
-set(PACKAGE_VERSION 1.0)
 
 # https://cliutils.gitlab.io/modern-cmake/chapters/install/installing.html
 install(

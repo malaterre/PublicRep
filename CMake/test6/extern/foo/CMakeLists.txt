@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.18)
 
 # Defines project-specific attributes (PROJECT_xxx and foo_xxx)
 # https://cmake.org/cmake/help/v3.11/command/project.html
@@ -84,11 +84,3 @@ install(EXPORT foo-targets
         FILE foo-targets.cmake
         NAMESPACE foo::
         DESTINATION ${INSTALL_CONFIG_DIR})
-
-export(EXPORT foo-targets
-       FILE ${CMAKE_CURRENT_BINARY_DIR}/foo-targets.cmake
-       NAMESPACE foo::)
-
-# Register the package in the user's package registry.
-# https://cmake.org/cmake/help/v3.11/command/export.html
-#export(PACKAGE foo)

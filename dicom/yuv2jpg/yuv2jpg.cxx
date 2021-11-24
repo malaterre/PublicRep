@@ -24,19 +24,6 @@ class File {
   File &operator=(File const &) = delete;
 };
 
-#if 0
-class Decompress {
-  typedef jpeg_decompress_struct *ptr;
-  jpeg_decompress_struct srcinfo{};
-
- public:
-  Decompress() { jpeg_create_decompress(&srcinfo); }
-  ~Decompress() { jpeg_destroy_decompress(&srcinfo); }
-  operator ptr() { return &srcinfo; }
-  jpeg_decompress_struct *operator->() { return &srcinfo; }
-};
-#endif
-
 class Compress {
   typedef jpeg_compress_struct *ptr;
   jpeg_compress_struct dstinfo{};
@@ -47,7 +34,6 @@ class Compress {
   operator ptr() { return &dstinfo; }
   jpeg_compress_struct *operator->() { return &dstinfo; }
 };
-
 
 int main(int argc, char *argv[])
 {
@@ -145,6 +131,8 @@ int main(int argc, char *argv[])
    * Here we just illustrate the use of quality (quantization table) scaling:
    */
   jpeg_set_quality(cinfo, quality, TRUE /* limit to baseline-JPEG values */);
+
+  cinfo->optimize_coding = TRUE;
 
   /* Step 4: Start compressor */
 

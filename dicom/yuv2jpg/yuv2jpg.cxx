@@ -54,10 +54,10 @@ int main(int argc, char *argv[])
   if( argc < 3 ) return 1;
   const char *input = argv[1];
   const char *output = argv[2];
-  int image_width = 555;
-  int image_height = 800;
+  int image_width = 800;
+  int image_height = 555;
   int quality = 101;
-  JSAMPLE * image_buffer;	/* Points to large array of Y,Cb,Cr-order data */
+  JSAMPLE * image_buffer{};	/* Points to large array of Y,Cb,Cr-order data */
 
   std::ifstream ifs(input, std::ios::binary | std::ios::ate);
   std::ifstream::pos_type pos = ifs.tellg();
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
   ifs.seekg(0, std::ios::beg);
   ifs.read(reinterpret_cast<char *>(result.data()), pos);
-  image_buffer = result.data();
+  //image_buffer = result.data();
 
 #if 0
   File infile(input, "rb");
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
   cinfo->image_width = image_width; 	/* image width and height, in pixels */
   cinfo->image_height = image_height;
   cinfo->input_components = 3;		/* # of color components per pixel */
-  cinfo->in_color_space = JCS_YCbCr; 	/* colorspace of input image */
+  cinfo->in_color_space = JCS_YCbCr; 	/* colorspace of input image, 24bits */
   /* Now use the library's routine to set default compression parameters.
    * (You must set at least cinfo.in_color_space before calling this,
    * since the defaults depend on the source color space.)
@@ -163,12 +163,25 @@ int main(int argc, char *argv[])
    */
   row_stride = image_width * 3;	/* JSAMPLEs per row in image_buffer */
 
+  // https://gist.github.com/royshil/fa98604b01787172b270
+  std::vector<uint8_t> tmprowbuf(image_width * 3);
+  row_pointer[0] = &tmprowbuf[0];
   while (cinfo->next_scanline < cinfo->image_height) {
     /* jpeg_write_scanlines expects an array of pointers to scanlines.
      * Here the array is only one element long, but you could pass
      * more than one scanline at a time if that's more convenient.
      */
-    row_pointer[0] = & image_buffer[cinfo->next_scanline * row_stride];
+    //row_pointer[0] = & image_buffer[cinfo->next_scanline * row_stride];
+    unsigned i, j;
+    unsigned offset = cinfo->next_scanline * cinfo->image_width * 2; //offset to the correct row
+    for (i = 0, j = 0; i < cinfo->image_width * 2; i += 4, j += 6) { //input strides by 4 bytes, output strides by 6 (2 pixels)
+        tmprowbuf[j + 0] = result[offset + i + 0]; // Y (unique to this pixel)
+        tmprowbuf[j + 1] = result[offset + i + 2]; // U (shared between pixels)
+        tmprowbuf[j + 2] = result[offset + i + 3]; // V (shared between pixels)
+        tmprowbuf[j + 3] = result[offset + i + 1]; // Y (unique to this pixel)
+        tmprowbuf[j + 4] = result[offset + i + 2]; // U (shared between pixels)
+        tmprowbuf[j + 5] = result[offset + i + 3]; // V (shared between pixels)
+    }
     (void) jpeg_write_scanlines(cinfo, row_pointer, 1);
   }
 

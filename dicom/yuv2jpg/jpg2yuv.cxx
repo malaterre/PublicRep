@@ -37,7 +37,27 @@ class Decompress {
 
 void put_scanline_someplace(File &stream, JSAMPROW buffer, int row_stride)
 {
-  fwrite(buffer, 1, row_stride, stream);
+//  fwrite(buffer, 1, row_stride, stream);
+  if(row_stride % 6) 
+    throw std::invalid_argument("row_stride: " + row_stride);
+
+  for(int j = 0; j < row_stride; j +=6 ) {
+    unsigned char ybr[6];
+    ybr[0] = buffer[j+0];
+    ybr[1] = buffer[j+1];
+    ybr[2] = buffer[j+2];
+    ybr[3] = buffer[j+3];
+    ybr[4] = buffer[j+4];
+    ybr[5] = buffer[j+5];
+
+    unsigned char ybr422[4];
+    ybr422[0] = ybr[0];
+    ybr422[1] = ybr[3];
+    ybr422[2] = ybr[1];
+    ybr422[3] = ybr[2];
+
+    fwrite(ybr422, 1, sizeof ybr422, stream);
+  }
 }
 
 int main(int argc, char * argv[])
@@ -91,7 +111,7 @@ int main(int argc, char * argv[])
   }
 #endif
   /* Now we can initialize the JPEG decompression object. */
-  jpeg_create_decompress(cinfo);
+  //jpeg_create_decompress(cinfo);
 
   /* Step 2: specify data source (eg, a file) */
 
@@ -111,6 +131,7 @@ int main(int argc, char * argv[])
   /* In this example, we don't need to change any of the defaults set by
    * jpeg_read_header(), so we do nothing here.
    */
+  cinfo->out_color_space = JCS_YCbCr;
 
   /* Step 5: Start decompressor */
 
@@ -171,14 +192,14 @@ int main(int argc, char * argv[])
   /* Step 8: Release JPEG decompression object */
 
   /* This is an important step since it will release a good deal of memory. */
-  jpeg_destroy_decompress(cinfo);
+  //jpeg_destroy_decompress(cinfo);
 
   /* After finish_decompress, we can close the input file.
    * Here we postpone it until after no more JPEG errors are possible,
    * so as to simplify the setjmp error logic above.  (Actually, I don't
    * think that jpeg_destroy can do an error exit, but why assume anything...)
    */
-  fclose(infile);
+  //fclose(infile);
 
   /* At this point you may want to check to see whether any corrupt-data
    * warnings occurred (test whether jerr.pub.num_warnings is nonzero).

@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
   cinfo->err = jpeg_std_error(&jerr);
 
   /* Now we can initialize the JPEG compression object. */
-  jpeg_create_compress(cinfo);
+  //jpeg_create_compress(cinfo);
 
   /* Step 2: specify data destination (eg, a file) */
   /* Note: steps 2 and 3 can be done in either order. */

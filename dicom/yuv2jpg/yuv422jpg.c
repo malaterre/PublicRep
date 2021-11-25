@@ -26,8 +26,7 @@ int yuv_to_jpeg(unsigned char *data, int image_width, int image_height, FILE *fp
     cinfo.image_width = image_width;  /* image width and height, in pixels */
     cinfo.image_height = image_height;
     cinfo.input_components = 3;    /* # of color components per pixel */
-    //cinfo.in_color_space = JCS_RGB;  /* colorspace of input image */
-    cinfo.jpeg_color_space = JCS_YCbCr;
+    cinfo.in_color_space = JCS_YCbCr;  /* colorspace of input image */
 
     jpeg_set_defaults(&cinfo);
     jpeg_set_quality(&cinfo, quality, TRUE );
@@ -35,6 +34,7 @@ int yuv_to_jpeg(unsigned char *data, int image_width, int image_height, FILE *fp
     cinfo.optimize_coding = TRUE;
 
     cinfo.raw_data_in = TRUE;
+    cinfo.jpeg_color_space = JCS_YCbCr;
     cinfo.comp_info[0].h_samp_factor = 2;
     cinfo.comp_info[0].v_samp_factor = 1;
 
@@ -78,8 +78,8 @@ int main(int argc, char *argv[])
   if(argc < 3 ) return 1;
   const char * input = argv[1];
   const char * output = argv[2];
-  int image_width = 800;
-  int image_height = 555;
+  int image_width = 512;
+  int image_height = 512;
 
   FILE *f = fopen(input, "rb");
   fseek(f, 0, SEEK_END);
@@ -91,10 +91,13 @@ int main(int argc, char *argv[])
     fprintf(stderr, "wrong size %d", fsize);
    }
 unsigned char *data = malloc(fsize);
-fread(data, sizeof *data, fsize, f);
+memset(data, 0, fsize);
+long check = fread(data, sizeof *data, fsize, f);
+if( check != fsize ) {
+  return 1;
+}
 fclose(f);
 
-  f = fopen(output, "wb");
 
     int yIndex = 0;
     int yCount = 0;
@@ -105,6 +108,7 @@ fclose(f);
 
     //yuv422(YUYV) format is y0, u0, y1, v0...
     unsigned char *yuvData = malloc((image_width*image_height)*2);
+memset( yuvData,0, fsize);
     for (int i = 0; i < (image_width*image_height)*2; i+=4)
     {
         //y
@@ -119,9 +123,12 @@ fclose(f);
         yuvData[vIndex+vCount] = data[i+3];
         vCount++;
     }
+  f = fopen(output, "wb");
   yuv_to_jpeg(yuvData, image_width, image_height, f, 100);
-free(yuvData);
 fclose(f);
+free(yuvData);
+free(data);
 
+  fprintf(stdout, "success\n") ;
   return 0;
 }

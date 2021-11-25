@@ -43,10 +43,16 @@ int main(int argc, char *argv[])
   int image_width = 800;
   int image_height = 555;
   int quality = 101;
-  JSAMPLE * image_buffer{};	/* Points to large array of Y,Cb,Cr-order data */
+//  JSAMPLE * image_buffer{};	/* Points to large array of Y,Cb,Cr-order data */
 
   std::ifstream ifs(input, std::ios::binary | std::ios::ate);
   std::ifstream::pos_type pos = ifs.tellg();
+
+  // packed representation:
+  if( pos != image_width * image_height * 2 ) {
+    std::cerr << "invalid size: " << pos << std::endl;
+    return 1;
+  }
 
   std::vector<uint8_t> result(pos);
   std::cout << pos << std::endl;
@@ -86,7 +92,7 @@ int main(int argc, char *argv[])
    */
   struct jpeg_error_mgr jerr;
   JSAMPROW row_pointer[1];	/* pointer to JSAMPLE row[s] */
-  int row_stride;		/* physical row width in image buffer */
+//  int row_stride;		/* physical row width in image buffer */
 
   /* We have to set up the error handler first, in case the initialization
    * step fails.  (Unlikely, but it could happen if you are out of memory.)
@@ -133,6 +139,16 @@ int main(int argc, char *argv[])
   jpeg_set_quality(cinfo, quality, TRUE /* limit to baseline-JPEG values */);
 
   cinfo->optimize_coding = TRUE;
+  // https://stackoverflow.com/questions/16390783/how-to-compress-yuyv-raw-data-to-jpeg-using-libjpeg
+  //cinfo->raw_data_in = true;
+
+  // https://zpl.fi/chroma-subsampling-and-jpeg-sampling-factors/
+  cinfo->comp_info[0].h_samp_factor = 2;
+  cinfo->comp_info[0].v_samp_factor = 1;
+  cinfo->comp_info[1].h_samp_factor = 1;
+  cinfo->comp_info[1].v_samp_factor = 1;
+  cinfo->comp_info[2].h_samp_factor = 1;
+  cinfo->comp_info[2].v_samp_factor = 1;
 
   /* Step 4: Start compressor */
 
@@ -149,7 +165,7 @@ int main(int argc, char *argv[])
    * To keep things simple, we pass one scanline per call; you can pass
    * more if you wish, though.
    */
-  row_stride = image_width * 3;	/* JSAMPLEs per row in image_buffer */
+//  row_stride = image_width * 3;	/* JSAMPLEs per row in image_buffer */
 
   // https://gist.github.com/royshil/fa98604b01787172b270
   std::vector<uint8_t> tmprowbuf(image_width * 3);

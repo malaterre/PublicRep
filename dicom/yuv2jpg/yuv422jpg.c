@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "jpeglib.h"
 
-int yuv422_to_jpeg(unsigned char *data, int image_width, int image_height, FILE *fp, int quality)
+int yuv_to_jpeg(unsigned char *data, int image_width, int image_height, FILE *fp, int quality)
 {
     struct jpeg_compress_struct cinfo;
     struct jpeg_error_mgr jerr;
@@ -16,8 +16,8 @@ int yuv422_to_jpeg(unsigned char *data, int image_width, int image_height, FILE 
     uint8_t *pSrc, *pDst;
 
     yuv[0] = data;
-    yuv[1] = yuv[0] + (image_width * image_height);
-    yuv[2] = yuv[1] + (image_width * image_height) /2;
+    yuv[1] = data + (image_width * image_height);
+    yuv[2] = data + (image_width * image_height * 3) / 2;
 
     cinfo.err = jpeg_std_error(&jerr);
     jpeg_create_compress(&cinfo);
@@ -96,7 +96,31 @@ fclose(f);
 
   f = fopen(output, "wb");
 
-  yuv422_to_jpeg(data, image_width, image_height, f, 100);
+    int yIndex = 0;
+    int yCount = 0;
+    int uIndex = image_width*image_height;
+    int uCount = 0;
+    int vIndex = uIndex + (image_width*image_height/2);
+    int vCount = 0;
+
+    //yuv422(YUYV) format is y0, u0, y1, v0...
+    unsigned char *yuvData = malloc((image_width*image_height)*2);
+    for (int i = 0; i < (image_width*image_height)*2; i+=4)
+    {
+        //y
+        yuvData[yIndex+yCount] = data[i];
+        yCount++;
+        yuvData[yIndex+yCount] = data[i+1];
+        yCount++;
+        //u
+        yuvData[uIndex+uCount] = data[i+2];
+        uCount++;
+        //v
+        yuvData[vIndex+vCount] = data[i+3];
+        vCount++;
+    }
+  yuv_to_jpeg(yuvData, image_width, image_height, f, 100);
+free(yuvData);
 fclose(f);
 
   return 0;

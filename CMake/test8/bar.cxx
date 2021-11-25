@@ -1,7 +1,9 @@
 void foo();
+int bla(const char*str);
 
 int main()
 {
-  foo();
+  //foo();
+  bla("2");
   return 0;
 }

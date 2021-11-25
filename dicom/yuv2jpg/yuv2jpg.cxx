@@ -42,8 +42,7 @@ int main(int argc, char *argv[])
   const char *output = argv[2];
   int image_width = 800;
   int image_height = 555;
-  int quality = 101;
-//  JSAMPLE * image_buffer{};	/* Points to large array of Y,Cb,Cr-order data */
+  int quality = 100;
 
   std::ifstream ifs(input, std::ios::binary | std::ios::ate);
   std::ifstream::pos_type pos = ifs.tellg();
@@ -55,25 +54,8 @@ int main(int argc, char *argv[])
   }
 
   std::vector<uint8_t> result(pos);
-  std::cout << pos << std::endl;
-  std::cout << image_width * image_height * 2 << std::endl;
-
   ifs.seekg(0, std::ios::beg);
   ifs.read(reinterpret_cast<char *>(result.data()), pos);
-  //image_buffer = result.data();
-
-#if 0
-  File infile(input, "rb");
-  if (!infile) {
-    throw std::invalid_argument("input: " + input);
-  }
-    std::ifstream::pos_type pos = ifs.tellg();
-
-  std::vector<uint8_t> result(pos);
-
-  ifs.seekg(0, std::ios::beg);
-  ifs.read(reinterpret_cast<char *>(result.data()), pos);
-#endif
 
   /* This struct contains the JPEG compression parameters and pointers to
    * working space (which is allocated as needed by the JPEG library).
@@ -102,7 +84,6 @@ int main(int argc, char *argv[])
   cinfo->err = jpeg_std_error(&jerr);
 
   /* Now we can initialize the JPEG compression object. */
-  //jpeg_create_compress(cinfo);
 
   /* Step 2: specify data destination (eg, a file) */
   /* Note: steps 2 and 3 can be done in either order. */
@@ -139,8 +120,6 @@ int main(int argc, char *argv[])
   jpeg_set_quality(cinfo, quality, TRUE /* limit to baseline-JPEG values */);
 
   cinfo->optimize_coding = TRUE;
-  // https://stackoverflow.com/questions/16390783/how-to-compress-yuyv-raw-data-to-jpeg-using-libjpeg
-  //cinfo->raw_data_in = true;
 
   // https://zpl.fi/chroma-subsampling-and-jpeg-sampling-factors/
   cinfo->comp_info[0].h_samp_factor = 2;
@@ -193,12 +172,10 @@ int main(int argc, char *argv[])
 
   jpeg_finish_compress(cinfo);
   /* After finish_compress, we can close the output file. */
-  //fclose(outfile);
 
   /* Step 7: release JPEG compression object */
 
   /* This is an important step since it will release a good deal of memory. */
-  //jpeg_destroy_compress(cinfo);
 
   /* And we're done! */
   std::cout << "success" << std::endl;

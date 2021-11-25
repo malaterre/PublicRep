@@ -14,3 +14,11 @@ Reference:
 ffmpeg:
 
 ffmpeg -y -i input.jpg -pix_fmt yuvj422p output.yuv
+
+---
+
+TODO:
+
+https://stackoverflow.com/questions/16390783/how-to-compress-yuyv-raw-data-to-jpeg-using-libjpeg
+cinfo->raw_data_in = true;
+

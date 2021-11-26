@@ -22,3 +22,11 @@ TODO:
 https://stackoverflow.com/questions/16390783/how-to-compress-yuyv-raw-data-to-jpeg-using-libjpeg
 cinfo->raw_data_in = true;
 
+https://pmeerw.net/blog/programming/uyvy-jpeg.html
+
+https://github.com/GracieZhou/test/blob/master/CODE/android/vendor/mstar/supernova/projects/msrv/control/src/MSrv_Control_common.cpp
+https://android.googlesource.com/platform/frameworks/base.git/+/android-4.2.2_r1/core/jni/android/graphics/YuvToJpegEncoder.cpp
+https://gitlab.tubit.tu-berlin.de/justus.beyer/streamagame_platform_frameworks_base/blob/1a94c7db9fc78e8e7a9d48546622776d27a79a6a/core/jni/android/graphics/YuvToJpegEncoder.cpp
+https://stackoverflow.com/questions/16390783/how-to-compress-yuyv-raw-data-to-jpeg-using-libjpeg
+
+https://compression.fiches-horaires.net/la-compression-avec-perte-1/le-compression-jpeg/

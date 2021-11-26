@@ -1,5 +1,6 @@
 #include <stdio.h> // before jpeglib.h
 #include <jpeglib.h>
+#include <assert.h>
 
 #include <string>
 #include <vector>
@@ -118,9 +119,11 @@ int main(int argc, char *argv[])
    * Here we just illustrate the use of quality (quantization table) scaling:
    */
   jpeg_set_quality(cinfo, quality, TRUE /* limit to baseline-JPEG values */);
+  assert( cinfo->jpeg_color_space == JCS_YCbCr);
+  jpeg_set_colorspace(cinfo, JCS_YCbCr);
 
   cinfo->optimize_coding = TRUE;
-  cinfo->jpeg_color_space = JCS_YCbCr;
+  assert( cinfo->jpeg_color_space == JCS_YCbCr);
 
   // https://zpl.fi/chroma-subsampling-and-jpeg-sampling-factors/
   cinfo->comp_info[0].h_samp_factor = 2;

@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
   const char *input = argv[1];
   const char *output = argv[2];
   int image_width = 800;
-  int image_height = 555;
+  int image_height = 600;
   int quality = 100;
 
   std::ifstream ifs(input, std::ios::binary | std::ios::ate);

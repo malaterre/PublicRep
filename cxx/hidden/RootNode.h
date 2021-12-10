@@ -2,7 +2,6 @@
 #define OPENVDB_TREE_ROOTNODE_HAS_BEEN_INCLUDED
 
 #include <Types.h>
-#include <tbb/parallel_for.h>
 #include <vector>
 
 namespace openvdb {

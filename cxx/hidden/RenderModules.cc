@@ -17,14 +17,15 @@ processTypedGrid(GridPtrType grid, OpType& op)
     return true;
 }
 
-class TreeTopologyOp
-{
-};
+//class TreeTopologyOp
+//{
+//};
 
 void
 TreeTopologyModule::init()
 {
-    TreeTopologyOp drawTopology;
+//    TreeTopologyOp drawTopology;
+    int drawTopology;
     const std::shared_ptr<openvdb::GridBase> mGrid2;
 
     processTypedGrid(mGrid2, drawTopology);

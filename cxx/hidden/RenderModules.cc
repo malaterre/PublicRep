@@ -20,9 +20,6 @@ processTypedGrid(GridPtrType grid, OpType& op)
     return true;
 }
 
-
-
-
 }
 
 class TreeTopologyOp
@@ -30,8 +27,8 @@ class TreeTopologyOp
 public:
     TreeTopologyOp() {}
 
-    template<typename GridType>
-    void operator()(typename GridType::ConstPtr grid) { }
+//    template<typename GridType>
+//    void operator()(typename GridType::ConstPtr grid) { }
 }; // TreeTopologyOp
 
 TreeTopologyModule::TreeTopologyModule(const openvdb::GridBase::ConstPtr& grid):

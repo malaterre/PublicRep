@@ -17,12 +17,12 @@ public:
 };
 
 template<typename _TreeType>
-class Grid: public GridBase
+class Grid/*: public GridBase*/
 {
 public:
     using TreeType            = _TreeType;
 
-    std::string type() const override { return this->gridType(); }
+    std::string type() const { return this->gridType(); }
     static std::string gridType() { return TreeType::treeType(); }
 }; // class Grid
 

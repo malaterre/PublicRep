@@ -5,24 +5,14 @@
 
 namespace openvdb_viewer {
 
-class RenderModule
-{
-public:
-    virtual ~RenderModule() {}
-};
-
-class TreeTopologyModule/*: public RenderModule*/
+class TreeTopologyModule
 {
 public:
     TreeTopologyModule(const openvdb::GridBase::ConstPtr&);
-//    ~TreeTopologyModule() override = default;
 private:
     void init();
-
     const openvdb::GridBase::ConstPtr& mGrid;
 };
-
-
 
 } // namespace openvdb_viewer
 

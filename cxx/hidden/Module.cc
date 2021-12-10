@@ -7,5 +7,5 @@ class Module
 
 void Module::init() // no-inline
 {
-   Tree<bool>::treeType();
+   Tree::treeType();
 }

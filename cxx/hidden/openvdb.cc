@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-static std::string do_segfault() { return Tree<bool>::treeType(); }
+static std::string do_segfault() { return Tree::treeType(); }
 
 OPENVDB_API void initialize()
 {

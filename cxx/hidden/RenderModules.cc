@@ -2,18 +2,18 @@
 
 namespace openvdb_viewer {
 
-template<typename GridType, typename OpType, typename GridPtrType>
+template<typename GridType, /*typename OpType,*/ typename GridPtrType>
 inline void
-doProcessTypedGrid(GridPtrType , OpType& )
+doProcessTypedGrid(GridPtrType /*, OpType&*/ )
 {
 }
 
-template<typename GridPtrType, typename OpType>
+template<typename GridPtrType/*, typename OpType = int*/>
 bool
-processTypedGrid(GridPtrType grid, OpType& op)
+processTypedGrid(GridPtrType grid/*, OpType& op*/)
 {
     using namespace openvdb;
-    if (grid->template isType<BoolGrid>())        doProcessTypedGrid<BoolGrid>(grid, op);
+    if (grid->template isType<BoolGrid>())        doProcessTypedGrid<BoolGrid>(grid/*, op*/);
     return true;
 }
 
@@ -24,11 +24,9 @@ processTypedGrid(GridPtrType grid, OpType& op)
 void
 TreeTopologyModule::init()
 {
-//    TreeTopologyOp drawTopology;
-    int drawTopology;
     const std::shared_ptr<openvdb::GridBase> mGrid2;
 
-    processTypedGrid(mGrid2, drawTopology);
+    processTypedGrid(mGrid2);
 }
 
 } // namespace openvdb_viewer

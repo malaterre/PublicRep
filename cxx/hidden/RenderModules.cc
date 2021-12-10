@@ -26,11 +26,6 @@ class TreeTopologyOp
 {
 };
 
-TreeTopologyModule::TreeTopologyModule(const openvdb::GridBase::ConstPtr& grid):
-    mGrid(grid)
-{
-}
-
 
 void
 TreeTopologyModule::init()

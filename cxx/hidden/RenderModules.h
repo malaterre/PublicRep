@@ -7,11 +7,8 @@ namespace openvdb_viewer {
 
 class TreeTopologyModule
 {
-public:
-    TreeTopologyModule(const openvdb::GridBase::ConstPtr&);
 private:
     void init();
-    const openvdb::GridBase::ConstPtr& mGrid;
 };
 
 } // namespace openvdb_viewer

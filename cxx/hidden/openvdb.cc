@@ -2,7 +2,8 @@
 
 static std::string do_segfault() { return Tree::treeType(); }
 
-OPENVDB_API void initialize()
+ __attribute__((visibility("default")))
+void initialize()
 {
   do_segfault();
 }

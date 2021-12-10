@@ -4,7 +4,6 @@ namespace openvdb_viewer {
 
 namespace util {
 
-/// Helper function used internally by processTypedGrid()
 template<typename GridType, typename OpType, typename GridPtrType>
 inline void
 doProcessTypedGrid(GridPtrType , OpType& )
@@ -26,11 +25,9 @@ class TreeTopologyOp
 {
 };
 
-
 void
 TreeTopologyModule::init()
 {
-    // extract grid topology
     TreeTopologyOp drawTopology;
     const openvdb::GridBase::ConstPtr mGrid2;
 

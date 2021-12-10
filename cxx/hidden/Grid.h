@@ -8,7 +8,6 @@ namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 
-
 typedef std::string Name;
 
 class OPENVDB_API GridBase
@@ -22,7 +21,6 @@ public:
     bool isType() const { return (this->type() == GridType::gridType()); }
 };
 
-
 template<typename _TreeType>
 class Grid: public GridBase
 {
@@ -32,13 +30,9 @@ public:
     using TreeType            = _TreeType;
     using TreePtrType         = typename _TreeType::Ptr;
 
-
-    /// Return the name of this grid's type.
     Name type() const override { return this->gridType(); }
-    /// Return the name of this type of grid.
     static Name gridType() { return TreeType::treeType(); }
 }; // class Grid
-
 
 } // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb

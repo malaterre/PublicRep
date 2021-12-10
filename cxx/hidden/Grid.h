@@ -5,8 +5,6 @@
 #include <iostream>
 
 namespace openvdb {
-OPENVDB_USE_VERSION_NAMESPACE
-namespace OPENVDB_VERSION_NAME {
 
 
 class OPENVDB_API GridBase
@@ -30,7 +28,6 @@ public:
     static std::string gridType() { return TreeType::treeType(); }
 }; // class Grid
 
-} // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb
 
 #endif // OPENVDB_GRID_HAS_BEEN_INCLUDED

@@ -4,8 +4,6 @@
 #include "openvdb.h"
 
 namespace openvdb {
-OPENVDB_USE_VERSION_NAMESPACE
-namespace OPENVDB_VERSION_NAME {
 
  static std::string gridType2() { return BoolTree::treeType(); }
 
@@ -17,5 +15,4 @@ initialize()
 }
 
 
-} // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb

@@ -6,14 +6,11 @@
 #include "Tree.h"
 
 namespace openvdb {
-OPENVDB_USE_VERSION_NAMESPACE
-namespace OPENVDB_VERSION_NAME {
 
 using BoolTree     = tree::Tree4<bool,        5, 4, 3>::Type;
 using BoolGrid     = Grid<BoolTree>;
 OPENVDB_API void initialize();
 
-} // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb
 
 #endif // OPENVDB_OPENVDB_HAS_BEEN_INCLUDED

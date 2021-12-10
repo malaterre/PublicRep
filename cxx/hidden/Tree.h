@@ -6,8 +6,6 @@
 #include <mutex>
 
 namespace openvdb {
-OPENVDB_USE_VERSION_NAMESPACE
-namespace OPENVDB_VERSION_NAME {
 namespace tree {
 
 template<typename ChildType>
@@ -64,7 +62,6 @@ Tree<RootNodeType>::treeType()
 }
 
 } // namespace tree
-} // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb
 
 #endif // OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED

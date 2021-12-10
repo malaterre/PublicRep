@@ -23,18 +23,10 @@ class LeafNode
 }; // end of LeafNode class
 
 
-class OPENVDB_API TreeBase
-{
-public:
-    virtual const std::string& type() const = 0;
-};
-
 template<typename _RootNodeType>
-class Tree/*: public TreeBase*/
+class Tree
 {
 public:
-    using RootNodeType = _RootNodeType;
-
     static const std::string& treeType();
     const std::string& type() const { return this->treeType(); }
 private:
@@ -44,9 +36,9 @@ private:
 template<typename _RootNodeType>
 std::unique_ptr<const std::string> Tree<_RootNodeType>::sTreeTypeName;
 
-template<typename T, int N1=5, int N2=4, int N3=3>
+template<typename T>
 struct Tree4 {
-    using Type = Tree<RootNode<InternalNode<InternalNode<LeafNode<T, N3>, N2>, N1>>>;
+    using Type = Tree<T>;
 };
 
 template<typename RootNodeType>

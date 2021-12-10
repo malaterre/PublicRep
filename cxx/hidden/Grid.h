@@ -25,7 +25,6 @@ template<typename _TreeType>
 class Grid: public GridBase
 {
 public:
-    using Ptr                 = SharedPtr<Grid>;
 
     using TreeType            = _TreeType;
 

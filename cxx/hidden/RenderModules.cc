@@ -37,8 +37,9 @@ TreeTopologyModule::init()
 {
     // extract grid topology
     TreeTopologyOp drawTopology;
+    const openvdb::GridBase::ConstPtr mGrid2;
 
-    util::processTypedGrid(mGrid, drawTopology);
+    util::processTypedGrid(mGrid2, drawTopology);
 }
 
 } // namespace openvdb_viewer

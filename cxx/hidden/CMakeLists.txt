@@ -21,7 +21,7 @@ ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 add_executable(vdb_view main.cc Module.cc)
-target_link_libraries(vdb_view openvdb tbb Threads::Threads)
+target_link_libraries(vdb_view openvdb Threads::Threads)
 target_include_directories(vdb_view
 PRIVATE 
 ${CMAKE_CURRENT_SOURCE_DIR}

@@ -1,7 +1,4 @@
-#ifndef OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
-#define OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
+#pragma once
 
 #define OPENVDB_EXPORT __attribute__((visibility("default")))
 #define OPENVDB_API OPENVDB_EXPORT
-
-#endif // OPENVDB_PLATFORM_HAS_BEEN_INCLUDED

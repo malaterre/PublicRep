@@ -20,12 +20,6 @@ PRIVATE
 ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-  target_compile_definitions(openvdb
-    PUBLIC ${OPENVDB_CORE_PUBLIC_DEFINES} -DOPENVDB_DLL
-    PRIVATE ${OPENVDB_CORE_PRIVATE_DEFINES}
-     -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DOPENVDB_DLL -DOPENVDB_PRIVATE 
-  )
-
 add_executable(vdb_view openvdb_view.cc RenderModules.cc)
 target_link_libraries(vdb_view openvdb tbb Threads::Threads)
 target_include_directories(vdb_view

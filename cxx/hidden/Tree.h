@@ -8,21 +8,6 @@
 namespace openvdb {
 namespace tree {
 
-template<typename ChildType>
-class RootNode
-{
-}; // end of RootNode class
-
-template<typename _ChildNodeType, int Log2Dim>
-class InternalNode
-{
-};
-template<typename T, int Log2Dim>
-class LeafNode
-{
-}; // end of LeafNode class
-
-
 template<typename _RootNodeType>
 class Tree
 {
@@ -35,11 +20,6 @@ private:
 
 template<typename _RootNodeType>
 std::unique_ptr<const std::string> Tree<_RootNodeType>::sTreeTypeName;
-
-template<typename T>
-struct Tree4 {
-    using Type = Tree<T>;
-};
 
 template<typename RootNodeType>
 inline const std::string&

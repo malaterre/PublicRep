@@ -7,7 +7,7 @@
 
 namespace openvdb {
 
-using BoolTree     = tree::Tree4<bool>::Type;
+using BoolTree     = tree::Tree<bool>;
 using BoolGrid     = Grid<BoolTree>;
 OPENVDB_API void initialize();
 

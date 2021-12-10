@@ -8,10 +8,6 @@ OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 namespace tree {
 
-template<typename T, Index Log2Dim>
-class LeafNode
-{
-}; // end of LeafNode class
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME

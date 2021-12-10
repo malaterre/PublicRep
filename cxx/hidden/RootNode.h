@@ -9,11 +9,6 @@ OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 namespace tree {
 
-template<typename ChildType>
-class RootNode
-{
-public:
-}; // end of RootNode class
 
 
 

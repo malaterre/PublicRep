@@ -3,15 +3,27 @@
 
 #include "Types.h"
 #include "Platform.h"
-#include "RootNode.h"
-#include "InternalNode.h"
-#include "LeafNode.h"
 #include <mutex>
 
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 namespace tree {
+
+template<typename ChildType>
+class RootNode
+{
+}; // end of RootNode class
+
+template<typename _ChildNodeType, Index Log2Dim>
+class InternalNode
+{
+};
+template<typename T, Index Log2Dim>
+class LeafNode
+{
+}; // end of LeafNode class
+
 
 class OPENVDB_API TreeBase
 {

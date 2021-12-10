@@ -10,11 +10,6 @@ OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 namespace tree {
 
-template<typename _ChildNodeType, Index Log2Dim>
-class InternalNode
-{
-};
-
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb

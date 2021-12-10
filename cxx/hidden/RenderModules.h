@@ -11,13 +11,11 @@ public:
     virtual ~RenderModule() {}
 };
 
-class TreeTopologyModule: public RenderModule
+class TreeTopologyModule/*: public RenderModule*/
 {
 public:
     TreeTopologyModule(const openvdb::GridBase::ConstPtr&);
-    ~TreeTopologyModule() override = default;
-
-
+//    ~TreeTopologyModule() override = default;
 private:
     void init();
 

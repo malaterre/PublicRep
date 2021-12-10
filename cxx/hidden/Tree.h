@@ -39,7 +39,7 @@ public:
     const std::string& type() const override { return this->treeType(); }
 private:
     static std::unique_ptr<const std::string> sTreeTypeName;
-}; // end of Tree class
+};
 
 template<typename _RootNodeType>
 std::unique_ptr<const std::string> Tree<_RootNodeType>::sTreeTypeName;

@@ -1,43 +1,5 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-///
-/// @file Platform.h
-
 #ifndef OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
 #define OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
-
-
-/// @name Utilities
-/// @{
-/// @cond OPENVDB_VERSION_INTERNAL
-#define OPENVDB_PREPROC_STRINGIFY_(x) #x
-/// @endcond
-/// @brief Return @a x as a string literal.  If @a x is a macro,
-/// return its value as a string literal.
-/// @hideinitializer
-#define OPENVDB_PREPROC_STRINGIFY(x) OPENVDB_PREPROC_STRINGIFY_(x)
-
-/// @cond OPENVDB_VERSION_INTERNAL
-#define OPENVDB_PREPROC_CONCAT_(x, y) x ## y
-/// @endcond
-/// @brief Form a new token by concatenating two existing tokens.
-/// If either token is a macro, concatenate its value.
-/// @hideinitializer
-#define OPENVDB_PREPROC_CONCAT(x, y) OPENVDB_PREPROC_CONCAT_(x, y)
-/// @}
-
-
-
-/// Deprecation macros. Define OPENVDB_NO_DEPRECATION_WARNINGS to disable all
-/// deprecation warnings in OpenVDB.
-#ifndef OPENVDB_NO_DEPRECATION_WARNINGS
-#define OPENVDB_DEPRECATED [[deprecated]]
-#define OPENVDB_DEPRECATED_MESSAGE(msg) [[deprecated(msg)]]
-#else
-#define OPENVDB_DEPRECATED
-#define OPENVDB_DEPRECATED_MESSAGE(msg)
-#endif
-
 
 /// Helper macros for defining library symbol visibility
 #ifdef OPENVDB_EXPORT

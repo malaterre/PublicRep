@@ -1,45 +1,3 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-
-/// @file openvdb/version.h
-/// @brief Library and file format version numbers
-///
-/// @details
-/// When the library is built with the latest ABI, its namespace has the form
-/// <B>openvdb::vX_Y</B>, where @e X and @e Y are the major and minor version
-/// numbers.
-///
-/// The library can be built using an older ABI by changing the value of the
-/// @b OPENVDB_ABI_VERSION_NUMBER. (e.g., via <TT>-DOPENVDB_ABI_VERSION_NUMBER=<I>N</I></TT>).
-/// In that case, the namespace has the form <B>openvdb::vX_YabiN</B>,
-/// where N is the ABI version number.
-///
-/// The ABI version must be set consistently when building code that depends on
-/// OpenVDB.
-///
-/// The ABI version number defaults to the library major version number, which
-/// gets incremented whenever changes are made to the ABI of the Grid class or
-/// related classes (Tree, Transform, Metadata, etc.). Setting the ABI version
-/// number to an earlier library version number disables grid ABI changes made
-/// since that library version.
-///
-/// The library minor version number gets incremented whenever a change is made
-/// to any aspect of the public API (not just the grid API) that necessitates
-/// changes to client code.  Changes to APIs in private or internal namespaces
-/// do not trigger a minor version number increment; such APIs should not be
-/// used in client code.
-///
-/// A patch version number increment indicates a change&mdash;usually a new
-/// feature or a bug fix&mdash;that does not necessitate changes to client code
-/// but rather only recompilation of that code (because the library namespace
-/// incorporates the version number).
-///
-/// The file format version number gets incremented when it becomes possible to
-/// write files that cannot safely be read with older versions of the library.
-/// Not all files written in a newer format are incompatible with older
-/// libraries, however. And in general, files containing grids of unknown type
-/// can be read safely, although the unknown grids will not be accessible.
-
 #ifndef OPENVDB_VERSION_HAS_BEEN_INCLUDED
 #define OPENVDB_VERSION_HAS_BEEN_INCLUDED
 
@@ -116,51 +74,10 @@
     #define OPENVDB_VERSION_NAME v8_1abi8
 #endif
 
-/* Denotes whether VDB was built with IMath Half support */
-#ifndef OPENVDB_USE_IMATH_HALF
-/* #undef OPENVDB_USE_IMATH_HALF */
-#endif
-
-/* Denotes whether VDB was built with Blosc support */
-#ifndef OPENVDB_USE_BLOSC
-#define OPENVDB_USE_BLOSC
-#endif
-
-/* Denotes whether VDB was built with ZLIB support */
-#ifndef OPENVDB_USE_ZLIB
-#define OPENVDB_USE_ZLIB
-#endif
-
-
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 
-#if OPENVDB_ABI_VERSION_NUMBER > OPENVDB_LIBRARY_MAJOR_VERSION_NUMBER
-    // If using a future OPENVDB_ABI_VERSION_NUMBER, issue a message directive.
-    // This can be suppressed by defining OPENVDB_USE_FUTURE_ABI_<VERSION>=ON.
-    // Note that, whilst the VDB CMake does not allow this option to be hit,
-    // it exists to propagate this message to downstream targets
-    #if OPENVDB_ABI_VERSION_NUMBER == 9
-        #ifndef OPENVDB_USE_FUTURE_ABI_9
-            PRAGMA(message("NOTE: ABI = 9 is still in active development and has not been finalized, "
-                "define OPENVDB_USE_FUTURE_ABI_9 to suppress this message"))
-        #endif
-    #else
-        #error expected OPENVDB_ABI_VERSION_NUMBER <= OPENVDB_LIBRARY_MAJOR_VERSION_NUMBER
-    #endif
-#endif
-
-// If using an OPENVDB_ABI_VERSION_NUMBER that has been deprecated, issue a message
-// directive. This can be suppressed by defining OPENVDB_USE_DEPRECATED_ABI_<VERSION>.
-// Note that, whilst the VDB CMake does not allow this option to be hit,
-// it exists to propagate this message to downstream targets
-#ifndef OPENVDB_USE_DEPRECATED_ABI_6
-    #if OPENVDB_ABI_VERSION_NUMBER == 6
-        PRAGMA(message("NOTE: ABI = 6 is deprecated, define OPENVDB_USE_DEPRECATED_ABI_6 "
-            "to suppress this message"))
-    #endif
-#endif
 
 /// By default, the @b OPENVDB_REQUIRE_VERSION_NAME macro is undefined, and
 /// symbols from the version namespace are promoted to the top-level namespace
@@ -206,39 +123,6 @@ const uint32_t OPENVDB_ABI_VERSION = OPENVDB_ABI_VERSION_NUMBER;
 /// @details  This can be used to enable various backwards compatibility switches
 /// or to reject files that cannot be read.
 const uint32_t OPENVDB_FILE_VERSION = 224;
-
-/// Notable file format version numbers
-enum {
-    OPENVDB_FILE_VERSION_ROOTNODE_MAP = 213,
-    OPENVDB_FILE_VERSION_INTERNALNODE_COMPRESSION = 214,
-    OPENVDB_FILE_VERSION_SIMPLIFIED_GRID_TYPENAME = 215,
-    OPENVDB_FILE_VERSION_GRID_INSTANCING = 216,
-    OPENVDB_FILE_VERSION_BOOL_LEAF_OPTIMIZATION = 217,
-    OPENVDB_FILE_VERSION_BOOST_UUID = 218,
-    OPENVDB_FILE_VERSION_NO_GRIDMAP = 219,
-    OPENVDB_FILE_VERSION_NEW_TRANSFORM = 219,
-    OPENVDB_FILE_VERSION_SELECTIVE_COMPRESSION = 220,
-    OPENVDB_FILE_VERSION_FLOAT_FRUSTUM_BBOX = 221,
-    OPENVDB_FILE_VERSION_NODE_MASK_COMPRESSION = 222,
-    OPENVDB_FILE_VERSION_BLOSC_COMPRESSION = 223,
-    OPENVDB_FILE_VERSION_POINT_INDEX_GRID = 223,
-    OPENVDB_FILE_VERSION_MULTIPASS_IO = 224
-};
-
-
-/// Return a library version number string of the form "<major>.<minor>.<patch>".
-inline constexpr const char* getLibraryVersionString() { return OPENVDB_LIBRARY_VERSION_STRING; }
-/// Return a library version number string of the form "<major>.<minor>.<patch>abi<abi>".
-inline constexpr const char* getLibraryAbiVersionString() {
-    return OPENVDB_LIBRARY_ABI_VERSION_STRING;
-}
-
-
-struct VersionId {
-    uint32_t first, second;
-    VersionId(): first(0), second(0) {}
-    VersionId(uint32_t major, uint32_t minor): first(major), second(minor) {}
-};
 
 } // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb

@@ -10,7 +10,6 @@ class TreeTopologyModule
 void TreeTopologyModule::init()
 {
    openvdb::BoolTree::treeType();
-//   openvdb::BoolGrid::gridType();
 }
 
 } // namespace openvdb_viewer

@@ -1,6 +1,13 @@
-#include "RenderModules.h"
+#include "openvdb.h"
 
 namespace openvdb_viewer {
+
+	class TreeTopologyModule
+{
+private:
+    void init();
+};
+
 
 template<typename GridPtrType>
 bool

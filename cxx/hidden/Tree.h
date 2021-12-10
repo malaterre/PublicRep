@@ -17,7 +17,7 @@ class OPENVDB_API TreeBase
 {
 public:
 
-    virtual const Name& type() const = 0;
+    virtual const std::string& type() const = 0;
 };
 
 template<typename _RootNodeType>
@@ -27,15 +27,15 @@ public:
 
     using RootNodeType = _RootNodeType;
 
-    static const Name& treeType();
-    const Name& type() const override { return this->treeType(); }
+    static const std::string& treeType();
+    const std::string& type() const override { return this->treeType(); }
 
 private:
-    static std::unique_ptr<const Name> sTreeTypeName;
+    static std::unique_ptr<const std::string> sTreeTypeName;
 }; // end of Tree class
 
 template<typename _RootNodeType>
-std::unique_ptr<const Name> Tree<_RootNodeType>::sTreeTypeName;
+std::unique_ptr<const std::string> Tree<_RootNodeType>::sTreeTypeName;
 
 template<typename T, Index N1=5, Index N2=4, Index N3=3>
 struct Tree4 {
@@ -43,13 +43,13 @@ struct Tree4 {
 };
 
 template<typename RootNodeType>
-inline const Name&
+inline const std::string&
 Tree<RootNodeType>::treeType()
 {
     static std::once_flag once;
     std::call_once(once, []()
     {
-        sTreeTypeName.reset(new Name());
+        sTreeTypeName.reset(new std::string());
     });
     return *sTreeTypeName;
 }

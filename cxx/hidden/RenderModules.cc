@@ -2,8 +2,6 @@
 
 namespace openvdb_viewer {
 
-namespace util {
-
 template<typename GridType, typename OpType, typename GridPtrType>
 inline void
 doProcessTypedGrid(GridPtrType , OpType& )
@@ -19,8 +17,6 @@ processTypedGrid(GridPtrType grid, OpType& op)
     return true;
 }
 
-}
-
 class TreeTopologyOp
 {
 };
@@ -31,7 +27,7 @@ TreeTopologyModule::init()
     TreeTopologyOp drawTopology;
     const std::shared_ptr<openvdb::GridBase> mGrid2;
 
-    util::processTypedGrid(mGrid2, drawTopology);
+    processTypedGrid(mGrid2, drawTopology);
 }
 
 } // namespace openvdb_viewer

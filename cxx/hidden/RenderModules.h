@@ -9,9 +9,7 @@ class RenderModule
 {
 public:
     virtual ~RenderModule() {}
-    virtual void render() = 0;
 };
-
 
 class TreeTopologyModule: public RenderModule
 {
@@ -19,7 +17,6 @@ public:
     TreeTopologyModule(const openvdb::GridBase::ConstPtr&);
     ~TreeTopologyModule() override = default;
 
-    void render() override {}
 
 private:
     void init();

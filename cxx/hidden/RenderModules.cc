@@ -4,10 +4,12 @@ namespace openvdb {
 
 class TreeTopologyModule
 {
-    void init() {
-   openvdb::BoolTree::treeType();
-    }
+    void init();
 };
 
+void TreeTopologyModule::init()
+{
+   openvdb::BoolTree::treeType();
+}
 
 }

@@ -5,12 +5,12 @@
 
 namespace openvdb {
 
-static std::string gridType2() { return BoolTree::treeType(); }
+static std::string do_segfault() { return BoolTree::treeType(); }
 
 void
 initialize()
 {
- gridType2();
+  do_segfault();
 }
 
 

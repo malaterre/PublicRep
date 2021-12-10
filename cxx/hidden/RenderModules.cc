@@ -7,7 +7,7 @@ namespace util {
 /// Helper function used internally by processTypedGrid()
 template<typename GridType, typename OpType, typename GridPtrType>
 inline void
-doProcessTypedGrid(GridPtrType grid, OpType& op)
+doProcessTypedGrid(GridPtrType , OpType& )
 {
 }
 
@@ -24,12 +24,7 @@ processTypedGrid(GridPtrType grid, OpType& op)
 
 class TreeTopologyOp
 {
-public:
-    TreeTopologyOp() {}
-
-//    template<typename GridType>
-//    void operator()(typename GridType::ConstPtr grid) { }
-}; // TreeTopologyOp
+};
 
 TreeTopologyModule::TreeTopologyModule(const openvdb::GridBase::ConstPtr& grid):
     mGrid(grid)

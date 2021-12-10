@@ -8,7 +8,9 @@ class Tree
 public:
     static const std::string treeType() {
       static std::once_flag once;
-      std::call_once(once, []() { });
+      std::call_once(once, []() {
+        sTreeTypeName.reset(new std::string());
+		      });
       return *sTreeTypeName;
     }
 private:

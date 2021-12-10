@@ -1,12 +1,8 @@
-#include "openvdb.h"
-
-namespace openvdb {
+#include "Tree.h"
 
 static std::string do_segfault() { return Tree<bool>::treeType(); }
 
-void initialize()
+OPENVDB_API void initialize()
 {
   do_segfault();
 }
-
-} // namespace openvdb

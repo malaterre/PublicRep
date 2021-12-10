@@ -1,7 +1,7 @@
-#include "openvdb.h"
+void initialize();
 
 int main(int , char *[])
 {
-    openvdb::initialize();
+    initialize();
     return 0;
 }

@@ -1,17 +1,7 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-
 #ifndef OPENVDB_GRID_HAS_BEEN_INCLUDED
 #define OPENVDB_GRID_HAS_BEEN_INCLUDED
 
-//#include "Exceptions.h"
-//#include "MetaMap.h"
 #include "Types.h"
-//#include "io/io.h"
-//#include "math/Transform.h"
-//#include "tree/Tree.h"
-//#include "util/logging.h"
-//#include "util/Name.h"
 #include <cassert>
 #include <iostream>
 #include <set>
@@ -22,54 +12,6 @@
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
-
-#if 0
-using TreeBase = tree::TreeBase;
-
-template<typename> class Grid; // forward declaration
-
-
-/// @brief Create a new grid of type @c GridType with a given background value.
-///
-/// @note Calling createGrid<GridType>(background) is equivalent to calling
-/// GridType::create(background).
-template<typename GridType>
-inline typename GridType::Ptr createGrid(const typename GridType::ValueType& background);
-
-
-/// @brief Create a new grid of type @c GridType with background value zero.
-///
-/// @note Calling createGrid<GridType>() is equivalent to calling GridType::create().
-template<typename GridType>
-inline typename GridType::Ptr createGrid();
-
-
-/// @brief Create a new grid of the appropriate type that wraps the given tree.
-///
-/// @note This function can be called without specifying the template argument,
-/// i.e., as createGrid(tree).
-template<typename TreePtrType>
-inline typename Grid<typename TreePtrType::element_type>::Ptr createGrid(TreePtrType);
-
-
-/// @brief Create a new grid of type @c GridType classified as a "Level Set",
-/// i.e., a narrow-band level set.
-///
-/// @note @c GridType::ValueType must be a floating-point scalar.
-///
-/// @param voxelSize  the size of a voxel in world units
-/// @param halfWidth  the half width of the narrow band in voxel units
-///
-/// @details The voxel size and the narrow band half width define the grid's
-/// background value as halfWidth*voxelWidth.  The transform is linear
-/// with a uniform scaling only corresponding to the specified voxel size.
-///
-/// @note It is generally advisable to specify a half-width of the narrow band
-/// that is larger than one voxel unit, otherwise zero crossings are not guaranteed.
-template<typename GridType>
-typename GridType::Ptr createLevelSet(
-    Real voxelSize = 1.0, Real halfWidth = LEVEL_SET_HALF_WIDTH);
-#endif
 
 
 ////////////////////////////////////////

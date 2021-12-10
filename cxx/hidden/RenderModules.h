@@ -1,6 +1,3 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-
 #ifndef OPENVDB_VIEWER_RENDERMODULES_HAS_BEEN_INCLUDED
 #define OPENVDB_VIEWER_RENDERMODULES_HAS_BEEN_INCLUDED
 
@@ -12,11 +9,7 @@ class RenderModule
 {
 public:
     virtual ~RenderModule() {}
-
     virtual void render() = 0;
-
-protected:
-    RenderModule()/*: mIsVisible(true)*/ {}
 };
 
 

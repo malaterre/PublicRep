@@ -1,10 +1,5 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-
-//#include <openvdb/openvdb.h>
-//:w
-//#include "openvdb/Platform.h"
 #include "version.h"
+
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {

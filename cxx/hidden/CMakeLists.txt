@@ -7,8 +7,8 @@ add_library(openvdb SHARED openvdb.cc)
 target_include_directories(openvdb 
 #PUBLIC /usr/include
 PRIVATE 
-/home/mathieu/Perso/PublicRep/cxx/hidden/t/openvdb-8.1.0/openvdb/openvdb
-/home/mathieu/Perso/PublicRep/cxx/hidden/t/openvdb-8.1.0/openvdb
+#/home/mathieu/Perso/PublicRep/cxx/hidden/t/openvdb-8.1.0/openvdb/openvdb
+#/home/mathieu/Perso/PublicRep/cxx/hidden/t/openvdb-8.1.0/openvdb
 ${CMAKE_CURRENT_SOURCE_DIR}
 )
 

@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
   if( argc < 3 ) return 1;
   const char *input = argv[1];
   const char *output = argv[2];
-  int image_width = 800;
-  int image_height = 600;
+  int image_width = 512;
+  int image_height = 512;
   int quality = 100;
 
   std::ifstream ifs(input, std::ios::binary | std::ios::ate);

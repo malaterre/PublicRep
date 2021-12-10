@@ -13,8 +13,7 @@ bool
 processTypedGrid(GridPtrType grid/*, OpType& op*/)
 {
     using namespace openvdb;
-    if (grid->template isType<BoolGrid>())        doProcessTypedGrid<BoolGrid>(grid/*, op*/);
-    return true;
+    return grid->template isType<BoolGrid>();
 }
 
 //class TreeTopologyOp

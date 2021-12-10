@@ -6,12 +6,7 @@
 #include "RootNode.h"
 #include "InternalNode.h"
 #include "LeafNode.h"
-#include <tbb/concurrent_hash_map.h>
-#include <cstdint>
 #include <mutex>
-#include <sstream>
-#include <vector>
-
 
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
@@ -27,7 +22,6 @@ public:
     virtual const Name& type() const = 0;
 };
 
-
 template<typename _RootNodeType>
 class Tree: public TreeBase
 {
@@ -42,8 +36,6 @@ public:
 
     static const Name& treeType();
     const Name& type() const override { return this->treeType(); }
-
-    static void getNodeLog2Dims(std::vector<Index>& dims);
 
 private:
     static std::unique_ptr<const Name> sTreeTypeName;
@@ -69,13 +61,6 @@ Tree<RootNodeType>::treeType()
     return *sTreeTypeName;
 }
 
-template<typename RootNodeType>
-inline void
-Tree<RootNodeType>::getNodeLog2Dims(std::vector<Index>& dims)
-{
-    dims.clear();
-    RootNodeType::getNodeLog2Dims(dims);
-}
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME

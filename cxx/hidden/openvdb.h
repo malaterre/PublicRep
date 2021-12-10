@@ -6,7 +6,6 @@
 
 namespace openvdb {
 
-using BoolTree     = Tree<bool>;
 OPENVDB_API void initialize();
 
 } // namespace openvdb

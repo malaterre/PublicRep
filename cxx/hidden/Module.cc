@@ -9,7 +9,7 @@ class Module
 
 void Module::init() // no-inline
 {
-   openvdb::BoolTree::treeType();
+   openvdb::Tree<bool>::treeType();
 }
 
 }

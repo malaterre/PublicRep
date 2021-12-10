@@ -1,11 +1,8 @@
-#ifndef OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED
-#define OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED
+#pragma once
 
 #include "Platform.h"
 #include <mutex>
 #include <memory>
-
-namespace openvdb {
 
 template<typename _RootNodeType>
 class Tree
@@ -31,7 +28,3 @@ Tree<RootNodeType>::treeType()
     });
     return *sTreeTypeName;
 }
-
-} // namespace openvdb
-
-#endif // OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED

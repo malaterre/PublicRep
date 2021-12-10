@@ -1,6 +1,4 @@
-#include "openvdb.h"
-
-namespace openvdb {
+#include "Tree.h"
 
 class Module
 {
@@ -9,7 +7,5 @@ class Module
 
 void Module::init() // no-inline
 {
-   openvdb::Tree<bool>::treeType();
-}
-
+   Tree<bool>::treeType();
 }

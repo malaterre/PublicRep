@@ -21,9 +21,10 @@ processTypedGrid(GridPtrType grid)
 void
 TreeTopologyModule::init()
 {
-    const std::shared_ptr<openvdb::GridBase> mGrid2;
+   openvdb::BoolGrid::gridType();
+   // const std::shared_ptr<openvdb::GridBase> mGrid2;
 
-    processTypedGrid(mGrid2);
+   // processTypedGrid(mGrid2);
 }
 
 } // namespace openvdb_viewer

@@ -14,11 +14,11 @@ class RootNode
 {
 }; // end of RootNode class
 
-template<typename _ChildNodeType, Index Log2Dim>
+template<typename _ChildNodeType, int Log2Dim>
 class InternalNode
 {
 };
-template<typename T, Index Log2Dim>
+template<typename T, int Log2Dim>
 class LeafNode
 {
 }; // end of LeafNode class
@@ -45,7 +45,7 @@ private:
 template<typename _RootNodeType>
 std::unique_ptr<const std::string> Tree<_RootNodeType>::sTreeTypeName;
 
-template<typename T, Index N1=5, Index N2=4, Index N3=3>
+template<typename T, int N1=5, int N2=4, int N3=3>
 struct Tree4 {
     using Type = Tree<RootNode<InternalNode<InternalNode<LeafNode<T, N3>, N2>, N1>>>;
 };

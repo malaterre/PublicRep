@@ -2,7 +2,7 @@
 
 namespace openvdb_viewer {
 
-	class TreeTopologyModule
+class TreeTopologyModule
 {
 private:
     void init();

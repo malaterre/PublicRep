@@ -16,8 +16,6 @@ namespace tree {
 class OPENVDB_API TreeBase
 {
 public:
-    using Ptr = SharedPtr<TreeBase>;
-    using ConstPtr = SharedPtr<const TreeBase>;
 
     virtual const Name& type() const = 0;
 };
@@ -26,13 +24,8 @@ template<typename _RootNodeType>
 class Tree: public TreeBase
 {
 public:
-    using Ptr = SharedPtr<Tree>;
-    using ConstPtr = SharedPtr<const Tree>;
 
     using RootNodeType = _RootNodeType;
-    using ValueType = typename RootNodeType::ValueType;
-    using BuildType = typename RootNodeType::BuildType;
-    using LeafNodeType = typename RootNodeType::LeafNodeType;
 
     static const Name& treeType();
     const Name& type() const override { return this->treeType(); }

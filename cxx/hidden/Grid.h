@@ -28,7 +28,6 @@ public:
     using Ptr                 = SharedPtr<Grid>;
 
     using TreeType            = _TreeType;
-    using TreePtrType         = typename _TreeType::Ptr;
 
     Name type() const override { return this->gridType(); }
     static Name gridType() { return TreeType::treeType(); }

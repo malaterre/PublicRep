@@ -16,7 +16,6 @@ public:
     using ChildNodeType = ChildType;
     using LeafNodeType = typename ChildType::LeafNodeType;
     using ValueType = typename ChildType::ValueType;
-    using BuildType = typename ChildType::BuildType;
 
 private:
 public:

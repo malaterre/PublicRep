@@ -7,13 +7,10 @@
 #include <string>
 #include <type_traits>
 
-
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE
 namespace OPENVDB_VERSION_NAME {
 namespace tree {
-
-
 
 template<typename T, Index Log2Dim>
 class LeafNode
@@ -35,21 +32,10 @@ public:
 
     /// Append the Log2Dim of this LeafNode to the specified vector
     static void getNodeLog2Dims(std::vector<Index>& dims) { dims.push_back(Log2Dim); }
-
 }; // end of LeafNode class
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb
-
-
-////////////////////////////////////////
-
-
-// Specialization for LeafNodes of type bool
-//#include "LeafNodeBool.h"
-
-// Specialization for LeafNodes with mask information only
-//#include "LeafNodeMask.h"
 
 #endif // OPENVDB_TREE_LEAFNODE_HAS_BEEN_INCLUDED

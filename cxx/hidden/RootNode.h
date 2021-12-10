@@ -1,24 +1,8 @@
-// Copyright Contributors to the OpenVDB Project
-// SPDX-License-Identifier: MPL-2.0
-///
-/// @file RootNode.h
-///
-/// @brief The root node of an OpenVDB tree
-
 #ifndef OPENVDB_TREE_ROOTNODE_HAS_BEEN_INCLUDED
 #define OPENVDB_TREE_ROOTNODE_HAS_BEEN_INCLUDED
 
-//#include <openvdb/Exceptions.h>
 #include <Types.h>
-//#include <openvdb/io/Compression.h> // for truncateRealToHalf()
-//#include <openvdb/math/Math.h> // for isZero(), isExactlyEqual(), etc.
-//#include <openvdb/math/BBox.h>
-//#include <openvdb/util/NodeMasks.h> // for backward compatibility only (see readTopology())
-//#include <openvdb/version.h>
 #include <tbb/parallel_for.h>
-#include <map>
-#include <set>
-#include <sstream>
 #include <vector>
 
 

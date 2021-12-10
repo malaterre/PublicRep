@@ -1,21 +1,17 @@
 cmake_minimum_required(VERSION 3.13)
-project(hidden)
+project(p)
 
 # only export limited set of symbols
 set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
-# require c++14
-#set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_CXX_EXTENSIONS OFF)
-
 # important to have pthread at runtime:
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
 
+# important to use SHARED:
 add_library(openvdb SHARED openvdb.cc)
 target_include_directories(openvdb PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

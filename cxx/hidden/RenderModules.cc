@@ -7,7 +7,7 @@ class TreeTopologyModule
     void init();
 };
 
-void TreeTopologyModule::init()
+void TreeTopologyModule::init() // no-inline
 {
    openvdb::BoolTree::treeType();
 }

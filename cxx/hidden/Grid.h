@@ -1,7 +1,6 @@
 #ifndef OPENVDB_GRID_HAS_BEEN_INCLUDED
 #define OPENVDB_GRID_HAS_BEEN_INCLUDED
 
-#include "Types.h"
 #include <iostream>
 
 namespace openvdb {

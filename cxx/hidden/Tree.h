@@ -1,7 +1,6 @@
 #ifndef OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED
 #define OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED
 
-#include "Types.h"
 #include "Platform.h"
 #include <mutex>
 #include <memory>

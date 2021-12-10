@@ -1,7 +1,4 @@
-
-namespace openvdb {
-void initialize();
-} // namespace openvdb
+#include "openvdb.h"
 
 int
 main(int , char *[])

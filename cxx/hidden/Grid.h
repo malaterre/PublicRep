@@ -2,11 +2,8 @@
 #define OPENVDB_GRID_HAS_BEEN_INCLUDED
 
 #include "Types.h"
-#include <cassert>
 #include <iostream>
-#include <set>
 #include <type_traits>
-#include <vector>
 
 
 namespace openvdb {

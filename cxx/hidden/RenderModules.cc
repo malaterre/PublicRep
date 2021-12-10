@@ -21,28 +21,7 @@ processTypedGrid(GridPtrType grid, OpType& op)
 }
 
 
-template<typename GridPtrType, typename OpType>
-bool
-processTypedScalarGrid(GridPtrType grid, OpType& op)
-{
-    return true;
-}
 
-
-template<typename GridPtrType, typename OpType>
-bool
-processTypedScalarOrPointDataGrid(GridPtrType grid, OpType& op)
-{
-    return false;
-}
-
-
-template<typename GridPtrType, typename OpType>
-bool
-processTypedVectorGrid(GridPtrType grid, OpType& op)
-{
-    return true;
-}
 
 }
 
@@ -52,11 +31,7 @@ public:
     TreeTopologyOp() {}
 
     template<typename GridType>
-    void operator()(typename GridType::ConstPtr grid)
-    {
-   }
-
-private:
+    void operator()(typename GridType::ConstPtr grid) { }
 }; // TreeTopologyOp
 
 TreeTopologyModule::TreeTopologyModule(const openvdb::GridBase::ConstPtr& grid):

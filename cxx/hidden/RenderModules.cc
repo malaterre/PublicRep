@@ -13,7 +13,8 @@ template<typename GridPtrType>
 bool
 processTypedGrid(GridPtrType grid)
 {
-    return grid->template isType<openvdb::BoolGrid>();
+    return (grid->type() == openvdb::BoolGrid::gridType());
+    //return grid->template isType<openvdb::BoolGrid>();
 }
 
 void

@@ -1,15 +1,13 @@
 #ifndef OPENVDB_GRID_HAS_BEEN_INCLUDED
 #define OPENVDB_GRID_HAS_BEEN_INCLUDED
 
-#include <iostream>
+#include <string>
 
 namespace openvdb {
-
 
 class OPENVDB_API GridBase
 {
 public:
-
     virtual std::string type() const = 0;
 
     template<typename GridType>

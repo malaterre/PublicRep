@@ -1,6 +1,6 @@
 #include "openvdb.h"
 
-namespace openvdb_viewer {
+namespace openvdb {
 
 class TreeTopologyModule
 {
@@ -12,4 +12,4 @@ void TreeTopologyModule::init()
    openvdb::BoolTree::treeType();
 }
 
-} // namespace openvdb_viewer
+}

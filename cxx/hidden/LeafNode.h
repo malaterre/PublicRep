@@ -11,8 +11,6 @@ namespace tree {
 template<typename T, Index Log2Dim>
 class LeafNode
 {
-public:
-    using ValueType = T;
 }; // end of LeafNode class
 
 } // namespace tree

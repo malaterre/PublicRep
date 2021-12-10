@@ -30,8 +30,6 @@ public:
         SIZE        = NUM_VALUES,
         LEVEL       = 0;            // level 0 = leaf
 
-    /// Append the Log2Dim of this LeafNode to the specified vector
-    static void getNodeLog2Dims(std::vector<Index>& dims) { dims.push_back(Log2Dim); }
 }; // end of LeafNode class
 
 } // namespace tree

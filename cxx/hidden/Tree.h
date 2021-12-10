@@ -16,7 +16,6 @@ namespace tree {
 class OPENVDB_API TreeBase
 {
 public:
-
     virtual const std::string& type() const = 0;
 };
 
@@ -24,12 +23,10 @@ template<typename _RootNodeType>
 class Tree: public TreeBase
 {
 public:
-
     using RootNodeType = _RootNodeType;
 
     static const std::string& treeType();
     const std::string& type() const override { return this->treeType(); }
-
 private:
     static std::unique_ptr<const std::string> sTreeTypeName;
 }; // end of Tree class
@@ -53,7 +50,6 @@ Tree<RootNodeType>::treeType()
     });
     return *sTreeTypeName;
 }
-
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME

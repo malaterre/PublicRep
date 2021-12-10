@@ -6,7 +6,6 @@
 #include <memory>
 
 namespace openvdb {
-namespace tree {
 
 template<typename _RootNodeType>
 class Tree
@@ -33,7 +32,6 @@ Tree<RootNodeType>::treeType()
     return *sTreeTypeName;
 }
 
-} // namespace tree
 } // namespace openvdb
 
 #endif // OPENVDB_TREE_TREE_HAS_BEEN_INCLUDED

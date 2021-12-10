@@ -24,11 +24,6 @@ public:
     static void getNodeLog2Dims(std::vector<Index>& dims);
 }; // end of RootNode class
 
-template<typename HeadT, int HeadLevel>
-struct NodeChain {
-    using SubtreeT = typename NodeChain<typename HeadT::ChildNodeType, HeadLevel-1>::Type;
-    using Type = typename SubtreeT::template Append<HeadT>;
-};
 
 template<typename ChildT>
 inline void
@@ -37,8 +32,6 @@ RootNode<ChildT>::getNodeLog2Dims(std::vector<Index>& dims)
     dims.push_back(0); // magic number; RootNode has no Log2Dim
     ChildT::getNodeLog2Dims(dims);
 }
-
-
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME

@@ -175,37 +175,6 @@
 #endif
 
 
-/// @brief Bracket code with OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN/_END,
-/// to inhibit warnings about type conversion.
-/// @note Use this sparingly.  Use static casts and explicit type conversion if at all possible.
-/// @details Example:
-/// @code
-/// float value = 0.1f;
-/// OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN
-/// int valueAsInt = value;
-/// OPENVDB_NO_TYPE_CONVERSION_WARNING_END
-/// @endcode
-#if defined __INTEL_COMPILER
-    #define OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN
-    #define OPENVDB_NO_TYPE_CONVERSION_WARNING_END
-#elif defined __GNUC__
-    // -Wfloat-conversion was only introduced in GCC 4.9
-    #if OPENVDB_CHECK_GCC(4, 9)
-        #define OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN \
-            _Pragma("GCC diagnostic push") \
-            _Pragma("GCC diagnostic ignored \"-Wconversion\"") \
-            _Pragma("GCC diagnostic ignored \"-Wfloat-conversion\"")
-    #else
-        #define OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN \
-            _Pragma("GCC diagnostic push") \
-            _Pragma("GCC diagnostic ignored \"-Wconversion\"")
-    #endif
-    #define OPENVDB_NO_TYPE_CONVERSION_WARNING_END \
-        _Pragma("GCC diagnostic pop")
-#else
-    #define OPENVDB_NO_TYPE_CONVERSION_WARNING_BEGIN
-    #define OPENVDB_NO_TYPE_CONVERSION_WARNING_END
-#endif
 
 /// Helper macros for defining library symbol visibility
 #ifdef OPENVDB_EXPORT
@@ -218,19 +187,7 @@
     #define OPENVDB_EXPORT __attribute__((visibility("default")))
     #define OPENVDB_IMPORT __attribute__((visibility("default")))
 #endif
-#ifdef _WIN32
-    #ifdef OPENVDB_DLL
-        #define OPENVDB_EXPORT __declspec(dllexport)
-        #define OPENVDB_IMPORT __declspec(dllimport)
-    #else
-        #define OPENVDB_EXPORT
-        #define OPENVDB_IMPORT
-    #endif
-#endif
 
-/// All classes and public free standing functions must be explicitly marked
-/// as \<lib\>_API to be exported. The \<lib\>_PRIVATE macros are defined when
-/// building that particular library.
 #ifdef OPENVDB_API
 #undef OPENVDB_API
 #endif
@@ -238,14 +195,6 @@
     #define OPENVDB_API OPENVDB_EXPORT
 #else
     #define OPENVDB_API OPENVDB_IMPORT
-#endif
-#ifdef OPENVDB_HOUDINI_API
-#undef OPENVDB_HOUDINI_API
-#endif
-#ifdef OPENVDB_HOUDINI_PRIVATE
-    #define OPENVDB_HOUDINI_API OPENVDB_EXPORT
-#else
-    #define OPENVDB_HOUDINI_API OPENVDB_IMPORT
 #endif
 
 

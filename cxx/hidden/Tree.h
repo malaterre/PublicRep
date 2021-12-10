@@ -4,6 +4,7 @@
 #include "Types.h"
 #include "Platform.h"
 #include <mutex>
+#include <memory>
 
 namespace openvdb {
 namespace tree {

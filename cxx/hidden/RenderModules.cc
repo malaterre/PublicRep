@@ -29,7 +29,8 @@ void
 TreeTopologyModule::init()
 {
     TreeTopologyOp drawTopology;
-    const openvdb::GridBase::ConstPtr mGrid2;
+    const std::shared_ptr<openvdb::GridBase> mGrid2;
+//    const openvdb::GridBase::ConstPtr mGrid2;
 
     util::processTypedGrid(mGrid2, drawTopology);
 }

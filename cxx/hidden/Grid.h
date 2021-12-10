@@ -10,7 +10,6 @@ namespace openvdb {
 class OPENVDB_API GridBase
 {
 public:
-    using ConstPtr = SharedPtr<const GridBase>;
 
     virtual std::string type() const = 0;
 

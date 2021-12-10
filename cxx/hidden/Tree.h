@@ -21,15 +21,10 @@ template<typename RootNodeType>
 inline const std::string&
 Tree<RootNodeType>::treeType()
 {
-#if 0
     static std::once_flag once;
     std::call_once(once, []()
     {
         sTreeTypeName.reset(new std::string());
     });
     return *sTreeTypeName;
-#else
-    static const std::string s = "";
-    return s;
-#endif
 }

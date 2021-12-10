@@ -2,23 +2,12 @@
 
 namespace openvdb_viewer {
 
-template<typename GridType, /*typename OpType,*/ typename GridPtrType>
-inline void
-doProcessTypedGrid(GridPtrType /*, OpType&*/ )
-{
-}
-
-template<typename GridPtrType/*, typename OpType = int*/>
+template<typename GridPtrType>
 bool
-processTypedGrid(GridPtrType grid/*, OpType& op*/)
+processTypedGrid(GridPtrType grid)
 {
-    using namespace openvdb;
-    return grid->template isType<BoolGrid>();
+    return grid->template isType<openvdb::BoolGrid>();
 }
-
-//class TreeTopologyOp
-//{
-//};
 
 void
 TreeTopologyModule::init()

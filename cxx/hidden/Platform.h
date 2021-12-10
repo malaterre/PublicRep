@@ -6,7 +6,6 @@
 #ifndef OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
 #define OPENVDB_PLATFORM_HAS_BEEN_INCLUDED
 
-#define PRAGMA(x) _Pragma(#x)
 
 /// @name Utilities
 /// @{
@@ -27,16 +26,6 @@
 #define OPENVDB_PREPROC_CONCAT(x, y) OPENVDB_PREPROC_CONCAT_(x, y)
 /// @}
 
-/// Macro for determining if GCC version is >= than X.Y
-#if defined(__GNUC__)
-    #define OPENVDB_CHECK_GCC(MAJOR, MINOR) \
-        (__GNUC__ > MAJOR || (__GNUC__ == MAJOR && __GNUC_MINOR__ >= MINOR))
-#else
-    #define OPENVDB_CHECK_GCC(MAJOR, MINOR) 0
-#endif
-
-/// OpenVDB now requires C++11
-#define OPENVDB_HAS_CXX11 1
 
 
 /// Deprecation macros. Define OPENVDB_NO_DEPRECATION_WARNINGS to disable all

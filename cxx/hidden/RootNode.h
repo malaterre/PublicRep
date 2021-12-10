@@ -13,12 +13,6 @@ template<typename ChildType>
 class RootNode
 {
 public:
-    using ChildNodeType = ChildType;
-    using LeafNodeType = typename ChildType::LeafNodeType;
-    using ValueType = typename ChildType::ValueType;
-
-private:
-public:
 }; // end of RootNode class
 
 

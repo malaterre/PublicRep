@@ -3,8 +3,6 @@
 
 #include "Types.h"
 #include <iostream>
-#include <type_traits>
-
 
 namespace openvdb {
 OPENVDB_USE_VERSION_NAMESPACE

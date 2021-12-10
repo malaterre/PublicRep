@@ -33,18 +33,9 @@ public:
     static const Index64
         NUM_VOXELS   = uint64_t(1) << (3 * TOTAL);     // total voxel count represented by this node
 
-public:
-    static void getNodeLog2Dims(std::vector<Index>& dims);
 }; // class InternalNode
 
 
-template<typename ChildT, Index Log2Dim>
-void
-InternalNode<ChildT, Log2Dim>::getNodeLog2Dims(std::vector<Index>& dims)
-{
-    dims.push_back(Log2Dim);
-    ChildNodeType::getNodeLog2Dims(dims);
-}
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME
 } // namespace openvdb

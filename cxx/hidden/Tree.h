@@ -64,14 +64,7 @@ Tree<RootNodeType>::treeType()
     static std::once_flag once;
     std::call_once(once, []()
     {
-        std::vector<Index> dims;
-        Tree::getNodeLog2Dims(dims);
-        std::ostringstream ostr;
-//        ostr << "Tree_" << typeNameAsString<BuildType>();
-        for (size_t i = 1, N = dims.size(); i < N; ++i) { // start from 1 to skip the RootNode
-            ostr << "_" << dims[i];
-        }
-        sTreeTypeName.reset(new Name(ostr.str()));
+        sTreeTypeName.reset(new Name());
     });
     return *sTreeTypeName;
 }

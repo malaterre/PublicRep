@@ -67,7 +67,7 @@ Tree<RootNodeType>::treeType()
         std::vector<Index> dims;
         Tree::getNodeLog2Dims(dims);
         std::ostringstream ostr;
-        ostr << "Tree_" << typeNameAsString<BuildType>();
+//        ostr << "Tree_" << typeNameAsString<BuildType>();
         for (size_t i = 1, N = dims.size(); i < N; ++i) { // start from 1 to skip the RootNode
             ostr << "_" << dims[i];
         }
@@ -76,7 +76,6 @@ Tree<RootNodeType>::treeType()
     return *sTreeTypeName;
 }
 
-
 template<typename RootNodeType>
 inline void
 Tree<RootNodeType>::getNodeLog2Dims(std::vector<Index>& dims)
@@ -84,7 +83,6 @@ Tree<RootNodeType>::getNodeLog2Dims(std::vector<Index>& dims)
     dims.clear();
     RootNodeType::getNodeLog2Dims(dims);
 }
-
 
 } // namespace tree
 } // namespace OPENVDB_VERSION_NAME

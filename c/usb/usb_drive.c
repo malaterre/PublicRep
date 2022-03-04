@@ -10,9 +10,9 @@ struct usb_drive {
   /* whatever */
 };
 
-static int usb_drive_destroy(void *p);
-static int usb_drive_read(void *const p, void *q, size_t s);
-static int usb_drive_write(void *const p, void const *q, size_t s);
+static int usb_drive_destroy(void *self_);
+static int usb_drive_read(void *self_, void *buf, size_t size);
+static int usb_drive_write(void *self_, void const *buf, size_t size);
 
 static struct device_vtable const g_vtable = {
     {/* object interface */

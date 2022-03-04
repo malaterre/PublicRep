@@ -1,5 +1,5 @@
-#ifndef USB_DRIVE_H
-#define USB_DRIVE_H
+#ifndef USB_USB_DRIVE_H
+#define USB_USB_DRIVE_H
 
 #include "device.h"
 

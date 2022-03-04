@@ -1,7 +1,5 @@
-/* usb_drive.h */
-#if ! defined (USB_DRIVE_H)
-#define USB_DRIVE_H
+#pragma once
 
-extern int usb_drive_create(struct device**);
+#include "device.h"
 
-#endif
+extern int usb_drive_create(struct device **);

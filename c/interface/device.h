@@ -5,10 +5,8 @@ struct object_prv_vtable {
   int (*fp_destroy)(void *const);
 };
 
-#if 0
 /* common object interface */
 #define object_destroy(t) ((t)->vtable->object.fp_destroy((t)))
-#endif
 
 /* common device private vtable */
 #include <stddef.h>
@@ -29,9 +27,7 @@ struct device {
   struct device_vtable const *vtable;
 };
 
-#if 0
 /* common device interface */
 #define device_read(t, b, s) ((t)->vtable->device.fp_read((t), (b), (s)))
 
 #define device_write(t, b, s) ((t)->vtable->device.fp_write((t), (b), (s)))
-#endif

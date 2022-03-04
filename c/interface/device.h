@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DEVICE_H
+#define DEVICE_H
 
 /* common object private vtable */
 struct object_prv_vtable {
@@ -31,3 +32,4 @@ struct device {
 #define device_read(t, b, s) ((t)->vtable->device.fp_read((t), (b), (s)))
 
 #define device_write(t, b, s) ((t)->vtable->device.fp_write((t), (b), (s)))
+#endif

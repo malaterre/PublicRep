@@ -28,19 +28,22 @@ studytime=$(date '+%H%M%S')
 opt="-df template.dcm -k InstanceNumber=$instnum -k SeriesNumber=$seriesnum -k StudyID=$studyid -k PatientID=$patientid -k StudyDate=$studydate -k StudyTime=$studytime --invent-type1 --insert-type2"
 
 img2dcm --vl-photo $opt img.jpg img.dcm
+img2dcm --vl-photo $opt img.jpg img_iccprofile.dcm
 img2dcm --vl-photo $opt img_jpgicc.jpg img_jpgicc.dcm
 img2dcm --vl-photo $opt img_app2.jpg img_app2.dcm
 img2dcm --vl-photo $opt img_app2.jpg img_app2_iccprofile.dcm
+# All APPn markers removed, ICCProfile in DICOM attribute
 
 #gdcmimg --template dcmtk.1.dcm img.jpg img.dcm
 #gdcmimg --template dcmtk.1.dcm img_jpgicc.jpg img_jpgicc.dcm
 #gdcmimg --template dcmtk.1.dcm img_app2.jpg img_app2.dcm
 #gdcmimg --template dcmtk.1.dcm img_app2.jpg img_app2_iccprofile.dcm
 
+dcmodify --no-backup --insert-from-file 0028,2000=profile.icm img_iccprofile.dcm
 dcmodify --no-backup --insert-from-file 0028,2000=profile.icm img_app2_iccprofile.dcm
 
 
 #
 ##dciodvfy icc.1.dcm
 rm icc.tar.gz 
-tar cvfz icc.tar.gz img.dcm  img_jpgicc.dcm img_app2.dcm  img_app2_iccprofile.dcm README.txt
+tar cvfz icc.tar.gz img.dcm img_iccprofile.dcm img_jpgicc.dcm img_app2.dcm  img_app2_iccprofile.dcm README.txt

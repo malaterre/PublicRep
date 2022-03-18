@@ -30,9 +30,8 @@ opt="-df template.dcm -k InstanceNumber=$instnum -k SeriesNumber=$seriesnum -k S
 img2dcm --vl-photo $opt img.jpg img.dcm
 img2dcm --vl-photo $opt img.jpg img_iccprofile.dcm
 img2dcm --vl-photo $opt img_jpgicc.jpg img_jpgicc.dcm
-img2dcm --vl-photo $opt img_app2.jpg img_app2.dcm
-img2dcm --vl-photo $opt img_app2.jpg img_app2_iccprofile.dcm
-# All APPn markers removed, ICCProfile in DICOM attribute
+img2dcm --vl-photo --keep-appn $opt img_app2.jpg img_app2.dcm
+img2dcm --vl-photo --keep-appn $opt img_app2.jpg img_app2_iccprofile.dcm
 
 #gdcmimg --template dcmtk.1.dcm img.jpg img.dcm
 #gdcmimg --template dcmtk.1.dcm img_jpgicc.jpg img_jpgicc.dcm

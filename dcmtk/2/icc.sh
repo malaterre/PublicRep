@@ -44,5 +44,5 @@ dcmodify --no-backup --insert-from-file 0028,2000=profile.icm img_app2_iccprofil
 
 #
 ##dciodvfy icc.1.dcm
-rm icc.tar.gz 
-tar cvfz icc.tar.gz img.dcm img_iccprofile.dcm img_jpgicc.dcm img_app2.dcm  img_app2_iccprofile.dcm README.txt
+rm -f icc*.tar.gz 
+tar cvfz icc.v2.tar.gz img.dcm img_iccprofile.dcm img_jpgicc.dcm img_app2.dcm  img_app2_iccprofile.dcm README.txt

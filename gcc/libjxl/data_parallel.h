@@ -14,11 +14,8 @@ class ThreadPool {
       : runner_(runner ? runner : &ThreadPool::SequentialRunnerStatic),
         runner_opaque_(runner ? runner_opaque : static_cast<void*>(this)) {}
 
-  ThreadPool(const ThreadPool&) = delete;
-  ThreadPool& operator&(const ThreadPool&) = delete;
-
   template <class InitFunc, class DataFunc>
-  int /*Status*/ Run(uint32_t begin, uint32_t end, const InitFunc& init_func,
+  bool Run(uint32_t begin, uint32_t end, const InitFunc& init_func,
              const DataFunc& data_func, const char* caller = "") {
     if (begin == end) return true;
     RunCallState<InitFunc, DataFunc> call_state(init_func, data_func);
@@ -27,8 +24,7 @@ class ThreadPool {
                       end) == 0;
   }
 
-  // Use this as init_func when no initialization is needed.
-  static int /*Status*/ NoInit(size_t num_threads) { return true; }
+  static bool NoInit(size_t num_threads) { return true; }
 
  private:
   template <class InitFunc, class DataFunc>
@@ -37,21 +33,17 @@ class ThreadPool {
     RunCallState(const InitFunc& init_func, const DataFunc& data_func)
         : init_func_(init_func), data_func_(data_func) {}
 
-    // JxlParallelRunInit interface.
     static int CallInitFunc(void* jpegxl_opaque, size_t num_threads) {
       const auto* self =
           static_cast<RunCallState<InitFunc, DataFunc>*>(jpegxl_opaque);
-      // Returns -1 when the internal init function returns false Status to
-      // indicate an error.
       return self->init_func_(num_threads) ? 0 : -1;
     }
 
-    // JxlParallelRunFunction interface.
     static void CallDataFunc(void* jpegxl_opaque, uint32_t value,
                              size_t thread_id) {
       const auto* self =
           static_cast<RunCallState<InitFunc, DataFunc>*>(jpegxl_opaque);
-      return self->data_func_(value, thread_id);
+      self->data_func_(value, thread_id);
     }
 
    private:
@@ -68,7 +60,7 @@ class ThreadPool {
 };
 
 template <class InitFunc, class DataFunc>
-int /*Status*/ RunOnPool(ThreadPool* pool, const uint32_t begin, const uint32_t end,
+bool /*Status*/ RunOnPool(ThreadPool* pool, const uint32_t begin, const uint32_t end,
                  const InitFunc& init_func, const DataFunc& data_func,
                  const char* caller) {
   if (pool == nullptr) {

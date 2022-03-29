@@ -1,19 +1,10 @@
-// Copyright (c) the JPEG XL Project Authors. All rights reserved.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 #ifndef LIB_JXL_BASE_DATA_PARALLEL_H_
 #define LIB_JXL_BASE_DATA_PARALLEL_H_
-
-// Portable, low-overhead C++11 ThreadPool alternative to OpenMP for
-// data-parallel computations.
 
 #include <cstddef>
 #include <cstdint>
 
 #include "parallel_runner.h"
-//#include "lib/jxl/base/bits.h"
 
 namespace jxl {
 
@@ -26,22 +17,11 @@ class ThreadPool {
   ThreadPool(const ThreadPool&) = delete;
   ThreadPool& operator&(const ThreadPool&) = delete;
 
-  // Runs init_func(num_threads) followed by data_func(task, thread) on worker
-  // thread(s) for every task in [begin, end). init_func() must return a Status
-  // indicating whether the initialization succeeded.
-  // "thread" is an integer smaller than num_threads.
-  // Not thread-safe - no two calls to Run may overlap.
-  // Subsequent calls will reuse the same threads.
-  //
-  // Precondition: begin <= end.
   template <class InitFunc, class DataFunc>
   int /*Status*/ Run(uint32_t begin, uint32_t end, const InitFunc& init_func,
              const DataFunc& data_func, const char* caller = "") {
-    //JXL_ASSERT(begin <= end);
     if (begin == end) return true;
     RunCallState<InitFunc, DataFunc> call_state(init_func, data_func);
-    // The runner_ uses the C convention and returns 0 in case of error, so we
-    // convert it to a Status.
     return (*runner_)(runner_opaque_, static_cast<void*>(&call_state),
                       &call_state.CallInitFunc, &call_state.CallDataFunc, begin,
                       end) == 0;
@@ -51,8 +31,6 @@ class ThreadPool {
   static int /*Status*/ NoInit(size_t num_threads) { return true; }
 
  private:
-  // class holding the state of a Run() call to pass to the runner_ as an
-  // opaque_jpegxl pointer.
   template <class InitFunc, class DataFunc>
   class RunCallState final {
    public:
@@ -81,13 +59,10 @@ class ThreadPool {
     const DataFunc& data_func_;
   };
 
-  // Default JxlParallelRunner used when no runner is provided by the
-  // caller. This runner doesn't use any threading and thread_id is always 0.
   static JxlParallelRetCode SequentialRunnerStatic(
       void* runner_opaque, void* jpegxl_opaque, JxlParallelRunInit init,
       JxlParallelRunFunction func, uint32_t start_range, uint32_t end_range);
 
-  // The caller supplied runner function and its opaque void*.
   const JxlParallelRunner runner_;
   void* const runner_opaque_;
 };

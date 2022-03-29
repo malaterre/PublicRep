@@ -1,13 +1,7 @@
-// Copyright (c) the JPEG XL Project Authors. All rights reserved.
-//
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
 #ifndef LIB_JXL_BASE_THREAD_POOL_INTERNAL_H_
 #define LIB_JXL_BASE_THREAD_POOL_INTERNAL_H_
 
 #include <cstddef>
-
 #include <cmath>
 
 #include "data_parallel.h"
@@ -15,16 +9,8 @@
 
 namespace jxl {
 
-// Helper class to pass an internal ThreadPool-like object using threads. This
-// is only suitable for tests or tools that access the internal API of JPEG XL.
-// In other cases the caller will provide a JxlParallelRunner() for handling
-// this. This class uses jpegxl::ThreadParallelRunner (from jpegxl_threads
-// library). For interface details check jpegxl::ThreadParallelRunner.
 class ThreadPoolInternal : public ThreadPool {
  public:
-  // Starts the given number of worker threads and blocks until they are ready.
-  // "num_worker_threads" defaults to one per hyperthread. If zero, all tasks
-  // run on the main thread.
   explicit ThreadPoolInternal(
       int num_worker_threads = std::thread::hardware_concurrency())
       : ThreadPool(&jpegxl::ThreadParallelRunner::Runner,

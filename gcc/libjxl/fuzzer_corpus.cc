@@ -24,7 +24,7 @@
 #include <thread>
 #include <cstring>
 
-#if 1
+#if 0
 #if JPEGXL_ENABLE_JPEG
 #include "lib/extras/enc/jpg.h"
 #endif
@@ -45,6 +45,7 @@
 #include "lib/jxl/jpeg/enc_jpeg_data.h"
 #include "lib/jxl/modular/encoding/context_predict.h"
 #else
+#include "thread_pool_internal.h"
 namespace jxl {
 constexpr unsigned char kContainerHeader[] = {
     0,   0,   0, 0xc, 'J',  'X', 'L', ' ', 0xd, 0xa, 0x87,

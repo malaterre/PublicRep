@@ -42,8 +42,8 @@
 #include <thread>              //NOLINT
 #include <vector>
 
-#include "jxl/memory_manager.h"
-#include "jxl/parallel_runner.h"
+//#include "jxl/memory_manager.h"
+#include "parallel_runner.h"
 
 namespace jpegxl {
 
@@ -91,7 +91,7 @@ class ThreadParallelRunner {
     WorkersReadyBarrier();
   }
 
-  JxlMemoryManager memory_manager;
+//  JxlMemoryManager memory_manager;
 
  private:
   // After construction and between calls to Run, workers are "ready", i.e.

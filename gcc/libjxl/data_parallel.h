@@ -12,7 +12,7 @@
 #include <cstddef>
 #include <cstdint>
 
-#include "jxl/parallel_runner.h"
+#include "parallel_runner.h"
 //#include "lib/jxl/base/bits.h"
 
 namespace jxl {

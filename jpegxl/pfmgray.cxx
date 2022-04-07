@@ -9,7 +9,7 @@
 template <typename T> static inline int Round(T x) { return (int)(x + 0.5); }
 
 template <typename T> struct S {
-  static inline T Clamp(int v) {
+  static inline T Clamp(T v) {
     assert(std::numeric_limits<T>::min() == 0);
     return v < 0 ? 0
                  : (v > std::numeric_limits<T>::max()
@@ -19,7 +19,7 @@ template <typename T> struct S {
 };
 
 template <> struct S<float> {
-  static inline float Clamp(int v) { return v; }
+  static inline float Clamp(float v) { return v < 0. ? 0 : (v > 1.0 ? 1.0 : v); }
 };
 
 template <typename T>
@@ -33,15 +33,31 @@ static void RGB2YBR(T ybr[3], const T rgb[3], unsigned short storedbits) {
   const double G = rgb[1];
   const double B = rgb[2];
   assert(storedbits <= sizeof(T) * 8);
-  const int halffullscale = 1 << (storedbits - 1);
-  const int Y = Round(0.299 * R + 0.587 * G + 0.114 * B);
-  const int CB =
-      Round((-0.299 * R - 0.587 * G + 0.886 * B) / 1.772 + halffullscale);
-  const int CR =
-      Round((0.701 * R - 0.587 * G - 0.114 * B) / 1.402 + halffullscale);
+  const unsigned int halffullscale = 1u << (storedbits - 1);
+  const double Yd = 0.299 * R + 0.587 * G + 0.114 * B;
+  const double CBd1 = (-0.299 * R - 0.587 * G + 0.886 * B) / 1.772;
+  const double CRd1 = (0.701 * R - 0.587 * G - 0.114 * B) / 1.402;
+
+#if 0
+  const double CBd = CBd1 + halffullscale;
+  const double CRd = CRd1 + halffullscale;
+#else
+  const double CBd = CBd1 + 0;
+  const double CRd = CRd1 + 0;
+#endif
+
+  const int Y = Round(Yd);
+  const int CB = Round(CBd);
+  const int CR = Round(CRd);
+#if 0
   ybr[0] = S<T>::Clamp(Y);
   ybr[1] = S<T>::Clamp(CB);
   ybr[2] = S<T>::Clamp(CR);
+#else
+  ybr[0] = S<T>::Clamp(Yd);
+  ybr[1] = S<T>::Clamp(CBd);
+  ybr[2] = S<T>::Clamp(CRd);
+#endif
 }
 
 template <typename T>
@@ -50,7 +66,7 @@ void YBR2RGB(T rgb[3], const T ybr[3], unsigned short storedbits) {
   const double Cb = ybr[1];
   const double Cr = ybr[2];
   assert(storedbits <= sizeof(T) * 8);
-  const int halffullscale = 1 << (storedbits - 1);
+  const unsigned int halffullscale = 1u << (storedbits - 1);
   const int R = Round(Y + 1.402 * (Cr - halffullscale));
   const int G = Round(Y - (0.114 * 1.772 * (Cb - halffullscale) +
                            0.299 * 1.402 * (Cr - halffullscale)) /
@@ -72,11 +88,12 @@ template <typename T> static double Dist2(T v1[3], const T v2[3]) {
 int main(int argc, char *argv[]) {
   const char *filename = argv[1];
   std::ifstream is(filename, std::ios::binary);
-  std::ifstream os("out.pfm", std::ios::binary);
+  std::ofstream os("out.pfm", std::ios::binary);
+  os << "Pf\n";
   std::string str;
   std::getline(is, str);
   std::cerr << str << std::endl;
-  if (str != "PF" && str != "Pf")
+  if (str != "PF" )
     return 1;
   unsigned int ncomps = str == "PF" ? 3u : 1u;
   std::getline(is, str);
@@ -87,6 +104,8 @@ int main(int argc, char *argv[]) {
     iss >> width;
     iss >> height;
   }
+  os << width << " " << height << '\n';
+  os << "-1.0\n";
   std::getline(is, str);
   std::cerr << str << std::endl;
   size_t nfloats = width * height * ncomps;
@@ -108,6 +127,7 @@ int main(int argc, char *argv[]) {
     YBR2RGB(rgb2, ybr, 32);
     const double dist = Dist2(rgb, rgb2);
     d += dist;
+    os.write((char*)ybr, sizeof(float));
   }
   std::cerr << d << std::endl;
   std::cerr << d / npixels << std::endl;

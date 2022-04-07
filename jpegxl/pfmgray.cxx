@@ -19,7 +19,9 @@ template <typename T> struct S {
 };
 
 template <> struct S<float> {
-  static inline float Clamp(float v) { return v < 0. ? 0 : (v > 1.0 ? 1.0 : v); }
+  static inline float Clamp(float v) {
+    return v < 0. ? 0 : (v > 1.0 ? 1.0 : v);
+  }
 };
 
 template <typename T>
@@ -42,8 +44,8 @@ static void RGB2YBR(T ybr[3], const T rgb[3], unsigned short storedbits) {
   const double CBd = CBd1 + halffullscale;
   const double CRd = CRd1 + halffullscale;
 #else
-  const double CBd = CBd1 + 0;
-  const double CRd = CRd1 + 0;
+  const double CBd = CBd1 + 0.5;
+  const double CRd = CRd1 + 0.5;
 #endif
 
   const int Y = Round(Yd);
@@ -66,15 +68,26 @@ void YBR2RGB(T rgb[3], const T ybr[3], unsigned short storedbits) {
   const double Cb = ybr[1];
   const double Cr = ybr[2];
   assert(storedbits <= sizeof(T) * 8);
-  const unsigned int halffullscale = 1u << (storedbits - 1);
-  const int R = Round(Y + 1.402 * (Cr - halffullscale));
-  const int G = Round(Y - (0.114 * 1.772 * (Cb - halffullscale) +
-                           0.299 * 1.402 * (Cr - halffullscale)) /
-                              0.587);
-  const int B = Round(Y + 1.772 * (Cb - halffullscale));
+  //  const unsigned int halffullscale = 1u << (storedbits - 1);
+  const double halffullscale = 0.5;
+  const double Rd = Y + 1.402 * (Cr - halffullscale);
+  const double Gd = Y - (0.114 * 1.772 * (Cb - halffullscale) +
+                         0.299 * 1.402 * (Cr - halffullscale)) /
+                            0.587;
+  const double Bd = Y + 1.772 * (Cb - halffullscale);
+
+  const int R = Round(Rd);
+  const int G = Round(Gd);
+  const int B = Round(Bd);
+#if 0
   rgb[0] = S<T>::Clamp(R);
   rgb[1] = S<T>::Clamp(G);
   rgb[2] = S<T>::Clamp(B);
+#else
+  rgb[0] = S<T>::Clamp(Rd);
+  rgb[1] = S<T>::Clamp(Gd);
+  rgb[2] = S<T>::Clamp(Bd);
+#endif
 }
 
 // return square dist
@@ -93,7 +106,7 @@ int main(int argc, char *argv[]) {
   std::string str;
   std::getline(is, str);
   std::cerr << str << std::endl;
-  if (str != "PF" )
+  if (str != "PF")
     return 1;
   unsigned int ncomps = str == "PF" ? 3u : 1u;
   std::getline(is, str);
@@ -127,7 +140,7 @@ int main(int argc, char *argv[]) {
     YBR2RGB(rgb2, ybr, 32);
     const double dist = Dist2(rgb, rgb2);
     d += dist;
-    os.write((char*)ybr, sizeof(float));
+    os.write((char *)ybr, sizeof(float));
   }
   std::cerr << d << std::endl;
   std::cerr << d / npixels << std::endl;

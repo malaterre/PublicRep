@@ -11,7 +11,9 @@ int main(int argc, char *argv[]) {
   const int nbits = atoi(argv[2]);
   std::cerr << nbits << std::endl;
   std::ifstream is(filename, std::ios::binary);
-  std::ofstream os("out.pgx", std::ios::binary);
+  std::ostringstream oss;
+  oss << "out" << nbits << ".pgx";
+  std::ofstream os(oss.str().c_str(), std::ios::binary);
   std::string str;
   std::getline(is, str);
   std::cerr << str << std::endl;
@@ -44,21 +46,25 @@ int main(int argc, char *argv[]) {
   // PG ML + 16 512 512
   os << "PG LM + " << nbits;
   os << " " << width << " " << height << '\n';
-  const unsigned int mult = (1 << nbits) - 1;
+  const unsigned long mult = (1ull << nbits) - 1;
   std::cout << "mult:" << mult << std::endl;
+  assert(mult <= std::numeric_limits<unsigned int>::max());
   for (size_t i = 0; i < nfloats; ++i) {
     float f = -1;
     is.read((char *)&f, sizeof f);
     fmin = std::min(fmin, f);
     fmax = std::max(fmax, f);
     count += f;
+    double d = f;
     if (nbits <= 16) {
-      unsigned int ui = f * mult;
-      assert(ui >= 0 << ui <= 65535);
+      unsigned int ui = d * mult;
+      assert(ui >= 0 && ui <= mult);
       unsigned short u = ui;
       os.write((char *)&u, sizeof u);
     } else if (nbits <= 32) {
-      unsigned int u = f * mult;
+      unsigned long ul = d * mult;
+      assert(ul >= 0 && ul <= mult);
+      unsigned int u = ul;
       os.write((char *)&u, sizeof u);
     }
   }

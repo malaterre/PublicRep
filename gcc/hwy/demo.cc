@@ -24,9 +24,8 @@ void AssertArrayEqual2(const void *expected_void, const void *actual_void,
 
 namespace N_EMU128 {
 
-template <class D, typename T = TFromD<D>, class V = Vec<D>>
-HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual,
-                               const char *filename, const int line) {
+template <class D, typename T /*= TFromD<D>*/, class V /*= Vec<D>*/>
+HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual) {
   const size_t N = 2;
   auto actual_lanes = hwy::AllocateAligned<T>(N);
   Store(actual, d, actual_lanes.get());
@@ -49,5 +48,5 @@ int main() {
   expected_lanes[1] = 16383;
   hwy::N_EMU128::Vec128<uint16_t, 2> v = Load(d, in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
-  hwy::N_EMU128::AssertVecEqual(d, expected_lanes, actual, __FILE__, __LINE__);
+  hwy::N_EMU128::AssertVecEqual(d, expected_lanes, actual);
 }

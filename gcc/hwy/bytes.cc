@@ -1,12 +1,5 @@
-#include <cstddef>
-#include <cstdint>
+#include <cstring>
 
-bool BytesEqual2(const uint8_t *bytes1, const uint8_t *bytes2,
-                 const size_t size) {
-  for (size_t i = 0; i < size; ++i) {
-    if (bytes1[i] != bytes2[i]) {
-      return false;
-    }
-  }
-  return true;
+bool BytesEqual2(const void *bytes1, const void *bytes2, const size_t size) {
+  return memcmp(bytes1, bytes2, size) == 0;
 }

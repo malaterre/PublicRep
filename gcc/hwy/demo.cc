@@ -1,7 +1,9 @@
 #include "hwy/aligned_allocator.h"
 #include "hwy/highway.h"
 
-bool BytesEqual2(const uint8_t *p1, const uint8_t *p2, const size_t size);
+#include <cstring>
+
+bool BytesEqual2(const void *p1, const void *p2, const size_t size);
 
 template <class D, class V>
 void AssertVecEqual2(D d, const uint16_t *expected, const V &actual) {
@@ -14,10 +16,16 @@ void AssertVecEqual2(D d, const uint16_t *expected, const V &actual) {
   for (size_t i = 0; i < N; ++i) {
     const uint8_t *expected_ptr = expected_array + i * 2;
     const uint8_t *actual_ptr = actual_array + i * 2;
+#if 1
+    // trigger bug
     if (!BytesEqual2(expected_ptr, actual_ptr, 2)) {
-      abort();
-    }
+#else
+    // no bug
+    if (std::memcmp(expected_ptr, actual_ptr, 2) != 0) {
+#endif
+    abort();
   }
+}
 }
 
 int main() {

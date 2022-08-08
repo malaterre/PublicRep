@@ -45,21 +45,24 @@ MulHigh(hwy::N_EMU128::Vec128<uint16_t, N> a,
 }
 
 template <typename T>
-hwy::AlignedFreeUniquePtr<T[]>
+using AlignedFreeUniquePtr2 = std::unique_ptr<T, hwy::AlignedFreer>;
+
+template <typename T>
+AlignedFreeUniquePtr2<T[]>
 AllocateAligned2(const size_t items, hwy::AllocPtr alloc, hwy::FreePtr free,
                  void *opaque) {
-  return hwy::AlignedFreeUniquePtr<T[]>(
+  return AlignedFreeUniquePtr2<T[]>(
       hwy::detail::AllocateAlignedItems<T>(items, alloc, opaque),
       hwy::AlignedFreer(free, opaque));
 }
 
 template <typename T>
-hwy::AlignedFreeUniquePtr<T[]> AllocateAligned2(const size_t items) {
+AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
   return AllocateAligned2<T>(items, nullptr, nullptr, nullptr);
 }
 
 int main() {
-  hwy::AlignedFreeUniquePtr<uint16_t[]> in_lanes =
+  AlignedFreeUniquePtr2<uint16_t[]> in_lanes =
       AllocateAligned2<uint16_t>(2);
   uint16_t *ptr = in_lanes.get();
   uint16_t expected_lanes[2];

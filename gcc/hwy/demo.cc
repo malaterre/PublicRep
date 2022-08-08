@@ -5,6 +5,18 @@
 
 bool BytesEqual2(const void *p1, const void *p2, const size_t size);
 
+template <size_t kBytes, typename From, typename To>
+void CopyBytes2(const From *from, To *to) {
+  __builtin_memcpy(to, from, kBytes);
+}
+
+template <typename T, size_t N>
+HWY_API void Store2(const hwy::N_EMU128::Vec128<T, N> v,
+                    hwy::N_EMU128::Simd<T, N, 0> /* tag */,
+                    T *HWY_RESTRICT aligned) {
+  CopyBytes2<sizeof(T) * N>(v.raw, aligned);
+}
+
 int main() {
   hwy::N_EMU128::FixedTag<uint16_t, 2> d;
   hwy::AlignedFreeUniquePtr<uint16_t[]> in_lanes =
@@ -17,11 +29,10 @@ int main() {
   expected_lanes[1] = 16383;
   hwy::N_EMU128::Vec128<uint16_t, 2> v = Load(d, in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
-  // AssertVecEqual2(d, expected_lanes, actual);
   {
     auto actual_lanes = hwy::AllocateAligned<uint16_t>(2);
     uint16_t *ptr = actual_lanes.get();
-    Store(actual, d, actual_lanes.get());
+    Store2(actual, d, actual_lanes.get());
     const uint8_t *expected_array =
         reinterpret_cast<const uint8_t *>(expected_lanes);
     const uint8_t *actual_array =

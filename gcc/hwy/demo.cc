@@ -8,12 +8,7 @@ bool BytesEqual2(const void *p1, const void *p2, const size_t size,
 namespace hwy {
 namespace detail {
 
-bool IsEqual2(const TypeInfo &info, const void *expected_ptr,
-              const void *actual_ptr) {
-  return BytesEqual2(expected_ptr, actual_ptr, info.sizeof_t);
-}
-
-void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,
+void AssertArrayEqual2(const void *expected_void,
                        const void *actual_void, size_t N,
                        const char *target_name, const char *filename,
                        int line) {
@@ -21,9 +16,9 @@ void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,
       reinterpret_cast<const uint8_t *>(expected_void);
   const uint8_t *actual_array = reinterpret_cast<const uint8_t *>(actual_void);
   for (size_t i = 0; i < N; ++i) {
-    const void *expected_ptr = expected_array + i * info.sizeof_t;
-    const void *actual_ptr = actual_array + i * info.sizeof_t;
-    if (!IsEqual2(info, expected_ptr, actual_ptr)) {
+    const void *expected_ptr = expected_array + i * 2 ;
+    const void *actual_ptr = actual_array + i * 2;
+    if (!BytesEqual2(expected_ptr, actual_ptr, 2)) {
       abort();
     }
   }
@@ -41,7 +36,7 @@ HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual,
 
   const auto info = hwy::detail::MakeTypeInfo<T>();
   const char *target_name = hwy::TargetName(HWY_TARGET);
-  hwy::detail::AssertArrayEqual2(info, expected, actual_lanes.get(), N,
+  hwy::detail::AssertArrayEqual2( expected, actual_lanes.get(), N,
                                  target_name, filename, line);
 }
 } // namespace N_EMU128

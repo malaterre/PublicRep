@@ -5,10 +5,10 @@
 namespace hwy {
 
 namespace detail {
-HWY_TEST_DLLEXPORT HWY_NORETURN void PrintMismatchAndAbort(
-    const TypeInfo& info, const void* expected_ptr, const void* actual_ptr,
-    const char* target_name, const char* filename, int line, size_t lane,
-    size_t num_lanes) ;
+//HWY_TEST_DLLEXPORT HWY_NORETURN void PrintMismatchAndAbort(
+//    const TypeInfo& info, const void* expected_ptr, const void* actual_ptr,
+//    const char* target_name, const char* filename, int line, size_t lane,
+//    size_t num_lanes) ;
 
 HWY_TEST_DLLEXPORT bool IsEqual(const TypeInfo& info, const void* expected_ptr,
                                 const void* actual_ptr);
@@ -23,12 +23,13 @@ void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,
     const void* expected_ptr = expected_array + i * info.sizeof_t;
     const void* actual_ptr = actual_array + i * info.sizeof_t;
     if (!IsEqual(info, expected_ptr, actual_ptr)) {
-      fprintf(stderr, "\n\n");
-      PrintArray(info, "expect", expected_array, N, i);
-      PrintArray(info, "actual", actual_array, N, i);
+//      fprintf(stderr, "\n\n");
+//      PrintArray(info, "expect", expected_array, N, i);
+//      PrintArray(info, "actual", actual_array, N, i);
 
-      PrintMismatchAndAbort(info, expected_ptr, actual_ptr, target_name,
-                            filename, line, i, N);
+abort();
+//      PrintMismatchAndAbort(info, expected_ptr, actual_ptr, target_name,
+//                            filename, line, i, N);
     }
   }
 

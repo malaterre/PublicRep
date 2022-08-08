@@ -5,16 +5,16 @@
 namespace hwy {
 HWY_TEST_DLLEXPORT bool BytesEqual(const void *p1, const void *p2,
                                    const size_t size, size_t *pos = nullptr);
+bool BytesEqual2(const void *p1, const void *p2,
+                                   const size_t size, size_t *pos = nullptr);
+
 
 namespace detail {
-// HWY_TEST_DLLEXPORT HWY_NORETURN void PrintMismatchAndAbort(
-//    const TypeInfo& info, const void* expected_ptr, const void* actual_ptr,
-//    const char* target_name, const char* filename, int line, size_t lane,
-//    size_t num_lanes) ;
 
-HWY_TEST_DLLEXPORT bool IsEqual2(const TypeInfo &info, const void *expected_ptr,
+bool IsEqual2(const TypeInfo &info, const void *expected_ptr,
                                  const void *actual_ptr) {
-  return BytesEqual(expected_ptr, actual_ptr, info.sizeof_t);
+  //return BytesEqual(expected_ptr, actual_ptr, info.sizeof_t);
+  return BytesEqual2(expected_ptr, actual_ptr, info.sizeof_t);
 }
 
 void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,

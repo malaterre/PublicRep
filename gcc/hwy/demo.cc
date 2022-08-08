@@ -3,38 +3,42 @@
 #include "hwy/print.h"
 
 namespace hwy {
+HWY_TEST_DLLEXPORT bool BytesEqual(const void *p1, const void *p2,
+                                   const size_t size, size_t *pos = nullptr);
 
 namespace detail {
-//HWY_TEST_DLLEXPORT HWY_NORETURN void PrintMismatchAndAbort(
+// HWY_TEST_DLLEXPORT HWY_NORETURN void PrintMismatchAndAbort(
 //    const TypeInfo& info, const void* expected_ptr, const void* actual_ptr,
 //    const char* target_name, const char* filename, int line, size_t lane,
 //    size_t num_lanes) ;
 
-HWY_TEST_DLLEXPORT bool IsEqual(const TypeInfo& info, const void* expected_ptr,
-                                const void* actual_ptr);
+HWY_TEST_DLLEXPORT bool IsEqual2(const TypeInfo &info, const void *expected_ptr,
+                                 const void *actual_ptr) {
+  return BytesEqual(expected_ptr, actual_ptr, info.sizeof_t);
+}
 
 void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,
-                      const void *actual_void, size_t N,
-                      const char *target_name, const char *filename, int line) {
-  const uint8_t* expected_array =
-      reinterpret_cast<const uint8_t*>(expected_void);
-  const uint8_t* actual_array = reinterpret_cast<const uint8_t*>(actual_void);
+                       const void *actual_void, size_t N,
+                       const char *target_name, const char *filename,
+                       int line) {
+  const uint8_t *expected_array =
+      reinterpret_cast<const uint8_t *>(expected_void);
+  const uint8_t *actual_array = reinterpret_cast<const uint8_t *>(actual_void);
   for (size_t i = 0; i < N; ++i) {
-    const void* expected_ptr = expected_array + i * info.sizeof_t;
-    const void* actual_ptr = actual_array + i * info.sizeof_t;
-    if (!IsEqual(info, expected_ptr, actual_ptr)) {
-//      fprintf(stderr, "\n\n");
-//      PrintArray(info, "expect", expected_array, N, i);
-//      PrintArray(info, "actual", actual_array, N, i);
+    const void *expected_ptr = expected_array + i * info.sizeof_t;
+    const void *actual_ptr = actual_array + i * info.sizeof_t;
+    if (!IsEqual2(info, expected_ptr, actual_ptr)) {
+      //      fprintf(stderr, "\n\n");
+      //      PrintArray(info, "expect", expected_array, N, i);
+      //      PrintArray(info, "actual", actual_array, N, i);
 
-abort();
-//      PrintMismatchAndAbort(info, expected_ptr, actual_ptr, target_name,
-//                            filename, line, i, N);
+      abort();
+      //      PrintMismatchAndAbort(info, expected_ptr, actual_ptr, target_name,
+      //                            filename, line, i, N);
     }
   }
-
 }
-}
+} // namespace detail
 
 namespace N_EMU128 {
 
@@ -48,7 +52,7 @@ HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual,
   const auto info = hwy::detail::MakeTypeInfo<T>();
   const char *target_name = hwy::TargetName(HWY_TARGET);
   hwy::detail::AssertArrayEqual2(info, expected, actual_lanes.get(), N,
-                                target_name, filename, line);
+                                 target_name, filename, line);
 }
 } // namespace N_EMU128
 } // namespace hwy

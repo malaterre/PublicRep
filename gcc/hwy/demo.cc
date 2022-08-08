@@ -44,9 +44,23 @@ MulHigh(hwy::N_EMU128::Vec128<uint16_t, N> a,
   return a;
 }
 
+template <typename T>
+hwy::AlignedFreeUniquePtr<T[]>
+AllocateAligned2(const size_t items, hwy::AllocPtr alloc, hwy::FreePtr free,
+                 void *opaque) {
+  return hwy::AlignedFreeUniquePtr<T[]>(
+      hwy::detail::AllocateAlignedItems<T>(items, alloc, opaque),
+      hwy::AlignedFreer(free, opaque));
+}
+
+template <typename T>
+hwy::AlignedFreeUniquePtr<T[]> AllocateAligned2(const size_t items) {
+  return AllocateAligned2<T>(items, nullptr, nullptr, nullptr);
+}
+
 int main() {
   hwy::AlignedFreeUniquePtr<uint16_t[]> in_lanes =
-      hwy::AllocateAligned<uint16_t>(2);
+      AllocateAligned2<uint16_t>(2);
   uint16_t *ptr = in_lanes.get();
   uint16_t expected_lanes[2];
   in_lanes[0] = 65535;
@@ -56,7 +70,7 @@ int main() {
   hwy::N_EMU128::Vec128<uint16_t, 2> v = Load2<uint16_t, 2>(in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
   {
-    auto actual_lanes = hwy::AllocateAligned<uint16_t>(2);
+    auto actual_lanes = AllocateAligned2<uint16_t>(2);
     uint16_t *ptr = actual_lanes.get();
     Store2(actual, actual_lanes.get());
     const uint8_t *expected_array =

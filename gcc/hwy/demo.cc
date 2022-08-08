@@ -12,9 +12,15 @@ void CopyBytes2(const From *from, To *to) {
 
 template <typename T, size_t N>
 HWY_API void Store2(const hwy::N_EMU128::Vec128<T, N> v,
-                    hwy::N_EMU128::Simd<T, N, 0> /* tag */,
                     T *HWY_RESTRICT aligned) {
   CopyBytes2<sizeof(T) * N>(v.raw, aligned);
+}
+
+template <typename T, size_t N>
+HWY_API hwy::N_EMU128::Vec128<T, N> Load2(const T *HWY_RESTRICT aligned) {
+  hwy::N_EMU128::Vec128<T, N> v;
+  CopyBytes2<sizeof(T) * N>(aligned, v.raw);
+  return v;
 }
 
 int main() {
@@ -27,12 +33,12 @@ int main() {
   in_lanes[1] = 32767;
   expected_lanes[0] = 65534;
   expected_lanes[1] = 16383;
-  hwy::N_EMU128::Vec128<uint16_t, 2> v = Load(d, in_lanes.get());
+  hwy::N_EMU128::Vec128<uint16_t, 2> v = Load2<uint16_t, 2>(in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
   {
     auto actual_lanes = hwy::AllocateAligned<uint16_t>(2);
     uint16_t *ptr = actual_lanes.get();
-    Store2(actual, d, actual_lanes.get());
+    Store2(actual, actual_lanes.get());
     const uint8_t *expected_array =
         reinterpret_cast<const uint8_t *>(expected_lanes);
     const uint8_t *actual_array =

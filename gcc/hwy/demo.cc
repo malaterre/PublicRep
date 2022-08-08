@@ -1,5 +1,4 @@
 #include "hwy/aligned_allocator.h"
-//#include "hwy/highway.h"
 #include <cstdlib>
 #include <cstring>
 
@@ -8,23 +7,6 @@ bool BytesEqual2(const void *p1, const void *p2, const size_t size);
 namespace hwy {
 namespace N_EMU128 {
 template <typename T, size_t N = 16 / sizeof(T)> struct Vec128 {
-  Vec128() = default;
-  Vec128(const Vec128 &) = default;
-  Vec128 &operator=(const Vec128 &) = default;
-
-  Vec128 &operator*=(const Vec128 other) { return *this = (*this * other); }
-  Vec128 &operator/=(const Vec128 other) { return *this = (*this / other); }
-  Vec128 &operator+=(const Vec128 other) { return *this = (*this + other); }
-  Vec128 &operator-=(const Vec128 other) { return *this = (*this - other); }
-  Vec128 &operator&=(const Vec128 other) { return *this = (*this & other); }
-  Vec128 &operator|=(const Vec128 other) { return *this = (*this | other); }
-  Vec128 &operator^=(const Vec128 other) { return *this = (*this ^ other); }
-
-  // Behave like wasm128 (vectors can always hold 128 bits). generic_ops-inl.h
-  // relies on this for LoadInterleaved*. CAVEAT: this method of padding
-  // prevents using range for, especially in SumOfLanes, where it would be
-  // incorrect. Moving padding to another field would require handling the case
-  // where N = 16 / sizeof(T) (i.e. there is no padding), which is also awkward.
   T raw[16 / sizeof(T)] = {};
 };
 } // namespace N_EMU128

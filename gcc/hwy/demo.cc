@@ -1,8 +1,7 @@
 #include "hwy/aligned_allocator.h"
 #include "hwy/highway.h"
 
-bool BytesEqual2(const uint8_t *p1, const uint8_t *p2, const size_t size,
-                 size_t *pos = nullptr);
+bool BytesEqual2(const uint8_t *p1, const uint8_t *p2, const size_t size);
 
 template <class D, class V>
 void AssertVecEqual2(D d, const uint16_t *expected, const V &actual) {

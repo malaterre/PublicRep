@@ -9,7 +9,7 @@ namespace hwy {
 namespace N_EMU128 {
 
 template <class D, typename T, class V>
-HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual) {
+void AssertVecEqual2(D d, const T *expected, const V &actual) {
   const size_t N = 2;
   auto actual_lanes = hwy::AllocateAligned<uint16_t>(N);
   Store(actual, d, actual_lanes.get());
@@ -39,5 +39,5 @@ int main() {
   expected_lanes[1] = 16383;
   hwy::N_EMU128::Vec128<uint16_t, 2> v = Load(d, in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
-  hwy::N_EMU128::AssertVecEqual(d, expected_lanes, actual);
+  hwy::N_EMU128::AssertVecEqual2(d, expected_lanes, actual);
 }

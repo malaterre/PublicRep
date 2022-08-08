@@ -44,16 +44,36 @@ MulHigh(hwy::N_EMU128::Vec128<uint16_t, N> a,
   return a;
 }
 
-template <typename T>
-using AlignedFreeUniquePtr2 = std::unique_ptr<T, hwy::AlignedFreer>;
+using AllocPtr2 = void *(*)(void *opaque, size_t bytes);
+using FreePtr2 = void (*)(void *opaque, void *memory);
+
+class AlignedFreer2 {
+public:
+  // Pass address of this to ctor to skip deleting externally-owned memory.
+  static void DoNothing(void * /*opaque*/, void * /*aligned_pointer*/) {}
+
+  AlignedFreer2() : free_(nullptr), opaque_ptr_(nullptr) {}
+  AlignedFreer2(FreePtr2 free_ptr, void *opaque_ptr)
+      : free_(free_ptr), opaque_ptr_(opaque_ptr) {}
+
+  template <typename T> void operator()(T *aligned_pointer) const {
+    hwy::FreeAlignedBytes(aligned_pointer, free_, opaque_ptr_);
+  }
+
+private:
+  FreePtr2 free_;
+  void *opaque_ptr_;
+};
 
 template <typename T>
-AlignedFreeUniquePtr2<T[]>
-AllocateAligned2(const size_t items, hwy::AllocPtr alloc, hwy::FreePtr free,
-                 void *opaque) {
+using AlignedFreeUniquePtr2 = std::unique_ptr<T, AlignedFreer2>;
+
+template <typename T>
+AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items, AllocPtr2 alloc,
+                                            FreePtr2 free, void *opaque) {
   return AlignedFreeUniquePtr2<T[]>(
       hwy::detail::AllocateAlignedItems<T>(items, alloc, opaque),
-      hwy::AlignedFreer(free, opaque));
+      AlignedFreer2(free, opaque));
 }
 
 template <typename T>
@@ -62,8 +82,7 @@ AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
 }
 
 int main() {
-  AlignedFreeUniquePtr2<uint16_t[]> in_lanes =
-      AllocateAligned2<uint16_t>(2);
+  AlignedFreeUniquePtr2<uint16_t[]> in_lanes = AllocateAligned2<uint16_t>(2);
   uint16_t *ptr = in_lanes.get();
   uint16_t expected_lanes[2];
   in_lanes[0] = 65535;

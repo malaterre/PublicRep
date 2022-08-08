@@ -2,18 +2,14 @@
 #include "hwy/highway.h"
 #include "hwy/print.h"
 
+bool BytesEqual2(const void *p1, const void *p2, const size_t size,
+                 size_t *pos = nullptr);
+
 namespace hwy {
-HWY_TEST_DLLEXPORT bool BytesEqual(const void *p1, const void *p2,
-                                   const size_t size, size_t *pos = nullptr);
-bool BytesEqual2(const void *p1, const void *p2,
-                                   const size_t size, size_t *pos = nullptr);
-
-
 namespace detail {
 
 bool IsEqual2(const TypeInfo &info, const void *expected_ptr,
-                                 const void *actual_ptr) {
-  //return BytesEqual(expected_ptr, actual_ptr, info.sizeof_t);
+              const void *actual_ptr) {
   return BytesEqual2(expected_ptr, actual_ptr, info.sizeof_t);
 }
 
@@ -28,13 +24,7 @@ void AssertArrayEqual2(const TypeInfo &info, const void *expected_void,
     const void *expected_ptr = expected_array + i * info.sizeof_t;
     const void *actual_ptr = actual_array + i * info.sizeof_t;
     if (!IsEqual2(info, expected_ptr, actual_ptr)) {
-      //      fprintf(stderr, "\n\n");
-      //      PrintArray(info, "expect", expected_array, N, i);
-      //      PrintArray(info, "actual", actual_array, N, i);
-
       abort();
-      //      PrintMismatchAndAbort(info, expected_ptr, actual_ptr, target_name,
-      //                            filename, line, i, N);
     }
   }
 }

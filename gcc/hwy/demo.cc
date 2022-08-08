@@ -2,8 +2,6 @@
 #include "hwy/highway.h"
 #include "hwy/print.h"
 //#include "hwy/tests/test_util-inl.h"
-//#include <cstring>
-//#include <cassert>
 
 namespace hwy {
 
@@ -29,12 +27,8 @@ HWY_INLINE void AssertVecEqual(D d, const T *expected, VecArg<V> actual,
 
   const auto info = hwy::detail::MakeTypeInfo<T>();
   const char *target_name = hwy::TargetName(HWY_TARGET);
-#if 1
   hwy::detail::AssertArrayEqual(info, expected, actual_lanes.get(), N,
                                 target_name, filename, line);
-#else
-  assert(memcmp(expected, actual_lanes.get(), N * 2) == 0);
-#endif
 }
 } // namespace N_EMU128
 } // namespace hwy
@@ -45,17 +39,12 @@ struct TestMulHigh {
     hwy::AlignedFreeUniquePtr<short unsigned int[]> in_lanes =
         hwy::AllocateAligned<T>(N);
     uint16_t expected_lanes[2];
-
-    for (size_t i = 0; i < N; ++i) {
-      in_lanes[i] = T(hwy::LimitsMax<T>() >> i);
-    }
+    in_lanes[0] = 65535;
+    in_lanes[1] = 32767;
     expected_lanes[0] = 65534;
     expected_lanes[1] = 16383;
     hwy::N_EMU128::Vec128<uint16_t, 2> v = Load(d, in_lanes.get());
-    //    HWY_ASSERT_VEC_EQ(d, in_lanes.get(), v);
     hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
-
-    //    HWY_ASSERT_VEC_EQ(d, expected_lanes, actual);
     hwy::N_EMU128::AssertVecEqual(d, expected_lanes, actual, __FILE__,
                                   __LINE__);
   }

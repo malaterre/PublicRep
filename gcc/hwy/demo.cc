@@ -66,8 +66,7 @@ struct AllocationHeader {
 };
 #pragma pack(pop)
 
-static void FreeAlignedBytes2(/*const*/ void *aligned_pointer,
-                              FreePtr2 free_ptr, void *opaque_ptr) {
+static void FreeAlignedBytes2(const void *aligned_pointer) {
   HWY_ASSERT(aligned_pointer != nullptr);
   if (aligned_pointer == nullptr)
     return;
@@ -77,30 +76,14 @@ static void FreeAlignedBytes2(/*const*/ void *aligned_pointer,
   const AllocationHeader *header =
       reinterpret_cast<const AllocationHeader *>(payload) - 1;
 
-  HWY_ASSERT(free_ptr == nullptr);
-  if (free_ptr == nullptr) {
-    free(header->allocated);
-  } else {
-    (*free_ptr)(opaque_ptr, header->allocated);
-  }
+  free(header->allocated);
 }
 
 class AlignedFreer2 {
 public:
-  // Pass address of this to ctor to skip deleting externally-owned memory.
-  static void DoNothing(void * /*opaque*/, void * /*aligned_pointer*/) {}
-
-  AlignedFreer2() : free_(nullptr), opaque_ptr_(nullptr) {}
-  AlignedFreer2(FreePtr2 free_ptr, void *opaque_ptr)
-      : free_(free_ptr), opaque_ptr_(opaque_ptr) {}
-
   template <typename T> void operator()(T *aligned_pointer) const {
-    FreeAlignedBytes2(aligned_pointer, free_, opaque_ptr_);
+    FreeAlignedBytes2(aligned_pointer);
   }
-
-private:
-  FreePtr2 free_;
-  void *opaque_ptr_;
 };
 
 template <typename T>
@@ -122,10 +105,7 @@ static size_t NextAlignedOffset2() {
 }
 } // namespace
 
-static void *AllocateAlignedBytes2(const size_t payload_size,
-                                   AllocPtr2 alloc_ptr, void *opaque_ptr) {
-  HWY_ASSERT(alloc_ptr == nullptr);
-  HWY_ASSERT(opaque_ptr == nullptr);
+static void *AllocateAlignedBytes2(const size_t payload_size) {
   HWY_ASSERT(payload_size != 0); // likely a bug in caller
   if (payload_size >= std::numeric_limits<size_t>::max() / 2) {
     HWY_ASSERT(false && "payload_size too large");
@@ -147,12 +127,7 @@ static void *AllocateAlignedBytes2(const size_t payload_size,
 
   const size_t allocated_size = kAlias + offset + payload_size;
   void *allocated;
-  HWY_ASSERT(alloc_ptr == nullptr);
-  if (alloc_ptr == nullptr) {
-    allocated = malloc(allocated_size);
-  } else {
-    allocated = (*alloc_ptr)(opaque_ptr, allocated_size);
-  }
+  allocated = malloc(allocated_size);
   HWY_ASSERT(allocated != nullptr);
   if (allocated == nullptr)
     return nullptr;
@@ -174,9 +149,7 @@ static void *AllocateAlignedBytes2(const size_t payload_size,
   return HWY_ASSUME_ALIGNED(reinterpret_cast<void *>(payload), kAlignment);
 }
 
-template <typename T>
-static T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr,
-                                void *opaque_ptr) {
+template <typename T> static T *AllocateAlignedItems2(size_t items) {
   constexpr size_t size = sizeof(T);
 
   constexpr bool is_pow2 = (size & (size - 1)) == 0;
@@ -188,21 +161,13 @@ static T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr,
   if (check != items) {
     return nullptr; // overflowed
   }
-  return static_cast<T *>(AllocateAlignedBytes2(bytes, alloc_ptr, opaque_ptr));
-}
-
-template <typename T>
-static AlignedFreeUniquePtr2<T[]>
-AllocateAligned2(const size_t items, AllocPtr2 alloc, FreePtr2 free,
-                 void *opaque) {
-  return AlignedFreeUniquePtr2<T[]>(
-      AllocateAlignedItems2<T>(items, alloc, opaque),
-      AlignedFreer2(free, opaque));
+  return static_cast<T *>(AllocateAlignedBytes2(bytes));
 }
 
 template <typename T>
 static AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
-  return AllocateAligned2<T>(items, nullptr, nullptr, nullptr);
+  return AlignedFreeUniquePtr2<T[]>(AllocateAlignedItems2<T>(items),
+                                    AlignedFreer2());
 }
 
 int main() {

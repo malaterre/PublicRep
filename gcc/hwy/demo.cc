@@ -20,24 +20,25 @@ template <typename T, size_t N = 16 / sizeof(T)> struct Vec128 {
 } // namespace hwy
 
 template <size_t kBytes, typename From, typename To>
-void CopyBytes2(const From *from, To *to) {
+static void CopyBytes2(const From *from, To *to) {
   __builtin_memcpy(to, from, kBytes);
 }
 
 template <typename T, size_t N>
-void Store2(const hwy::N_EMU128::Vec128<T, N> v, T *__restrict__ aligned) {
+static void Store2(const hwy::N_EMU128::Vec128<T, N> v,
+                   T *__restrict__ aligned) {
   CopyBytes2<sizeof(T) * N>(v.raw, aligned);
 }
 
 template <typename T, size_t N>
-hwy::N_EMU128::Vec128<T, N> Load2(const T *__restrict__ aligned) {
+static hwy::N_EMU128::Vec128<T, N> Load2(const T *__restrict__ aligned) {
   hwy::N_EMU128::Vec128<T, N> v;
   CopyBytes2<sizeof(T) * N>(aligned, v.raw);
   return v;
 }
 
 template <size_t N>
-hwy::N_EMU128::Vec128<uint16_t, N>
+static hwy::N_EMU128::Vec128<uint16_t, N>
 MulHigh(hwy::N_EMU128::Vec128<uint16_t, N> a,
         const hwy::N_EMU128::Vec128<uint16_t, N> b) {
   for (size_t i = 0; i < N; ++i) {
@@ -64,8 +65,8 @@ struct AllocationHeader {
 };
 #pragma pack(pop)
 
-void FreeAlignedBytes2(const void *aligned_pointer, FreePtr2 free_ptr,
-                       void *opaque_ptr) {
+static void FreeAlignedBytes2(const void *aligned_pointer, FreePtr2 free_ptr,
+                              void *opaque_ptr) {
   if (aligned_pointer == nullptr)
     return;
 
@@ -107,7 +108,7 @@ static inline constexpr size_t ShiftCount2(size_t n) {
 }
 
 namespace {
-size_t NextAlignedOffset2() {
+static size_t NextAlignedOffset2() {
   static std::atomic<uint32_t> next{0};
   constexpr uint32_t kGroups = kAlias / kAlignment;
   const uint32_t group = next.fetch_add(1, std::memory_order_relaxed) % kGroups;
@@ -117,8 +118,8 @@ size_t NextAlignedOffset2() {
 }
 } // namespace
 
-void *AllocateAlignedBytes2(const size_t payload_size, AllocPtr2 alloc_ptr,
-                            void *opaque_ptr) {
+static void *AllocateAlignedBytes2(const size_t payload_size,
+                                   AllocPtr2 alloc_ptr, void *opaque_ptr) {
   HWY_ASSERT(payload_size != 0); // likely a bug in caller
   if (payload_size >= std::numeric_limits<size_t>::max() / 2) {
     HWY_ASSERT(false && "payload_size too large");
@@ -166,7 +167,8 @@ void *AllocateAlignedBytes2(const size_t payload_size, AllocPtr2 alloc_ptr,
 }
 
 template <typename T>
-T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr, void *opaque_ptr) {
+static T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr,
+                                void *opaque_ptr) {
   constexpr size_t size = sizeof(T);
 
   constexpr bool is_pow2 = (size & (size - 1)) == 0;
@@ -182,21 +184,21 @@ T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr, void *opaque_ptr) {
 }
 
 template <typename T>
-AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items, AllocPtr2 alloc,
-                                            FreePtr2 free, void *opaque) {
+static AlignedFreeUniquePtr2<T[]>
+AllocateAligned2(const size_t items, AllocPtr2 alloc, FreePtr2 free,
+                 void *opaque) {
   return AlignedFreeUniquePtr2<T[]>(
       AllocateAlignedItems2<T>(items, alloc, opaque),
       AlignedFreer2(free, opaque));
 }
 
 template <typename T>
-AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
+static AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
   return AllocateAligned2<T>(items, nullptr, nullptr, nullptr);
 }
 
 int main() {
   AlignedFreeUniquePtr2<uint16_t[]> in_lanes = AllocateAligned2<uint16_t>(2);
-  uint16_t *ptr = in_lanes.get();
   uint16_t expected_lanes[2];
   in_lanes[0] = 65535;
   in_lanes[1] = 32767;
@@ -206,7 +208,6 @@ int main() {
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
   {
     auto actual_lanes = AllocateAligned2<uint16_t>(2);
-    uint16_t *ptr = actual_lanes.get();
     Store2(actual, actual_lanes.get());
     const uint8_t *expected_array =
         reinterpret_cast<const uint8_t *>(expected_lanes);

@@ -1,9 +1,8 @@
-//#include "hwy/aligned_allocator.h"
+#include <atomic>
+#include <cassert>
 #include <cstdlib>
 #include <cstring>
-#include <cassert>
 #include <limits>
-#include <atomic>
 #include <memory>
 
 #define HWY_ALIGNMENT 64
@@ -60,20 +59,20 @@ using FreePtr2 = void (*)(void *opaque, void *memory);
 
 #pragma pack(push, 1)
 struct AllocationHeader {
-  void* allocated;
+  void *allocated;
   size_t payload_size;
 };
 #pragma pack(pop)
 
-
-void FreeAlignedBytes2(const void* aligned_pointer,
-                                    FreePtr2 free_ptr, void* opaque_ptr) {
-  if (aligned_pointer == nullptr) return;
+void FreeAlignedBytes2(const void *aligned_pointer, FreePtr2 free_ptr,
+                       void *opaque_ptr) {
+  if (aligned_pointer == nullptr)
+    return;
 
   const uintptr_t payload = reinterpret_cast<uintptr_t>(aligned_pointer);
   HWY_ASSERT(payload % kAlignment == 0);
-  const AllocationHeader* header =
-      reinterpret_cast<const AllocationHeader*>(payload) - 1;
+  const AllocationHeader *header =
+      reinterpret_cast<const AllocationHeader *>(payload) - 1;
 
   if (free_ptr == nullptr) {
     free(header->allocated);
@@ -116,11 +115,11 @@ size_t NextAlignedOffset2() {
   HWY_ASSERT((offset % kAlignment == 0) && offset <= kAlias);
   return offset;
 }
-}
+} // namespace
 
-void* AllocateAlignedBytes2(const size_t payload_size,
-                                         AllocPtr2 alloc_ptr, void* opaque_ptr) {
-  HWY_ASSERT(payload_size != 0);  // likely a bug in caller
+void *AllocateAlignedBytes2(const size_t payload_size, AllocPtr2 alloc_ptr,
+                            void *opaque_ptr) {
+  HWY_ASSERT(payload_size != 0); // likely a bug in caller
   if (payload_size >= std::numeric_limits<size_t>::max() / 2) {
     HWY_ASSERT(false && "payload_size too large");
     return nullptr;
@@ -135,18 +134,19 @@ void* AllocateAlignedBytes2(const size_t payload_size,
   // To avoid wasting space, the header resides at the end of `unused`,
   // which therefore cannot be empty (offset == 0).
   if (offset == 0) {
-    offset = kAlignment;  // = RoundUpTo(sizeof(AllocationHeader), kAlignment)
+    offset = kAlignment; // = RoundUpTo(sizeof(AllocationHeader), kAlignment)
     static_assert(sizeof(AllocationHeader) <= kAlignment, "Else: round up");
   }
 
   const size_t allocated_size = kAlias + offset + payload_size;
-  void* allocated;
+  void *allocated;
   if (alloc_ptr == nullptr) {
     allocated = malloc(allocated_size);
   } else {
     allocated = (*alloc_ptr)(opaque_ptr, allocated_size);
   }
-  if (allocated == nullptr) return nullptr;
+  if (allocated == nullptr)
+    return nullptr;
   // Always round up even if already aligned - we already asked for kAlias
   // extra bytes and there's no way to give them back.
   uintptr_t aligned = reinterpret_cast<uintptr_t>(allocated) + kAlias;
@@ -154,19 +154,19 @@ void* AllocateAlignedBytes2(const size_t payload_size,
   static_assert(kAlias >= kAlignment, "Cannot align to more than kAlias");
   aligned &= ~(kAlias - 1);
 
-  const uintptr_t payload = aligned + offset;  // still aligned
+  const uintptr_t payload = aligned + offset; // still aligned
 
   // Stash `allocated` and payload_size inside header for FreeAlignedBytes().
   // The allocated_size can be reconstructed from the payload_size.
-  AllocationHeader* header = reinterpret_cast<AllocationHeader*>(payload) - 1;
+  AllocationHeader *header = reinterpret_cast<AllocationHeader *>(payload) - 1;
   header->allocated = allocated;
   header->payload_size = payload_size;
 
-  return HWY_ASSUME_ALIGNED(reinterpret_cast<void*>(payload), kAlignment);
+  return HWY_ASSUME_ALIGNED(reinterpret_cast<void *>(payload), kAlignment);
 }
 
 template <typename T>
-T* AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr, void* opaque_ptr) {
+T *AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr, void *opaque_ptr) {
   constexpr size_t size = sizeof(T);
 
   constexpr bool is_pow2 = (size & (size - 1)) == 0;
@@ -176,21 +176,16 @@ T* AllocateAlignedItems2(size_t items, AllocPtr2 alloc_ptr, void* opaque_ptr) {
   const size_t bytes = is_pow2 ? items << bits : items * size;
   const size_t check = is_pow2 ? bytes >> bits : bytes / size;
   if (check != items) {
-    return nullptr;  // overflowed
+    return nullptr; // overflowed
   }
-  return static_cast<T*>(AllocateAlignedBytes2(bytes, alloc_ptr, opaque_ptr));
+  return static_cast<T *>(AllocateAlignedBytes2(bytes, alloc_ptr, opaque_ptr));
 }
-
 
 template <typename T>
 AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items, AllocPtr2 alloc,
                                             FreePtr2 free, void *opaque) {
   return AlignedFreeUniquePtr2<T[]>(
-#if 0
-      hwy::detail::AllocateAlignedItems<T>(items, alloc, opaque),
-#else
       AllocateAlignedItems2<T>(items, alloc, opaque),
-#endif
       AlignedFreer2(free, opaque));
 }
 

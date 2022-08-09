@@ -22,7 +22,7 @@ template <typename T, size_t N = 16 / sizeof(T)> struct Vec128 {
 
 template <typename T, size_t N>
 static void Store(const hwy::N_EMU128::Vec128<T, N> v,
-                   T *__restrict__ aligned) {
+                  T *__restrict__ aligned) {
   __builtin_memcpy(aligned, v.raw, sizeof(T) * N);
 }
 
@@ -158,7 +158,7 @@ template <typename T> static T *AllocateAlignedItems(size_t items) {
 template <typename T>
 static AlignedFreeUniquePtr<T[]> AllocateAligned(const size_t items) {
   return AlignedFreeUniquePtr<T[]>(AllocateAlignedItems<T>(items),
-                                    AlignedFreer());
+                                   AlignedFreer());
 }
 
 int main() {

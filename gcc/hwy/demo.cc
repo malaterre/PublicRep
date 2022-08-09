@@ -4,6 +4,7 @@
 #include <cstring>
 #include <limits>
 #include <memory>
+//#include <iostream>
 
 #define HWY_ALIGNMENT 64
 constexpr size_t kAlignment = HWY_ALIGNMENT;
@@ -27,13 +28,13 @@ static void CopyBytes2(const From *from, To *to) {
 template <typename T, size_t N>
 static void Store2(const hwy::N_EMU128::Vec128<T, N> v,
                    T *__restrict__ aligned) {
-  CopyBytes2<sizeof(T) * N>(v.raw, aligned);
+  __builtin_memcpy(aligned, v.raw, sizeof(T) * N);
 }
 
 template <typename T, size_t N>
 static hwy::N_EMU128::Vec128<T, N> Load2(const T *__restrict__ aligned) {
   hwy::N_EMU128::Vec128<T, N> v;
-  CopyBytes2<sizeof(T) * N>(aligned, v.raw);
+  __builtin_memcpy(v.raw, aligned, sizeof(T) * N);
   return v;
 }
 
@@ -65,8 +66,9 @@ struct AllocationHeader {
 };
 #pragma pack(pop)
 
-static void FreeAlignedBytes2(const void *aligned_pointer, FreePtr2 free_ptr,
-                              void *opaque_ptr) {
+static void FreeAlignedBytes2(/*const*/ void *aligned_pointer,
+                              FreePtr2 free_ptr, void *opaque_ptr) {
+  HWY_ASSERT(aligned_pointer != nullptr);
   if (aligned_pointer == nullptr)
     return;
 
@@ -75,6 +77,7 @@ static void FreeAlignedBytes2(const void *aligned_pointer, FreePtr2 free_ptr,
   const AllocationHeader *header =
       reinterpret_cast<const AllocationHeader *>(payload) - 1;
 
+  HWY_ASSERT(free_ptr == nullptr);
   if (free_ptr == nullptr) {
     free(header->allocated);
   } else {
@@ -114,12 +117,15 @@ static size_t NextAlignedOffset2() {
   const uint32_t group = next.fetch_add(1, std::memory_order_relaxed) % kGroups;
   const size_t offset = kAlignment * group;
   HWY_ASSERT((offset % kAlignment == 0) && offset <= kAlias);
+  //  std::cerr << "O: " << offset << std::endl;
   return offset;
 }
 } // namespace
 
 static void *AllocateAlignedBytes2(const size_t payload_size,
                                    AllocPtr2 alloc_ptr, void *opaque_ptr) {
+  HWY_ASSERT(alloc_ptr == nullptr);
+  HWY_ASSERT(opaque_ptr == nullptr);
   HWY_ASSERT(payload_size != 0); // likely a bug in caller
   if (payload_size >= std::numeric_limits<size_t>::max() / 2) {
     HWY_ASSERT(false && "payload_size too large");
@@ -141,11 +147,13 @@ static void *AllocateAlignedBytes2(const size_t payload_size,
 
   const size_t allocated_size = kAlias + offset + payload_size;
   void *allocated;
+  HWY_ASSERT(alloc_ptr == nullptr);
   if (alloc_ptr == nullptr) {
     allocated = malloc(allocated_size);
   } else {
     allocated = (*alloc_ptr)(opaque_ptr, allocated_size);
   }
+  HWY_ASSERT(allocated != nullptr);
   if (allocated == nullptr)
     return nullptr;
   // Always round up even if already aligned - we already asked for kAlias

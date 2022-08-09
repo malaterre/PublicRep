@@ -10,7 +10,7 @@
 constexpr size_t kAlignment = HWY_ALIGNMENT;
 constexpr size_t kAlias = kAlignment * 4;
 
-bool BytesEqual2(const void *p1, const void *p2, const size_t size);
+bool BytesEqual(const void *p1, const void *p2, const size_t size);
 
 namespace hwy {
 namespace N_EMU128 {
@@ -20,19 +20,14 @@ template <typename T, size_t N = 16 / sizeof(T)> struct Vec128 {
 } // namespace N_EMU128
 } // namespace hwy
 
-template <size_t kBytes, typename From, typename To>
-static void CopyBytes2(const From *from, To *to) {
-  __builtin_memcpy(to, from, kBytes);
-}
-
 template <typename T, size_t N>
-static void Store2(const hwy::N_EMU128::Vec128<T, N> v,
+static void Store(const hwy::N_EMU128::Vec128<T, N> v,
                    T *__restrict__ aligned) {
   __builtin_memcpy(aligned, v.raw, sizeof(T) * N);
 }
 
 template <typename T, size_t N>
-static hwy::N_EMU128::Vec128<T, N> Load2(const T *__restrict__ aligned) {
+static hwy::N_EMU128::Vec128<T, N> Load(const T *__restrict__ aligned) {
   hwy::N_EMU128::Vec128<T, N> v;
   __builtin_memcpy(v.raw, aligned, sizeof(T) * N);
   return v;
@@ -53,9 +48,6 @@ MulHigh(hwy::N_EMU128::Vec128<uint16_t, N> a,
   return a;
 }
 
-using AllocPtr2 = void *(*)(void *opaque, size_t bytes);
-using FreePtr2 = void (*)(void *opaque, void *memory);
-
 #define HWY_ASSERT(condition) assert((condition))
 #define HWY_ASSUME_ALIGNED(ptr, align) __builtin_assume_aligned((ptr), (align))
 
@@ -66,7 +58,7 @@ struct AllocationHeader {
 };
 #pragma pack(pop)
 
-static void FreeAlignedBytes2(const void *aligned_pointer) {
+static void FreeAlignedBytes(const void *aligned_pointer) {
   HWY_ASSERT(aligned_pointer != nullptr);
   if (aligned_pointer == nullptr)
     return;
@@ -79,22 +71,22 @@ static void FreeAlignedBytes2(const void *aligned_pointer) {
   free(header->allocated);
 }
 
-class AlignedFreer2 {
+class AlignedFreer {
 public:
   template <typename T> void operator()(T *aligned_pointer) const {
-    FreeAlignedBytes2(aligned_pointer);
+    FreeAlignedBytes(aligned_pointer);
   }
 };
 
 template <typename T>
-using AlignedFreeUniquePtr2 = std::unique_ptr<T, AlignedFreer2>;
+using AlignedFreeUniquePtr = std::unique_ptr<T, AlignedFreer>;
 
-static inline constexpr size_t ShiftCount2(size_t n) {
-  return (n <= 1) ? 0 : 1 + ShiftCount2(n / 2);
+static inline constexpr size_t ShiftCount(size_t n) {
+  return (n <= 1) ? 0 : 1 + ShiftCount(n / 2);
 }
 
 namespace {
-static size_t NextAlignedOffset2() {
+static size_t NextAlignedOffset() {
   static std::atomic<uint32_t> next{0};
   constexpr uint32_t kGroups = kAlias / kAlignment;
   const uint32_t group = next.fetch_add(1, std::memory_order_relaxed) % kGroups;
@@ -105,14 +97,14 @@ static size_t NextAlignedOffset2() {
 }
 } // namespace
 
-static void *AllocateAlignedBytes2(const size_t payload_size) {
+static void *AllocateAlignedBytes(const size_t payload_size) {
   HWY_ASSERT(payload_size != 0); // likely a bug in caller
   if (payload_size >= std::numeric_limits<size_t>::max() / 2) {
     HWY_ASSERT(false && "payload_size too large");
     return nullptr;
   }
 
-  size_t offset = NextAlignedOffset2();
+  size_t offset = NextAlignedOffset();
 
   // What: | misalign | unused | AllocationHeader |payload
   // Size: |<= kAlias | offset                    |payload_size
@@ -126,8 +118,7 @@ static void *AllocateAlignedBytes2(const size_t payload_size) {
   }
 
   const size_t allocated_size = kAlias + offset + payload_size;
-  void *allocated;
-  allocated = malloc(allocated_size);
+  void *allocated = malloc(allocated_size);
   HWY_ASSERT(allocated != nullptr);
   if (allocated == nullptr)
     return nullptr;
@@ -149,11 +140,11 @@ static void *AllocateAlignedBytes2(const size_t payload_size) {
   return HWY_ASSUME_ALIGNED(reinterpret_cast<void *>(payload), kAlignment);
 }
 
-template <typename T> static T *AllocateAlignedItems2(size_t items) {
+template <typename T> static T *AllocateAlignedItems(size_t items) {
   constexpr size_t size = sizeof(T);
 
   constexpr bool is_pow2 = (size & (size - 1)) == 0;
-  constexpr size_t bits = ShiftCount2(size);
+  constexpr size_t bits = ShiftCount(size);
   static_assert(!is_pow2 || (1ull << bits) == size, "ShiftCount is incorrect");
 
   const size_t bytes = is_pow2 ? items << bits : items * size;
@@ -161,27 +152,27 @@ template <typename T> static T *AllocateAlignedItems2(size_t items) {
   if (check != items) {
     return nullptr; // overflowed
   }
-  return static_cast<T *>(AllocateAlignedBytes2(bytes));
+  return static_cast<T *>(AllocateAlignedBytes(bytes));
 }
 
 template <typename T>
-static AlignedFreeUniquePtr2<T[]> AllocateAligned2(const size_t items) {
-  return AlignedFreeUniquePtr2<T[]>(AllocateAlignedItems2<T>(items),
-                                    AlignedFreer2());
+static AlignedFreeUniquePtr<T[]> AllocateAligned(const size_t items) {
+  return AlignedFreeUniquePtr<T[]>(AllocateAlignedItems<T>(items),
+                                    AlignedFreer());
 }
 
 int main() {
-  AlignedFreeUniquePtr2<uint16_t[]> in_lanes = AllocateAligned2<uint16_t>(2);
+  AlignedFreeUniquePtr<uint16_t[]> in_lanes = AllocateAligned<uint16_t>(2);
   uint16_t expected_lanes[2];
   in_lanes[0] = 65535;
   in_lanes[1] = 32767;
   expected_lanes[0] = 65534;
   expected_lanes[1] = 16383;
-  hwy::N_EMU128::Vec128<uint16_t, 2> v = Load2<uint16_t, 2>(in_lanes.get());
+  hwy::N_EMU128::Vec128<uint16_t, 2> v = Load<uint16_t, 2>(in_lanes.get());
   hwy::N_EMU128::Vec128<uint16_t, 2> actual = MulHigh(v, v);
   {
-    auto actual_lanes = AllocateAligned2<uint16_t>(2);
-    Store2(actual, actual_lanes.get());
+    auto actual_lanes = AllocateAligned<uint16_t>(2);
+    Store(actual, actual_lanes.get());
     const uint8_t *expected_array =
         reinterpret_cast<const uint8_t *>(expected_lanes);
     const uint8_t *actual_array =
@@ -191,7 +182,7 @@ int main() {
       const uint8_t *actual_ptr = actual_array + i * 2;
 #if 1
       // trigger bug
-      if (!BytesEqual2(expected_ptr, actual_ptr, 2)) {
+      if (!BytesEqual(expected_ptr, actual_ptr, 2)) {
 #else
       // no bug
       if (std::memcmp(expected_ptr, actual_ptr, 2) != 0) {

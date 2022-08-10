@@ -21,7 +21,7 @@ static struct device_vtable const g_vtable = {
      usb_drive_read, usb_drive_write}};
 
 int usb_drive_create(struct device **pself) {
-  struct usb_drive *const self = malloc(sizeof(*self));
+  struct usb_drive *self = (struct usb_drive *)malloc(sizeof(*self));
   if (self) {
     *pself = &self->device;
     self->device.vtable = &g_vtable;
@@ -31,7 +31,7 @@ int usb_drive_create(struct device **pself) {
 }
 
 int usb_drive_destroy(void *const self_) {
-  struct usb_drive *const self = self_;
+  struct usb_drive *self = (struct usb_drive *)self_;
   printf("destroyed a usb_drive(%p)\n", self_);
   free(self);
   return 0;

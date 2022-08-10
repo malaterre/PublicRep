@@ -4,7 +4,6 @@
 #include <cstring>
 #include <limits>
 #include <memory>
-//#include <iostream>
 
 #define HWY_ALIGNMENT 64
 constexpr size_t kAlignment = HWY_ALIGNMENT;
@@ -137,6 +136,7 @@ static void *AllocateAlignedBytes(const size_t payload_size) {
   header->allocated = allocated;
   header->payload_size = payload_size;
 
+  //printf("%d-byte aligned addr: %p\n", kAlignment, reinterpret_cast<void*>(payload));
   return HWY_ASSUME_ALIGNED(reinterpret_cast<void *>(payload), kAlignment);
 }
 

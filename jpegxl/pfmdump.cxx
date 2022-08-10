@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
     fmax = std::max(fmax, f);
     count += f;
   }
-  std::cerr << fmin << " " << fmax << std::endl;
+  std::cerr << "min/max:" << fmin << " " << fmax << std::endl;
   std::cerr << count << std::endl;
   std::cerr << count / nfloats << std::endl;
   return 1;

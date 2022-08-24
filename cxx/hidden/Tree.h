@@ -1,20 +1,24 @@
 #pragma once
 
-#include <mutex>
 #include <memory>
+#include <mutex>
 
-class Tree
-{
+class Tree {
 public:
-    static const std::string treeType() {
-      static std::once_flag once;
-      std::call_once(once, []() {
-        sTreeTypeName.reset(new std::string());
-		      });
-      return *sTreeTypeName;
-    }
+  static const std::string treeType() {
+    static std::once_flag once;
+    std::call_once(once, []() {
+      std::printf("%p\n", &sTreeTypeName);
+      sTreeTypeName.reset(new std::string());
+    });
+    std::printf("%p\n", &sTreeTypeName);
+    if (!sTreeTypeName)
+      throw "uhoh";
+    return *sTreeTypeName;
+  }
+
 private:
-    static std::unique_ptr<const std::string> sTreeTypeName;
+  static std::unique_ptr<const std::string> sTreeTypeName;
 };
 
 std::unique_ptr<const std::string> Tree::sTreeTypeName;

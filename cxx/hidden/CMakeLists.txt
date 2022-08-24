@@ -2,9 +2,12 @@ cmake_minimum_required(VERSION 3.13)
 project(p)
 
 # only export limited set of symbols
+if(VIS)
 set(CMAKE_C_VISIBILITY_PRESET hidden)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+add_compile_definitions(VIS=1)
+endif()
 
 # important to have pthread at runtime:
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)

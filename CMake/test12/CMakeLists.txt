@@ -9,10 +9,13 @@ FetchContent_Declare(
   OVERRIDE_FIND_PACKAGE)
 FetchContent_MakeAvailable(googletest)
 
-if(TARGET GTest::foobar)
-  message("Target foobar was found")
-endif()
-
+if(NOT EXISTS ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/gtest-config.cmake
+   AND NOT EXISTS ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/GTestConfig.cmake)
+  file(
+    WRITE ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/gtest-config.cmake
+    [=[
+include(CMakeFindDependencyMacro)
+find_dependency(googletest)
 if(NOT TARGET GTest::GTest)
   add_library(GTest::GTest INTERFACE IMPORTED)
   target_link_libraries(GTest::GTest INTERFACE GTest::gtest)
@@ -21,22 +24,6 @@ if(NOT TARGET GTest::Main)
   add_library(GTest::Main INTERFACE IMPORTED)
   target_link_libraries(GTest::Main INTERFACE GTest::gtest_main)
 endif()
-
-if(TARGET GTest::GTest)
-  message("Target gtest was found")
-endif()
-
-if(TARGET GTest::Main)
-  message("Target gtest_main was found")
-endif()
-
-if(NOT EXISTS ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/gtest-config.cmake
-   AND NOT EXISTS ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/GTestConfig.cmake)
-  file(
-    WRITE ${CMAKE_FIND_PACKAGE_REDIRECTS_DIR}/gtest-config.cmake
-    [=[
-include(CMakeFindDependencyMacro)
-find_dependency(googletest)
 ]=])
 endif()
 
@@ -52,19 +39,13 @@ endif()
 ]=])
 endif()
 
-find_package(GTest 1.12.1 REQUIRED)
-
-if(TARGET GTest::GTEST)
-  message("Target gtest was found")
-endif()
-
-# Now make sure hwy uses our gtest 1.12.1:
-set(HWY_SYSTEM_GTEST
-    ON
-    CACHE BOOL "")
 FetchContent_Declare(
   hwy
   GIT_REPOSITORY https://github.com/google/highway.git
   GIT_TAG 22e3d7276f4157d4a47586ba9fd91dd6303f441a # 1.0.1
 )
+# Now make sure hwy uses our gtest 1.12.1:
+set(HWY_SYSTEM_GTEST
+    ON
+    CACHE BOOL "")
 FetchContent_MakeAvailable(hwy)

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 project(p)
 
-set(BOOST_INCLUDE_LIBRARIES filesystem system program_options)
+set(BOOST_INCLUDE_LIBRARIES math filesystem system program_options)
 set(BOOST_ENABLE_CMAKE ON)
 
 include(FetchContent)

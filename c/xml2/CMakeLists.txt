@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.14)
+project(p)
+find_package(LibXml2 2.6 MODULE REQUIRED)
+add_executable(reader2 reader2.c)
+target_link_libraries(reader2 PRIVATE LibXml2::LibXml2)

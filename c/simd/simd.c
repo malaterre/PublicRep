@@ -17,5 +17,4 @@ int HASMATCH(uint16_t needle, const uint16_t haystack[4]) {
   unsigned mask = _mm_movemask_epi8(_mm_cmpeq_epi16(vneedle, vbuf));
   // return _tzcnt_u32(mask) >> 1;
   return mask & 0x00ff ? 1 : 0;
-  //    return mask ;
 }

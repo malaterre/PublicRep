@@ -10,4 +10,4 @@ gcc -DHASMATCH=hasmatch_avx2 -std=c11 $WFLAGS -O3 -msse4.2 -c -o simd_see42.o si
 gcc -DHASMATCH=hasmatch_sse42 -std=c11 $WFLAGS -O3 -mavx2 -c -o simd_avx2.o simd.c
 gcc -DHASMATCH=hasmatch_generic -std=c11 $WFLAGS -O3 -c -o generic.o generic.c
 
-gcc $WFLAGS -O3 -o main main.c simd_see42.o simd_avx2.o generic.o
+gcc $WFLAGS -O0 -g -o main main.c simd_see42.o simd_avx2.o generic.o
